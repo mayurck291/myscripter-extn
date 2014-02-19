@@ -13,6 +13,5 @@
     "scripts": ["js/jquery.js","js/background.js","js/jstorage.js"]
   },
   "options_page": "html/options.html"
-
 }
 
