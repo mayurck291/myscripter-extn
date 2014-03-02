@@ -7,6 +7,7 @@
     <script type="text/javascript" src="/js/angular.min.js"></script>
     <script type="text/javascript" src="/js/jquery.js"></script>
     <script type="text/javascript" src="/js/jstorage.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
 
     <link href='/css/angular-csp.css' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
@@ -15,6 +16,8 @@
 
 <div class="page_header">
     <h1>MyScripts</h1>
+
+    <span class="glyphicon glyphicon-question-sign help"></span>
 </div>
 
 <div ng-show="view_mode == 'search_mode'">
@@ -58,7 +61,7 @@
         <div class="btn-toolbar">
             <button type="button" class="btn btn-primary" ng-click="create_new()">New</button>
             <button type="button" class="btn btn-success">Save</button>
-            <button type="button" class="btn">Cancel</button>
+            <button type="button" class="btn" ng-click="view_mode = 'search_mode'">Cancel</button>
             <label class="pull-right"><input type="checkbox" ng-model="cur_project.autoApply"> Run Automatically on Load</label>
         </div>
 
@@ -133,5 +136,47 @@
 <script src="/js/options.js" type="text/javascript"></script>
 </div>
 
+
+<div class="modal" id="modal_help">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">MyScripts Help</h4>
+      </div>
+      <div class="modal-body">
+        <p>
+            MyScripts allows you to customise your favourite websites - Add your own CSS
+            and run your JS scripts
+        </p>
+
+        <p>
+            Here's how it works...
+            <ol>
+                <li>Click on the New button to start creating your script.</li>
+                <li>Provide the URL of the site on which you want your script to run</li>
+                <li>If you have some external JS files or CSS files to be included, such as jQuery, or your own hosted files, you can provide them in External JS & CSS sections. Provide them in the order in which you want them to be loaded
+                </li>
+                <li>
+                    You can write your own JS and CSS code in the custom code section at the end. Once you are done, click on Save
+                </li>
+            </ol>
+        </p>
+
+        <p>
+            That's it! You are done! Now go to the site that you provided in step 2 and click on the MyScripts icon and your script and CSS will take effect
+        </p>
+
+        <p>
+            <span class="label label-success">Tip</span>
+            If you don't want to click on the button every time, just tick the checkbox that says <strong>Run Automatically On Load</strong>
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 </body>
 </html>
