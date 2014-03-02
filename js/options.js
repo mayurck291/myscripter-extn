@@ -63,9 +63,9 @@ function MyScriptsController($scope) {
         return ['', undefined, null].indexOf(input) > -1;
     }
 
-    function save_project() {
+    $scope.save_project = function() {
         if (nullOrEmpty($scope.cur_project.id)) {
-            $scope.cur_project.id = Math.random().toString().indexOf();
+            $scope.cur_project.id = Math.random().toString().indexOf(2);
         }
 
         var all_projects = get_all_projects();
@@ -75,7 +75,18 @@ function MyScriptsController($scope) {
 
         var all_indexes = get_all_indexes();
 
-    }
+        var cur_url = $scope.cur_project.url;
+        if (nullOrEmpty(all_indexes[cur_url])) {
+            all_indexes[cur_url] = [];
+        }
+
+        if (all_indexes[cur_url].indexOf($scope.cur_project.id) == -1) {
+            all_indexes[cur_url].push($scope.cur_project.id);
+        }
+
+        save_all_indexes(all_indexes);
+
+    };
 
     function get_project(id) {
         $scope.cur_project = $.jStorage.get(id);
@@ -84,6 +95,23 @@ function MyScriptsController($scope) {
     function get_all_projects() {
         return nullOrEmpty($.jStorage.get('prjmyscripts_9')) ? {} : $.jStorage.get('prjmyscripts_9');
     }
+
+    $scope.get_all_project_names = function() {
+        var all_projects = get_all_projects();
+
+        var project_names = [];
+        for(project in all_projects) {
+            var cur_project = {};
+            cur_project.id = project.id;
+            cur_project.name = project.name;
+            cur_project.url = project.url;
+            cur_project.active = project.active;
+
+            project_names.push(cur_project);
+        }
+
+        return project_names;
+    };
 
     function save_all_projects(projects) {
         $.jStorage.set('prjmyscripts_9', projects);
@@ -96,4 +124,8 @@ function MyScriptsController($scope) {
     function save_all_indexes(indexes) {
         $.jStorage.set('prjmyindexes_9', indexes);
     }
+
+    $scope.show_help = function() {
+        $('#modal_help').modal('show');
+    };
 };

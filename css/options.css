@@ -90,3 +90,10 @@ textarea {
     margin-left: 20px;
     line-height: 25px;
 }
+
+.alert_box {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+}

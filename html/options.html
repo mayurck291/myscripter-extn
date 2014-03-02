@@ -17,7 +17,11 @@
 <div class="page_header">
     <h1>MyScripts</h1>
 
-    <span class="glyphicon glyphicon-question-sign help"></span>
+    <span class="glyphicon glyphicon-question-sign help" ng-click="show_help()"></span>
+</div>
+
+<div class="alert_box hide">
+    <div class="alert alert-success"><strong>Hooray!</strong> Your project was successfully saved</div>
 </div>
 
 <div ng-show="view_mode == 'search_mode'">
@@ -26,11 +30,15 @@
     </div>
 
     <div class="panel panel-default">
-        <div class="panel-body hide">
-            <div class="text-center">You have no scripts yet - <a href="javascript:void(0);">Add one</a></div>
+        <div class="panel-body text-center" ng-show="get_all_project_names().length == 0">
+            <div class="">You have no scripts yet - Go ahead and <a href="javascript:void(0);">Add one</a>...</div>
+
+            <p style="margin-top: 20px;">
+                ... or read our simple <a href="javascript:void(0);" ng-click="show_help()">Help</a> document
+            </p>
         </div>
 
-        <div class="panel-body">
+        <div class="panel-body" ng-show="get_all_project_names().length != 0">
             <table class="table">
                 <thead>
                     <tr>
@@ -42,11 +50,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Twitter beautifier</td>
-                        <td><a href="javascript:void(0);">http://www.twitter.com</a></td>
-                        <td><input type="checkbox"></td>
+                    <tr ng-repeat="(key, project) in get_all_project_names()">
+                        <td>{{key + 1}}</td>
+                        <td>{{project.name}}</td>
+                        <td><a href="javascript:void(0);">{{project.url}}</a></td>
+                        <td><input type="checkbox" value="project.active"></td>
                         <td><span class="glyphicon glyphicon-trash"></span></td>
                     </tr>
                 </tbody>
@@ -60,7 +68,7 @@
     <div class="body">
         <div class="btn-toolbar">
             <button type="button" class="btn btn-primary" ng-click="create_new()">New</button>
-            <button type="button" class="btn btn-success">Save</button>
+            <button type="button" class="btn btn-success" ng-click="save_project()">Save</button>
             <button type="button" class="btn" ng-click="view_mode = 'search_mode'">Cancel</button>
             <label class="pull-right"><input type="checkbox" ng-model="cur_project.autoApply"> Run Automatically on Load</label>
         </div>
