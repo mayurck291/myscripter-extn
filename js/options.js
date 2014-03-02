@@ -47,21 +47,20 @@ function MyScriptsController($scope) {
         $scope.cur_project.external.css.splice(key, 1);
     };
 
+    $scope.move_up = function(key, array) {
+        var value = array[key];
+        array[key] = array[key - 1];
+        array[key - 1] = value;
+    };
+
     $scope.move_down = function(key, array) {
         var value = array[key];
-        array.splice(key, 1);
-        array = insertArray(value, array, key + 1);
+        array[key] = array[key + 1];
+        array[key + 1] = value;
     };
 
     function nullOrEmpty(input) {
         return ['', undefined, null].indexOf(input) > -1;
-    }
-
-    function insertArray(value, array, position) {
-        var temp = array.splice(0, position);
-        temp.push(value);
-        array = temp.concat(array);
-        return array;
     }
 
     function save_project() {
@@ -81,7 +80,7 @@ function MyScriptsController($scope) {
     function get_project(id) {
         $scope.cur_project = $.jStorage.get(id);
     }
-    
+
     function get_all_projects() {
         return nullOrEmpty($.jStorage.get('prjmyscripts_9')) ? {} : $.jStorage.get('prjmyscripts_9');
     }

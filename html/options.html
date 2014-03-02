@@ -3,7 +3,7 @@
 <head>
     <!-- <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'> -->
     <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
-    
+
     <script type="text/javascript" src="/js/angular.min.js"></script>
     <script type="text/javascript" src="/js/jquery.js"></script>
     <script type="text/javascript" src="/js/jstorage.js"></script>
@@ -84,7 +84,7 @@
                         <a ng-repeat="(key, js) in cur_project.external.js" class="list-group-item" href="javascript: void(0);">{{js}}
 
                         <div class="url_list_btns">
-                            <span class="glyphicon glyphicon-arrow-up" ng-hide="key == 0"></span>
+                            <span class="glyphicon glyphicon-arrow-up" ng-hide="key == 0" ng-click="move_up(key, cur_project.external.js)"></span>
                             <span class="glyphicon glyphicon-arrow-down" ng-click="move_down(key, cur_project.external.js)" ng-hide="key == cur_project.external.js.length - 1"></span>
                             <span class="glyphicon glyphicon-remove remove_url" ng-click="remove_external_js(key)"></span>
                         </div>
@@ -104,7 +104,7 @@
                         <a ng-repeat="(key, css) in cur_project.external.css" class="list-group-item" href="javascript: void(0);">{{css}}
 
                         <div class="url_list_btns">
-                            <span class="glyphicon glyphicon-arrow-up" ng-hide="key == 0"></span>
+                            <span class="glyphicon glyphicon-arrow-up" ng-hide="key == 0" ng-click="move_up(key, cur_project.external.css)"></span>
                             <span class="glyphicon glyphicon-arrow-down" ng-click="move_down(key, cur_project.external.css)" ng-hide="key == cur_project.external.css.length - 1"></span>
                             <span class="glyphicon glyphicon-remove remove_url" ng-click="remove_external_css(key)"></span>
                         </div>
