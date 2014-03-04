@@ -1,21 +1,21 @@
-var obj = {
-    'autoApply': true,
-    'external': {
-        'js': [],
-        'css': []
-    },
-    'js': 'alert("hello");',
-    'css': ''
-};
+// var obj = {
+//     'autoApply': true,
+//     'external': {
+//         'js': [],
+//         'css': []
+//     },
+//     'js': 'alert("hello");',
+//     'css': ''
+// };
 
 chrome.browserAction.onClicked.addListener(function(tab) {
-    myScripter(tab,true);
+    myScripter(tab, true);
 });
 
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
     try {
         if (changeInfo.status == 'complete') {
-            myScripter(tab,false);
+            myScripter(tab, false);
         }
     } catch (err) {
         logger('some error::' + err.message);
@@ -27,11 +27,13 @@ function logger(stmt) {
     console.log(stmt);
 }
 
-function myScripter(tab,popUpClicked) {
-	logger(tab);
+function myScripter(tab, popUpClicked) {
+    logger(tab);
     tabId = tab.id;
-    urls = $.jStorage.index();
-    var arr = tab.url.split('://');
+    var prjmyindexes_9 = $.jStorage.get('prjmyindexes_9');
+    // var arr = tab.url.split('://');
+
+    url_regexes = Object.keys(prjmyindexes_9);
 
     var ext_js_func = function(tabId, ext_js) {
         chrome.tabs.executeScript(tabId, {
@@ -41,14 +43,32 @@ function myScripter(tab,popUpClicked) {
         });
     };
 
+    console.log('aosfoas');
+
     // loop through localstorage to match url
-    $.each(urls, function(u, v) {
+    $.each(url_regexes, function(u, regex_url) {
+        var cur_regex = new RegExp(regex_url);
+        console.log(cur_regex);
+        if (!cur_regex.test(tab.url)) {
+            return true;
+        }
+
+        console.log('matched');
+
+        var matched_projects = prjmyindexes_9[regex_url];
+        var prjmyscripts_9 = $.jStorage.get('prjmyscripts_9');
+
+        matched_projects.forEach(function(proj_id) {
+            var cur_proj = prjmyscripts_9[proj_id];
+
+            
+        });
+
         // when url is matched against localstorage
-        if (v == arr[1]) {
-            d = JSON.parse($.jStorage.get(v));
-            if( false === d.autoApply && false == popUpClicked){
-            	logger(v+" - url has autoApply as false.");
-            	return false; 
+            d = JSON.parse(index_data);
+            if (false === d.autoApply && false == popUpClicked) {
+                logger(cur_regex + " - url has autoApply as false.");
+                return false;
             }
 
             ext_js_code = '\nvar myScripterI=0;\n inline_js_func=function(){var script = document.createElement("script");script.textContent = "' + d.js + '";document.body.appendChild(script);};';
@@ -72,6 +92,5 @@ function myScripter(tab,popUpClicked) {
                     logger('inline css insertion completed');
                 });
             }
-        }
     });
 }
