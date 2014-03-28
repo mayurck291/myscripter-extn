@@ -12,7 +12,7 @@ function MyScriptsController($scope) {
             },
             js: '',
             css: '',
-            enabled: '',
+            enabled: true,
             autoApply: false
         };
 
@@ -68,10 +68,12 @@ function MyScriptsController($scope) {
             $scope.cur_project.id = Math.random().toString().indexOf(2);
         }
 
-        var all_projects = get_all_projects();
+        // var all_projects = get_all_projects();
 
-        all_projects[$scope.cur_project.id] = $scope.cur_project;
-        save_all_projects(all_projects);
+        // all_projects[$scope.cur_project.id] = $scope.cur_project;
+        // save_all_projects(all_projects);
+
+        save_project($scope.cur_project.id, $scope.cur_project);
 
         var all_indexes = get_all_indexes();
 
@@ -88,33 +90,55 @@ function MyScriptsController($scope) {
 
     };
 
-    function get_project(id) {
+    $scope.get_project = function(id) {
         $scope.cur_project = $.jStorage.get(id);
-    }
+        $scope.view_mode = 'edit_mode';
+    };
 
     function get_all_projects() {
         return nullOrEmpty($.jStorage.get('prjmyscripts_9')) ? {} : $.jStorage.get('prjmyscripts_9');
     }
 
-    $scope.get_all_project_names = function() {
-        var all_projects = get_all_projects();
+    function get_all_project_names() {
+        var prjmyindexes_9 = nullOrEmpty($.jStorage.get('prjmyindexes_9')) ? {} : $.jStorage.get('prjmyindexes_9');
+
+        var project_ids = [];
+        for (url in prjmyindexes_9) {
+            var arr = prjmyindexes_9[url];
+            project_ids = project_ids.concat(arr);
+        }
 
         var project_names = [];
-        for(project in all_projects) {
+        project_ids.forEach(function(id) {
+            var project = $.jStorage.get(id);
+
             var cur_project = {};
             cur_project.id = project.id;
             cur_project.name = project.name;
             cur_project.url = project.url;
-            cur_project.active = project.active;
+            cur_project.active = '';
 
             project_names.push(cur_project);
-        }
+        });
 
-        return project_names;
+        $scope.all_project_names = project_names;
+
+    };
+
+    get_all_project_names();
+
+    $scope.have_projects = function() {
+        return $scope.all_project_names.length != 0;
     };
 
     function save_all_projects(projects) {
         $.jStorage.set('prjmyscripts_9', projects);
+    }
+
+    function save_project(id, project) {
+        $.jStorage.set(id, project);
+        $('.alert_box').show();
+        return true;
     }
 
     function get_all_indexes() {

@@ -30,15 +30,15 @@
     </div>
 
     <div class="panel panel-default">
-        <div class="panel-body text-center" ng-show="get_all_project_names().length == 0">
-            <div class="">You have no scripts yet - Go ahead and <a href="javascript:void(0);">Add one</a>...</div>
+        <div class="panel-body text-center" ng-show="!all_project_names.length != 0">
+            <div class="">You have no scripts yet - Go ahead and <a href="javascript:void(0);" ng-click="create_new()">Add one</a>...</div>
 
             <p style="margin-top: 20px;">
                 ... or read our simple <a href="javascript:void(0);" ng-click="show_help()">Help</a> document
             </p>
         </div>
 
-        <div class="panel-body" ng-show="get_all_project_names().length != 0">
+        <div class="panel-body" ng-show="all_project_names.length != 0">
             <table class="table">
                 <thead>
                     <tr>
@@ -50,11 +50,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="(key, project) in get_all_project_names()">
+                    <tr ng-repeat="(key, project) in all_project_names">
                         <td>{{key + 1}}</td>
-                        <td>{{project.name}}</td>
-                        <td><a href="javascript:void(0);">{{project.url}}</a></td>
-                        <td><input type="checkbox" value="project.active"></td>
+                        <td><a href="javascript:void(0);" ng-click="get_project(project.id)">{{project.name}}</a></td>
+                        <td>{{project.url}}</td>
+                        <td><input type="checkbox"></td>
                         <td><span class="glyphicon glyphicon-trash"></span></td>
                     </tr>
                 </tbody>
