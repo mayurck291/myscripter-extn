@@ -1,6 +1,7 @@
 // var MyScriptsModule = angular.module('MyScriptsModule', []);
 function MyScriptsController($scope) {
     $scope.view_mode = 'search_mode';
+    $('.alert_box').hide();
 
     $scope.create_new = function() {
         $scope.cur_project = {
@@ -138,6 +139,10 @@ function MyScriptsController($scope) {
     function save_project(id, project) {
         $.jStorage.set(id, project);
         $('.alert_box').show();
+
+        setTimeout(function() {
+            $('.alert_box').hide();
+        }, 2500);
         return true;
     }
 
