@@ -74,8 +74,6 @@
             <button type="button" class="btn btn-success" ng-click="save_project()">Save</button>
             <button type="button" class="btn" ng-click="close_screen()">Close</button>
 
-            <button type="button" class="btn btn-success pull-right" ng-hide="cur_project.enabled == true">Enable</button>
-            <button type="button" class="btn btn-warning pull-right" ng-show="cur_project.enabled == true && cur_project.id != null">Disable</button>
             <button type="button" class="btn btn-danger pull-right" ng-show="cur_project.id != null" ng-click="delete_project()"><span class="glyphicon glyphicon-trash"></span> Delete Project</button>
         </div>
 
