@@ -195,6 +195,7 @@ function MyScriptsController($scope) {
             $.jStorage.set('sequence', 1);
             return 1;
         } else {
+            $.jStorage.set('sequence', seq + 1);
             return seq;
         }
     }
