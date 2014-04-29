@@ -54,8 +54,11 @@
                         <td>{{key + 1}}</td>
                         <td><a href="javascript:void(0);" ng-click="get_project(project.id)">{{project.name}}</a></td>
                         <td>{{project.url}}</td>
-                        <td><input type="checkbox"></td>
-                        <td><span class="glyphicon glyphicon-trash"></span></td>
+                        <td><span class="glyphicon glyphicon-ok" ng-show="project.enabled"></span></td>
+                        <td>
+                            <a href="javascript:void(0);" class="pull-right" ng-show="project.enabled" ng-click="toggle_status(project)">disable</a>
+                            <a href="javascript:void(0);" class="pull-right" ng-hide="project.enabled" ng-click="toggle_status(project)">enable</a>
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -69,8 +72,9 @@
         <div class="btn-toolbar">
             <button type="button" class="btn btn-primary" ng-click="create_new()">New</button>
             <button type="button" class="btn btn-success" ng-click="save_project()">Save</button>
-            <button type="button" class="btn" ng-click="view_mode = 'search_mode'">Cancel</button>
-            <label class="pull-right"><input type="checkbox" ng-model="cur_project.autoApply"> Run Automatically on Load</label>
+            <button type="button" class="btn" ng-click="close_screen()">Close</button>
+
+            <button type="button" class="btn btn-danger pull-right" ng-show="cur_project.id != null" ng-click="delete_project()"><span class="glyphicon glyphicon-trash"></span> Delete Project</button>
         </div>
 
         <div class="panel script_name_container">
@@ -79,6 +83,8 @@
 
         <div class="panel">
             <input type="text" class="form-control" placeholder="URL or Domain on which you want script to run. Example: http://www.example.com (can be regular expression too)" class="script_name" ng-model="cur_project.url">
+
+            <label style="margin: 10px 0;"><input type="checkbox" ng-model="cur_project.autoApply"> Run Automatically on Load</label>
         </div>
 
         <div class="panel panel-default">

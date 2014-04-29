@@ -18,6 +18,7 @@ function MyScriptsController($scope) {
         };
 
         $scope.view_mode = 'edit_mode';
+        $scope.cur_project_old_url = undefined;
     };
 
     $scope.add_custom_js = function() {
@@ -66,34 +67,57 @@ function MyScriptsController($scope) {
 
     $scope.save_project = function() {
         if (nullOrEmpty($scope.cur_project.id)) {
-            $scope.cur_project.id = Math.random().toString().indexOf(2);
+            $scope.cur_project.id = get_sequence();
         }
-
-        // var all_projects = get_all_projects();
-
-        // all_projects[$scope.cur_project.id] = $scope.cur_project;
-        // save_all_projects(all_projects);
 
         save_project($scope.cur_project.id, $scope.cur_project);
 
         var all_indexes = get_all_indexes();
 
         var cur_url = $scope.cur_project.url;
+
         if (nullOrEmpty(all_indexes[cur_url])) {
             all_indexes[cur_url] = [];
+        }
+
+        if (nullOrEmpty($scope.cur_project_old_url)) {
+            $scope.cur_project_old_url = cur_url;
         }
 
         if (all_indexes[cur_url].indexOf($scope.cur_project.id) == -1) {
             all_indexes[cur_url].push($scope.cur_project.id);
         }
 
+        if (cur_url != $scope.cur_project_old_url && all_indexes[$scope.cur_project_old_url] && all_indexes[$scope.cur_project_old_url].indexOf($scope.cur_project.id) > -1) {
+            all_indexes[$scope.cur_project_old_url].splice(all_indexes[$scope.cur_project_old_url].indexOf($scope.cur_project.id), 1);
+        }
+
         save_all_indexes(all_indexes);
 
     };
 
+    $scope.delete_project = function() {
+        if (!confirm('Are you sure you want to delete this project?')) {
+            return;
+        }
+
+        var all_indexes = get_all_indexes();
+        $.jStorage.deleteKey($scope.cur_project.id);
+        all_indexes[$scope.cur_project_old_url].splice(all_indexes[$scope.cur_project_old_url].indexOf($scope.cur_project.id), 1);
+        save_all_indexes(all_indexes);
+
+        $scope.close_screen();
+    };
+
     $scope.get_project = function(id) {
         $scope.cur_project = $.jStorage.get(id);
+        $scope.cur_project_old_url = $scope.cur_project.url;
         $scope.view_mode = 'edit_mode';
+    };
+
+    $scope.close_screen = function() {
+        get_all_project_names();
+        $scope.view_mode = 'search_mode';
     };
 
     function get_all_projects() {
@@ -117,7 +141,7 @@ function MyScriptsController($scope) {
             cur_project.id = project.id;
             cur_project.name = project.name;
             cur_project.url = project.url;
-            cur_project.active = '';
+            cur_project.enabled = project.enabled;
 
             project_names.push(cur_project);
         });
@@ -130,6 +154,13 @@ function MyScriptsController($scope) {
 
     $scope.have_projects = function() {
         return $scope.all_project_names.length != 0;
+    };
+
+    $scope.toggle_status = function(project) {
+        $scope.get_project(project.id);
+        $scope.cur_project.enabled = !$scope.cur_project.enabled;
+        $scope.save_project();
+        $scope.close_screen();
     };
 
     function save_all_projects(projects) {
@@ -157,4 +188,15 @@ function MyScriptsController($scope) {
     $scope.show_help = function() {
         $('#modal_help').modal('show');
     };
+
+    function get_sequence() {
+        var seq = $.jStorage.get('sequence');
+        if (nullOrEmpty(seq)) {
+            $.jStorage.set('sequence', 1);
+            return 1;
+        } else {
+            $.jStorage.set('sequence', seq + 1);
+            return seq;
+        }
+    }
 };
