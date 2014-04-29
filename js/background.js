@@ -42,7 +42,7 @@ function myScripter(tab, popUpClicked) {
             logger('External JS insertion completed');
         });
     };
-    logger(url_regexes);
+
     // loop through localstorage to match url
     $.each(url_regexes, function(u, regex_url) {
         var cur_regex = new RegExp(regex_url);
@@ -50,24 +50,26 @@ function myScripter(tab, popUpClicked) {
         if (!cur_regex.test(tab.url)) {
             return true;
         }
-        var idsx= parseInt(prjmyindexes_9[regex_url],10) ;
-        logger("[start] gettng data for "+ idsx);
-        var d = $.jStorage.get(idsx);
-        logger(d);
-        logger("[end] gettng data for "+ idsx);
-        
-        // when url is matched against localstorage
-            
+
+        $.each(prjmyindexes_9[regex_url], function(key, value) {
+            var idsx = parseInt(value, 10);
+            logger("[start] gettng data for " + idsx);
+            var d = $.jStorage.get(idsx);
+            logger(d);
+            logger("[end] gettng data for " + idsx);
+
+            // when url is matched against localstorage
+
             if (false === d.autoApply && false == popUpClicked) {
                 logger(cur_regex + " - url has autoApply as false.");
                 return false;
             }
 
             ext_js_code = '\nvar myScripterI=0;\n inline_js_func=function(){var script = document.createElement("script");script.textContent = "' + d.js + '";document.body.appendChild(script);};';
-            ext_js_flag = false ;
+            ext_js_flag = false;
 
             $.each(d.external.js, function(u, v) {
-                ext_js_flag = true ;
+                ext_js_flag = true;
                 ext_js_code += 'var s;\ns = document.createElement("script");\nmyScripterI +=1;\ns.src = "' + v + '";\ndocument.body.appendChild(s);\ns.onload=function(){\nmyScripterI-= 1;\nconsole.log("script loaded " +"' + v + '");\nif(myScripterI == 0){\nconsole.log("execute inline js code ");\n\n inline_js_func();}};\n\n';
             });
 
@@ -76,8 +78,8 @@ function myScripter(tab, popUpClicked) {
             });
 
             if ("" !== ext_js_code) {
-                if(false == ext_js_flag)
-                    ext_js_code += "\n inline_js_func();" ;
+                if (false == ext_js_flag)
+                    ext_js_code += "\n inline_js_func();";
 
                 logger('this is my js code ');
                 logger(ext_js_code);
@@ -92,5 +94,8 @@ function myScripter(tab, popUpClicked) {
                     logger('inline css insertion completed');
                 });
             }
+        });
+
+
     });
 }
