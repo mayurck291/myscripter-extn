@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html data-ng-app data-ng-csp>
+
 <head>
     <!-- <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'> -->
     <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
@@ -12,93 +13,102 @@
     <link href='/css/angular-csp.css' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
 </head>
-<body ng-controller="MyScriptsController" class="container-fluid">
 
-<div class="page_header">
-    <h1>Monkey Wrench</h1>
+<body ng-controller="MyScriptsController" class="container-fluid" ng-keydown="handleKeyBoardEvent($event)">
 
-    <span class="glyphicon glyphicon-question-sign help" ng-click="show_help()"></span>
-</div>
+    <div class="page_header">
+        <h1>Monkey Wrench</h1>
 
-<div class="alert_box">
-    <div class="alert alert-success"><strong>Hooray!</strong> Your project was successfully saved</div>
-</div>
-
-<div ng-show="view_mode == 'search_mode'">
-    <div class="btn-toolbar">
-        <button type="button" class="btn btn-primary" ng-click="create_new()">New</button>
+        <span class="glyphicon glyphicon-question-sign help" ng-click="show_help()"></span>
     </div>
 
-    <div class="panel panel-default">
-        <div class="panel-body text-center" ng-show="!all_project_names.length != 0">
-            <div class="">You have no scripts yet - Go ahead and <a href="javascript:void(0);" ng-click="create_new()">Add one</a>...</div>
-
-            <p style="margin-top: 20px;">
-                ... or read our simple <a href="javascript:void(0);" ng-click="show_help()">Help</a> document
-            </p>
-        </div>
-
-        <div class="panel-body" ng-show="all_project_names.length != 0">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Sl</th>
-                        <th>Name</th>
-                        <th>Domain or URL</th>
-                        <th>Active</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="(key, project) in all_project_names">
-                        <td>{{key + 1}}</td>
-                        <td><a href="javascript:void(0);" ng-click="get_project(project.id)">{{project.name}}</a></td>
-                        <td>{{project.url}}</td>
-                        <td><span class="glyphicon glyphicon-ok" ng-show="project.enabled"></span></td>
-                        <td>
-                            <a href="javascript:void(0);" class="pull-right" ng-show="project.enabled" ng-click="toggle_status(project)">disable</a>
-                            <a href="javascript:void(0);" class="pull-right" ng-hide="project.enabled" ng-click="toggle_status(project)">enable</a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+    <div class="alert_box">
+        <div class="alert alert-success">
+            <strong>Hooray!</strong>Your project was successfully saved</div>
     </div>
 
-</div>
-
-<div class="edit_project" ng-show="view_mode == 'edit_mode'">
-    <div class="body">
+    <div ng-show="view_mode == 'search_mode'">
         <div class="btn-toolbar">
             <button type="button" class="btn btn-primary" ng-click="create_new()">New</button>
-            <button type="button" class="btn btn-success" ng-click="save_project()">Save</button>
-            <button type="button" class="btn" ng-click="close_screen()">Close</button>
-
-            <button type="button" class="btn btn-danger pull-right" ng-show="cur_project.id != null" ng-click="delete_project()"><span class="glyphicon glyphicon-trash"></span> Delete Project</button>
-        </div>
-
-        <div class="panel script_name_container">
-            <input type="text" class="form-control" placeholder="Name of the script" class="script_name" ng-model="cur_project.name">
-        </div>
-
-        <div class="panel">
-            <input type="text" class="form-control" placeholder="URL or Domain on which you want script to run. Example: http://www.example.com (can be regular expression too)" class="script_name" ng-model="cur_project.url">
-
-            <label style="margin: 10px 0;"><input type="checkbox" ng-model="cur_project.autoApply"> Run Automatically on Load</label>
         </div>
 
         <div class="panel panel-default">
-            <div class="panel-body">
-                <div class="half_panel col-md-6">
-                    <h4>External JS</h4>
+            <div class="panel-body text-center" ng-show="!all_project_names.length != 0">
+                <div class="">You have no scripts yet - Go ahead and <a href="#" ng-click="create_new()">Add one</a>...</div>
 
-                    <div class="custom_url_container input-group">
-                        <input type="text" class="form-control custom_url" placeholder="URL of custom js" ng-model="custom_js">
-                        <span class="add input-group-addon" ng-click="add_custom_js()"><span class="glyphicon glyphicon-plus"></span></span>
-                    </div>
+                <p style="margin-top: 20px;">
+                    ... or read our simple <a href="#" ng-click="show_help()">Help</a> document
+                </p>
+            </div>
 
-                    <div class="list-group">
-                        <a ng-repeat="(key, js) in cur_project.external.js" class="list-group-item" href="javascript: void(0);">{{js}}
+            <div class="panel-body" ng-show="all_project_names.length != 0">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Sl</th>
+                            <th>Name</th>
+                            <th>Domain or URL</th>
+                            <th>Active</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="(key, project) in all_project_names">
+                            <td>{{key + 1}}</td>
+                            <td><a href="#" ng-click="get_project(project.id)">{{project.name}}</a>
+                            </td>
+                            <td>{{project.url}}</td>
+                            <td>
+                                <span class="glyphicon glyphicon-ok" ng-show="project.enabled"></span>
+                            </td>
+                            <td>
+                                <a href="#" class="pull-right" ng-show="project.enabled" ng-click="toggle_status(project)">disable</a>
+                                <a href="#" class="pull-right" ng-hide="project.enabled" ng-click="toggle_status(project)">enable</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="edit_project" ng-show="view_mode == 'edit_mode'">
+        <div class="body">
+            <div class="btn-toolbar">
+                <button type="button" class="btn btn-primary" ng-click="create_new()">New</button>
+                <button type="button" class="btn btn-success" ng-click="save_project()">Save</button>
+                <button type="button" class="btn" ng-click="close_screen()">Close</button>
+
+                <button type="button" class="btn btn-danger pull-right" ng-show="cur_project.id != null" ng-click="delete_project()">
+                    <span class="glyphicon glyphicon-trash"></span>Delete Project</button>
+            </div>
+
+            <div class="panel script_name_container">
+                <input type="text" class="form-control" placeholder="Name of the script" class="script_name" ng-model="cur_project.name">
+            </div>
+
+            <div class="panel">
+                <input type="text" class="form-control" placeholder="URL or Domain on which you want script to run. Example: http://www.example.com (can be regular expression too)" class="script_name" ng-model="cur_project.url">
+
+                <label style="margin: 10px 0;">
+                    <input type="checkbox" ng-model="cur_project.autoApply">Run Automatically on Load</label>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="half_panel col-md-6">
+                        <h4>External JS</h4>
+
+                        <div class="custom_url_container input-group">
+                            <input type="text" class="form-control custom_url" placeholder="URL of custom js" ng-model="custom_js">
+                            <span class="add input-group-addon" ng-click="add_custom_js()">
+                                <span class="glyphicon glyphicon-plus"></span>
+                            </span>
+                        </div>
+
+                        <div class="list-group">
+                            <a ng-repeat="(key, js) in cur_project.external.js" class="list-group-item" href="javascript: void(0);">{{js}}
 
                         <div class="url_list_btns">
                             <span class="glyphicon glyphicon-arrow-up" ng-hide="key == 0" ng-click="move_up(key, cur_project.external.js)"></span>
@@ -106,19 +116,21 @@
                             <span class="glyphicon glyphicon-remove remove_url" ng-click="remove_external_js(key)"></span>
                         </div>
                         </a>
-                    </div>
-                </div>
-
-                <div class="half_panel col-md-6">
-                    <h4>External CSS</h4>
-
-                    <div class="custom_url_container input-group">
-                        <input type="text" class="form-control custom_url" placeholder="URL of custom css" ng-model="custom_css">
-                        <span class="add input-group-addon" ng-click="add_custom_css()"><span class="glyphicon glyphicon-plus"></span></span>
+                        </div>
                     </div>
 
-                    <div class="list-group">
-                        <a ng-repeat="(key, css) in cur_project.external.css" class="list-group-item" href="javascript: void(0);">{{css}}
+                    <div class="half_panel col-md-6">
+                        <h4>External CSS</h4>
+
+                        <div class="custom_url_container input-group">
+                            <input type="text" class="form-control custom_url" placeholder="URL of custom css" ng-model="custom_css">
+                            <span class="add input-group-addon" ng-click="add_custom_css()">
+                                <span class="glyphicon glyphicon-plus"></span>
+                            </span>
+                        </div>
+
+                        <div class="list-group">
+                            <a ng-repeat="(key, css) in cur_project.external.css" class="list-group-item" href="javascript: void(0);">{{css}}
 
                         <div class="url_list_btns">
                             <span class="glyphicon glyphicon-arrow-up" ng-hide="key == 0" ng-click="move_up(key, cur_project.external.css)"></span>
@@ -126,71 +138,99 @@
                             <span class="glyphicon glyphicon-remove remove_url" ng-click="remove_external_css(key)"></span>
                         </div>
                         </a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <div class="half_panel col-md-6">
-                    <h4>Custom JS</h4>
-                    <textarea ng-model="cur_project.js"></textarea>
-                </div>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="half_panel col-md-6">
+                        <h4>Custom JS</h4>
+                        <textarea ng-model="cur_project.js"></textarea>
+                    </div>
 
-                <div class="half_panel col-md-6">
-                    <h4>Custom CSS</h4>
-                    <textarea ng-model="cur_project.css"></textarea>
+                    <div class="half_panel col-md-6">
+                        <h4>Custom CSS</h4>
+                        <textarea ng-model="cur_project.css"></textarea>
+                    </div>
                 </div>
             </div>
+
         </div>
+        <link href="/css/options.css" rel='stylesheet' type='text/css'>
+        <script src="/js/options.js" type="text/javascript"></script>
+    </div>
+
+
+    <div class="modal" id="modal_help">
+        <div class="modal-dialog" style="width:80%">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Monkey Wrench Help</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        Monkey Wrench allows you to customise your favourite websites - Add your own CSS and run your JS scripts
+                    </p>
+
+                    <p>
+                        Here's how it works...
+                        <ol>
+                            <li>Click on the New button to start creating your script.</li>
+                            <li>Provide the URL of the site on which you want your script to run</li>
+                            <li>If you have some external JS files or CSS files to be included, such as jQuery, or your own hosted files, you can provide them in External JS & CSS sections. Provide them in the order in which you want them to be loaded
+                            </li>
+                            <li>
+                                You can write your own JS and CSS code in the custom code section at the end. Once you are done, click on Save
+                            </li>
+                        </ol>
+                    </p>
+
+                    <p>
+                        That's it! You are done! Now go to the site that you provided in step 2 and click on the Monkey Wrench icon and your script and CSS will take effect
+                    </p>
+
+                    <p>
+                        <span class="label label-success">Tip</span>
+                        If you don't want to click on the button every time, just tick the checkbox that says
+                        <strong>Run Automatically On Load</strong>
+                    </p>
+                    <div class="shortcuts-div" title="coz using mouse is too main stream ;)">
+                        <h4>
+                            <span class="glyphicon glyphicon-flash"></span>Handy Keyboard Shortcuts</h4>
+                        <h4>
+                            <span class="label label-primary">ctrl + h</span>
+                            Home
+                        </h4>
+
+
+                        <h4>
+                            <span class="label label-primary">ctrl + p</span>
+                            New Project
+                        </h4>
+
+                        <h4>
+                            <span class="label label-primary">ctrl + s</span>
+                            Save Project
+                        </h4>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+    <!--     <div id="download" class="well">
 
     </div>
-<link href="/css/options.css"  rel='stylesheet' type='text/css'>
-<script src="/js/options.js" type="text/javascript"></script>
-</div>
-
-
-<div class="modal" id="modal_help">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title">Monkey Wrench Help</h4>
-      </div>
-      <div class="modal-body">
-        <p>
-            Monkey Wrench allows you to customise your favourite websites - Add your own CSS
-            and run your JS scripts
-        </p>
-
-        <p>
-            Here's how it works...
-            <ol>
-                <li>Click on the New button to start creating your script.</li>
-                <li>Provide the URL of the site on which you want your script to run</li>
-                <li>If you have some external JS files or CSS files to be included, such as jQuery, or your own hosted files, you can provide them in External JS & CSS sections. Provide them in the order in which you want them to be loaded
-                </li>
-                <li>
-                    You can write your own JS and CSS code in the custom code section at the end. Once you are done, click on Save
-                </li>
-            </ol>
-        </p>
-
-        <p>
-            That's it! You are done! Now go to the site that you provided in step 2 and click on the Monkey Wrench icon and your script and CSS will take effect
-        </p>
-
-        <p>
-            <span class="label label-success">Tip</span>
-            If you don't want to click on the button every time, just tick the checkbox that says <strong>Run Automatically On Load</strong>
-        </p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+ -->
 </body>
+
 </html>
