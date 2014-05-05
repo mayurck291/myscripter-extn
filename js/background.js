@@ -66,7 +66,7 @@ function myScripter( tab, popUpClicked ) {
                 return false;
             }
 
-            ext_js_code = '\nvar myScripterI=0;\n inline_js_func=function(){var script = document.createElement("script");script.textContent = ' + d.js + ';document.body.appendChild(script);};';
+            ext_js_code = '\nvar myScripterI=0;\n inline_js_func=function(){var script = document.createElement("script");script.textContent = ' + d.js.replace(/\n/g, ';') + ';document.body.appendChild(script);};';
             ext_js_flag = false;
 
             $.each( d.external.js, function ( u, v ) {
