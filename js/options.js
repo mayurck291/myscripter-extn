@@ -79,6 +79,11 @@ function MyScriptsController( $scope ) {
     }
 
     $scope.save_project = function ( ) {
+        if ( nullOrEmpty( $scope.cur_project.name ) || nullOrEmpty( $scope.cur_project.url ) ) {
+            alert( "Project NAME and URL can not be empty. !!" );
+            return;
+        }
+
         if ( nullOrEmpty( $scope.cur_project.id ) ) {
             $scope.cur_project.id = get_sequence( );
         }
