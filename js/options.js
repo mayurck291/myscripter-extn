@@ -1,17 +1,58 @@
-// $( document ).ready( function ( ) {
-//     var obj = {
-//         a: 123,
-//         b: "4 5 6"
-//     };
+var MyScriptsModule = angular.module( 'MyScriptsModule', [ ] );
+MyScriptsModule.directive( 'file', function ( ) {
+    return {
+        scope: {
+            // onfileselect: "&"
+        },
+        controller: function ( $scope, $element, $attrs, $transclude ) {
+            $scope.handleFileSelect = function ( evt ) {
+                $scope.filesData = [ ];
+                var files = evt.target.files; // FileList object
+                // console.log( files );
 
-//     var data = "text/json;charset=utf-8," + encodeURIComponent( JSON.stringify( obj ) );
-
-//     $( '<a type="button" class="btn btn-info" href="data:' + data + '" download="parin.json">Export</a>' ).appendTo( '#download' );
-
-// } );
-// var MyScriptsModule = angular.module('MyScriptsModule', []);
+                var f = files[ 0 ];
+                if ( f ) {
+                    var r = new FileReader( );
+                    r.onload = function ( e ) {
+                        var contents = e.target.result;
+                        $scope.$parent.onselect( contents );
+                    }
+                    r.readAsText( f );
+                } else {
+                    alert( "Failed to load file" );
+                }
+            }
+        },
+        // require: 'ngModel', // Array = multiple requires, ? = optional, ^ = check parent elements
+        restrict: 'E', // E = Element, A = Attribute, C = Class, M = Comment
+        template: '<input type="file" accept=".json" class="btn btn-warning pull-right" name="importedFile" id="importedFile" title="Import Files">',
+        // templateUrl: '',
+        replace: true,
+        // transclude: true,
+        // compile: function(tElement, tAttrs, function transclude(function(scope, cloneLinkingFn){ return function linking(scope, elm, attrs){}})),
+        link: function ( $scope, iElm, iAttrs, controller ) {
+            console.log( iElm );
+            // var input = iElm[ 0 ];
+            iElm.on( 'change', $scope.handleFileSelect );
+        }
+    };
+} );
 
 function MyScriptsController( $scope ) {
+
+    $scope.onselect = function ( content ) {
+        console.log( content );
+        var cur_project = JSON.parse( content );
+        if ( cur_project.id ) {
+            delete cur_project.id;
+        }
+        $scope.cur_project = angular.copy( cur_project );
+        $scope.save_project( );
+        $scope.$apply( function ( ) {
+            get_all_project_names( );
+        } );
+    }
+
     $scope.view_mode = 'search_mode';
     $( '.alert_box' ).hide( );
 
@@ -32,6 +73,7 @@ function MyScriptsController( $scope ) {
 
         $scope.view_mode = 'edit_mode';
         $scope.cur_project_old_url = undefined;
+        unset_export_link( );
     };
 
     $scope.add_custom_js = function ( ) {
@@ -111,7 +153,6 @@ function MyScriptsController( $scope ) {
         }
 
         save_all_indexes( all_indexes );
-
     };
 
     $scope.delete_project = function ( ) {
@@ -127,10 +168,33 @@ function MyScriptsController( $scope ) {
         $scope.close_screen( );
     };
 
+
+    ///////////////////////////////////
+    //////////////////////////////// //
+    ///////////////////////////////////
+    // TODO file upload directive //
+    ///////////////////////////////////
+    //////////////////////////////// //
+    ///////////////////////////////////
+
+    var unset_export_link = function ( ) {
+        $( '#download' ).html( '' );
+    }
+
+    var set_export_link = function ( obj ) {
+        console.log( obj )
+        delete obj.id;
+        var data = "text/json;charset=utf-8," + encodeURIComponent( JSON.stringify( obj ) );
+
+        $( '#download' ).html( '<a type="button" class="btn btn-info pull-right" href="data:' + data + '" download="' + obj.name + '.json">Export</a>' );
+    }
+
     $scope.get_project = function ( id ) {
         $scope.cur_project = $.jStorage.get( id );
         $scope.cur_project_old_url = $scope.cur_project.url;
         $scope.view_mode = 'edit_mode';
+
+        set_export_link( angular.copy( $scope.cur_project ) );
     };
 
     $scope.close_screen = function ( ) {

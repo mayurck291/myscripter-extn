@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html data-ng-app data-ng-csp>
+<html data-ng-app="MyScriptsModule" data-ng-csp>
 
 <head>
     <!-- <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'> -->
@@ -24,12 +24,15 @@
 
     <div class="alert_box">
         <div class="alert alert-success">
-            <strong>Hooray!</strong>Your project was successfully saved</div>
+            <strong>Hooray!</strong>
+            Your project was successfully saved
+        </div>
     </div>
 
     <div ng-show="view_mode == 'search_mode'">
         <div class="btn-toolbar">
             <button type="button" class="btn btn-primary" ng-click="create_new()">New</button>
+            <file onfileselect="onselect(content)"></file>
         </div>
 
         <div class="panel panel-default">
@@ -79,9 +82,9 @@
                 <button type="button" class="btn btn-primary" ng-click="create_new()">New</button>
                 <button type="button" class="btn btn-success" ng-click="save_project()">Save</button>
                 <button type="button" class="btn" ng-click="close_screen()">Close</button>
-
                 <button type="button" class="btn btn-danger pull-right" ng-show="cur_project.id != null" ng-click="delete_project()">
                     <span class="glyphicon glyphicon-trash"></span>Delete Project</button>
+                <span id="download"></span>
             </div>
 
             <div class="panel script_name_container">
@@ -227,10 +230,7 @@
         <!-- /.modal-dialog -->
     </div>
     <!-- /.modal -->
-    <!--     <div id="download" class="well">
 
-    </div>
- -->
 </body>
 
 </html>

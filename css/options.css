@@ -73,7 +73,8 @@ textarea {
     line-height: 25px;
 }
 .alert_box {
-    position: absolute;
+    position: fixed;
+    z-index: 500000;
     top: 0;
     right: 0;
     left: 0;
@@ -81,4 +82,9 @@ textarea {
 .shortcuts-div {
     padding:20px;
     background:#f9f9f9;
+}
+input[type=file] {
+    color: #fff !important;
+    background-color: #f0ad4e !important;
+    border-color: #eea236 !important;
 }
