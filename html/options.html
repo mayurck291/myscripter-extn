@@ -18,7 +18,8 @@
 
     <div class="page_header">
         <h1>Monkey Wrench</h1>
-
+        <hr>
+        <!-- <hr> -->
         <span class="glyphicon glyphicon-question-sign help" ng-click="show_help()"></span>
     </div>
 
@@ -31,7 +32,7 @@
 
     <div ng-show="view_mode == 'search_mode'">
         <div class="btn-toolbar">
-            <button type="button" class="btn btn-primary" ng-click="create_new()">New</button>
+            <button type="button" class="btn btn-primary " ng-click="create_new()">&nbsp;&nbsp;&nbsp;New&nbsp;&nbsp;&nbsp;</button>
             <file onfileselect="onselect(content)"></file>
         </div>
 
@@ -205,6 +206,8 @@
                             <span class="glyphicon glyphicon-flash"></span>Handy Keyboard Shortcuts</h4>
                         <h4>
                             <span class="label label-primary">ctrl + h</span>
+                            OR
+                            <span class="label label-primary">ctrl + q</span>
                             Home
                         </h4>
 
