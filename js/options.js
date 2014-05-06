@@ -22,10 +22,16 @@ MyScriptsModule.directive( 'file', function ( ) {
                     alert( "Failed to load file" );
                 }
             }
+
+            $scope.openFile = function ( ) {
+                console.log( "-------------------" );
+                console.log( angular.element( document.querySelector( "#importedFile" ) ) );
+                angular.element( document.querySelector( "#importedFile" ) )[ 0 ].click( );
+            }
         },
         // require: 'ngModel', // Array = multiple requires, ? = optional, ^ = check parent elements
         restrict: 'E', // E = Element, A = Attribute, C = Class, M = Comment
-        template: '<input type="file" accept=".json" class="btn btn-warning pull-right" name="importedFile" id="importedFile" title="Import Files">',
+        template: '<div class="pull-right"><button class="btn btn-warning" ng-click="openFile()">Import Files</button><input style="display:none" type="file" accept=".json" class="btn btn-warning pull-right" name="importedFile" id="importedFile" title="Import Files"></div>',
         // templateUrl: '',
         replace: true,
         // transclude: true,
