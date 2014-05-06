@@ -210,7 +210,7 @@ function MyScriptsController( $scope ) {
     function get_sequence( ) {
         var seq = $.jStorage.get( 'sequence' );
         if ( nullOrEmpty( seq ) ) {
-            $.jStorage.set( 'sequence', 1 );
+            $.jStorage.set( 'sequence', 2 );
             return 1;
         } else {
             $.jStorage.set( 'sequence', seq + 1 );
