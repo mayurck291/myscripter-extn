@@ -304,11 +304,21 @@ function MyScriptsController( $scope ) {
                 break;
             case 'h':
                 event.preventDefault( );
-                $scope.close_screen( );
+                if ( $scope.view_mode == "edit_mode" ) {
+                    if ( confirm( "Are you sure ? all UNSAVED changes will be lost.!!" ) ) {
+                        $scope.close_screen( );
+                    }
+                } else {
+                    $scope.close_screen( );
+                }
                 break;
             case 'q':
                 event.preventDefault( );
-                $scope.close_screen( );
+                if ( $scope.view_mode == "edit_mode" ) {
+                    if ( confirm( "Are you sure ? all UNSAVED changes will be lost.!!" ) ) {
+                        $scope.close_screen( );
+                    }
+                }
                 break;
             }
         }
