@@ -36,7 +36,6 @@ function myScripter( tab, popUpClicked ) {
     url_regexes = Object.keys( prjmyindexes_9 );
 
     var ext_js_func = function ( tabId, ext_js ) {
-        console.log( "******JAY MATA DEE******" )
         chrome.tabs.executeScript( tabId, {
             code: ext_js
         }, function ( ) {
@@ -65,8 +64,15 @@ function myScripter( tab, popUpClicked ) {
                 console.log( cur_regex + " - url has autoApply as false." );
                 return false;
             }
+            un = ["",undefined,null];
+            if( un.indexOf(d.js) == -1 ){
+                inline_js = d.js;
+                d.js = inline_js.replace(/\n/g, ';');    
+            }else{
+                d.js = "console.log('No inline js ')";
+            }
 
-            ext_js_code = '\nvar myScripterI=0;\n inline_js_func=function(){var script = document.createElement("script");script.textContent = ' + d.js.replace(/\n/g, ';') + ';document.body.appendChild(script);};';
+            ext_js_code = '\nvar myScripterI=0;\n inline_js_func=function(){var script = document.createElement("script");script.textContent = ' + d.js + ';document.body.appendChild(script);};';
             ext_js_flag = false;
 
             $.each( d.external.js, function ( u, v ) {
