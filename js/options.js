@@ -290,7 +290,7 @@ function MyScriptsController( $scope ) {
 
     $scope.handleKeyBoardEvent = function ( ) {
         if ( event.ctrlKey || event.metaKey ) {
-            // console.log( String.fromCharCode( event.which ).toLowerCase( ) )
+            console.log( String.fromCharCode( event.which ).toLowerCase( ) )
             switch ( String.fromCharCode( event.which ).toLowerCase( ) ) {
             case 's':
                 if ( $scope.view_mode === "edit_mode" ) {
@@ -319,6 +319,10 @@ function MyScriptsController( $scope ) {
                         $scope.close_screen( );
                     }
                 }
+                break;
+            case '¿':
+                event.preventDefault( );
+                $scope.show_help( );
                 break;
             }
         }
