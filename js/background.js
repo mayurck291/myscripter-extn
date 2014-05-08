@@ -8,6 +8,31 @@
 //     'css': ''
 // };
 
+function openOptionPage( ) {
+    chrome.tabs.create( {
+        url: "html/options.html"
+    } );
+}
+
+function simulateBrowserAction( ) {
+    chrome.tabs.getSelected( null, function ( tab ) {
+        myScripter( tab, true );
+    } );
+}
+
+function handleKeyBoardShortcuts( command ) {
+    switch ( command ) {
+    case "options":
+        openOptionPage( );
+    case "browserAction":
+        simulateBrowserAction( );
+    }
+}
+chrome.commands.onCommand.addListener( function ( command ) {
+    console.log( 'onCommand event received for message: ', command );
+    handleKeyBoardShortcuts( command );
+} );
+
 chrome.browserAction.onClicked.addListener( function ( tab ) {
     myScripter( tab, true );
 } );
@@ -64,11 +89,11 @@ function myScripter( tab, popUpClicked ) {
                 console.log( cur_regex + " - url has autoApply as false." );
                 return false;
             }
-            un = ["",undefined,null];
-            if( un.indexOf(d.js) == -1 ){
+            un = [ "", undefined, null ];
+            if ( un.indexOf( d.js ) == -1 ) {
                 inline_js = d.js;
-                d.js = inline_js.replace(/\n/g, ';');    
-            }else{
+                d.js = inline_js.replace( /\n/g, ';' );
+            } else {
                 d.js = "console.log('No inline js ')";
             }
 
