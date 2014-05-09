@@ -27,20 +27,14 @@
         <hr>
         <!-- <hr> -->
     </div>
-
-    <div class="alert_box">
-        <div class="alert alert-success">
-            <strong>Hooray!</strong>
-            Your project was successfully saved/shared.
+    
+    <alert>
+        <div class="alert_box" ng-show="alert.show">
+            <div ng-class="alert.class">
+                <strong>{{alert.message}}</strong>
+            </div>
         </div>
-    </div>
-
-    <div class="loader" ng-show="loader">
-        <div class="alert alert-warning">
-            <strong>Loading......</strong>
-            please wait....
-        </div>
-    </div>
+    </alert>
 
     <div ng-show="view_mode == 'search_mode'">
         <div class="btn-toolbar">
@@ -96,7 +90,7 @@
                 <button type="button" class="btn btn-success" ng-click="save_project()">Save</button>
                 <button type="button" class="btn" ng-click="close_screen()">Close</button>
 
-                <div class="pull-right" >
+                <div class="pull-right" ng-show="cur_project.id">
                     <div class="dropdown">
                         <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
                         More <span class="caret"></span>
@@ -106,7 +100,7 @@
                             <li role="presentation"><a href="" ng-click="show_share_modal()">
                                 <span class="glyphicon glyphicon-globe"></span> Share Project</a>
                             </li>
-                            <li role="presentation"  ng-show="cur_project.id"><a href="" ng-click="delete_project()"><span class="glyphicon glyphicon-trash"></span>Delete Project</a></li>
+                            <li role="presentation"  ><a href="" ng-click="delete_project()"><span class="glyphicon glyphicon-trash"></span>Delete Project</a></li>
 
                         </ul>
                     </div>
@@ -192,22 +186,25 @@
     </div>
 
     <div ng-show="view_mode == 'baazar'">
+            <button class="btn btn-primary" ng-click="view_mode ='search_mode'"><span class="glyphicon glyphicon-arrow-left"></span> Back</button>
         <div class="panel panel-default">
             <div class="panel-body">
                 <table class="table table-hover">
-                <caption><h2><span class="glyphicon glyphicon-star"></span> Popular Recipes</h2></caption>
+                <caption><h2><span class="glyphicon glyphicon-star"></span> Popular Recipes <span class="glyphicon glyphicon-star"></span> </h2><br><br></caption>
                     <thead>
                         <th>Title</th>
                         <th>URL</th>
                         <th>Description</th>
-                        <th></th>
+                        <th>Link</th>
                     </thead>
                     <tbody>
                         <tr ng-repeat="recipe in recipes">
                             <td>{{recipe.title}}</td>
                             <td>{{recipe.ingredients.url}}</td>
-                            <td>{{recipe.desc}}</td>
-                            <td><a href="#" ng-click="installRecipe(recipe.ingredients)">Install</a></td>
+                            <td>{{recipe.desc | limitTo:100}}
+                                <span ng-show="recipe.desc.length > 100">...</span>
+                            </td>
+                            <td><a href="#" ng-click="installRecipe(recipe.ingredients)"><span class="glyphicon glyphicon-magnet"></span> Install</a></td>
                         </tr>
                     </tbody>
                 </table>

@@ -44,7 +44,74 @@ MyScriptsModule.directive('file', function () {
 	};
 });
 
-function MyScriptsController($scope, $http) {
+MyScriptsModule.factory("alertService", function ($timeout) {
+	var alert = {};
+	alert.message = "";
+	alert.class = "";
+	alert.show = false;
+
+	var classError = "alert alert-error";
+	var classSuccess = "alert alert-success";
+	var classWarning = "alert alert-warning";
+
+	function playBeepSound() {
+		var beepSound = document.getElementById("beepSound");
+		beepSound.play();
+	}
+
+	var obj = {};
+
+	obj.bind = function () {
+		return alert;
+	};
+
+	obj.hideAlert = function () {
+		alert.show = false;
+		alert.class = "";
+		alert.message = "";
+	};
+
+	obj.showAlertError = function (message, timeout) {
+		alert.message = message;
+		alert.show = true;
+		alert.class = classError;
+		if (!timeout) {
+			$timeout(this.hideAlert, 2500)
+		}
+	};
+
+	obj.showAlertSuccess = function (message, timeout) {
+		alert.message = message;
+		alert.show = true;
+		alert.class = classSuccess;
+		if (!timeout) {
+			$timeout(this.hideAlert, 2500)
+		}
+	};
+
+	obj.showAlertWarning = function (message, timeout) {
+		alert.message = message;
+		alert.show = true;
+		alert.class = classWarning;
+		if (!timeout) {
+			$timeout(this.hideAlert, 2500)
+		}
+	};
+	return obj;
+});
+
+MyScriptsModule.directive("alert", function (alertService) {
+	return {
+		restrict: "E",
+		transclude: true,
+		template: "<div data-ng-transclude></div>",
+		controller: function ($scope, alertService) {
+			$scope.alert = alertService.bind();
+		}
+	};
+});
+
+function MyScriptsController($scope, $http, alertService) {
 
 	$scope.onselect = function (content) {
 		console.log(content);
@@ -60,9 +127,7 @@ function MyScriptsController($scope, $http) {
 	}
 
 	$scope.view_mode = 'search_mode';
-	$('.alert_box')
-		.hide();
-
+	alertService.hideAlert();
 
 	$scope.create_new = function () {
 		$scope.cur_project = {
@@ -259,14 +324,9 @@ function MyScriptsController($scope, $http) {
 	}
 
 	function save_project(id, project) {
+		set_export_link(angular.copy(project));
 		$.jStorage.set(id, project);
-		$('.alert_box')
-			.show();
-
-		setTimeout(function () {
-			$('.alert_box')
-				.hide();
-		}, 2500);
+		alertService.showAlertSuccess("Hurrah.!! Project saved successfully")
 		return true;
 	}
 
@@ -367,7 +427,7 @@ function MyScriptsController($scope, $http) {
 			author: $scope.share.author,
 			ingredients: $scope.cur_project
 		}
-		$http.post('http://nikhilbaliga.com:4000/saveRecipe', obj)
+		$http.post('http://nikhilbaliga.com:8002/saveRecipe', obj)
 			.success(function () {
 				handle_response()
 			})
@@ -377,31 +437,33 @@ function MyScriptsController($scope, $http) {
 
 		function handle_response() {
 			$scope.share = {}
-			$('.alert_box')
-				.show();
-
-			setTimeout(function () {
-				$('.alert_box')
-					.hide();
-			}, 3000);
+			alertService.showAlertSuccess("Yeah...!! Your recipe is shared with the world.");
 			$scope.hide_share_modal();
 		}
 	}
 
 	$scope.getRecipes = function () {
-		var url = 'http://nikhilbaliga.com:4000/list';
-		$scope.loader = true;
+		var url = 'http://nikhilbaliga.com:8002/list';
+		alertService.showAlertWarning("Loading.....please wait....");
 		$http.get(url)
 			.success(function (data, status) {
-				$scope.loader = false;
-				if (data) {
-					$scope.recipes = data;
-					$scope.view_mode = 'baazar';
-					console.log(data);
-				}
+				handle_response(data)
 			})
 			.error(function () {
-				$scope.loader = false;
+				alertService.hideAlert();
 			})
+
+
+		function handle_response(data) {
+			alertService.hideAlert();
+			if (data) {
+				$scope.recipes = data;
+				$scope.view_mode = 'baazar';
+				console.log(data);
+			} else {
+				$scope.recipes = [];
+				alertService.showAlertError("Oops...! hang in there...an army of highly trained monkeys is dispatched to deal with this situation.");
+			}
+		}
 	}
 };

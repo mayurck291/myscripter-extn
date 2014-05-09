@@ -8,7 +8,7 @@ var routes = require('./routes');
 var db = require('./db');
 db.on('error', console.error.bind(console, 'connection error:'));
 var app = module.exports = express.createServer();
-var port = 3000;
+var port = 8002;
 // Configuration
 app.configure(function () {
 	app.set('views', __dirname + '/views');
