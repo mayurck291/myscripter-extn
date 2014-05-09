@@ -367,7 +367,7 @@ function MyScriptsController($scope, $http) {
 			author: $scope.share.author,
 			ingredients: $scope.cur_project
 		}
-		$http.post('http://nikhilbaliga.com:4000/saveRecipe', obj)
+		$http.post('http://nikhilbaliga.com:8002/saveRecipe', obj)
 			.success(function () {
 				handle_response()
 			})
@@ -389,7 +389,7 @@ function MyScriptsController($scope, $http) {
 	}
 
 	$scope.getRecipes = function () {
-		var url = 'http://nikhilbaliga.com:4000/list';
+		var url = 'http://nikhilbaliga.com:8002/list';
 		$scope.loader = true;
 		$http.get(url)
 			.success(function (data, status) {
