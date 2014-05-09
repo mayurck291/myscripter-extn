@@ -17,16 +17,32 @@
 <body ng-controller="MyScriptsController" class="container-fluid" ng-keydown="handleKeyBoardEvent($event)">
 
     <div class="page_header">
-        <h1>Monkey Wrench</h1>
+        <h1 style="display:inline-block;cursor:pointer" ng-click="view_mode = 'search_mode'" >Monkey Wrench</h1>
+        <span class="pull-right">
+            <button class="btn btn-success" href="" ng-click="getRecipes()">
+                <span class="glyphicon glyphicon-shopping-cart"></span> More Recipes
+            </button>
+            <span  style="font-size: 2.2em;
+cursor: pointer;
+position: relative;
+top: 11px;
+margin-left: 10px;" class="glyphicon glyphicon-question-sign" ng-click="show_help()"></span>
+        </span>
         <hr>
         <!-- <hr> -->
-        <span class="glyphicon glyphicon-question-sign help" ng-click="show_help()"></span>
     </div>
 
     <div class="alert_box">
         <div class="alert alert-success">
             <strong>Hooray!</strong>
             Your project was successfully saved
+        </div>
+    </div>
+
+    <div class="loader" ng-show="loader">
+        <div class="alert alert-warning">
+            <strong>Loading......</strong>
+            please wait....
         </div>
     </div>
 
@@ -85,6 +101,8 @@
                 <button type="button" class="btn" ng-click="close_screen()">Close</button>
                 <button type="button" class="btn btn-danger pull-right" ng-show="cur_project.id != null" ng-click="delete_project()">
                     <span class="glyphicon glyphicon-trash"></span>Delete Project</button>
+                <button type="button" class="btn btn-warning pull-right" ng-click="share()">
+                    <span class="glyphicon glyphicon-globe"></span>Share Project</button>
                 <span id="download"></span>
             </div>
 
@@ -166,6 +184,28 @@
         <script src="/js/options.js" type="text/javascript"></script>
     </div>
 
+    <div ng-show="view_mode == 'baazar'">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <table class="table table-hover">
+                    <thead>
+                        <th>Title</th>
+                        <th>URL</th>
+                        <th>Description</th>
+                        <th></th>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="recipe in recipes">
+                            <td>{{recipe.title}}</td>
+                            <td>{{recipe.ingredients.url}}</td>
+                            <td>{{recipe.desc}}</td>
+                            <td><a href="#" ng-click="installRecipe(recipe.ingredients)">Install</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 
     <div class="modal" id="modal_help">
         <div class="modal-dialog" style="width:80%">
@@ -260,6 +300,8 @@
         <!-- /.modal-dialog -->
     </div>
     <!-- /.modal -->
+
+
 
 </body>
 
