@@ -96,18 +96,20 @@
                 <button type="button" class="btn btn-success" ng-click="save_project()">Save</button>
                 <button type="button" class="btn" ng-click="close_screen()">Close</button>
 
-                <div class="btn-group pull-right">
-                    <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
-                    More <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu">
-                        <li  id="download"></li>
-                        <li><a href="" ng-click="show_share_modal()">
-                            <span class="glyphicon glyphicon-globe"></span> Share Project</a>
-                        </li>
-                        <li class="devider" ng-show="cur_project.id"><a href="" ng-click="delete_project()"><span class="glyphicon glyphicon-trash"></span>Delete Project</a></li>
+                <div class="pull-right" >
+                    <div class="dropdown">
+                        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+                        More <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu" style="right:0px !important; left: -94px !important;">
+                            <li role="presentation"  id="download"></li>
+                            <li role="presentation"><a href="" ng-click="show_share_modal()">
+                                <span class="glyphicon glyphicon-globe"></span> Share Project</a>
+                            </li>
+                            <li role="presentation"  ng-show="cur_project.id"><a href="" ng-click="delete_project()"><span class="glyphicon glyphicon-trash"></span>Delete Project</a></li>
 
-                    </ul>
+                        </ul>
+                    </div>
                 </div>
             </div>
 
