@@ -376,6 +376,7 @@ function MyScriptsController($scope, $http) {
 			});
 
 		function handle_response() {
+			$scope.share = {};
 			$('.alert_box')
 				.show();
 
