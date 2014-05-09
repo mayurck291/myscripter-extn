@@ -31,7 +31,7 @@ MyScriptsModule.directive('file', function () {
 		},
 		// require: 'ngModel', // Array = multiple requires, ? = optional, ^ = check parent elements
 		restrict: 'E', // E = Element, A = Attribute, C = Class, M = Comment
-		template: '<div class="pull-right"><button class="btn btn-info " ng-click="openFile()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Import Files&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button><input style="display:none" type="file" accept=".json" class="btn btn-warning pull-right" name="importedFile" id="importedFile" title="Import Files"></div>',
+		template: '<div class="pull-right"><button class="btn btn-info " ng-click="openFile()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Import Recipe&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button><input style="display:none" type="file" accept=".json" class="btn btn-warning pull-right" name="importedFile" id="importedFile" title="Import Files"></div>',
 		// templateUrl: '',
 		replace: true,
 		// transclude: true,
@@ -376,7 +376,7 @@ function MyScriptsController($scope, $http) {
 			});
 
 		function handle_response() {
-			$scope.share = {};
+			$scope.share = {}
 			$('.alert_box')
 				.show();
 

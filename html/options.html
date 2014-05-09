@@ -98,12 +98,12 @@
 
                 <div class="btn-group pull-right">
                     <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
-                    Action <span class="caret"></span>
+                    More <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu">
                         <li  id="download"></li>
                         <li><a href="" ng-click="show_share_modal()">
-                            <span class="glyphicon glyphicon-globe"></span>Share Project</a>
+                            <span class="glyphicon glyphicon-globe"></span> Share Project</a>
                         </li>
                         <li class="devider" ng-show="cur_project.id"><a href="" ng-click="delete_project()"><span class="glyphicon glyphicon-trash"></span>Delete Project</a></li>
 
@@ -118,8 +118,8 @@
             <div class="panel">
                 <input type="text" class="form-control" placeholder="URL or Domain on which you want script to run. Example: http://www.example.com (can be regular expression too)" class="script_name" ng-model="cur_project.url">
 
-                <label style="margin: 10px 0;">
-                    <input type="checkbox" ng-model="cur_project.autoApply">Run Automatically on Load</label>
+                <label style="margin: 10px;">
+                    <input type="checkbox" ng-model="cur_project.autoApply"> Run Automatically on Load</label>
             </div>
 
             <div class="panel panel-default">
@@ -318,19 +318,18 @@
                 <div class="modal-body">
                     <form role="form" name="shareform">
                       <div class="form-group">
-                        <label for="exampleInputEmail1">Title</label>
+                        <!-- <label for="exampleInputEmail1">Title</label> -->
                         <input type="text" name="title" class="form-control" id="title" placeholder="Title" ng-model="share.title" required>
                       </div>
                       <div class="form-group">
-                        <label for="exampleInputPassword1">Description</label>
-                        <input type="text" name="desc" class="form-control" id="desc" placeholder="Description" ng-model="share.desc" required>
+                        <!-- <label for="exampleInputPassword1">Description</label> -->
+                        <textarea type="text" name="desc" class="form-control" id="desc" placeholder="Description" ng-model="share.desc" required style="height: 100px;"></textarea>
                       </div>
                     </form>
                 </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-success pull-left" ng-click="shareRecipe()" ng-disabled="shareform.$invalid">Share</button>
-
+                <div class="modal-footer" style="margin-top: -15px;">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-success" ng-click="shareRecipe()" ng-disabled="shareform.$invalid">Share</button>
                 </div>
             </div>
             <!-- /.modal-content -->
