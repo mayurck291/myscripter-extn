@@ -195,7 +195,7 @@ function MyScriptsController($scope, $http) {
 		var data = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(obj));
 
 		$('#download')
-			.html('<a type="button" class="btn btn-info pull-right" href="data:' + data + '" download="' + obj.name + '.json">Export</a>');
+			.html('<a class="glyphicon glyphicon-download-alt" type="button" href="data:' + data + '" download="' + obj.name + '.json">Export</a>');
 	}
 
 	$scope.get_project = function (id) {
@@ -283,6 +283,16 @@ function MyScriptsController($scope, $http) {
 			.modal('show');
 	};
 
+	$scope.show_share_modal = function () {
+		$('#modal_share_recipe')
+			.modal('show');
+	};
+
+	$scope.hide_share_modal = function () {
+		$('#modal_share_recipe')
+			.modal('hide');
+	};
+
 	function get_sequence() {
 		var seq = $.jStorage.get('sequence');
 		if (nullOrEmpty(seq)) {
@@ -350,14 +360,31 @@ function MyScriptsController($scope, $http) {
 		get_all_project_names();
 	}
 
-	$scope.share = function () {
+	$scope.shareRecipe = function () {
 		var obj = {
-			title: "Google",
-			desc: "Google alert",
-			author: "parin@zovi.com",
+			title: $scope.share.title,
+			desc: $scope.share.desc,
+			author: $scope.share.author,
 			ingredients: $scope.cur_project
 		}
-		$http.post('http://localhost:3000/saveRecipe', obj);
+		$http.post('http://localhost:3000/saveRecipe', obj)
+			.success(function () {
+				handle_response()
+			})
+			.error(function () {
+				handle_response()
+			});
+
+		function handle_response() {
+			$('.alert_box')
+				.show();
+
+			setTimeout(function () {
+				$('.alert_box')
+					.hide();
+			}, 3000);
+			$scope.hide_share_modal();
+		}
 	}
 
 	$scope.getRecipes = function () {
