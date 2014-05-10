@@ -2,7 +2,7 @@
     "name": "Monkey Wrench",
     "version": "1.7",
     "manifest_version": 2,
-    "description": "Smarter Way To Handle Websites:Custom scripts on custom URLs",
+    "description": "Smarter Way To Handle Websites : Custom scripts on custom URLs",
     "permissions": [
         "tabs",
         "http://*/*",
