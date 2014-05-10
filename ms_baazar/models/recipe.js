@@ -19,6 +19,10 @@ var RecipeSchema = new Schema({
 	},
 	comments: [{
 		body: String,
+		user: {
+			type: String,
+			ref: 'User'
+		},
 		date: Date
 	}],
 	meta: {
@@ -42,6 +46,10 @@ var RecipeSchema = new Schema({
 	createdAt: {
 		type: Date,
 		default: Date.now
+	},
+	image: {
+		cdnUri: String,
+		files: []
 	}
 });
 

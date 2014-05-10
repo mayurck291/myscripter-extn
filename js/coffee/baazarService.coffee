@@ -203,4 +203,5 @@ class Baazar
 				)
 		defer.promise 	
 
-Baazar.service ['$q','$http',Baazar]
+BaazarModule = angular.module "BaazarModule",[]
+BaazarModule.service ['$q','$http',Baazar]
