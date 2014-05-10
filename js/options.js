@@ -112,6 +112,17 @@ MyScriptsModule.directive("alert", function (alertService) {
 });
 
 function MyScriptsController($scope, $http, alertService) {
+	if (nullOrEmpty(localStorage.getItem('kb'))) {
+		$scope.kb = true;
+		localStorage.setItem('kb', true);
+	} else {
+		$scope.kb = localStorage.getItem('kb');
+	}
+
+	$scope.onoffKBShortcut = function () {
+		localStorage.setItem('kb', !$scope.kb);
+		$scope.kb = !$scope.kb;
+	}
 
 	$scope.onselect = function (content) {
 		console.log(content);

@@ -251,6 +251,11 @@
                             <h4 title="This shortcuts will work on any page :)">
                                 <span class="glyphicon glyphicon-flash"></span>Browser Shortcuts
                             </h4>
+                            <span class="pull-right"> 
+                                <!-- {{kb}} -->
+                                <button ng-click="onoffKBShortcut()" class="btn btn-success " ng-show="kb">On</button>
+                                <button ng-click="onoffKBShortcut()" class="btn btn-danger " ng-hide="kb">Off</button>
+                                </span>
                             <span>
                                 <h3>
                                     <span class="col-md-1 label label-danger">ctrl + I</span>

@@ -21,16 +21,25 @@ function simulateBrowserAction( ) {
 }
 
 function handleKeyBoardShortcuts( command ) {
+
     switch ( command ) {
     case "options":
         openOptionPage( );
+        break;
     case "browserAction":
         simulateBrowserAction( );
+        break;
     }
 }
+
 chrome.commands.onCommand.addListener( function ( command ) {
-    console.log( 'onCommand event received for message: ', command );
-    handleKeyBoardShortcuts( command );
+    var enabled = localStorage.getItem( 'kb' );
+    console.log( 'onCommand event received for message: ', command, ' enabled: ', typeof enabled );
+    if ( enabled === "true" ) {
+        handleKeyBoardShortcuts( command );
+    } else {
+        console.log( "ignoring command...." );
+    }
 } );
 
 chrome.browserAction.onClicked.addListener( function ( tab ) {
