@@ -108,7 +108,7 @@
                                 Your Recipes
                                 <span class="glyphicon glyphicon-glass"></span>
                             </h2>
-                            <file onfileselect="onselect(content)"></file>
+                            <fileimport onfileselect="onselect(content)"></fileimport>
                             <br>
 
                             <hr>
@@ -394,7 +394,7 @@
                         <h4 class="modal-title">Recipe Descriptions</h4>
                     </div>
                     <!-- upload-before-submit="checkvalidity()" -->
-                    <form role="form" name="shareform" action="http://localhost:3000/saveRecipe" ng-upload="complete(content)" upload-options-convert-hidden>
+                    <form role="form" name="shareform" action="http://localhost:3000/saveRecipe" ng-upload="complete(content)">
                         <div class="modal-body">
                             <div class="form-group">
                                 <!-- <label for="exampleInputEmail1">Title</label> -->
@@ -408,7 +408,7 @@
                             <input type="hidden" name="ingredients" ng-value="ingredients">
                             <div class="form-group">
                                 <label for="imgs">ScreenShots</label>
-                                <input type="file" name="imgs" multiple ng-required>
+                                <input type="file" name="imgs" multiple>
                                 <span>press ctrl + click to select multiple files
                                 </span>
                             </div>

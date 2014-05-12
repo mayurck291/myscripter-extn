@@ -39,7 +39,7 @@ app.configure( 'production', function ( ) {
 userController = require( './controllers/users' )
 recipeController = require( './controllers/recipes' )
 
-app.get( '/list', routes.getRecipes );
+app.get( '/list', recipeController.getRecipes );
 app.post( '/saveRecipe', recipeController.saveRecipe );
 app.post( '/addUser', userController.addUser );
 

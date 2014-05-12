@@ -1,48 +1,4 @@
 var MyScriptsModule = angular.module( 'MyScriptsModule', [ "AuthModule", "ngUpload" ] );
-MyScriptsModule.directive( 'screenshot', function ( ) {
-    return {
-        scope: {
-            files: "="
-            // onfileselect: "&"
-        },
-        controller: function ( $scope, $element, $attrs, $transclude ) {
-            $scope.handleFileSelect = function ( evt ) {
-                $scope.filesData = [ ];
-                var files = evt.target.files; // FileList object
-                // console.log( files );
-                $scope.files = files;
-                // var f = files[ 0 ];
-                // if ( f ) {
-                //     var r = new FileReader( );
-                //     r.onload = function ( e ) {
-                //         var contents = e.target.result;
-                //         $scope.$parent.onselect( contents );
-                //     }
-                //     r.readAsText( f );
-                // } else {
-                //     alert( "Failed to load file" );
-                // }
-            }
-
-            $scope.openFile = function ( ) {
-                console.log( "-------------------" );
-                console.log( angular.element( document.querySelector( "#screenshot" ) ) );
-                angular.element( document.querySelector( "#screenshot" ) )[ 0 ].click( );
-            }
-        },
-        // require: 'ngModel', // Array = multiple requires, ? = optional, ^ = check parent elements
-        restrict: 'E', // E = Element, A = Attribute, C = Class, M = Comment
-        template: '<div ><button class="btn btn-info " ng-click="openFile()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Import Recipe&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button><input style="display:none" type="file" class="btn btn-warning pull-right" name="screenshot" id="screenshot" title="Import Files"></div>',
-        // templateUrl: '',
-        replace: true,
-        // transclude: true,
-        // compile: function(tElement, tAttrs, function transclude(function(scope, cloneLinkingFn){ return function linking(scope, elm, attrs){}})),
-        link: function ( $scope, iElm, iAttrs, controller ) {
-            // var input = iElm[ 0 ];
-            iElm.on( 'change', $scope.handleFileSelect );
-        }
-    };
-} );
 
 MyScriptsModule.directive( 'fileimport', function ( ) {
     return {
