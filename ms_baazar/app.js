@@ -9,7 +9,9 @@ var db = require( './db' );
 db.on( 'error', console.error.bind( console, 'connection error:' ) );
 var app = module.exports = express.createServer( );
 var imgur = require( 'imgur-upload' ),
-    path = require( 'path' );
+    path = require( 'path' ),
+    async = require( 'async' );
+
 imgur.setClientID( '8ef66eb1ddce0cf' );
 // Configuration
 app.configure( function ( ) {

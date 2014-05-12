@@ -5,8 +5,9 @@ var RecipeSchema = new Schema( {
     title: String,
     desc: String,
     author: {
-        type: Schema.Types.ObjectId,
-        ref: 'User'
+        type: String,
+        trim: true,
+        lowercase: true
     },
     ingredients: {
         name: String,
@@ -50,22 +51,38 @@ var RecipeSchema = new Schema( {
     createdAt: {
         type: Date,
         default: Date.now
-    },
-    image: {
-        cdnUri: String,
-        files: [ ]
     }
 } );
 
 
 RecipeSchema.statics.save = function ( recipe, cb ) {
+    var conditions = {
+        author: recipe.author,
+        'ingredients.url': recipe.ingredients.url
+    }
+    var options = {
+        upsert: true
+    }
+
     return this.model( 'recipes' )
-        .findOneAndUpdate( {
-            author: recipe.author,
-            'ingredients.url': recipe.ingredients.url
-        }, recipe, {
-            upsert: true
-        }, cb );
+        .findOneAndUpdate( conditions, recipe, options, cb );
+}
+
+
+RecipeSchema.statics.saveImageLinks = function ( recipe, links, cb ) {
+    var conditions = {
+        author: recipe.author,
+        'ingredients.url': recipe.ingredients.url
+    }
+    var update = {
+        "$set": {
+            imgs: links
+        }
+    }
+    var options = {};
+
+    return this.model( 'recipes' )
+        .update( conditions, update, options, cb );
 }
 
 var Recipe = m.model( 'recipes', RecipeSchema );

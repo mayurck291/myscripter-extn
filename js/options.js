@@ -435,6 +435,7 @@ function MyScriptsController( $scope, $http, alertService, GPauth ) {
     };
 
     $scope.show_share_modal = function ( ) {
+        $scope.ingredients = JSON.stringify( $scope.cur_project );
         $( '#modal_share_recipe' )
             .modal( 'show' );
     };

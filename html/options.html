@@ -393,7 +393,8 @@
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         <h4 class="modal-title">Recipe Descriptions</h4>
                     </div>
-                    <form role="form" name="shareform" action="http://localhost:3000/saveRecipe" ng-upload="complete(content)">
+                    <!-- upload-before-submit="checkvalidity()" -->
+                    <form role="form" name="shareform" action="http://localhost:3000/saveRecipe" ng-upload="complete(content)" upload-options-convert-hidden>
                         <div class="modal-body">
                             <div class="form-group">
                                 <!-- <label for="exampleInputEmail1">Title</label> -->
@@ -403,11 +404,13 @@
                                 <!-- <label for="exampleInputPassword1">Description</label> -->
                                 <textarea type="text" name="desc" class="form-control" id="desc" placeholder="Description" ng-model="share.desc" required style="height: 100px;"></textarea>
                             </div>
+                            <input type="hidden" name="author" ng-value="userDetails.emails[ 0 ].value">
+                            <input type="hidden" name="ingredients" ng-value="ingredients">
                             <div class="form-group">
-                                <label for="img1">ScreenShots</label>
-                                <input type="file" name="img1"></input>
-                                <input type="file" name="img2"></input>
-                                <input type="file" name="img3"></input>
+                                <label for="imgs">ScreenShots</label>
+                                <input type="file" name="imgs" multiple ng-required>
+                                <span>press ctrl + click to select multiple files
+                                </span>
                             </div>
 
                         </div>
