@@ -1,27 +1,27 @@
-var m = require('mongoose');
+var m = require( 'mongoose' );
 var Schema = m.Schema;
 
-var CountersSchema = new Schema({
-	_id: String,
-	next: {
-		type: Number,
-		default: 0
-	}
-});
+var CountersSchema = new Schema( {
+    _id: String,
+    next: {
+        type: Number,
+        default: 0
+    }
+} );
 
-CountersSchema.static.increment = function (counter, callback) {
-	return this.collection.findAndModify({
-		_id: counter
-	}, [], {
-		$inc: {
-			next: 1
-		}
-	}, callback);
+CountersSchema.statics.increment = function ( counter, callback ) {
+    return this.collection.findAndModify( {
+        _id: counter
+    }, [ ], {
+        $inc: {
+            next: 1
+        }
+    }, callback );
 };
 
 
 
-var Counters = m.model('Counters', CountersSchema);
+var Counters = m.model( 'Counters', CountersSchema );
 
 module.exports = Counters;
 

@@ -4,7 +4,7 @@
 
   Baazar = (function() {
     function Baazar($q, $http) {
-      var domain, favRecipeUrl, giveKarmaToRecipeUrl, listUrl, myFavRecipesUrl, myRecipesUrl, newestRecipesUrl, popularUrl, postCommentUrl, postRecipeUrl, topTenWeekUrl, trendingUrl;
+      var domain, favRecipeUrl, giveKarmaToRecipeUrl, incUsersRecipesUrl, listUrl, myFavRecipesUrl, myRecipesUrl, newestRecipesUrl, popularUrl, postCommentUrl, postRecipeUrl, topTenWeekUrl, trendingUrl;
       this.$q = $q;
       this.$http = $http;
       domain = "http://localhost:3000";
@@ -22,7 +22,8 @@
       postRecipeUrl = "" + domain + "/postRecipe";
       favRecipeUrl = "" + domain + "/favRecipe";
       postCommentUrl = "" + domain + "/postComment";
-      giveKarmaToRecipeUrl = "" + domain + "/giveKarmaToRecipeUrl";
+      giveKarmaToRecipeUrl = "" + domain + "/giveKarmaToRecipe";
+      incUsersRecipesUrl = "" + domain + "/incUsersRecipes";
     }
 
     Baazar.prototype.handleGetCall = function(defer, response) {
@@ -188,6 +189,22 @@
       var defer, url;
       defer = this.$q.defer();
       url = "" + this.giveKarmaToRecipeUrl + "/" + recipeID;
+      this.$http.post(url, karma).success((function(_this) {
+        return function(response, status) {
+          _this.handlePostCall(defer, response);
+        };
+      })(this)).error((function(_this) {
+        return function(response, status) {
+          _this.handlePostCall(defer, response);
+        };
+      })(this));
+      return defer.promise;
+    };
+
+    Baazar.prototype.incUsersRecipes = function(recipeID) {
+      var defer, url;
+      defer = this.$q.defer();
+      url = "" + this.incUsersRecipesUrl + "/" + recipeID;
       this.$http.post(url, karma).success((function(_this) {
         return function(response, status) {
           _this.handlePostCall(defer, response);

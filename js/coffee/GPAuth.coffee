@@ -1,6 +1,6 @@
 class GPauth
 	constructor:(@$http,@$q)->
-		console.log("INITIALIZED GPauth",arguments);
+		# console.log("INITIALIZED GPauth",arguments);
 		@START_STATE = 1
 		@STATE_ACQUIRING_AUTH_TOKEN = 2
 		@STATE_AUTH_TOKEN_ACQUIRED = 3
@@ -10,7 +10,7 @@ class GPauth
 	getState:-> @state
 
 	getToken:(interactive)->
-		console.log("GPauth GETTING TOKEN");
+		# console.log("GPauth GETTING TOKEN");
 
 		defer = @$q.defer()
 		@state = @STATE_ACQUIRING_AUTH_TOKEN
@@ -18,10 +18,10 @@ class GPauth
 
 		chrome.identity.getAuthToken option,(accessToken) => 
 			if chrome.runtime.lastError
-				console.log("Error: ", chrome.runtime.lastError)
+				# console.log("Error: ", chrome.runtime.lastError)
 				defer.reject(chrome.runtime.lastError)
 			else 
-				console.log("accessToken: ",accessToken)
+				# console.log("accessToken: ",accessToken)
 				@accessToken = accessToken
 				defer.resolve()
 			return
@@ -29,7 +29,7 @@ class GPauth
 		defer.promise
 
 	requestUserData:->
-		console.log("GPauth REQUESTING USER DATA");
+		# console.log("GPauth REQUESTING USER DATA");
 
 		defer = @$q.defer()
 		@retry = yes
@@ -56,7 +56,7 @@ class GPauth
 		defer.promise
 
 	getUserInfo:(interactive)->
-		console.log("GPauth GET USER DATA");
+		# console.log("GPauth GET USER DATA");
 
 		defer = @$q.defer()
 		@requestUserData().then defer.resolve,defer.reject
@@ -64,7 +64,7 @@ class GPauth
 		defer.promise
 
 	signIn:->
-		console.log("GPauth signIn");
+		# console.log("GPauth signIn");
 
 		defer = @$q.defer()
 		@getToken(true).then defer.resolve,defer.reject
@@ -72,7 +72,7 @@ class GPauth
 		defer.promise
 
 	signOut:->
-		console.log("GPauth signOut");
+		# console.log("GPauth signOut");
 		defer = @$q.defer()
 		url = "https://accounts.google.com/o/oauth2/revoke?token=#{@accessToken}" 
 		option = token : @accessToken
@@ -81,7 +81,7 @@ class GPauth
 		defer.promise
 
 	load:->
-		console.log("GPauth LOAD");
+		# console.log("GPauth LOAD");
 		defer = @$q.defer()
 		@getToken(false).then defer.resolve,defer.reject
 		defer.promise

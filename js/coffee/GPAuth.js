@@ -6,7 +6,6 @@
     function GPauth($http, $q) {
       this.$http = $http;
       this.$q = $q;
-      console.log("INITIALIZED GPauth", arguments);
       this.START_STATE = 1;
       this.STATE_ACQUIRING_AUTH_TOKEN = 2;
       this.STATE_AUTH_TOKEN_ACQUIRED = 3;
@@ -20,7 +19,6 @@
 
     GPauth.prototype.getToken = function(interactive) {
       var defer, option;
-      console.log("GPauth GETTING TOKEN");
       defer = this.$q.defer();
       this.state = this.STATE_ACQUIRING_AUTH_TOKEN;
       option = {
@@ -29,10 +27,8 @@
       chrome.identity.getAuthToken(option, (function(_this) {
         return function(accessToken) {
           if (chrome.runtime.lastError) {
-            console.log("Error: ", chrome.runtime.lastError);
             defer.reject(chrome.runtime.lastError);
           } else {
-            console.log("accessToken: ", accessToken);
             _this.accessToken = accessToken;
             defer.resolve();
           }
@@ -43,7 +39,6 @@
 
     GPauth.prototype.requestUserData = function() {
       var config, defer;
-      console.log("GPauth REQUESTING USER DATA");
       defer = this.$q.defer();
       this.retry = true;
       config = {
@@ -76,7 +71,6 @@
 
     GPauth.prototype.getUserInfo = function(interactive) {
       var defer;
-      console.log("GPauth GET USER DATA");
       defer = this.$q.defer();
       this.requestUserData().then(defer.resolve, defer.reject);
       return defer.promise;
@@ -84,7 +78,6 @@
 
     GPauth.prototype.signIn = function() {
       var defer;
-      console.log("GPauth signIn");
       defer = this.$q.defer();
       this.getToken(true).then(defer.resolve, defer.reject);
       return defer.promise;
@@ -92,21 +85,18 @@
 
     GPauth.prototype.signOut = function() {
       var defer, option, url;
-      console.log("GPauth signOut");
       defer = this.$q.defer();
+      url = "https://accounts.google.com/o/oauth2/revoke?token=" + this.accessToken;
       option = {
         token: this.accessToken
       };
-      chrome.identity.removeCachedAuthToken(option, defer.resolve);
-      url = "https://accounts.google.com/o/oauth2/revoke?token=" + this.accessToken;
-      this.$http.get(url);
+      chrome.identity.removeCachedAuthToken(option, this.$http.get(url).success(defer.resolve).error(defer.reject));
       this.state = this.START_STATE;
       return defer.promise;
     };
 
     GPauth.prototype.load = function() {
       var defer;
-      console.log("GPauth LOAD");
       defer = this.$q.defer();
       this.getToken(false).then(defer.resolve, defer.reject);
       return defer.promise;

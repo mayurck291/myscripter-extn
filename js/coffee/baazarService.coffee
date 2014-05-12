@@ -14,7 +14,8 @@ class Baazar
 		postRecipeUrl 			= "#{domain}/postRecipe"
 		favRecipeUrl 			= "#{domain}/favRecipe"
 		postCommentUrl 			= "#{domain}/postComment"
-		giveKarmaToRecipeUrl 	= "#{domain}/giveKarmaToRecipeUrl"
+		giveKarmaToRecipeUrl 	= "#{domain}/giveKarmaToRecipe"
+		incUsersRecipesUrl  	= "#{domain}/incUsersRecipes"		# NEW 10
 
 		# search 			
 		# search/favs
@@ -201,7 +202,24 @@ class Baazar
 					@handlePostCall(defer,response);
 					return 
 				)
-		defer.promise 	
+		defer.promise
+
+	incUsersRecipes:(recipeID)->
+		defer 		= @$q.defer()
+		url 		= "#{@incUsersRecipesUrl}/#{recipeID}"
+
+		@$http.post(url,karma)
+			.success(
+				(response,status) =>
+					@handlePostCall(defer,response)
+					return 
+					)
+			.error(
+				(response,status) =>
+					@handlePostCall(defer,response);
+					return 
+				)
+		defer.promise 
 
 BaazarModule = angular.module "BaazarModule",[]
 BaazarModule.service ['$q','$http',Baazar]

@@ -89,3 +89,9 @@ input[type=file] {
     background-color: #f0ad4e !important;
     border-color: #eea236 !important;
 }
+.image {
+    width:90px;
+    height:90px;
+    margin-right: 10px;
+    border:4px solid rgba(66, 66, 66, 0.17);
+}

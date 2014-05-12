@@ -1,5 +1,50 @@
-var MyScriptsModule = angular.module( 'MyScriptsModule', [ "AuthModule" ] );
-MyScriptsModule.directive( 'file', function ( ) {
+var MyScriptsModule = angular.module( 'MyScriptsModule', [ "AuthModule", "ngUpload" ] );
+MyScriptsModule.directive( 'screenshot', function ( ) {
+    return {
+        scope: {
+            files: "="
+            // onfileselect: "&"
+        },
+        controller: function ( $scope, $element, $attrs, $transclude ) {
+            $scope.handleFileSelect = function ( evt ) {
+                $scope.filesData = [ ];
+                var files = evt.target.files; // FileList object
+                // console.log( files );
+                $scope.files = files;
+                // var f = files[ 0 ];
+                // if ( f ) {
+                //     var r = new FileReader( );
+                //     r.onload = function ( e ) {
+                //         var contents = e.target.result;
+                //         $scope.$parent.onselect( contents );
+                //     }
+                //     r.readAsText( f );
+                // } else {
+                //     alert( "Failed to load file" );
+                // }
+            }
+
+            $scope.openFile = function ( ) {
+                console.log( "-------------------" );
+                console.log( angular.element( document.querySelector( "#screenshot" ) ) );
+                angular.element( document.querySelector( "#screenshot" ) )[ 0 ].click( );
+            }
+        },
+        // require: 'ngModel', // Array = multiple requires, ? = optional, ^ = check parent elements
+        restrict: 'E', // E = Element, A = Attribute, C = Class, M = Comment
+        template: '<div ><button class="btn btn-info " ng-click="openFile()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Import Recipe&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button><input style="display:none" type="file" class="btn btn-warning pull-right" name="screenshot" id="screenshot" title="Import Files"></div>',
+        // templateUrl: '',
+        replace: true,
+        // transclude: true,
+        // compile: function(tElement, tAttrs, function transclude(function(scope, cloneLinkingFn){ return function linking(scope, elm, attrs){}})),
+        link: function ( $scope, iElm, iAttrs, controller ) {
+            // var input = iElm[ 0 ];
+            iElm.on( 'change', $scope.handleFileSelect );
+        }
+    };
+} );
+
+MyScriptsModule.directive( 'fileimport', function ( ) {
     return {
         scope: {
             // onfileselect: "&"
@@ -42,6 +87,7 @@ MyScriptsModule.directive( 'file', function ( ) {
         }
     };
 } );
+
 
 MyScriptsModule.factory( "alertService", function ( $timeout ) {
     var alert = {};
@@ -131,6 +177,7 @@ function MyScriptsController( $scope, $http, alertService, GPauth ) {
         } );
 
     $scope.signIn = function ( ) {
+        alertService.showAlertWarning( "Loading...........:)" )
         GPauth.signIn( )
             .then( function ( ) {
                 getUserInfo( );
@@ -299,7 +346,7 @@ function MyScriptsController( $scope, $http, alertService, GPauth ) {
     }
 
     var set_export_link = function ( obj ) {
-        console.log( obj )
+        // console.log( obj )
         delete obj.id;
         var data = "text/json;charset=utf-8," + encodeURIComponent( JSON.stringify( obj ) );
 
@@ -465,13 +512,25 @@ function MyScriptsController( $scope, $http, alertService, GPauth ) {
     }
 
     $scope.shareRecipe = function ( ) {
+        var formData = new FormData( );
+        formData.append( "file", $scope.files );
+
         var obj = {
             title: $scope.share.title,
             desc: $scope.share.desc,
-            author: $scope.share.author,
+            author: $scope.userDetails.emails[ 0 ].value,
             ingredients: $scope.cur_project
         }
-        $http.post( 'http://nikhilbaliga.com:8002/saveRecipe', obj )
+        // $http.post( 'http://localhost:3000/saveRecipe', formData )
+        $http( {
+            method: 'POST',
+            url: 'http://localhost:3000/saveRecipe',
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            },
+            data: formData,
+            transformRequest: formData
+        } )
             .success( function ( ) {
                 handle_response( )
             } )
@@ -487,7 +546,7 @@ function MyScriptsController( $scope, $http, alertService, GPauth ) {
     }
 
     $scope.getRecipes = function ( ) {
-        var url = 'http://nikhilbaliga.com:8002/list';
+        var url = 'http://localhost:3000/list';
         alertService.showAlertWarning( "Loading.....please wait...." );
         $http.get( url )
             .success( function ( data, status ) {
