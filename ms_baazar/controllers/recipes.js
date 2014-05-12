@@ -21,7 +21,7 @@ function uploadImagesToImgur( files, doneCallback ) {
         console.log( "Single File upload" );
         imgur.upload( path.join( file.path ), function ( err, r ) {
             console.log( "Got response ", err, r );
-            if ( !err ) {
+            if ( !err && typeof r === "object" ) {
                 links.push( r.data.link )
                 doneCallback( links );
             } else {
@@ -43,7 +43,7 @@ function uploadImagesToImgur( files, doneCallback ) {
         async.each( filePaths, function ( filePath, callback ) {
             imgur.upload( path.join( filePath ), function ( err, r ) {
                 console.log( "Got response ", err, r );
-                if ( !err ) {
+                if ( !err && typeof r === "object" ) {
                     links.push( r.data.link );
                 } else {
                     console.log( "Error uploading file", err, r );
@@ -76,7 +76,11 @@ exports.saveRecipe = function ( request, response ) {
     Recipe.save( recipe, function ( err, doc ) {
         console.log( "saveRecipe mongo ", err, doc );
         if ( !err ) {
-            response.json( doc, 200 );
+            resDoc = {
+                response: "success",
+                msg: "Successfully shared..."
+            }
+            response.json( resDoc, 200 );
             console.log( "200 upload images to imgur ", err, doc );
             uploadImagesToImgur( files, function ( links ) {
                 updateImageLinksInMongo( recipe, links )
