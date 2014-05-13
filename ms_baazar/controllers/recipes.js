@@ -106,3 +106,12 @@ exports.getRecipes = function ( req, res ) {
             res.json( recipes );
         } )
 }
+
+exports.myRecipes = function ( req, res ) {
+    email = req.params.email;
+    console.log( email );
+    Recipe.myRecipes( email, function ( err, docs ) {
+        console.log( err, docs );
+        res.json( docs, 200 );
+    } )
+}

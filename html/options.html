@@ -263,21 +263,29 @@
                             <br>
                         </caption>
                         <thead>
+                            <th>Link</th>
                             <th>Title</th>
                             <th>URL</th>
                             <th>Description</th>
-                            <th>Link</th>
+                            <th>Author</th>
+                            <th>Screenshots</th>
                         </thead>
                         <tbody>
                             <tr ng-repeat="recipe in recipes">
+                                <td>
+                                    <a href="#" ng-click="installRecipe(recipe.ingredients)">
+                                        <span class="glyphicon glyphicon-magnet"></span>Install</a>
+                                </td>
                                 <td>{{recipe.title}}</td>
                                 <td>{{recipe.ingredients.url}}</td>
                                 <td>{{recipe.desc | limitTo:100}}
                                     <span ng-show="recipe.desc.length > 100">...</span>
                                 </td>
+                                <td>{{recipe.author}}</td>
                                 <td>
-                                    <a href="#" ng-click="installRecipe(recipe.ingredients)">
-                                        <span class="glyphicon glyphicon-magnet"></span>Install</a>
+                                    <span ng-repeat="img in recipe.imgs">
+                                        <img style="width:40px;height:40px;" class="img-polaroid img-circle" ng-src="{{img}}" alt="">
+                                    </span>
                                 </td>
                             </tr>
                         </tbody>

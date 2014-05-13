@@ -40,6 +40,7 @@ userController = require( './controllers/users' )
 recipeController = require( './controllers/recipes' )
 
 app.get( '/list', recipeController.getRecipes );
+app.get( '/myRecipes/:email', recipeController.myRecipes );
 app.post( '/saveRecipe', recipeController.saveRecipe );
 app.post( '/addUser', userController.addUser );
 

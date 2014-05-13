@@ -24,10 +24,7 @@ var RecipeSchema = new Schema( {
     imgs: [ String ],
     comments: [ {
         body: String,
-        user: {
-            type: String,
-            ref: 'User'
-        },
+        user: String,
         date: Date
     } ],
     meta: {
@@ -53,6 +50,17 @@ var RecipeSchema = new Schema( {
         default: Date.now
     }
 } );
+
+RecipeSchema.statics.myRecipes = function ( email, cb ) {
+    return this.model( 'recipes' )
+        .find( {
+            author: email
+        } )
+        .sort( 'createdAt' )
+        .limit( 10 )
+        .exec( cb );
+}
+
 
 
 RecipeSchema.statics.save = function ( recipe, cb ) {
