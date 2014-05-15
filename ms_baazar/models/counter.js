@@ -21,7 +21,7 @@ CountersSchema.statics.increment = function ( counter, callback ) {
 
 
 
-var Counters = m.model( 'Counters', CountersSchema );
+var Counters = m.model( 'Counter', CountersSchema );
 
 module.exports = Counters;
 

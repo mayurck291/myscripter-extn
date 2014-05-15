@@ -72,44 +72,69 @@ exports.saveRecipe = function ( request, response ) {
     var recipe = params;
     var files = request.files.imgs;
     recipe.ingredients = JSON.parse( recipe.ingredients );
+    // Recipe.save( recipe, function ( err ) {
+    //     console.log( "saveRecipe mongo ", err );
+    //     if ( !err ) {
+    //         resDoc = {
+    //             response: "success",
+    //             msg: "Successfully shared..."
+    //         }
+    //         response.json( resDoc, 200 );
+    //         console.log( "200 upload images to imgur ", err );
+    //         uploadImagesToImgur( files, function ( links ) {
+    //             updateImageLinksInMongo( recipe, links )
+    //         } );
+    //     } else {
+    //         console.log( "500 won't upload images to imgur ", err );
 
-    Recipe.save( recipe, function ( err, doc ) {
-        console.log( "saveRecipe mongo ", err, doc );
-        if ( !err ) {
-            resDoc = {
-                response: "success",
-                msg: "Successfully shared..."
-            }
-            response.json( resDoc, 200 );
-            console.log( "200 upload images to imgur ", err, doc );
-            uploadImagesToImgur( files, function ( links ) {
-                updateImageLinksInMongo( recipe, links )
-            } );
-        } else {
-            console.log( "500 won't upload images to imgur ", err, doc );
+    //         var error = {
+    //             response: "error",
+    //             msg: "Error sharing your recipe."
+    //         };
+    //         response.json( error, 500 );
+    //     };
+    // } );
+    // 
+    // 
+    // 
+    // 
+    var conditions = {
+        author: recipe.author,
+        'ingredients.url': recipe.ingredients.url
+    }
+    var options = {
+        upsert: true
+    }
+    Recipe.findOneAndUpdate( conditions, recipe, options, function ( err, doc ) {
+        console.log( "=========================================================================================" )
+        console.log( err, doc );
+        console.log( "=========================================================================================" )
+    } )
 
-            var error = {
-                response: "error",
-                msg: "Error sharing your recipe."
-            };
-            response.json( error, 500 );
-        };
-    } );
 
 
 }
 
-exports.getRecipes = function ( req, res ) {
-    Recipe.find( )
-        .limit( 10 )
-        .exec( function ( err, recipes ) {
-            res.json( recipes );
-        } )
+exports.list = function ( req, res ) {
+    Recipe.list( function ( err, recipes ) {
+        console.log( recipes )
+        res.json( recipes );
+    } )
 }
+
+exports.newestRecipes = function ( req, res ) {
+    Recipe.newestRecipes( function ( err, recipes ) {
+        console.log( recipes )
+        res.json( recipes );
+    } )
+}
+
+
 
 exports.myRecipes = function ( req, res ) {
+
     email = req.params.email;
-    console.log( email );
+    // console.log( email );
     Recipe.myRecipes( email, function ( err, docs ) {
         console.log( err, docs );
         res.json( docs, 200 );

@@ -10,8 +10,9 @@
     <script type="text/javascript" src="/js/jstorage.js"></script>
     <script type="text/javascript" src="/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/js/ng-upload.js"></script>
-    <script type="text/javascript" src="/js/options.js"></script>
     <script type="text/javascript" src="/js/coffee/GPAuth.js"></script>
+    <script type="text/javascript" src="/js/coffee/baazarService.js"></script>
+    <script type="text/javascript" src="/js/options.js"></script>
     <title>Monkey Wrench</title>
     <link href="/css/options.css" rel='stylesheet' type='text/css'>
     <link href='/css/angular-csp.css' rel='stylesheet' type='text/css'>
@@ -56,12 +57,12 @@
 
                     <li class="dropdown" ng-show="signedIn">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Hello&nbsp; 
-                            <img class="img-polaroid img-circle" style="height:20px" ng-src="{{userDetails.image.url}}" alt="">&nbsp;{{userDetails.displayName}}<b class="caret"></b>
+                            <img class="img-polaroid img-circle" style="height:20px" ng-src="{{userDetails.img}}" alt="">&nbsp;{{userDetails.name}}<b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="#">
-                                    <span>{{userDetails.emails[0].value}}</span>
+                                <a target="_blank" ng-href="{{userDetails.url}}">
+                                    <span>{{userDetails._id}}</span>
                                 </a>
                             </li>
                             <li class="divider"></li>
@@ -284,7 +285,7 @@
                                 <td>{{recipe.author}}</td>
                                 <td>
                                     <span ng-repeat="img in recipe.imgs">
-                                        <img style="width:40px;height:40px;" class="img-polaroid img-circle" ng-src="{{img}}" alt="">
+                                        <img style="width:70px;height:70px;" class="img-polaroid " ng-src="{{img}}" alt="">
                                     </span>
                                 </td>
                             </tr>

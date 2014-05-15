@@ -1,21 +1,24 @@
 class Baazar
 	constructor:(@$q,@$http)->
-		domain 				= "http://localhost:3000";
+		@domain 				= "http://localhost:3000";
+		### USER RELATED METHODS ###
+		@updateUserUrl			= "#{@domain}/updateUser"
+
 		### GET CALLS ###
-		listUrl  				= "#{domain}/list"				# PAGINATION
-		popularUrl  			= "#{domain}/popular"			# ALL TIME POPULAR  
-		trendingUrl  			= "#{domain}/trending"			# TRENDING TODAY
-		myRecipesUrl 			= "#{domain}/myRecipes"			# SUBMITTED BY ME
-		myFavRecipesUrl  		= "#{domain}/myFavRecipes"		# NEW 10
-		topTenWeekUrl  			= "#{domain}/topTenWeek"		# TOP TEN OF CURRENT WEEK
-		newestRecipesUrl  		= "#{domain}/newestRecipes"		# NEW 10
+		@listUrl  				= "#{@domain}/list"				# PAGINATION
+		@popularUrl  			= "#{@domain}/popular"			# ALL TIME POPULAR  
+		@trendingUrl  			= "#{@domain}/trending"			# TRENDING TODAY
+		@myRecipesUrl 			= "#{@domain}/myRecipes"			# SUBMITTED BY ME
+		@myFavRecipesUrl  		= "#{@domain}/myFavourite"		# NEW 10
+		@topTenWeekUrl  		= "#{@domain}/topTenWeek"		# TOP TEN OF CURRENT WEEK
+		@newestRecipesUrl  		= "#{@domain}/newestRecipes"		# NEW 10
 
 		### POST CALLS ###
-		postRecipeUrl 			= "#{domain}/postRecipe"
-		favRecipeUrl 			= "#{domain}/favRecipe"
-		postCommentUrl 			= "#{domain}/postComment"
-		giveKarmaToRecipeUrl 	= "#{domain}/giveKarmaToRecipe"
-		incUsersRecipesUrl  	= "#{domain}/incUsersRecipes"		# NEW 10
+		@postRecipeUrl 			= "#{@domain}/postRecipe"
+		@favRecipeUrl 			= "#{@domain}/favRecipe"
+		@postCommentUrl 		= "#{@domain}/postComment"
+		@giveKarmaToRecipeUrl 	= "#{@domain}/giveKarmaToRecipe"
+		@incUsersRecipesUrl  	= "#{@domain}/incUsersRecipes"		# NEW 10
 
 		# search 			
 		# search/favs
@@ -36,6 +39,10 @@ class Baazar
 			defer.reject response.msg
 		return
 
+	updateUser:(user)=>
+		console.log(user)
+		@$http.post(@updateUserUrl,user)
+		return 
 
 	trending:->
 		defer = @$q.defer()
@@ -100,16 +107,17 @@ class Baazar
 	list:(pageno)->
 		pageno = pageno ? 0
 		url = "#{@listUrl}/#{pageno}"
+		console.log(url,@listUrl)
 		defer = @$q.defer()
 		@$http.get(url)
 			.success(
 				(response,status) =>
-					@handleGetCall(defer,response)
+					defer.resolve(response)
 					return 
 					)
 			.error(
 				(response,status) =>
-					@handleGetCall(defer,response);
+					defer.reject(response);
 					return 
 				)
 		defer.promise 
@@ -133,7 +141,7 @@ class Baazar
 				)
 		defer.promise 
 
-	myFavRecipes:(userID)->
+	myFavourite:(userID)->
 		defer = @$q.defer()
 		url = "#{@myFavRecipesUrl}/#{userID}"
 
@@ -157,7 +165,7 @@ class Baazar
 	
 	postRecipe:(recipe)->
 		defer = @$q.defer()
-		@$http.post(postRecipeUrl,recipe)
+		@$http.post(@postRecipeUrl,recipe)
 			.success(
 				(response,status) =>
 					@handlePostCall(defer,response)
@@ -222,4 +230,4 @@ class Baazar
 		defer.promise 
 
 BaazarModule = angular.module "BaazarModule",[]
-BaazarModule.service ['$q','$http',Baazar]
+BaazarModule.service 'Baazar',['$q','$http',Baazar]

@@ -36,13 +36,14 @@ app.configure( 'production', function ( ) {
 
 
 // Routes
-userController = require( './controllers/users' )
-recipeController = require( './controllers/recipes' )
+userController = require( './controllers/user' )
+recipeController = require( './controllers/recipe' )
 
-app.get( '/list', recipeController.getRecipes );
+app.post( '/updateUser', userController.updateUser )
+app.get( '/list', recipeController.list );
+app.get( '/newestRecipes', recipeController.newestRecipes );
 app.get( '/myRecipes/:email', recipeController.myRecipes );
 app.post( '/saveRecipe', recipeController.saveRecipe );
-app.post( '/addUser', userController.addUser );
 
 var port = 3000;
 app.listen( port, function ( ) {

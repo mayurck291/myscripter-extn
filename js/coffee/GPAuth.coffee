@@ -5,7 +5,8 @@ class GPauth
 		@STATE_ACQUIRING_AUTH_TOKEN = 2
 		@STATE_AUTH_TOKEN_ACQUIRED = 3
 		@state = @START_STATE
-		@authenticationURL = 'https://www.googleapis.com/plus/v1/people/me?fields=aboutMe,circledByCount,displayName,emails,image'
+		@authenticationURL = 'https://www.googleapis.com/plus/v1/people/me?fields=aboutMe,displayName,emails,image,url'
+		@accessToken = null;
 
 	getState:-> @state
 
@@ -76,7 +77,7 @@ class GPauth
 		defer = @$q.defer()
 		url = "https://accounts.google.com/o/oauth2/revoke?token=#{@accessToken}" 
 		option = token : @accessToken
-		chrome.identity.removeCachedAuthToken option,@$http.get(url).success(defer.resolve).error(defer.reject)
+		chrome.identity.removeCachedAuthToken option,()->@$http.get(url).success(defer.resolve).error(defer.reject)
 		@state = @START_STATE
 		defer.promise
 

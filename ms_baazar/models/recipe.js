@@ -21,38 +21,30 @@ var RecipeSchema = new Schema( {
         enabled: Boolean,
         autoApply: Boolean
     },
-    imgs: [ String ],
+    imgs: {
+        type: [ String ],
+        'default': [ ]
+    },
     comments: [ {
         body: String,
         user: String,
         date: Date
     } ],
-    meta: {
-        karma: {
-            type: Number,
-            default: 1
-        },
-        voters: {
-            type: Number,
-            default: 0
-        },
-        favs: {
-            type: Number,
-            default: 0
-        },
-        users: {
-            type: Number,
-            default: 1
-        }
-    },
     createdAt: {
         type: Date,
-        default: Date.now
+        'default': Date.now
     }
 } );
 
+RecipeSchema.statics.list = function ( cb ) {
+    // TODO will change this to find all popular trending  mix s
+    this.model( 'RecipeSchema' )
+        .find( )
+        .limit( 10 )
+        .exec( cb );
+}
 RecipeSchema.statics.myRecipes = function ( email, cb ) {
-    return this.model( 'recipes' )
+    return this.model( 'recipe' )
         .find( {
             author: email
         } )
@@ -61,7 +53,22 @@ RecipeSchema.statics.myRecipes = function ( email, cb ) {
         .exec( cb );
 }
 
+RecipeSchema.statics.list = function ( cb ) {
+    return this.model( 'recipe' )
+        .find( {} )
+        .limit( 10 )
+        .exec( cb );
+}
 
+RecipeSchema.statics.newestRecipes = function ( cb ) {
+    this.model( 'recipe' )
+        .find( {} )
+        .sort( {
+            createdAt: 'descending'
+        } )
+        .limit( 10 )
+        .exec( cb )
+}
 
 RecipeSchema.statics.save = function ( recipe, cb ) {
     var conditions = {
@@ -71,8 +78,11 @@ RecipeSchema.statics.save = function ( recipe, cb ) {
     var options = {
         upsert: true
     }
+    // recipe = new Recipe( recipe );
+    // recipe = recipe.toObject( );
+    // delete recipe._id;
 
-    return this.model( 'recipes' )
+    return this.model( 'recipe' )
         .findOneAndUpdate( conditions, recipe, options, cb );
 }
 
@@ -89,11 +99,11 @@ RecipeSchema.statics.saveImageLinks = function ( recipe, links, cb ) {
     }
     var options = {};
 
-    return this.model( 'recipes' )
+    return this.model( 'recipe' )
         .update( conditions, update, options, cb );
 }
 
-var Recipe = m.model( 'recipes', RecipeSchema );
+var Recipe = m.model( 'recipe', RecipeSchema );
 
 module.exports = Recipe;
 

@@ -1,4 +1,4 @@
-var MyScriptsModule = angular.module( 'MyScriptsModule', [ "AuthModule", "ngUpload" ] );
+var MyScriptsModule = angular.module( 'MyScriptsModule', [ "AuthModule", "ngUpload", "BaazarModule" ] );
 
 MyScriptsModule.directive( 'fileimport', function ( ) {
     return {
@@ -112,13 +112,22 @@ MyScriptsModule.directive( "alert", function ( alertService ) {
     };
 } );
 
-function MyScriptsController( $scope, $http, alertService, GPauth ) {
+function MyScriptsController( $scope, $http, alertService, GPauth, Baazar ) {
+    var domain = "http://localhost:3000";
+
     function getUserInfo( ) {
         GPauth.getUserInfo( )
             .then( function ( data ) {
                 $scope.signedIn = true;
-                $scope.userDetails = data;
-                console.log( "User info in controller is : ", data, arguments );
+                $scope.userDetails = {
+                    _id: data.emails[ 0 ].value,
+                    name: data.displayName,
+                    img: data.image.url,
+                    authToken: GPauth.accessToken,
+                    url: data.url
+                };
+                Baazar.updateUser( $scope.userDetails );
+                console.log( "User info in controller is : ", $scope.userDetails, arguments );
             }, function ( ) {
                 $scope.signedIn = false;
                 console.log( "Error : User info in controller is : ", data, arguments );
@@ -503,27 +512,33 @@ function MyScriptsController( $scope, $http, alertService, GPauth ) {
     }
 
     $scope.getRecipes = function ( ) {
-        var url = 'http://localhost:3000/list';
-        alertService.showAlertWarning( "Loading.....please wait...." );
-        $http.get( url )
-            .success( function ( data, status ) {
-                handle_response( data )
-            } )
-            .error( function ( ) {
-                alertService.hideAlert( );
-            } )
+        Baazar.list( )
+            .then( function ( data ) {
+                console.log( data )
+            }, function ( data ) {
+                console.log( data )
+            } );
+        // var url = 'http://localhost:3000/list';
+        // alertService.showAlertWarning( "Loading.....please wait...." );
+        // $http.get( url )
+        //     .success( function ( data, status ) {
+        //         handle_response( data )
+        //     } )
+        //     .error( function ( ) {
+        //         alertService.hideAlert( );
+        //     } )
 
 
-        function handle_response( data ) {
-            alertService.hideAlert( );
-            if ( data ) {
-                $scope.recipes = data;
-                $scope.view_mode = 'baazar';
-                console.log( data );
-            } else {
-                $scope.recipes = [ ];
-                alertService.showAlertError( "Oops...! hang in there...an army of highly trained monkeys is dispatched to deal with this situation." );
-            }
-        }
+        // function handle_response( data ) {
+        //     alertService.hideAlert( );
+        //     if ( data ) {
+        //         $scope.recipes = data;
+        //         $scope.view_mode = 'baazar';
+        //         console.log( data );
+        //     } else {
+        //         $scope.recipes = [ ];
+        //         alertService.showAlertError( "Oops...! hang in there...an army of highly trained monkeys is dispatched to deal with this situation." );
+        //     }
+        // }
     }
 };
