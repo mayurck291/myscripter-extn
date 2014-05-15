@@ -54,6 +54,7 @@ app.post( '/updateUser', userController.updateUser )
 app.get( '/list', recipeController.list );
 app.get( '/list/:page', recipeController.list );
 app.get( '/newestRecipes', recipeController.newestRecipes );
+app.get( '/get', metaController.get );
 app.get( '/myRecipes/:email', recipeController.myRecipes );
 app.post( '/saveRecipe', recipeController.saveRecipe );
 app.post( '/favourite', metaController.favourite );

@@ -52,10 +52,12 @@ updateImageLinksInMongo = ( recipe, links )->
     return
 
 insertMetaInfo = (recipe)->
-    meta = {_id : recipe._id}
+    meta = 
+        _id : recipe._id,
+        users : [recipe.author]
+        karma : [{user:recipe.author,karma:8}]
+
     meta = new Meta(meta)
-    meta.users.push(recipe.author)
-    meta.karma.users.push(recipe.author)
 
     Meta.findById meta._id,(error,recipeMeta)->
         if recipeMeta?

@@ -63,11 +63,16 @@
   insertMetaInfo = function(recipe) {
     var meta;
     meta = {
-      _id: recipe._id
+      _id: recipe._id,
+      users: [recipe.author],
+      karma: [
+        {
+          user: recipe.author,
+          karma: 8
+        }
+      ]
     };
     meta = new Meta(meta);
-    meta.users.push(recipe.author);
-    meta.karma.users.push(recipe.author);
     return Meta.findById(meta._id, function(error, recipeMeta) {
       if (recipeMeta != null) {
         return;

@@ -1,5 +1,6 @@
-meta = require '../models/meta'
-logger = require '../utils/logger'
+Meta    = require '../models/meta'
+Recipe  = require '../models/recipe'
+logger  = require '../utils/logger'
 
 exports.favourite = (request,response)->
     params = request.body
@@ -10,8 +11,19 @@ exports.favourite = (request,response)->
 
     query = _id:_id
     update = "$addToSet": { favs : user}
-    meta.update query,update,(error,noOfDocsUpdated)->
+    Meta.update query,update,(error,noOfDocsUpdated)->
         console.log user," Favorited recipe ", _id
+
+exports.get = (request,response)->
+    userFilter = '_id name img'
+    # recipeFilter = 'author desc title createdAt imgs comments'
+    Meta.find({})
+        .populate('_id','-ingredients')
+        .populate('users',userFilter)
+        .populate('favs',userFilter)
+        .populate('karma.user',userFilter)
+        .exec (error,recipes)->
+            response.json recipes,200
 
 # RecipeSchema.statics.myFavourite = function ( email, cb ) {
 #     return this.model( 'recipes' )

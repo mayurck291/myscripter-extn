@@ -15,6 +15,10 @@ var UserSchema = new Schema( {
             unique: true
         }
     },
+    img: {
+        type: String,
+        trim: true
+    },
     authToken: {
         type: String,
         trim: true

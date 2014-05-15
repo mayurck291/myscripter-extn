@@ -1,27 +1,27 @@
 mongoose    = require 'mongoose'
+logger      = require '../utils/logger'
 
 Schema      = mongoose.Schema
 
-metaSchema = new Schema(
+metaSchema = new Schema
     _id : 
         type:Schema.Types.ObjectId
-        ref :'Recipe'
+        ref :'recipe'
     users:
-        type: [ String ],
+        type: [ {type:String,ref:'user'} ],
         default: [ ]
     ,        
     favs:
-        type: [ String ],
+        type: [ {type:String,ref:'user'} ],
         default: [ ]
     ,
     karma:
-        value:
-            type: Number,
-            default: 8
-        users:
-            type: [ String ],
-            default: [ ]
-    )
+        type:[{user:{type:String,ref:'user'},karma:Number}],
+        default: [ ]
 
+
+metaSchema
+    .virtual('name')
+    .get ()-> this.favs
 Meta = mongoose.model 'meta',metaSchema
 module.exports = Meta

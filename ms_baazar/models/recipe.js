@@ -1,3 +1,4 @@
+var Meta = require( './meta' );
 var m = require( 'mongoose' );
 var Schema = m.Schema;
 
@@ -7,6 +8,7 @@ var RecipeSchema = new Schema( {
     author: {
         type: String,
         trim: true,
+        ref: 'user',
         lowercase: true
     },
     ingredients: {
@@ -33,7 +35,7 @@ var RecipeSchema = new Schema( {
     createdAt: {
         type: Date,
         'default': Date.now
-    }
+    },
 } );
 
 RecipeSchema.statics.list = function ( cb ) {
