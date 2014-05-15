@@ -14,11 +14,21 @@ var imgur = require( 'imgur-upload' ),
 
 imgur.setClientID( '8ef66eb1ddce0cf' );
 // Configuration
+// 
+var allowCrossDomain = function ( req, res, next ) {
+    res.header( 'Access-Control-Allow-Origin', "chrome-extension" );
+    res.header( 'Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE' );
+    res.header( 'Access-Control-Allow-Headers', 'Content-Type' );
+    res.header( 'X-Powered-By', 'Taro-Baap' )
+    next( );
+}
+
 app.configure( function ( ) {
     app.set( 'views', __dirname + '/views' );
     app.set( 'view engine', 'jade' );
     app.use( express.bodyParser( ) );
     app.use( express.methodOverride( ) );
+    app.use( allowCrossDomain );
     app.use( app.router );
     app.use( express.static( __dirname + '/public' ) );
 } );
@@ -38,12 +48,15 @@ app.configure( 'production', function ( ) {
 // Routes
 userController = require( './controllers/user' )
 recipeController = require( './controllers/recipe' )
+metaController = require( './controllers/meta' )
 
 app.post( '/updateUser', userController.updateUser )
 app.get( '/list', recipeController.list );
+app.get( '/list/:page', recipeController.list );
 app.get( '/newestRecipes', recipeController.newestRecipes );
 app.get( '/myRecipes/:email', recipeController.myRecipes );
 app.post( '/saveRecipe', recipeController.saveRecipe );
+app.post( '/favourite', metaController.favourite );
 
 var port = 3000;
 app.listen( port, function ( ) {

@@ -6,6 +6,7 @@
         "express": "2.5.8",
         "jade": ">= 0.0.1",
         "imgur-upload": "*",
-        "node-async": "*"
+        "node-async": "*",
+        "winston": "0.7.3"
     }
 }

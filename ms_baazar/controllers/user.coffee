@@ -1,35 +1,24 @@
-User = require '../models/user'
+User 			= require '../models/user'
+logger		 	= require '../utils/logger'
 
 exports.updateUser = (req,res)->
-	
+	logger.warn "hello there HOW YOU DOING ?"
 	options		= 
 		upsert : true
 	
-	user 		= req.body
-	console.log(user)
+	user 		= new User(req.body)
+	id 			= user._id
 
-	_id 		= user._id
-
-	delete user._id
 	
-	update 		= user
+	upsertDate  = user.toObject()
+	delete upsertDate._id
 
-	headers = {'Set-Cookie'	: 'mycookie=test','Content-Type':'text/plain'}
-
-	res.writeHead 200, headers
-	res.end()
-	
-	return;
-	User.findByIdAndUpdate _id,update,options,(error,doc)->
-		console.log error,doc,typeof doc
+	logger.info upsertDate,id
+	User.update {_id : id }, upsertDate, options, ( error, noOfUpdates)->
+		logger.log error,noOfUpdates
 		if not error
-			doc.name = "mayur kataria"
-			doc.update (error,doc)->
-				console.log "After update",error,doc
-				return
+			logger.info "After update",error,noOfUpdates
 		else
-			user.save (error,doc)->
-				console.log "New user",error,doc
-				return
+			logger.error "Hell no something is seriously wrong"
 		return
 
