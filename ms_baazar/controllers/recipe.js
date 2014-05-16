@@ -60,30 +60,46 @@
     });
   };
 
+  exports.meta = function(request, recipe) {
+    recipe = {
+      "_id": request.params.id,
+      "author": "parin2092@gmail.com"
+    };
+    return insertMetaInfo(recipe);
+  };
+
   insertMetaInfo = function(recipe) {
     var meta;
+    logger.info("[ insertMetaInfo ] [ START ]");
     meta = {
       _id: recipe._id,
       users: [recipe.author],
       karma: [
         {
-          user: recipe.author,
+          _id: recipe.author,
           karma: 8
         }
       ]
     };
     meta = new Meta(meta);
+    logger.info("[ insertMetaInfo ] new meta is " + meta);
+    logger.info("[ insertMetaInfo ] query for " + meta._id);
     return Meta.findById(meta._id, function(error, recipeMeta) {
       if (recipeMeta != null) {
+        logger.info("[ insertMetaInfo ] [ END ] " + meta._id + " already there ");
         return;
       } else {
-        meta.save(function(error, recipeMeta) {});
+        logger.info("[ insertMetaInfo ] inserting new");
+        meta.save(function(error, recipeMeta) {
+          logger.info("[ insertMetaInfo ] [ END ] " + meta._id + " inserted new metainfo " + recipeMeta + " with " + error + " error");
+        });
       }
     });
   };
 
   exports.saveRecipe = function(request, response) {
     var files, id, options, params, recipe, upsertDate;
+    logger.info("[ saveRecipe ] [ START ]");
     params = request.body;
     files = request.files.imgs;
     recipe = params;
@@ -99,14 +115,16 @@
       upsert: true,
       'new': true
     };
-    logger.info("upsert recips");
+    logger.info("[ saveRecipe ] do upsert query");
     Recipe.update({
       _id: id
     }, upsertDate, options, function(error, noOfUpdates) {
       var data, resDoc;
-      logger.info(error, noOfUpdates);
+      logger.info("[ saveRecipe ] " + noOfUpdates + " docs updated with error : " + error + " ");
       if (!error) {
-        logger.info("After update", error, noOfUpdates);
+        logger.info("[ saveRecipe ] calling [ insertMetaInfo ]");
+        insertMetaInfo(recipe);
+        logger.info("[ saveRecipe ] 200 sending http response ");
         data = recipe.ingredients;
         data._id = id;
         resDoc = {
@@ -115,25 +133,28 @@
           data: data
         };
         response.json(resDoc, 200);
+        logger.info("[ saveRecipe ] 200 response sent ");
         logger.info("200 upload images to imgur");
         uploadImagesToImgur(files, function(links) {
           updateImageLinksInMongo(recipe, links);
         });
-        insertMetaInfo(recipe);
       } else {
-        logger.error("Hell no something is seriously wrong", error);
+        logger.error("[ saveRecipe ] hell no this is error : " + error);
+        logger.error("[ saveRecipe ] 500 sending http response");
         error = {
           response: "error",
           msg: "Error sharing your recipe."
         };
         response.json(error, 500);
+        logger.error("[ saveRecipe ] 500 response sent");
       }
+      return;
+      return logger.error("[ saveRecipe ] [ END ]");
     });
   };
 
   exports.list = function(req, res) {
     return Recipe.list(function(err, recipes) {
-      logger.info(recipes);
       return res.json(recipes);
     });
   };

@@ -36,9 +36,13 @@
         {
           _id: {
             type: String,
-            ref: 'user'
+            ref: 'user',
+            index: false
           },
-          karma: Number
+          karma: {
+            type: Number,
+            "default": 1
+          }
         }
       ],
       "default": []

@@ -14,28 +14,38 @@ exports.favourite = (request,response)->
     Meta.update query,update,(error,noOfDocsUpdated)->
         console.log user," Favorited recipe ", _id
 
+# exports.popular 
 exports.get = (request,response)->
-    userFilter = '_id name img'
+    logger.info "Getting all meta info of all the recipes"
+    userFilter = '-authToken -updatedAt'
     # recipeFilter = 'author desc title createdAt imgs comments'
     Meta.find({})
         .populate('_id','-ingredients')
         .populate('users',userFilter)
         .populate('favs',userFilter)
         .populate('karma._id',userFilter)
+        .sort()
         .exec (error,recipes)->
+            logger.info "sending #{recipes}"
             response.json recipes,200
 
+
 exports.karma = (request,response)->
+    logger.info "[ karma ] START"
     params = request.body
     _id = params._id
     user = params.user
     karma = params.karma
 
+    logger.info "[ karma ] #{user} -> #{karma} -> #{_id}"
+
+
     addNewEntry = ()->
+        logger.info "[ addNewEntry ] START adding new entry for #{user} -> #{karma} -> #{_id}"
         updates = '$addToSet':{karma:{_id:user,karma:karma}}
         query  = _id:_id
         Meta.update {_id:_id},updates,(error,noOfDocsUpdated)->
-            logger.info "#{user} gave #{karma} to recipe #{_id} , #{error}, updated #{noOfDocsUpdated} docs"
+            logger.info "[ addNewEntry ] END #{user} gave #{karma} to recipe #{_id} , #{error}, updated #{noOfDocsUpdated} docs"
             response.json {},200
 
 
@@ -44,19 +54,27 @@ exports.karma = (request,response)->
         'karma._id':user
 
     Meta.findOne query,(error,doc)->
+        logger.info "[ karma ] checking if entry exists for #{user} -> #{karma} -> #{_id}"
         if error?
+            logger.info "[ karma ] END error occurred try later"
             response.json {response:"error",msg:"Error occurred...try later...:("},500
         else if doc?
+            logger.info "[ karma ] exists !! updating karma for #{_id} by #{user} to #{karma}"
             for entry,i in doc.karma
                 if doc.karma[i]._id is user
-                    doc.karma[i].karma = karma                   
+                    doc.karma[i].karma = karma              
                     doc.save (error,updatedDoc)->
-                        console.log error,updatedDoc
-                        logger.info "#{user} updated #{karma} to recipe #{_id} , #{error}, updated #{updatedDoc} docs"
-                        response.json updatedDoc,200
+                        if error?
+                            logger.info "[ karma ] END try again later...."
+                            response.json {response:"error",msg:"try again after some time...:("},500
+                        else
+                            logger.info "[ karma ] END #{user} updated #{_id}'s karma to #{karma}"
+                            response.json updatedDoc,200
         else
+            logger.info "[ karma ] END doesn't exist calling [ addNewEntry ]"
             addNewEntry()
-
+        return
+    return
     
  
 

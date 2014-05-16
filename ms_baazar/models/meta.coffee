@@ -16,7 +16,12 @@ metaSchema = new Schema
         default: [ ]
     ,
     karma:
-        type:[{_id:{type:String,ref:'user'},karma:Number}],
+        type:[
+                {   
+                    _id:{type:String,ref:'user',index:false},
+                    karma:{type:Number,default:1}
+                }
+            ],
         default: [ ]
 
 

@@ -29,20 +29,25 @@
 
   exports.get = function(request, response) {
     var userFilter;
-    userFilter = '_id name img';
-    return Meta.find({}).populate('_id', '-ingredients').populate('users', userFilter).populate('favs', userFilter).populate('karma._id', userFilter).exec(function(error, recipes) {
+    logger.info("Getting all meta info of all the recipes");
+    userFilter = '-authToken -updatedAt';
+    return Meta.find({}).populate('_id', '-ingredients').populate('users', userFilter).populate('favs', userFilter).populate('karma._id', userFilter).sort().exec(function(error, recipes) {
+      logger.info("sending " + recipes);
       return response.json(recipes, 200);
     });
   };
 
   exports.karma = function(request, response) {
     var addNewEntry, karma, params, query, user, _id;
+    logger.info("[ karma ] START");
     params = request.body;
     _id = params._id;
     user = params.user;
     karma = params.karma;
+    logger.info("[ karma ] " + user + " -> " + karma + " -> " + _id);
     addNewEntry = function() {
       var query, updates;
+      logger.info("[ addNewEntry ] START adding new entry for " + user + " -> " + karma + " -> " + _id);
       updates = {
         '$addToSet': {
           karma: {
@@ -57,7 +62,7 @@
       return Meta.update({
         _id: _id
       }, updates, function(error, noOfDocsUpdated) {
-        logger.info("" + user + " gave " + karma + " to recipe " + _id + " , " + error + ", updated " + noOfDocsUpdated + " docs");
+        logger.info("[ addNewEntry ] END " + user + " gave " + karma + " to recipe " + _id + " , " + error + ", updated " + noOfDocsUpdated + " docs");
         return response.json({}, 200);
       });
     };
@@ -65,32 +70,39 @@
       _id: _id,
       'karma._id': user
     };
-    return Meta.findOne(query, function(error, doc) {
-      var entry, i, _i, _len, _ref, _results;
+    Meta.findOne(query, function(error, doc) {
+      var entry, i, _i, _len, _ref;
+      logger.info("[ karma ] checking if entry exists for " + user + " -> " + karma + " -> " + _id);
       if (error != null) {
-        return response.json({
+        logger.info("[ karma ] END error occurred try later");
+        response.json({
           response: "error",
           msg: "Error occurred...try later...:("
         }, 500);
       } else if (doc != null) {
+        logger.info("[ karma ] exists !! updating karma for " + _id + " by " + user + " to " + karma);
         _ref = doc.karma;
-        _results = [];
         for (i = _i = 0, _len = _ref.length; _i < _len; i = ++_i) {
           entry = _ref[i];
           if (doc.karma[i]._id === user) {
             doc.karma[i].karma = karma;
-            _results.push(doc.save(function(error, updatedDoc) {
-              console.log(error, updatedDoc);
-              logger.info("" + user + " updated " + karma + " to recipe " + _id + " , " + error + ", updated " + updatedDoc + " docs");
-              return response.json(updatedDoc, 200);
-            }));
-          } else {
-            _results.push(void 0);
+            doc.save(function(error, updatedDoc) {
+              if (error != null) {
+                logger.info("[ karma ] END try again later....");
+                return response.json({
+                  response: "error",
+                  msg: "try again after some time...:("
+                }, 500);
+              } else {
+                logger.info("[ karma ] END " + user + " updated " + _id + "'s karma to " + karma);
+                return response.json(updatedDoc, 200);
+              }
+            });
           }
         }
-        return _results;
       } else {
-        return addNewEntry();
+        logger.info("[ karma ] END doesn't exist calling [ addNewEntry ]");
+        addNewEntry();
       }
     });
   };
