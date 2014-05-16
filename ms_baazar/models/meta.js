@@ -34,7 +34,7 @@
     karma: {
       type: [
         {
-          user: {
+          _id: {
             type: String,
             ref: 'user'
           },

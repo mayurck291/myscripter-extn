@@ -58,6 +58,7 @@ app.get( '/get', metaController.get );
 app.get( '/myRecipes/:email', recipeController.myRecipes );
 app.post( '/saveRecipe', recipeController.saveRecipe );
 app.post( '/favourite', metaController.favourite );
+app.post( '/karma', metaController.karma );
 
 var port = 3000;
 app.listen( port, function ( ) {

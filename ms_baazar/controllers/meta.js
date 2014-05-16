@@ -30,8 +30,68 @@
   exports.get = function(request, response) {
     var userFilter;
     userFilter = '_id name img';
-    return Meta.find({}).populate('_id', '-ingredients').populate('users', userFilter).populate('favs', userFilter).populate('karma.user', userFilter).exec(function(error, recipes) {
+    return Meta.find({}).populate('_id', '-ingredients').populate('users', userFilter).populate('favs', userFilter).populate('karma._id', userFilter).exec(function(error, recipes) {
       return response.json(recipes, 200);
+    });
+  };
+
+  exports.karma = function(request, response) {
+    var addNewEntry, karma, params, query, user, _id;
+    params = request.body;
+    _id = params._id;
+    user = params.user;
+    karma = params.karma;
+    addNewEntry = function() {
+      var query, updates;
+      updates = {
+        '$addToSet': {
+          karma: {
+            _id: user,
+            karma: karma
+          }
+        }
+      };
+      query = {
+        _id: _id
+      };
+      return Meta.update({
+        _id: _id
+      }, updates, function(error, noOfDocsUpdated) {
+        logger.info("" + user + " gave " + karma + " to recipe " + _id + " , " + error + ", updated " + noOfDocsUpdated + " docs");
+        return response.json({}, 200);
+      });
+    };
+    query = {
+      _id: _id,
+      'karma._id': user
+    };
+    return Meta.findOne(query, function(error, doc) {
+      var entry, i, _i, _len, _ref, _results;
+      if (error != null) {
+        return response.json({
+          response: "error",
+          msg: "Error occurred...try later...:("
+        }, 500);
+      } else if (doc != null) {
+        _ref = doc.karma;
+        _results = [];
+        for (i = _i = 0, _len = _ref.length; _i < _len; i = ++_i) {
+          entry = _ref[i];
+          if (doc.karma[i]._id === user) {
+            doc.karma[i].karma = karma;
+            _results.push(doc.save(function(error, updatedDoc) {
+              console.log(error, updatedDoc);
+              logger.info("" + user + " updated " + karma + " to recipe " + _id + " , " + error + ", updated " + updatedDoc + " docs");
+              return response.json(updatedDoc, 200);
+            }));
+          } else {
+            _results.push(void 0);
+          }
+        }
+        return _results;
+      } else {
+        return addNewEntry();
+      }
     });
   };
 

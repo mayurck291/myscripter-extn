@@ -21,9 +21,44 @@ exports.get = (request,response)->
         .populate('_id','-ingredients')
         .populate('users',userFilter)
         .populate('favs',userFilter)
-        .populate('karma.user',userFilter)
+        .populate('karma._id',userFilter)
         .exec (error,recipes)->
             response.json recipes,200
+
+exports.karma = (request,response)->
+    params = request.body
+    _id = params._id
+    user = params.user
+    karma = params.karma
+
+    addNewEntry = ()->
+        updates = '$addToSet':{karma:{_id:user,karma:karma}}
+        query  = _id:_id
+        Meta.update {_id:_id},updates,(error,noOfDocsUpdated)->
+            logger.info "#{user} gave #{karma} to recipe #{_id} , #{error}, updated #{noOfDocsUpdated} docs"
+            response.json {},200
+
+
+    query = 
+        _id:_id,
+        'karma._id':user
+
+    Meta.findOne query,(error,doc)->
+        if error?
+            response.json {response:"error",msg:"Error occurred...try later...:("},500
+        else if doc?
+            for entry,i in doc.karma
+                if doc.karma[i]._id is user
+                    doc.karma[i].karma = karma                   
+                    doc.save (error,updatedDoc)->
+                        console.log error,updatedDoc
+                        logger.info "#{user} updated #{karma} to recipe #{_id} , #{error}, updated #{updatedDoc} docs"
+                        response.json updatedDoc,200
+        else
+            addNewEntry()
+
+    
+ 
 
 # RecipeSchema.statics.myFavourite = function ( email, cb ) {
 #     return this.model( 'recipes' )
