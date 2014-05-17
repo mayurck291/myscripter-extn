@@ -98,7 +98,7 @@
   };
 
   exports.saveRecipe = function(request, response) {
-    var files, id, options, params, recipe, upsertDate;
+    var files, id, options, params, recipe, recipeInstance, upsertDate;
     logger.info("[ saveRecipe ] [ START ]");
     params = request.body;
     files = request.files.imgs;
@@ -107,6 +107,7 @@
     if (recipe.ingredients._id != null) {
       recipe._id = recipe.ingredients._id;
     }
+    recipeInstance = new Recipe(recipe);
     upsertDate = new Recipe(recipe);
     id = upsertDate._id;
     upsertDate = upsertDate.toObject();
@@ -119,18 +120,17 @@
     Recipe.update({
       _id: id
     }, upsertDate, options, function(error, noOfUpdates) {
-      var data, resDoc;
+      var resDoc, _id;
       logger.info("[ saveRecipe ] " + noOfUpdates + " docs updated with error : " + error + " ");
       if (!error) {
         logger.info("[ saveRecipe ] calling [ insertMetaInfo ]");
-        insertMetaInfo(recipe);
+        insertMetaInfo(recipeInstance);
         logger.info("[ saveRecipe ] 200 sending http response ");
-        data = recipe.ingredients;
-        data._id = id;
+        _id = recipeInstance._id;
         resDoc = {
           response: "success",
           msg: "Successfully shared...",
-          data: data
+          _id: _id
         };
         response.json(resDoc, 200);
         logger.info("[ saveRecipe ] 200 response sent ");
@@ -153,26 +153,46 @@
     });
   };
 
-  exports.list = function(req, res) {
-    return Recipe.list(function(err, recipes) {
-      return res.json(recipes);
-    });
-  };
-
-  exports.newestRecipes = function(req, res) {
-    return Recipe.newestRecipes(function(err, recipes) {
-      logger.info(recipes);
-      return res.json(recipes);
-    });
-  };
-
-  exports.myRecipes = function(req, res) {
-    var email;
-    email = req.params.email;
-    logger.info(email);
-    return Recipe.myRecipes(email, function(err, docs) {
-      logger.info(err, docs);
-      return res.json(docs, 200);
+  exports.comment = function(request, response) {
+    var body, comment, params, query, updates, user, _id;
+    logger.info("[ comment ] START");
+    params = request.body;
+    body = params.body;
+    user = params.user;
+    _id = params._id;
+    logger.info("[ comment ] " + user + " commented " + body + " on recipe " + _id);
+    query = {
+      _id: _id
+    };
+    comment = {
+      body: body,
+      user: user,
+      date: Date.now()
+    };
+    updates = {
+      '$addToSet': {
+        comments: comment
+      }
+    };
+    logger.info("[ comment ] trying to update recipe " + _id);
+    return Recipe.update(query, updates, function(error, noOfUpdates) {
+      var doc;
+      logger.info("[ comment ] ran query for recipe " + _id + " with error: " + error + " and " + noOfUpdates + " updates");
+      if (error != null) {
+        doc = {
+          response: "error",
+          msg: "Error occurred try after some time"
+        };
+        response.json(doc, 500);
+        return logger.info("[ comment ] END sending 500");
+      } else {
+        doc = {
+          response: "success",
+          msg: "commented Successfully"
+        };
+        response.json(doc, 200);
+        return logger.info("[ comment ] END sending 200");
+      }
     });
   };
 

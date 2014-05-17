@@ -114,6 +114,7 @@ angular.module( 'ngUpload', [ ] )
                         options.beforeSubmit = $parse( attrs.uploadOptionsBeforeSubmit );
                     }
 
+                    console.log( options );
                     element.attr( {
                         'target': 'upload-iframe-' + iframeID,
                         'method': 'post',
@@ -191,6 +192,8 @@ angular.module( 'ngUpload', [ ] )
                             setLoadingState( false );
                         }
                         // Get iframe body contents
+                        console.log( iframe[ 0 ] )
+                        console.log( iframe[ 0 ] )
                         var bodyContent = ( iframe[ 0 ].contentDocument ||
                             iframe[ 0 ].contentWindow.document )
                             .body;

@@ -9,12 +9,16 @@ metaSchema = new Schema
         ref :'recipe'
     users:
         type: [ {type:String,ref:'user'} ],
-        default: [ ]
-    ,        
+        default: [ ]        
     favs:
         type: [ {type:String,ref:'user'} ],
         default: [ ]
-    ,
+    favc:
+        type:Number,
+        default:0
+    forks:
+        type:Number,
+        default:0
     karma:
         type:[
                 {   

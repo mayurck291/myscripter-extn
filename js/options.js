@@ -1,4 +1,4 @@
-var MyScriptsModule = angular.module( 'MyScriptsModule', [ "AuthModule", "ngUpload", "BaazarModule" ] );
+var MyScriptsModule = angular.module( 'MyScriptsModule', [ "AuthModule", "BaazarModule" ] );
 
 MyScriptsModule.directive( 'fileimport', function ( ) {
     return {
@@ -51,7 +51,7 @@ MyScriptsModule.factory( "alertService", function ( $timeout ) {
     alert.class = "";
     alert.show = false;
 
-    var classError = "alert alert-error";
+    var classError = "alert alert-danger";
     var classSuccess = "alert alert-success";
     var classWarning = "alert alert-warning";
 
@@ -76,9 +76,7 @@ MyScriptsModule.factory( "alertService", function ( $timeout ) {
         alert.message = message;
         alert.show = true;
         alert.class = classError;
-        if ( !timeout ) {
-            $timeout( this.hideAlert, 2500 )
-        }
+        $timeout( this.hideAlert, 5500 )
     };
 
     obj.showAlertSuccess = function ( message, timeout ) {
@@ -127,7 +125,7 @@ function MyScriptsController( $scope, $http, alertService, GPauth, Baazar ) {
                     url: data.url
                 };
                 Baazar.updateUser( $scope.userDetails );
-                console.log( "User info in controller is : ", $scope.userDetails, arguments );
+                // console.log( "User info in controller is : ", $scope.userDetails, arguments );
             }, function ( ) {
                 $scope.signedIn = false;
                 console.log( "Error : User info in controller is : ", data, arguments );
@@ -156,7 +154,9 @@ function MyScriptsController( $scope, $http, alertService, GPauth, Baazar ) {
         $scope.signedIn = false;
     }
 
-
+    $scope.complete = function ( data ) {
+        console.log( data );
+    }
     if ( nullOrEmpty( localStorage.getItem( 'kb' ) ) ) {
         $scope.kb = true;
         localStorage.setItem( 'kb', true );
@@ -478,67 +478,102 @@ function MyScriptsController( $scope, $http, alertService, GPauth, Baazar ) {
     }
 
     $scope.shareRecipe = function ( ) {
-        var formData = new FormData( );
-        formData.append( "file", $scope.files );
+        var requestURL = domain + '/saveRecipe';
+        var fileSelect = document.getElementById( 'imgs' );
 
-        var obj = {
-            title: $scope.share.title,
-            desc: $scope.share.desc,
-            author: $scope.userDetails.emails[ 0 ].value,
-            ingredients: $scope.cur_project
+        var files = fileSelect.files;
+
+        if ( files.length < 2 ) {
+            alert( "please select atleast 2 files" );
+            return;
         }
-        // $http.post( 'http://localhost:3000/saveRecipe', formData )
-        $http( {
-            method: 'POST',
-            url: 'http://localhost:3000/saveRecipe',
-            headers: {
-                'Content-Type': 'multipart/form-data'
-            },
-            data: formData,
-            transformRequest: formData
-        } )
-            .success( function ( ) {
-                handle_response( )
-            } )
-            .error( function ( ) {
-                handle_response( )
-            } );
 
-        function handle_response( ) {
+        var formData = new FormData( );
+
+        for ( var i = 0; i < files.length; i++ ) {
+            var file = files[ i ];
+
+            // Check the file type.
+            if ( !file.type.match( 'image.*' ) ) {
+                continue;
+            }
+
+            // Add the file to the request.
+            formData.append( 'imgs', file, file.name );
+        }
+
+        formData.append( 'title', $scope.share.title );
+        formData.append( 'desc', $scope.share.desc );
+        formData.append( 'author', $scope.userDetails._id );
+        formData.append( 'ingredients', JSON.stringify( $scope.cur_project ) );
+
+        var xhr = new XMLHttpRequest( );
+
+        xhr.open( 'POST', requestURL, true );
+
+        xhr.onload = function ( ) {
+            if ( xhr.status == 200 ) {
+                response = JSON.parse( xhr.responseText );
+                $scope.$apply( function ( ) {
+                    handle_response( response );
+                } );
+            } else {
+                $scope.$apply( function ( ) {
+                    resetFileInput( );
+                    $scope.hide_share_modal( );
+                    alertService.showAlertError( "An Army of heavily trained monkeys is dispatched to deal with this situation....hang in there...." );
+                } )
+            }
+        };
+
+        xhr.send( formData );
+
+        function resetFileInput( ) {
             $scope.share = {}
-            alertService.showAlertSuccess( "Yeah...!! Your recipe is shared with the world." );
+
+            var newInput = document.createElement( "input" );
+
+            newInput.type = "file";
+            newInput.id = fileSelect.id;
+            newInput.name = fileSelect.name;
+            newInput.className = fileSelect.className;
+            newInput.multiple = "multiple"
+            newInput.style.cssText = fileSelect.style.cssText;
+            // copy any other relevant attributes 
+            fileSelect.parentNode.replaceChild( newInput, fileSelect );
+        }
+
+        function handle_response( response ) {
+            resetFileInput( );
             $scope.hide_share_modal( );
+
+            updateRecipeId( response._id );
+            alertService.showAlertSuccess( response.msg );
+        }
+
+        function updateRecipeId( recipeId ) {
+            console.log( "---------------------------------------", recipeId );
+            $scope.cur_project[ '_id' ] = recipeId;
+            $scope.save_project( );
         }
     }
 
     $scope.getRecipes = function ( ) {
         Baazar.list( )
             .then( function ( data ) {
-                console.log( data )
+                console.log( data );
+                $scope.view_mode = "baazar";
+                $scope.recipes = data;
             }, function ( data ) {
                 console.log( data )
             } );
-        // var url = 'http://localhost:3000/list';
-        // alertService.showAlertWarning( "Loading.....please wait...." );
-        // $http.get( url )
-        //     .success( function ( data, status ) {
-        //         handle_response( data )
-        //     } )
-        //     .error( function ( ) {
-        //         alertService.hideAlert( );
-        //     } )
+    }
 
+    $scope.favourite = function ( recipeId ) {
+        Baazar.favourite( $scope.userDetails._id, recipeId );
+    }
 
-        // function handle_response( data ) {
-        //     alertService.hideAlert( );
-        //     if ( data ) {
-        //         $scope.recipes = data;
-        //         $scope.view_mode = 'baazar';
-        //         console.log( data );
-        //     } else {
-        //         $scope.recipes = [ ];
-        //         alertService.showAlertError( "Oops...! hang in there...an army of highly trained monkeys is dispatched to deal with this situation." );
-        //     }
-        // }
+    $scope.giveKarmaToRecipe = function ( recipeId ) {
+        Baazar.giveKarmaToRecipe( $scope.userDetails._id, recipeId, 2 );
     }
 };

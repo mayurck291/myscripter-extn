@@ -31,6 +31,14 @@
       ],
       "default": []
     },
+    favc: {
+      type: Number,
+      "default": 0
+    },
+    forks: {
+      type: Number,
+      "default": 0
+    },
     karma: {
       type: [
         {

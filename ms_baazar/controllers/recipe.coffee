@@ -94,6 +94,7 @@ exports.saveRecipe = ( request, response )->
     if recipe.ingredients._id?
         recipe._id = recipe.ingredients._id
 
+    recipeInstance          = new Recipe recipe
     upsertDate              = new Recipe recipe
     id                      = upsertDate._id
     upsertDate              = upsertDate.toObject()
@@ -108,15 +109,14 @@ exports.saveRecipe = ( request, response )->
         if not error
             logger.info "[ saveRecipe ] calling [ insertMetaInfo ]"
 
-            insertMetaInfo recipe
+            insertMetaInfo recipeInstance
 
             logger.info "[ saveRecipe ] 200 sending http response "
-            data        = recipe.ingredients
-            data._id    = id
+            _id    = recipeInstance._id
             resDoc = 
                 response: "success",
                 msg: "Successfully shared..."
-                data:data
+                _id:_id
             response.json resDoc, 200
             logger.info "[ saveRecipe ] 200 response sent "
 
@@ -136,21 +136,40 @@ exports.saveRecipe = ( request, response )->
         logger.error "[ saveRecipe ] [ END ]"            
     return
 
-exports.list = ( req, res )->
-    Recipe.list ( err, recipes )->
-        # logger.info recipes
-        res.json recipes
+exports.comment = (request,response)->
+    logger.info "[ comment ] START"
+    params  = request.body
+    body    = params.body
+    user    = params.user
+    _id     = params._id
 
-exports.newestRecipes =  ( req, res )->
-    Recipe.newestRecipes ( err, recipes )->
-        logger.info recipes 
-        res.json recipes 
+    logger.info "[ comment ] #{user} commented #{body} on recipe #{_id}"
 
+    query   =
+        _id:_id
 
-exports.myRecipes = ( req, res )->
+    comment = 
+        body:body
+        user:user
+        date:Date.now()
+    updates = 
+        '$addToSet':{comments:comment}
 
-    email = req.params.email
-    logger.info email
-    Recipe.myRecipes email,( err, docs )->
-        logger.info err, docs
-        res.json docs, 200
+    logger.info "[ comment ] trying to update recipe #{_id}"
+
+    Recipe.update query,updates,(error,noOfUpdates)->
+        logger.info "[ comment ] ran query for recipe #{_id} with error: #{error} and #{noOfUpdates} updates"
+        if error?
+            doc     =
+                response:"error"
+                msg     :"Error occurred try after some time"
+
+            response.json doc,500
+            logger.info "[ comment ] END sending 500"
+        else
+            doc     =
+                response:"success"
+                msg     :"commented Successfully"
+
+            response.json doc,200
+            logger.info "[ comment ] END sending 200"

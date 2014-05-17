@@ -15,9 +15,9 @@ class Baazar
 
 		### POST CALLS ###
 		@postRecipeUrl 			= "#{@domain}/postRecipe"
-		@favRecipeUrl 			= "#{@domain}/favRecipe"
+		@favRecipeUrl 			= "#{@domain}/favourite"
 		@postCommentUrl 		= "#{@domain}/postComment"
-		@giveKarmaToRecipeUrl 	= "#{@domain}/giveKarmaToRecipe"
+		@giveKarmaToRecipeUrl 	= "#{@domain}/karma"
 		@incUsersRecipesUrl  	= "#{@domain}/incUsersRecipes"		# NEW 10
 
 		# search 			
@@ -195,11 +195,14 @@ class Baazar
 				)
 		defer.promise 	
 	
-	giveKarmaToRecipe:(recipeID,karma)->
+	giveKarmaToRecipe:(user,recipeID,karma)->
 		defer 		= @$q.defer()
-		url 		= "#{@giveKarmaToRecipeUrl}/#{recipeID}"
+		payload 	= 
+			_id : recipeID,
+			user:user,
+			karma:karma
 
-		@$http.post(url,karma)
+		@$http.post(@giveKarmaToRecipeUrl,payload)
 			.success(
 				(response,status) =>
 					@handlePostCall(defer,response)
@@ -217,6 +220,26 @@ class Baazar
 		url 		= "#{@incUsersRecipesUrl}/#{recipeID}"
 
 		@$http.post(url,karma)
+			.success(
+				(response,status) =>
+					@handlePostCall(defer,response)
+					return 
+					)
+			.error(
+				(response,status) =>
+					@handlePostCall(defer,response);
+					return 
+				)
+		defer.promise 
+
+	favourite:(user,recipeID)->
+		defer 		= @$q.defer()
+		
+		payload = 
+			user:user,
+			_id:recipeID
+
+		@$http.post(@favRecipeUrl,payload)
 			.success(
 				(response,status) =>
 					@handlePostCall(defer,response)

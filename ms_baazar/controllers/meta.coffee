@@ -1,6 +1,7 @@
 Meta    = require '../models/meta'
 Recipe  = require '../models/recipe'
 logger  = require '../utils/logger'
+async   = require 'async'
 
 exports.favourite = (request,response)->
     params = request.body
@@ -9,16 +10,43 @@ exports.favourite = (request,response)->
 
     logger.info "#{user} Favorited recipe #{_id}"
 
-    query = _id:_id
-    update = "$addToSet": { favs : user}
-    Meta.update query,update,(error,noOfDocsUpdated)->
-        console.log user," Favorited recipe ", _id
+    query = 
+        _id:_id
+        favs:user
+
+    update = 
+        "$addToSet": { favs : user},
+        "$inc" : { favc : 1 }
+
+    Meta.where({_id:_id})
+        .where('favs').ne(user)
+        .update update,(e,r)->
+            logger.info "=========================================================="
+            console.log r
+            logger.info "=========================================================="
+
+
+    # Meta.find query,(e,r)->
+    #     logger.info "=========================================================="
+    #     console.log r
+    #     logger.info "=========================================================="
+
+    # update = 
+    #     "$addToSet": { favs : user},
+    #     "$inc" : { favc : 1 }
+    # update = 
+    #     "$addToSet": { favs : user},
+    #     "$inc" : { favc : 1 }
+    # Meta.update query,update,(error,noOfDocsUpdated)->
+    #     console.log user," Favorited recipe ", _id
 
 # exports.popular 
 exports.get = (request,response)->
     logger.info "Getting all meta info of all the recipes"
     userFilter = '-authToken -updatedAt'
     # recipeFilter = 'author desc title createdAt imgs comments'
+    finalJson = []
+
     Meta.find({})
         .populate('_id','-ingredients')
         .populate('users',userFilter)
@@ -26,8 +54,17 @@ exports.get = (request,response)->
         .populate('karma._id',userFilter)
         .sort()
         .exec (error,recipes)->
-            logger.info "sending #{recipes}"
-            response.json recipes,200
+            if error
+                res.json(500)
+            else
+                options =
+                    path    : "_id.author _id.comments.user"
+                    model   : "user",
+                    select  : userFilter
+
+                Recipe.populate recipes,options,(error,recipes)->
+                    logger.info "sending recip"
+                    response.json recipes,200
 
 
 exports.karma = (request,response)->

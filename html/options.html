@@ -9,7 +9,6 @@
     <script type="text/javascript" src="/js/jquery.js"></script>
     <script type="text/javascript" src="/js/jstorage.js"></script>
     <script type="text/javascript" src="/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="/js/ng-upload.js"></script>
     <script type="text/javascript" src="/js/coffee/GPAuth.js"></script>
     <script type="text/javascript" src="/js/coffee/baazarService.js"></script>
     <script type="text/javascript" src="/js/options.js"></script>
@@ -270,6 +269,7 @@
                             <th>Description</th>
                             <th>Author</th>
                             <th>Screenshots</th>
+                            <th>Favourite this</th>
                         </thead>
                         <tbody>
                             <tr ng-repeat="recipe in recipes">
@@ -287,6 +287,16 @@
                                     <span ng-repeat="img in recipe.imgs">
                                         <img style="width:70px;height:70px;" class="img-polaroid " ng-src="{{img}}" alt="">
                                     </span>
+                                </td>
+                                <td>
+                                    <a href="#" ng-click="favourite(recipe._id)">
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                        Favourite
+                                    </a>
+                                    <a href="#" ng-click="giveKarmaToRecipe(recipe._id)">
+                                        <span class="glyphicon glyphicon-heart"></span>
+                                        karma
+                                    </a>
                                 </td>
                             </tr>
                         </tbody>
@@ -403,7 +413,7 @@
                         <h4 class="modal-title">Recipe Descriptions</h4>
                     </div>
                     <!-- upload-before-submit="checkvalidity()" -->
-                    <form role="form" name="shareform" action="http://localhost:3000/saveRecipe" ng-upload="complete(content)">
+                    <form role="form" name="shareform">
                         <div class="modal-body">
                             <div class="form-group">
                                 <!-- <label for="exampleInputEmail1">Title</label> -->
@@ -413,11 +423,9 @@
                                 <!-- <label for="exampleInputPassword1">Description</label> -->
                                 <textarea type="text" name="desc" class="form-control" id="desc" placeholder="Description" ng-model="share.desc" required style="height: 100px;"></textarea>
                             </div>
-                            <input type="hidden" name="author" ng-value="userDetails.emails[ 0 ].value">
-                            <input type="hidden" name="ingredients" ng-value="ingredients">
                             <div class="form-group">
                                 <label for="imgs">ScreenShots</label>
-                                <input type="file" name="imgs" multiple>
+                                <input type="file" name="imgs" id="imgs" multiple>
                                 <span>press ctrl + click to select multiple files
                                 </span>
                             </div>
@@ -425,7 +433,7 @@
                         </div>
                         <div class="modal-footer" style="margin-top: -15px;">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-success" ng-disabled="shareform.$invalid">Share</button>
+                            <button type="submit" class="btn btn-success" ng-click="shareRecipe()" ng-disabled="shareform.$invalid">Share</button>
                         </div>
                     </form>
                 </div>
