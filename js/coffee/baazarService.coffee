@@ -16,7 +16,7 @@ class Baazar
 		### POST CALLS ###
 		@postRecipeUrl 			= "#{@domain}/postRecipe"
 		@favRecipeUrl 			= "#{@domain}/favourite"
-		@postCommentUrl 		= "#{@domain}/postComment"
+		@postCommentUrl 		= "#{@domain}/comment"
 		@giveKarmaToRecipeUrl 	= "#{@domain}/karma"
 		@incUsersRecipesUrl  	= "#{@domain}/incUsersRecipes"		# NEW 10
 
@@ -178,11 +178,15 @@ class Baazar
 				)
 		defer.promise 
 
-	postComment:(recipeID,comment)->
+	postComment:(recipeID,user,comment)->
 		defer 		= @$q.defer()
-		url 		= "#{@postCommentUrl}/#{recipeID}"
+		
+		payload = 
+			_id : id
+			user:user
+			body:body
 
-		@$http.post(url,comment)
+		@$http.post(@postCommentUrl,comment)
 			.success(
 				(response,status) =>
 					@handlePostCall(defer,response)

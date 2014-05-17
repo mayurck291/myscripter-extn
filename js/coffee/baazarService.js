@@ -30,7 +30,7 @@
 
       this.postRecipeUrl = "" + this.domain + "/postRecipe";
       this.favRecipeUrl = "" + this.domain + "/favourite";
-      this.postCommentUrl = "" + this.domain + "/postComment";
+      this.postCommentUrl = "" + this.domain + "/comment";
       this.giveKarmaToRecipeUrl = "" + this.domain + "/karma";
       this.incUsersRecipesUrl = "" + this.domain + "/incUsersRecipes";
     }
@@ -161,12 +161,16 @@
       return defer.promise;
     };
 
-    Baazar.prototype.postComment = function(recipeID, comment) {
-      var defer, url,
+    Baazar.prototype.postComment = function(recipeID, user, comment) {
+      var defer, payload,
         _this = this;
       defer = this.$q.defer();
-      url = "" + this.postCommentUrl + "/" + recipeID;
-      this.$http.post(url, comment).success(function(response, status) {
+      payload = {
+        _id: id,
+        user: user,
+        body: body
+      };
+      this.$http.post(this.postCommentUrl, comment).success(function(response, status) {
         _this.handlePostCall(defer, response);
       }).error(function(response, status) {
         _this.handlePostCall(defer, response);
