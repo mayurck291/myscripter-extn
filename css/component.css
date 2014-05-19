@@ -447,17 +447,3 @@ span.nav-close:before {
         margin: 0;
     }
 }
-/*my classes*/
- .avatar {
-    top: -28px;
-    left: -5px;
-    padding: 3px;
-    font-size: 14px;
-    padding-left: 8px;
-    overflow: hidden;
-    width: 110px;
-    font-weight: bold;
-    position: relative;
-    color: white;
-    background: grey;
-}

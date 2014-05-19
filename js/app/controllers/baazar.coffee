@@ -1,23 +1,17 @@
 MonkeyWrench = angular.module 'MonkeyWrench'
 class BaazarController
-	@$inject: ['$scope','$routeParams','Baazar','recipes'] 
-	constructor:(@scope,@routeParams,@Baazar,@recipes)->
-		# success = (data)=>
-		# 	console.log data
-		# 	@scope.recipes = data
-		# error 	= (data)=>
-		# 	console.log data
+	@$inject: ['$scope','$routeParams','Baazar','recipes','userInfo'] 
+	constructor:(@scope,@routeParams,@Baazar,@recipes,userInfo)->
 		@scope.recipes = recipes
-		setTimeout ()->
+		@scope.userInfo = userInfo;
+		setTimeout ()=>
 			gg 			= new CBPGridGallery document.getElementById( 'grid-gallery' )
-			for tab in document.getElementsByClassName('tabs')
-				new CBPFWTabs tab
+			allTabs 	= document.getElementsByClassName('tabs')
+			for tabs in allTabs
+				new CBPFWTabs tabs
 		,1000  
-		# grid = 
 
 		@scope.msg = "hello world"
-		# @Baazar.get().then(success,error)
-
-
-
+		return
+		
 MonkeyWrench.controller 'BaazarController',BaazarController

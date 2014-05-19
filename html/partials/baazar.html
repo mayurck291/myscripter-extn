@@ -3,6 +3,7 @@
     <link rel="stylesheet" type="text/css" href="/css/component.css" />
     <div id="grid-gallery" class="grid-gallery">
 
+        ------------{{userInfo}}---------------
         <section class="grid-wrap">
             <ul class="grid">
                 <li class="grid-sizer"></li>
@@ -28,10 +29,9 @@
                     <figure>
                         <figcaption>
                             <div class="container">
-                                <h3 class="five columns">{{recipe._id.title}}</h3>|
-                                <div class="two columns">By {{recipe._id.author.name}}</div>
-                                |
-                                <span>123 users</span>
+                                <h3 class="five columns pull-left">{{recipe._id.title}}</h3>
+                                <div class="two columns pull-left">By {{recipe._id.author.name}}</div>
+                                <span class="pull-left">123 users</span>
                             </div>
                         </figcaption>
                         <div id="tabs" class="tabs">
@@ -60,8 +60,30 @@
                                 <section id="description">
                                     <p>{{recipe._id.desc}}</p>
                                 </section>
-                                <section id="comments">
-                                    <div class="container" style="height:400px;width:720px;overflow:scroll">
+                                <section id="comments" style="padding: 20px 10px 20px 10px !important;">
+                                    <div class="container comments-box" style="">
+
+                                        <!--                                       <div class="row" ng-repeat="comment in recipe._id.comments">
+                                            <div class="two columns">
+                                                <div class="two columns">
+                                                    <img ng-src="{{userInfo.img +'&sz=100'}}" alt="{{comment.user.name}}" />
+                                                </div>
+                                                <div class="four column avatar">
+                                                    {{comment.user.name}}
+                                                </div>
+                                            </div>
+                                            <div class="eight columns">
+                                                <div class="tip left">
+                                                    <div class="row comment-body">
+                                                        {{comment.body}}
+                                                    </div>
+                                                    <div class="row date pull-right">
+                                                        {{comment.date | date:'medium'}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+   -->
                                         <div class="row" ng-repeat="comment in recipe._id.comments">
                                             <div class="two columns">
                                                 <div class="two columns">
@@ -73,10 +95,10 @@
                                             </div>
                                             <div class="eight columns">
                                                 <div class="tip left">
-                                                    <div class="nine columns">
+                                                    <div class="row comment-body">
                                                         {{comment.body}}
                                                     </div>
-                                                    <div class="nine columns ">
+                                                    <div class="row date pull-right">
                                                         {{comment.date | date:'medium'}}
                                                     </div>
                                                 </div>

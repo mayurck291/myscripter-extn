@@ -6,8 +6,18 @@ MonkeyWrench.config ['$routeProvider','$locationProvider',
 			templateUrl:'/html/partials/baazar.html',
 			controller:'BaazarController'
 			resolve:
-				recipes:(Baazar)->
+				recipes:['Baazar',(Baazar)->
 					Baazar.get()
+				]
+				,userInfo:['GPauth',(GPauth)->
+					GPauth.getUserInfo()
+				]
+			return
 	$locationProvider.html5Mode(false).hashPrefix('!');
 	return
+]
+
+
+MonkeyWrench.run ['GPauth',(GPauth)->
+	GPauth.load()
 ]

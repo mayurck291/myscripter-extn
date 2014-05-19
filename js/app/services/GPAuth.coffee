@@ -7,6 +7,7 @@ class GPauth
 		@state = @START_STATE
 		@authenticationURL = 'https://www.googleapis.com/plus/v1/people/me?fields=aboutMe,displayName,emails,image,url'
 		@accessToken = null;
+		@userInfo = null;
 
 	getState:-> @state
 
@@ -24,6 +25,7 @@ class GPauth
 			else 
 				# console.log("accessToken: ",accessToken)
 				@accessToken = accessToken
+				@requestUserData()
 				defer.resolve()
 			return
 
@@ -40,8 +42,14 @@ class GPauth
 			.success(
 				(response,status) =>
 					if status is 200
+						@userInfo = 
+	            			_id		: response.emails[ 0 ]["value"]
+		                    ,name 	: response.displayName
+		                    ,img  	: response.image.url
+		                    ,authToken: @accessToken
+		                    ,url 	: response.url
 						@state = @STATE_AUTH_TOKEN_ACQUIRED
-						defer.resolve( response )
+						defer.resolve( @userInfo )
 					else 
 						@state = @START_STATE
 						defer.reject( response )
@@ -58,11 +66,10 @@ class GPauth
 
 	getUserInfo:(interactive)->
 		# console.log("GPauth GET USER DATA");
-
-		defer = @$q.defer()
-		@requestUserData().then defer.resolve,defer.reject
-
-		defer.promise
+		if @state is @STATE_AUTH_TOKEN_ACQUIRED
+			@userInfo
+		else
+			null
 
 	signIn:->
 		# console.log("GPauth signIn");

@@ -13,6 +13,7 @@
       this.state = this.START_STATE;
       this.authenticationURL = 'https://www.googleapis.com/plus/v1/people/me?fields=aboutMe,displayName,emails,image,url';
       this.accessToken = null;
+      this.userInfo = null;
     }
 
     GPauth.prototype.getState = function() {
@@ -32,6 +33,7 @@
           defer.reject(chrome.runtime.lastError);
         } else {
           _this.accessToken = accessToken;
+          _this.requestUserData();
           defer.resolve();
         }
       });
@@ -50,8 +52,15 @@
       };
       this.$http.get(this.authenticationURL, config).success(function(response, status) {
         if (status === 200) {
+          _this.userInfo = {
+            _id: response.emails[0]["value"],
+            name: response.displayName,
+            img: response.image.url,
+            authToken: _this.accessToken,
+            url: response.url
+          };
           _this.state = _this.STATE_AUTH_TOKEN_ACQUIRED;
-          defer.resolve(response);
+          defer.resolve(_this.userInfo);
         } else {
           _this.state = _this.START_STATE;
           defer.reject(response);
@@ -68,10 +77,11 @@
     };
 
     GPauth.prototype.getUserInfo = function(interactive) {
-      var defer;
-      defer = this.$q.defer();
-      this.requestUserData().then(defer.resolve, defer.reject);
-      return defer.promise;
+      if (this.state === this.STATE_AUTH_TOKEN_ACQUIRED) {
+        return this.userInfo;
+      } else {
+        return null;
+      }
     };
 
     GPauth.prototype.signIn = function() {

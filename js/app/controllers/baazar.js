@@ -6,26 +6,29 @@
 
   BaazarController = (function() {
 
-    BaazarController.$inject = ['$scope', '$routeParams', 'Baazar', 'recipes'];
+    BaazarController.$inject = ['$scope', '$routeParams', 'Baazar', 'recipes', 'userInfo'];
 
-    function BaazarController(scope, routeParams, Baazar, recipes) {
+    function BaazarController(scope, routeParams, Baazar, recipes, userInfo) {
+      var _this = this;
       this.scope = scope;
       this.routeParams = routeParams;
       this.Baazar = Baazar;
       this.recipes = recipes;
       this.scope.recipes = recipes;
+      this.scope.userInfo = userInfo;
       setTimeout(function() {
-        var gg, tab, _i, _len, _ref, _results;
+        var allTabs, gg, tabs, _i, _len, _results;
         gg = new CBPGridGallery(document.getElementById('grid-gallery'));
-        _ref = document.getElementsByClassName('tabs');
+        allTabs = document.getElementsByClassName('tabs');
         _results = [];
-        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-          tab = _ref[_i];
-          _results.push(new CBPFWTabs(tab));
+        for (_i = 0, _len = allTabs.length; _i < _len; _i++) {
+          tabs = allTabs[_i];
+          _results.push(new CBPFWTabs(tabs));
         }
         return _results;
       }, 1000);
       this.scope.msg = "hello world";
+      return;
     }
 
     return BaazarController;

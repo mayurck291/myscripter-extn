@@ -396,3 +396,37 @@
     left: -24px;
     top: 22px;
 }
+.pull-right {
+    float:right !important
+}
+.pull-left {
+    float:left !important
+}
+/*my classes*/
+ .avatar {
+    top: -28px;
+    left: -5px;
+    padding: 3px;
+    font-size: 14px;
+    padding-left: 8px;
+    overflow: hidden;
+    width: 110px;
+    font-weight: bold;
+    position: relative;
+    color: white;
+    background: grey;
+}
+.comments-box {
+    height:440px !important;
+    width:720px !important;
+    overflow:scroll !important;
+}
+.comment-body {
+    font-weight: 600 !important;
+}
+.date {
+    font-weight: 400 !important;
+    font-style: italic !important;
+    font-size: 15px !important;
+    color: slategray !important;
+}
