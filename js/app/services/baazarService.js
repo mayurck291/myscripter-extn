@@ -18,6 +18,7 @@
       /* GET CALLS
       */
 
+      this.getUrl = "" + this.domain + "/get";
       this.listUrl = "" + this.domain + "/list";
       this.popularUrl = "" + this.domain + "/popular";
       this.trendingUrl = "" + this.domain + "/trending";
@@ -44,11 +45,23 @@
     };
 
     Baazar.prototype.handlePostCall = function(defer, response) {
-      if (response.status === "success") {
+      if (response.response === "success") {
         defer.resolve(response.msg);
       } else {
         defer.reject(response.msg);
       }
+    };
+
+    Baazar.prototype.get = function() {
+      var defer,
+        _this = this;
+      defer = this.$q.defer();
+      this.$http.get(this.getUrl).success(function(response, status) {
+        defer.resolve(response);
+      }).error(function(response, status) {
+        defer.reject(response);
+      });
+      return defer.promise;
     };
 
     Baazar.prototype.updateUser = function(user) {

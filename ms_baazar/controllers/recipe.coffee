@@ -3,6 +3,7 @@ Meta        = require '../models/meta'
 imgur       = require 'imgur-upload' 
 async       = require 'async' 
 logger      = require '../utils/logger' 
+helpers     = require '../utils/helpers' 
 
 path        = require 'path' 
 
@@ -95,9 +96,9 @@ exports.saveRecipe = ( request, response )->
         recipe._id = recipe.ingredients._id
 
     recipeInstance          = new Recipe recipe
-    upsertDate              = new Recipe recipe
-    id                      = upsertDate._id
-    upsertDate              = upsertDate.toObject()
+
+    id                      = recipeInstance._id
+    upsertDate              = recipeInstance.toObject()
     delete upsertDate._id
 
     options             = upsert : true,'new':true

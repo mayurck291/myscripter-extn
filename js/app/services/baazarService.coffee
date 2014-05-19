@@ -5,6 +5,7 @@ class Baazar
 		@updateUserUrl			= "#{@domain}/updateUser"
 
 		### GET CALLS ###
+		@getUrl 	  			= "#{@domain}/get"				# PAGINATION
 		@listUrl  				= "#{@domain}/list"				# PAGINATION
 		@popularUrl  			= "#{@domain}/popular"			# ALL TIME POPULAR  
 		@trendingUrl  			= "#{@domain}/trending"			# TRENDING TODAY
@@ -33,11 +34,26 @@ class Baazar
 		return
 
 	handlePostCall :(defer,response)->
-		if response.status is "success"
+		if response.response is "success"
 			defer.resolve response.msg
 		else
 			defer.reject response.msg
 		return
+
+	get:()->
+		defer = @$q.defer()
+		@$http.get(@getUrl)
+			.success(
+				(response,status) =>
+					defer.resolve(response)
+					return 
+					)
+			.error(
+				(response,status) =>
+					defer.reject(response);
+					return 
+				)
+		defer.promise 
 
 	updateUser:(user)=>
 		console.log(user)

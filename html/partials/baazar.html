@@ -1,0 +1,47 @@
+<div>
+    <link rel="stylesheet" type="text/css" href="/css/demo.css" />
+    <link rel="stylesheet" type="text/css" href="/css/component.css" />
+    <div id="grid-gallery" class="grid-gallery">
+
+        <section class="grid-wrap">
+            <ul class="grid">
+                <li class="grid-sizer"></li>
+                <!-- for Masonry column width -->
+                <li ng-repeat="recipe in recipes">
+                    <figure>
+                        <!-- ng-repeat="img in recipe._id.imgs" -->
+                        <img ng-src="{{recipe._id.imgs[0]}}" />
+                        <figcaption>
+                            <h3>{{recipe._id.title}}</h3>
+                            <p>By {{recipe._id.author.name}}</p>
+                        </figcaption>
+                    </figure>
+                </li>
+            </ul>
+        </section>
+        <!-- // grid-wrap -->
+        <section class="slideshow">
+            <ul>
+                <li ng-repeat="recipe in recipes">
+                    <figure>
+                        <figcaption>
+                            <h3>{{recipe._id.title}}</h3>
+                            <p>By {{recipe._id.author.name}}</p>
+                            <span>{{recipe._id.desc}}</span>
+                        </figcaption>
+                        <img ng-src="{{img}}" ng-repeat="img in recipe._id.imgs" alt="img01" />
+                    </figure>
+                </li>
+            </ul>
+            <nav>
+                <span class="icon nav-prev"></span>
+                <span class="icon nav-next"></span>
+                <span class="icon nav-close"></span>
+            </nav>
+            <div class="info-keys icon">Navigate with arrow keys</div>
+        </section>
+        <!-- // slideshow -->
+
+    </div>
+    <!-- // grid-gallery -->
+</div>

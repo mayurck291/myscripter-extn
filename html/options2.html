@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en" data-ng-app="MonkeyWrench" data-ng-csp>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Monkey Wrench</title>
+    <script type="text/javascript" src="/js/lib/angular.min.js"></script>
+    <script type="text/javascript" src="/js/lib/angular-route.min.js"></script>
+    <script type="text/javascript" src="/js/lib/jquery.js"></script>
+    <script type="text/javascript" src="/js/lib/jstorage.js"></script>
+    <script type="text/javascript" src="/js/lib/gridGallery/modernizr.custom.js"></script>
+
+
+    <link href='/css/angular-csp.css' rel='stylesheet' type='text/css'>
+    <!-- gridGAllery -->
+    <link rel="stylesheet" type="text/css" href="/css/demo.css" />
+    <link rel="stylesheet" type="text/css" href="/css/component.css" />
+
+
+</head>
+
+<body>
+    <a href="#!/Baazar">Bazar</a>
+    <ng-view></ng-view>
+
+    <!-- gridGAllery -->
+    <script src="/js/lib/gridGallery/imagesloaded.pkgd.min.js"></script>
+    <script src="/js/lib/gridGallery/masonry.pkgd.min.js"></script>
+    <script src="/js/lib/gridGallery/classie.js"></script>
+    <script src="/js/lib/gridGallery/cbpGridGallery.js"></script>
+
+    <!-- services -->
+    <script type="text/javascript" src="/js/app/services/GPAuth.js"></script>
+    <script type="text/javascript" src="/js/app/services/baazarService.js"></script>
+
+    <!-- controllers -->
+    <script type="text/javascript" src="/js/app/config.js"></script>
+    <script type="text/javascript" src="/js/app/controllers/baazar.js"></script>
+</body>
+
+</html>
