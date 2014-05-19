@@ -15,10 +15,16 @@
       this.recipes = recipes;
       this.scope.recipes = recipes;
       setTimeout(function() {
-        return new CBPGridGallery(document.getElementById('grid-gallery'));
-      });
-      1000;
-
+        var gg, tab, _i, _len, _ref, _results;
+        gg = new CBPGridGallery(document.getElementById('grid-gallery'));
+        _ref = document.getElementsByClassName('tabs');
+        _results = [];
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          tab = _ref[_i];
+          _results.push(new CBPFWTabs(tab));
+        }
+        return _results;
+      }, 1000);
       this.scope.msg = "hello world";
     }
 

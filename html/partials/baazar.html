@@ -8,6 +8,7 @@
                 <li class="grid-sizer"></li>
                 <!-- for Masonry column width -->
                 <li ng-repeat="recipe in recipes">
+
                     <figure>
                         <!-- ng-repeat="img in recipe._id.imgs" -->
                         <img ng-src="{{recipe._id.imgs[0]}}" />
@@ -22,14 +23,68 @@
         <!-- // grid-wrap -->
         <section class="slideshow">
             <ul>
-                <li ng-repeat="recipe in recipes">
+                <li class="sli" ng-repeat="recipe in recipes">
+
                     <figure>
                         <figcaption>
-                            <h3>{{recipe._id.title}}</h3>
-                            <p>By {{recipe._id.author.name}}</p>
-                            <span>{{recipe._id.desc}}</span>
+                            <div class="container">
+                                <h3 class="five columns">{{recipe._id.title}}</h3>|
+                                <div class="two columns">By {{recipe._id.author.name}}</div>
+                                |
+                                <span>123 users</span>
+                            </div>
                         </figcaption>
-                        <img ng-src="{{img}}" ng-repeat="img in recipe._id.imgs" alt="img01" />
+                        <div id="tabs" class="tabs">
+                            <nav>
+                                <ul>
+                                    <li>
+                                        <a href="#screen-shots" class="icon-shop">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#description" class="icon-cup">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#comments" class="icon-cup">
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                            <div class="content">
+                                <section id="screen-shots">
+                                    <div class="mediabox" ng-repeat="img in recipe._id.imgs">
+                                        <img ng-src="{{img}}" alt="img01" />
+                                    </div>
+                                </section>
+                                <section id="description">
+                                    <p>{{recipe._id.desc}}</p>
+                                </section>
+                                <section id="comments">
+                                    <div class="container" style="height:400px;width:720px;overflow:scroll">
+                                        <div class="row" ng-repeat="comment in recipe._id.comments">
+                                            <div class="two columns">
+                                                <div class="two columns">
+                                                    <img ng-src="{{comment.user.img+'&sz=100'}}" alt="{{comment.user.name}}" />
+                                                </div>
+                                                <div class="four column avatar">
+                                                    {{comment.user.name}}
+                                                </div>
+                                            </div>
+                                            <div class="eight columns">
+                                                <div class="tip left">
+                                                    <div class="nine columns">
+                                                        {{comment.body}}
+                                                    </div>
+                                                    <div class="nine columns ">
+                                                        {{comment.date | date:'medium'}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
                     </figure>
                 </li>
             </ul>
@@ -42,6 +97,6 @@
         </section>
         <!-- // slideshow -->
 
+        </div>
+        <!-- // grid-gallery -->
     </div>
-    <!-- // grid-gallery -->
-</div>

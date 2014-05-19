@@ -9,8 +9,10 @@ class BaazarController
 		# 	console.log data
 		@scope.recipes = recipes
 		setTimeout ()->
-			new CBPGridGallery document.getElementById( 'grid-gallery' ) ,
-		1000  
+			gg 			= new CBPGridGallery document.getElementById( 'grid-gallery' )
+			for tab in document.getElementsByClassName('tabs')
+				new CBPFWTabs tab
+		,1000  
 		# grid = 
 
 		@scope.msg = "hello world"
