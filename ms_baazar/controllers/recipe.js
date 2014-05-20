@@ -78,7 +78,7 @@
       users: [recipe.author],
       karma: [
         {
-          _id: recipe.author,
+          user: recipe.author,
           karma: 8
         }
       ]

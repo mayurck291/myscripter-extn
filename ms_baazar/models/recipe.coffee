@@ -2,7 +2,7 @@ Meta = require  './meta'
 mongoose = require  'mongoose' 
 Schema = mongoose.Schema;
 
-RecipeSchema = new Schema
+RecipeSchema = new Schema(
     title: String
     desc: String
     author:
@@ -41,6 +41,8 @@ RecipeSchema = new Schema
     createdAt:
         type: Date,
         'default': Date.now
-
+,
+    id:false
+)
 Recipe = mongoose.model 'recipe',RecipeSchema
 module.exports = Recipe

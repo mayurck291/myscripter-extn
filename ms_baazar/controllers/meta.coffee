@@ -51,7 +51,7 @@ exports.get = (request,response)->
         .populate('_id','-ingredients')
         .populate('users',userFilter)
         .populate('favs',userFilter)
-        .populate('karma._id',userFilter)
+        .populate('karma.user',userFilter)
         .sort()
         .exec (error,recipes)->
             if error

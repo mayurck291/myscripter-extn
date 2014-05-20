@@ -31,10 +31,6 @@
       ],
       "default": []
     },
-    favc: {
-      type: Number,
-      "default": 0
-    },
     forks: {
       type: Number,
       "default": 0
@@ -42,7 +38,7 @@
     karma: {
       type: [
         {
-          _id: {
+          user: {
             type: String,
             ref: 'user',
             index: false
@@ -50,15 +46,38 @@
           karma: {
             type: Number,
             "default": 1
-          }
+          },
+          _id: false,
+          id: false
         }
       ],
       "default": []
     }
+  }, {
+    id: false
   });
 
-  metaSchema.virtual('name').get(function() {
-    return this.favs;
+  metaSchema.set('toJSON', {
+    virtuals: true
+  });
+
+  metaSchema.virtual('favc').get(function() {
+    return this.favs.length;
+  });
+
+  metaSchema.virtual('userc').get(function() {
+    return this.users.length;
+  });
+
+  metaSchema.virtual('karmac').get(function() {
+    var i, k, karmac, _i, _len, _ref;
+    karmac = 0;
+    _ref = this.karma;
+    for (i = _i = 0, _len = _ref.length; _i < _len; i = ++_i) {
+      k = _ref[i];
+      karmac += k.karma;
+    }
+    return Math.ceil(karmac / i);
   });
 
   Meta = mongoose.model('meta', metaSchema);

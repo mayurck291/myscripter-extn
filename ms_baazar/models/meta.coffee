@@ -3,7 +3,7 @@ logger      = require '../utils/logger'
 
 Schema      = mongoose.Schema
 
-metaSchema = new Schema
+metaSchema = new Schema(
     _id : 
         type:Schema.Types.ObjectId
         ref :'recipe'
@@ -13,24 +13,43 @@ metaSchema = new Schema
     favs:
         type: [ {type:String,ref:'user'} ],
         default: [ ]
-    favc:
-        type:Number,
-        default:0
     forks:
         type:Number,
         default:0
     karma:
         type:[
                 {   
-                    _id:{type:String,ref:'user',index:false},
+                    user:{type:String,ref:'user',index:false},
                     karma:{type:Number,default:1}
+                    _id:false,
+                    id:false
                 }
             ],
         default: [ ]
+,
+    id:false
+)
 
+metaSchema.set 'toJSON',virtuals: true
 
 metaSchema
-    .virtual('name')
-    .get ()-> this.favs
+    .virtual('favc')
+    .get ()-> this.favs.length
+
+metaSchema
+    .virtual('userc')
+    .get ()-> this.users.length
+
+metaSchema
+    .virtual('karmac')
+    .get ()->
+        karmac = 0
+        for k,i in this.karma
+            karmac += k.karma
+
+        Math.ceil(karmac/i)
+
+
+
 Meta = mongoose.model 'meta',metaSchema
 module.exports = Meta

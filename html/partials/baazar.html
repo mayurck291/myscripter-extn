@@ -2,8 +2,6 @@
     <link rel="stylesheet" type="text/css" href="/css/demo.css" />
     <link rel="stylesheet" type="text/css" href="/css/component.css" />
     <div id="grid-gallery" class="grid-gallery">
-
-        ------------{{userInfo}}---------------
         <section class="grid-wrap">
             <ul class="grid">
                 <li class="grid-sizer"></li>
@@ -29,9 +27,13 @@
                     <figure>
                         <figcaption>
                             <div class="container">
-                                <h3 class="five columns pull-left">{{recipe._id.title}}</h3>
-                                <div class="two columns pull-left">By {{recipe._id.author.name}}</div>
-                                <span class="pull-left">123 users</span>
+                                <h3>{{recipe._id.title}}</h3>
+                                <div style="color:grey">
+                                    <span class="pull-left">By {{recipe._id.author.name}}||</span>
+                                    <span class="pull-left">Users {{recipe.userc}}||</span>
+                                    <span class="pull-left">Favs {{recipe.favc}}||</span>
+                                    <span class="pull-left">Karma {{recipe.karmac}}</span>
+                                </div>
                             </div>
                         </figcaption>
                         <div id="tabs" class="tabs">
@@ -39,14 +41,22 @@
                                 <ul>
                                     <li>
                                         <a href="#screen-shots" class="icon-shop">
+                                        ssincon
                                         </a>
                                     </li>
                                     <li>
                                         <a href="#description" class="icon-cup">
+                                        dscr
                                         </a>
                                     </li>
                                     <li>
                                         <a href="#comments" class="icon-cup">
+                                        icon
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#reviews" class="icon-cup">
+                                        Review
                                         </a>
                                     </li>
                                 </ul>
@@ -62,11 +72,10 @@
                                 </section>
                                 <section id="comments" style="padding: 20px 10px 20px 10px !important;">
                                     <div class="container comments-box" style="">
-
-                                        <!--                                       <div class="row" ng-repeat="comment in recipe._id.comments">
+                                        <div class="row" ng-repeat="comment in recipe._id.comments">
                                             <div class="two columns">
                                                 <div class="two columns">
-                                                    <img ng-src="{{userInfo.img +'&sz=100'}}" alt="{{comment.user.name}}" />
+                                                    <img ng-src="{{comment.user.img+'&sz=100'}}" alt="{{comment.user.name}}" />
                                                 </div>
                                                 <div class="four column avatar">
                                                     {{comment.user.name}}
@@ -83,7 +92,13 @@
                                                 </div>
                                             </div>
                                         </div>
-   -->
+                                    </div>
+                                </section>
+                                <section id="reviews">
+                                    <div class="mediabox" ng-repeat="karma in recipe.karma">
+                                        <img ng-src="{{karma.user.img}}" alt="{{karma.user.name}}" />karma = {{karma.karma}}
+                                    </div>
+                                    <div class="container comments-box" style="">
                                         <div class="row" ng-repeat="comment in recipe._id.comments">
                                             <div class="two columns">
                                                 <div class="two columns">

@@ -55,6 +55,8 @@
       type: Date,
       'default': Date.now
     }
+  }, {
+    id: false
   });
 
   Recipe = mongoose.model('recipe', RecipeSchema);
