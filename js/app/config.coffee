@@ -1,10 +1,9 @@
 MonkeyWrench = angular.module 'MonkeyWrench',['ngRoute','AuthModule', 'BaazarModule']
 MonkeyWrench.config ['$routeProvider','$locationProvider',
 ($routeProvider,$locationProvider)->
-	$routeProvider.
-		when '/Baazar',
+	$routeProvider.when('/Baazar',
 			templateUrl:'/html/partials/baazar.html',
-			controller:'BaazarController'
+			controller:'BaazarController',
 			resolve:
 				recipes:['Baazar',(Baazar)->
 					Baazar.get()
@@ -12,7 +11,10 @@ MonkeyWrench.config ['$routeProvider','$locationProvider',
 				,userInfo:['GPauth',(GPauth)->
 					GPauth.getUserInfo()
 				]
-			return
+			).when('/New'
+				,templateUrl:'/html/partials/new.html'
+				,controller:'NewProjectController'
+			)
 	$locationProvider.html5Mode(false).hashPrefix('!');
 	return
 ]
