@@ -6,30 +6,42 @@
 
   BaazarController = (function() {
 
-    BaazarController.$inject = ['$scope', '$routeParams', '$timeout', 'Baazar', 'recipes'];
+    BaazarController.$inject = ['$scope', '$routeParams', '$timeout', '$route', 'Baazar', 'recipes'];
 
-    function BaazarController(scope, routeParams, timeout, Baazar, recipes) {
-      var _this = this;
+    function BaazarController(scope, routeParams, timeout, route, Baazar, recipes) {
+      var reload,
+        _this = this;
       this.scope = scope;
       this.routeParams = routeParams;
       this.timeout = timeout;
+      this.route = route;
       this.Baazar = Baazar;
       this.recipes = recipes;
+      reload = localStorage.getItem('reload');
+      console.log("reload is of type", typeof reload);
+      if ((reload != null) && reload === "true") {
+        console.log("will reload");
+        localStorage.setItem('reload', false);
+        window.location.reload();
+      }
       this.scope.recipes = recipes;
       this.scope.userInfo = this.scope.$parent.user;
       this.scope.signedIn = this.scope.$parent.signedIn;
       this.scope.getStars = this.getStars;
       this.scope.getRemStars = this.getRemStars;
       this.timeout(function() {
-        var allTabs, gg, tab, tabs, _i, _len;
-        gg = new CBPGridGallery(document.getElementById('grid-gallery'));
-        console.log("gg called " + gg);
-        allTabs = document.getElementsByClassName('tabs');
-        for (_i = 0, _len = allTabs.length; _i < _len; _i++) {
-          tabs = allTabs[_i];
-          tab = new CBPFWTabs(tabs);
-        }
-      }, 100);
+        return _this.scope.$apply(function() {
+          var allTabs, gg, tab, tabs, _i, _len;
+          allTabs = document.getElementsByClassName('tabs');
+          console.log(allTabs);
+          for (_i = 0, _len = allTabs.length; _i < _len; _i++) {
+            tabs = allTabs[_i];
+            tab = new CBPFWTabs(tabs);
+          }
+          localStorage.setItem('reload', true);
+          return gg = new CBPGridGallery(document.getElementById('grid-gallery'));
+        });
+      }, 200);
     }
 
     BaazarController.prototype.getStars = function(range) {
