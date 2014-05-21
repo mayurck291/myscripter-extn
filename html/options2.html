@@ -16,14 +16,35 @@
     <link rel="stylesheet" type="text/css" href="/css/demo.css" />
     <link rel="stylesheet" type="text/css" href="/css/component.css" />
     <link rel="stylesheet" type="text/css" href="/css/menu.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="/css/myicons.css" /> -->
     <!-- gridGAllery -->
-
-
-
 </head>
 
-<body>
-    <h2 style="margin-left:10%">Monkey Wrench</h2>
+<body ng-controller="BodyController">
+    <div style="position:absolute;top:0;left:0;right:0;height:70px;background:#47a3da">
+        <h1 style="margin-left:10%;margin-top:20px;color:white">Monkey Wrench</h1>
+        <span class="pull-right">
+            <span ng-show="!signedIn">
+                <h3>
+                    <a href="" ng-click="signIn()">signIn</a>
+                </h3>
+            </span>
+            <span ng-show="signedIn">
+                <span>{{user.name}}</span>
+                <br>
+                <span>{{user._id}}</span>
+                <br>
+                <img ng-src="{{user.img}}+&sz=30" alt="{{user.name}}">
+                <br>
+                <a href="" ng-click="signOut()">signOut</a>
+            </span>
+        </span>
+        <alert>
+            <span ng-class="alert.class" ng-show="alert.show">
+                {{alert.msg}}===={{alert}}
+            </span>
+        </alert>
+    </div>
     <hr>
     <ng-view></ng-view>
 
@@ -62,10 +83,16 @@
     <script type="text/javascript" src="/js/app/services/GPAuth.js"></script>
     <script type="text/javascript" src="/js/app/services/baazarService.js"></script>
 
-    <!-- controllers -->
+    <!-- config -->
     <script type="text/javascript" src="/js/app/config.js"></script>
+
+    <!-- directive -->
+    <script type="text/javascript" src="/js/app/services/alert.js"></script>
+
+    <!-- controllers -->
     <script type="text/javascript" src="/js/app/controllers/baazar.js"></script>
     <script type="text/javascript" src="/js/app/controllers/newProject.js"></script>
+    <script type="text/javascript" src="/js/app/controllers/body.js"></script>
 
 
 </body>

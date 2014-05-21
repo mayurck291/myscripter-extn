@@ -19,7 +19,6 @@ MonkeyWrench.config ['$routeProvider','$locationProvider',
 	return
 ]
 
-
 MonkeyWrench.run ['GPauth',(GPauth)->
 	GPauth.load()
 ]

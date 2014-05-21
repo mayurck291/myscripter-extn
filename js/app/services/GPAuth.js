@@ -30,10 +30,10 @@
       };
       chrome.identity.getAuthToken(option, function(accessToken) {
         if (chrome.runtime.lastError) {
+          _this.userInfo = null;
           defer.reject(chrome.runtime.lastError);
         } else {
           _this.accessToken = accessToken;
-          _this.requestUserData();
           defer.resolve();
         }
       });
@@ -77,39 +77,38 @@
     };
 
     GPauth.prototype.getUserInfo = function(interactive) {
-      if (this.state === this.STATE_AUTH_TOKEN_ACQUIRED) {
-        return this.userInfo;
-      } else {
-        return null;
-      }
-    };
-
-    GPauth.prototype.signIn = function() {
       var defer;
       defer = this.$q.defer();
-      this.getToken(true).then(defer.resolve, defer.reject);
+      if (this.state === this.STATE_AUTH_TOKEN_ACQUIRED) {
+        defer.resolve(this.userInfo);
+      } else {
+        return this.requestUserData();
+      }
       return defer.promise;
     };
 
+    GPauth.prototype.signIn = function() {
+      return this.getToken(true);
+    };
+
     GPauth.prototype.signOut = function() {
-      var defer, option, url;
+      var defer, option, url,
+        _this = this;
+      this.userInfo = null;
       defer = this.$q.defer();
       url = "https://accounts.google.com/o/oauth2/revoke?token=" + this.accessToken;
       option = {
         token: this.accessToken
       };
       chrome.identity.removeCachedAuthToken(option, function() {
-        return this.$http.get(url).success(defer.resolve).error(defer.reject);
+        return _this.$http.get(url).success(defer.resolve).error(defer.reject);
       });
       this.state = this.START_STATE;
       return defer.promise;
     };
 
     GPauth.prototype.load = function() {
-      var defer;
-      defer = this.$q.defer();
-      this.getToken(false).then(defer.resolve, defer.reject);
-      return defer.promise;
+      return this.getToken(false);
     };
 
     return GPauth;

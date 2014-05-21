@@ -21,11 +21,11 @@ class GPauth
 		chrome.identity.getAuthToken option,(accessToken) => 
 			if chrome.runtime.lastError
 				# console.log("Error: ", chrome.runtime.lastError)
+				@userInfo = null
 				defer.reject(chrome.runtime.lastError)
 			else 
 				# console.log("accessToken: ",accessToken)
 				@accessToken = accessToken
-				@requestUserData()
 				defer.resolve()
 			return
 
@@ -66,33 +66,32 @@ class GPauth
 
 	getUserInfo:(interactive)->
 		# console.log("GPauth GET USER DATA");
-		if @state is @STATE_AUTH_TOKEN_ACQUIRED
-			@userInfo
-		else
-			null
-
-	signIn:->
-		# console.log("GPauth signIn");
-
 		defer = @$q.defer()
-		@getToken(true).then defer.resolve,defer.reject
+		if @state is @STATE_AUTH_TOKEN_ACQUIRED
+			defer.resolve @userInfo
+		else
+			return @requestUserData()
 
 		defer.promise
 
+	signIn:->
+		# console.log("GPauth signIn");
+		@getToken(true)
+
 	signOut:->
 		# console.log("GPauth signOut");
+		@userInfo = null
 		defer = @$q.defer()
 		url = "https://accounts.google.com/o/oauth2/revoke?token=#{@accessToken}" 
 		option = token : @accessToken
-		chrome.identity.removeCachedAuthToken option,()->@$http.get(url).success(defer.resolve).error(defer.reject)
+		chrome.identity.removeCachedAuthToken option,()=>
+			@$http.get(url).success(defer.resolve).error(defer.reject)
 		@state = @START_STATE
 		defer.promise
 
 	load:->
 		# console.log("GPauth LOAD");
-		defer = @$q.defer()
-		@getToken(false).then defer.resolve,defer.reject
-		defer.promise
+		@getToken(false)
 
 AuthModule = angular.module 'AuthModule',[]
 AuthModule.service 'GPauth',["$http", "$q",GPauth]
