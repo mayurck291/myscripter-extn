@@ -1,4 +1,4 @@
-MonkeyWrench = angular.module 'MonkeyWrench',['ngRoute','AuthModule', 'BaazarModule']
+MonkeyWrench = angular.module 'MonkeyWrench',['ngRoute','AuthModule', 'BaazarModule','ngAnimate','Slider']
 MonkeyWrench.config ['$routeProvider','$locationProvider',
 ($routeProvider,$locationProvider)->
 	$routeProvider.when('/Baazar',

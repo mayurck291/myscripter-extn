@@ -66,9 +66,8 @@
                             </nav>
                             <div class="content">
                                 <section id="screen-shots">
-                                    <div class="mediabox" ng-repeat="img in recipe._id.imgs">
-                                        <img ng-src="{{img}}" alt="img01" />
-                                    </div>
+                                    <!-- <img class="item" ng-src="{{img}}" ng-repeat="img in recipe._id.imgs" /> -->
+                                    <slider srcs="{{recipe._id.imgs}}" />
                                 </section>
                                 <section id="description">
                                     <p>{{recipe._id.desc}}</p>
@@ -78,7 +77,7 @@
                                         <div class="row" ng-repeat="comment in recipe._id.comments">
                                             <div class="two columns">
                                                 <div class="two columns">
-                                                    <img ng-src="{{comment.user.img+'&sz=100'}}" alt="{{comment.user.name}}" />
+                                                    <img ng-src="{{comment.user.img}}+&sz=100" alt="{{comment.user.name}}" />
                                                 </div>
                                                 <div class="four column avatar">
                                                     {{comment.user.name}}

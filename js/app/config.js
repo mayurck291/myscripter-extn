@@ -2,7 +2,7 @@
 (function() {
   var MonkeyWrench;
 
-  MonkeyWrench = angular.module('MonkeyWrench', ['ngRoute', 'AuthModule', 'BaazarModule']);
+  MonkeyWrench = angular.module('MonkeyWrench', ['ngRoute', 'AuthModule', 'BaazarModule', 'ngAnimate', 'Slider']);
 
   MonkeyWrench.config([
     '$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {

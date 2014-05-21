@@ -32,6 +32,8 @@ var SidebarMenuEffects = ( function ( ) {
 
         var container = document.getElementById( 'st-container' ),
             buttons = Array.prototype.slice.call( document.querySelectorAll( '#st-trigger-effects > div' ) ),
+            links = Array.prototype.slice.call( document.querySelectorAll( '.st-menu > ul >li > a' ) )
+
             // event type (if mobile use touch events)
             eventtype = mobilecheck( ) ? 'touchstart' : 'click',
             resetMenu = function ( ) {
@@ -56,6 +58,15 @@ var SidebarMenuEffects = ( function ( ) {
                     classie.add( container, 'st-menu-open' );
                 }, 25 );
                 document.addEventListener( eventtype, bodyClickFn );
+            } );
+        } );
+
+        links.forEach( function ( el, i ) {
+
+            el.addEventListener( eventtype, function ( ev ) {
+                // ev.stopPropagation( );
+                resetMenu( );
+                document.removeEventListener( eventtype, bodyClickFn );
             } );
         } );
 

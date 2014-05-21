@@ -6,12 +6,13 @@
 
   BaazarController = (function() {
 
-    BaazarController.$inject = ['$scope', '$routeParams', 'Baazar', 'recipes'];
+    BaazarController.$inject = ['$scope', '$routeParams', '$timeout', 'Baazar', 'recipes'];
 
-    function BaazarController(scope, routeParams, Baazar, recipes) {
+    function BaazarController(scope, routeParams, timeout, Baazar, recipes) {
       var _this = this;
       this.scope = scope;
       this.routeParams = routeParams;
+      this.timeout = timeout;
       this.Baazar = Baazar;
       this.recipes = recipes;
       this.scope.recipes = recipes;
@@ -19,15 +20,16 @@
       this.scope.signedIn = this.scope.$parent.signedIn;
       this.scope.getStars = this.getStars;
       this.scope.getRemStars = this.getRemStars;
-      setTimeout(function() {
-        var allTabs, gg, tabs, _i, _len;
+      this.timeout(function() {
+        var allTabs, gg, tab, tabs, _i, _len;
         gg = new CBPGridGallery(document.getElementById('grid-gallery'));
+        console.log("gg called " + gg);
         allTabs = document.getElementsByClassName('tabs');
         for (_i = 0, _len = allTabs.length; _i < _len; _i++) {
           tabs = allTabs[_i];
-          new CBPFWTabs(tabs);
+          tab = new CBPFWTabs(tabs);
         }
-      }, 1000);
+      }, 100);
     }
 
     BaazarController.prototype.getStars = function(range) {
