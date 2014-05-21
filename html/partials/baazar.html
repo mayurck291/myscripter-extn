@@ -5,7 +5,6 @@
                 <li class="grid-sizer"></li>
                 <!-- for Masonry column width -->
                 <li ng-repeat="recipe in recipes">
-
                     <figure>
                         <!-- ng-repeat="img in recipe._id.imgs" -->
                         <img ng-src="{{recipe._id.imgs[0]}}" />
@@ -24,21 +23,23 @@
 
                     <figure>
                         <figcaption>
-                            <div class="container">
+                            <!-- <div class="container"> -->
+                            <div class="pull-left">
                                 <h3>{{recipe._id.title}}</h3>
-                                <div style="color:grey">
-                                    <span class="pull-left">By {{recipe._id.author.name}}||</span>
-                                    <span class="pull-left">
-                                        <span class="icon-users icc"></span>
-                                        {{recipe.userc}}||</span>
-                                    <span class="pull-left">
-                                        <span class=" icon-heart icc"></span>{{recipe.favc}}||</span>
-                                    <span class="pull-left">
-                                        <span ng-repeat="i in getStars(recipe.karmac)" class="icon-star2 icc"></span>
-                                        <span ng-repeat="i in getRemStars(recipe.karmac)" class=" icon-star icc"></span>
-                                    </span>
-                                </div>
                             </div>
+                            <div style="color: grey;margin-left: 7px;line-height: 52px;" class="pull-left">
+                                <span class="pull-left">By {{recipe._id.author.name}}||</span>
+                                <span class="pull-left">
+                                    <span class="icon-users icc"></span>
+                                    {{recipe.userc}}||</span>
+                                <span class="pull-left">
+                                    <span class=" icon-heart icc"></span>{{recipe.favc}}||</span>
+                                <span class="pull-left">
+                                    <span ng-repeat="i in getStars(recipe.karmac)" class="icon-star2 icc"></span>
+                                    <span ng-repeat="i in getRemStars(recipe.karmac)" class=" icon-star icc"></span>
+                                </span>
+                            </div>
+                            <!-- </div> -->
                         </figcaption>
                         <div id="tabs" class="tabs">
                             <nav>
@@ -63,14 +64,44 @@
                             </nav>
                             <div class="content">
                                 <section id="screen-shots">
-                                    <!-- <img class="item" ng-src="{{img}}" ng-repeat="img in recipe._id.imgs" /> -->
                                     <slider srcs="{{recipe._id.imgs}}" />
                                 </section>
                                 <section id="description">
                                     <p>{{recipe._id.desc}}</p>
                                 </section>
                                 <section id="comments" style="padding: 20px 10px 20px 10px !important;">
-                                    <div class="container comments-box" style="">
+                                    <div ng-show="!signedIn" class="comment-msg">
+                                        You must LOGIN to comment
+                                    </div>
+                                    <div ng-show="signedIn">
+                                        <div class="comment-msg" ng-show="!docomment">
+                                            <a href="" ng-click="docomment=true"><b>Comment as {{user.name}}</b></a>
+                                        </div>
+                                        <div id="custom comment" ng-show="docomment" class="container" style="">
+                                            <div class="row">
+                                                <div class="two columns">
+                                                    <div class="two columns">
+                                                        <img ng-src="{{user.img}}+&sz=100" alt="{{user.name}}" />
+                                                    </div>
+                                                    <div class="four column avatar">
+                                                        {{user.name}}
+                                                    </div>
+                                                </div>
+                                                <div class="eight columns">
+                                                    <div class="tip left">
+                                                        <div class="row comment-body">
+                                                            <form action="" class="cbp-mc-form">
+                                                                <textarea name="cols" rows="4" cols="50" class="tip left two columns" type="text" placeholder="your comment" ng-model="comment" style="max-width:500px"></textarea>
+                                                                <input class="cbp-mc-submit" style="margin-left: 10px;height: 48px;" ng-disabled="!comment" type="submit">
+                                                                <a href="" ng-show="docomment" ng-click="docomment=false">Cancel</a>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div ng-show="!docomment" class="container comments-box">
                                         <div class="row" ng-repeat="comment in recipe._id.comments">
                                             <div class="two columns">
                                                 <div class="two columns">
@@ -94,28 +125,48 @@
                                     </div>
                                 </section>
                                 <section id="reviews">
-                                    <div class="mediabox" ng-repeat="karma in recipe.karma">
-                                        <img ng-src="{{karma.user.img}}" alt="{{karma.user.name}}" />karma = {{karma.karma}}
+                                    <div ng-show="!signedIn" class="comment-msg">
+                                        You must LOGIN to comment
                                     </div>
-                                    <div class="container comments-box" style="">
-                                        <div class="row" ng-repeat="comment in recipe._id.comments">
-                                            <div class="two columns">
+                                    <div ng-show="signedIn">
+                                        <div class="comment-msg" ng-show="!docomment">
+                                            <a href="" ng-click="docomment=true"><b>Review as {{user.name}}</b></a>
+                                        </div>
+                                        <div id="custom comment" ng-show="docomment" class="container" style="">
+                                            <div class="row">
                                                 <div class="two columns">
-                                                    <img ng-src="{{comment.user.img+'&sz=100'}}" alt="{{comment.user.name}}" />
+                                                    <div class="two columns">
+                                                        <img ng-src="{{user.img}}+&sz=100" alt="{{user.name}}" />
+                                                    </div>
+                                                    <div class="four column avatar">
+                                                        {{user.name}}
+                                                    </div>
                                                 </div>
-                                                <div class="four column avatar">
-                                                    {{comment.user.name}}
+                                                <div class="eight columns">
+                                                    <div class="tip left">
+                                                        <div class="row comment-body">
+                                                            <form name="karmaform" class="cbp-mc-form" ng-init="fm.rating=1">
+                                                                <div class="row">
+                                                                    Karma
+                                                                    <span ng-repeat="i in getStars(fm.rating)" class="icon-star2 icc" ng-click="decRating()"></span>
+                                                                    <span ng-repeat="i in getRemStars(fm.rating)" class="icon-star icc" ng-click="incRating()"></span>
+
+                                                                </div>
+
+                                                                <textarea name="cols" rows="4" cols="50" class="tip left two columns" type="text" placeholder="your comment" ng-model="fm.body" style="max-width:500px"></textarea>
+                                                                <input class="cbp-mc-submit" style="margin-left: 10px;height: 48px;" ng-disabled="!comment" type="submit">
+                                                                <a href="" ng-show="docomment" ng-click="docomment=false">Cancel</a>
+                                                            </form>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="eight columns">
-                                                <div class="tip left">
-                                                    <div class="row comment-body">
-                                                        {{comment.body}}
-                                                    </div>
-                                                    <div class="row date pull-right">
-                                                        {{comment.date | date:'medium'}}
-                                                    </div>
-                                                </div>
+                                        </div>
+                                        <div id="reviews">
+                                            <div ng-repeat="karma in recipe.karma" class="row">
+                                                <span ng-repeat="i in getStars(karma.karma)" class="icon-star2 icc"></span>
+                                                <span ng-repeat="i in getRemStars(karma.karma)" class=" icon-star icc"></span>
+                                                by {{karma.user.name}}
                                             </div>
                                         </div>
                                     </div>

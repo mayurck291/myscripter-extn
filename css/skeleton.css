@@ -430,3 +430,13 @@
     font-size: 15px !important;
     color: slategray !important;
 }
+input[type="submit"]:disabled {
+    background:#C3D6E2 !important;
+}
+.comment-msg {
+    padding: 10px 5px 10px 17px;
+    background: darkgrey;
+    color: white;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
