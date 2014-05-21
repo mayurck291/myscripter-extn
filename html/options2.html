@@ -13,6 +13,7 @@
 
     <link href='/css/angular-csp.css' rel='stylesheet' type='text/css'>
     <link href='/css/skeleton.css' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="/css/icons.css" />
     <link rel="stylesheet" type="text/css" href="/css/demo.css" />
     <link rel="stylesheet" type="text/css" href="/css/component.css" />
     <link rel="stylesheet" type="text/css" href="/css/menu2.css" />
@@ -28,15 +29,35 @@
                 these menus will be on top of the push wrapper
             -->
 
-
         <nav class="st-menu st-effect-10" id="menu-10">
-            <h2 class="icon icon-stack">Monkey Wrench</h2>
+            <h2 class="icon icon-stack">
+                <span class="icon-heart2"></span>Monkey Wrench</h2>
             <ul>
-                <li><a class="icon icon-data" href="#!/">Home</a>
+                <li>
+                    <a class="icon icon-data" href="#!/">
+                        <h2 style="display:inline;color:white">
+                            <span class="icon-home"></span>
+                        </h2>
+                        Home</a>
                 </li>
-                <li><a class="icon icon-location" href="#!/New">New</a>
+                <li>
+                    <a class="icon icon-location" href="#!/New">
+                        <h2 style="display:inline;color:white">
+                            <span class="icon-new"></span>
+                        </h2>New</a>
                 </li>
-                <li><a class="icon icon-study" href="#!/Baazar">Baazar</a>
+                <li>
+                    <a class="icon icon-study" href="#!/Baazar">
+                        <h2 style="display:inline;color:white">
+                            <span class="icon-food"></span>
+                        </h2>Recipe Baazar</a>
+                </li>
+                <li>
+                    <a class="icon icon-study" href="#!/Baazar">
+                        <h2 style="display:inline;color:white">
+                            <span class="icon-question"></span>
+                        </h2>
+                        Help</a>
                 </li>
             </ul>
         </nav>
@@ -49,24 +70,40 @@
                 <div class="st-content-inner">
                     <!-- extra div for emulating position:fixed of the menu -->
                     <!-- Top Navigation -->
-                    <header class="codrops-header" style="position:absolute;top:0;left:0;right:0;height:70px;background:#47a3da;color:white">
+                    <header class="codrops-header" style="position:absolute;top:0;left:0;right:0;height:60px;background:#47a3da;color:white">
                         <div>
                             <div id="st-trigger-effects" class="pull-left">
-                                <button data-effect="st-effect-10">Scale Up</button>
+                                <div data-effect="st-effect-10">
+                                    <span class="icon-menu" style="padding:4px 14px 4px 10px;font-size:3.5em;cursor:pointer"></span>
+                                </div>
                             </div>
-                            <h1 class="pull-left" style="margin-left:10%;margin-top:20px;">Monkey Wrench</h1>
+                            <div class="pull-left" style="margin-top: -11px;">
+                                <h1>Monkey Wrench</h1>
+                            </div>
                             <span class="pull-right">
-                                <span ng-show="!signedIn">
-                                    <h3>
-                                        <a href="" ng-click="signIn()">signIn</a>
-                                    </h3>
-                                </span>
-                                <span ng-show="signedIn">
-                                    <span>{{user.name}}</span>
-                                    <span>{{user._id}}</span>
-                                    <img ng-src="{{user.img}}+&sz=30" alt="{{user.name}}">
-                                    <a href="" ng-click="signOut()">signOut</a>
-                                </span>
+                                <div ng-show="!signedIn">
+                                    <a href="" ng-click="signIn()">
+                                        <h3>
+                                            <span class=" icon-user"></span>signIn
+                                        </h3>
+                                    </a>
+                                </div>
+                                <div ng-show="signedIn" class="pull-right">
+                                    <ul class="drop-down cf" style="list-style:none">
+                                        <li>
+                                            <a class="dropdown" href="#">
+                                                Hello <img style="position:relative;top:10px" ng-src="{{user.img}}+&sz=30" alt="{{user.name}}">
+                                                {{user.name}}
+                                            </a>
+                                            <ul>
+                                                <li><a target="_blank" ng-href="{{user.url}}">{{user._id}}</a>
+                                                </li>
+                                                <li><a href="#" ng-click="signOut()">Sign Out</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
                             </span>
                             <alert class="position:absolute;top:0;left:0;right:0;height:70px;background:#47a3da;">
                                 <span ng-class="alert.class" ng-show="alert.show">
