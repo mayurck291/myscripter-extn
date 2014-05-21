@@ -19,6 +19,9 @@
       }).when('/New', {
         templateUrl: '/html/partials/new.html',
         controller: 'NewProjectController'
+      }).when('/', {
+        templateUrl: '/html/partials/home.html',
+        controller: 'BodyController'
       });
       $locationProvider.html5Mode(false).hashPrefix('!');
     }
