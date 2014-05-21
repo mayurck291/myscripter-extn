@@ -17,18 +17,37 @@
       this.scope.recipes = recipes;
       this.scope.userInfo = this.scope.$parent.user;
       this.scope.signedIn = this.scope.$parent.signedIn;
+      this.scope.getStars = this.getStars;
+      this.scope.getRemStars = this.getRemStars;
       setTimeout(function() {
-        var allTabs, gg, tabs, _i, _len, _results;
+        var allTabs, gg, tabs, _i, _len;
         gg = new CBPGridGallery(document.getElementById('grid-gallery'));
         allTabs = document.getElementsByClassName('tabs');
-        _results = [];
         for (_i = 0, _len = allTabs.length; _i < _len; _i++) {
           tabs = allTabs[_i];
-          _results.push(new CBPFWTabs(tabs));
+          new CBPFWTabs(tabs);
         }
-        return _results;
       }, 1000);
     }
+
+    BaazarController.prototype.getStars = function(range) {
+      var _i, _results;
+      return (function() {
+        _results = [];
+        for (var _i = 1; 1 <= range ? _i <= range : _i >= range; 1 <= range ? _i++ : _i--){ _results.push(_i); }
+        return _results;
+      }).apply(this);
+    };
+
+    BaazarController.prototype.getRemStars = function(range) {
+      var _i, _results;
+      range += 1;
+      return (function() {
+        _results = [];
+        for (var _i = range; range <= 10 ? _i <= 10 : _i >= 10; range <= 10 ? _i++ : _i--){ _results.push(_i); }
+        return _results;
+      }).apply(this);
+    };
 
     return BaazarController;
 

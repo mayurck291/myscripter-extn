@@ -200,3 +200,6 @@
 .icon-install:before {
     content:"\e632";
 }
+.icc {
+    color:#47a3da !important;
+}

@@ -31,9 +31,15 @@
                                 <h3>{{recipe._id.title}}</h3>
                                 <div style="color:grey">
                                     <span class="pull-left">By {{recipe._id.author.name}}||</span>
-                                    <span class="pull-left">Users {{recipe.userc}}||</span>
-                                    <span class="pull-left">Favs {{recipe.favc}}||</span>
-                                    <span class="pull-left">Karma {{recipe.karmac}}</span>
+                                    <span class="pull-left">
+                                        <span class="icon-users icc"></span>
+                                        {{recipe.userc}}||</span>
+                                    <span class="pull-left">
+                                        <span class=" icon-heart icc"></span>{{recipe.favc}}||</span>
+                                    <span class="pull-left">
+                                        <span ng-repeat="i in getStars(recipe.karmac)" class="icon-star2 icc"></span>
+                                        <span ng-repeat="i in getRemStars(recipe.karmac)" class=" icon-star icc"></span>
+                                    </span>
                                 </div>
                             </div>
                         </figcaption>
@@ -41,23 +47,19 @@
                             <nav>
                                 <ul>
                                     <li>
-                                        <a href="#screen-shots" class="icon-shop">
-                                        ssincon
+                                        <a href="#screen-shots" class="icon-images">
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#description" class="icon-cup">
-                                        dscr
+                                        <a href="#description" class="icon-question">
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#comments" class="icon-cup">
-                                        icon
+                                        <a href="#comments" class="icon-bubbles4">
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#reviews" class="icon-cup">
-                                        Review
+                                        <a href="#reviews" class="icon-edit">
                                         </a>
                                     </li>
                                 </ul>
