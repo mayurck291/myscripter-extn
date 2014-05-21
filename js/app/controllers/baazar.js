@@ -6,16 +6,17 @@
 
   BaazarController = (function() {
 
-    BaazarController.$inject = ['$scope', '$routeParams', 'Baazar', 'recipes', 'userInfo'];
+    BaazarController.$inject = ['$scope', '$routeParams', 'Baazar', 'recipes'];
 
-    function BaazarController(scope, routeParams, Baazar, recipes, userInfo) {
+    function BaazarController(scope, routeParams, Baazar, recipes) {
       var _this = this;
       this.scope = scope;
       this.routeParams = routeParams;
       this.Baazar = Baazar;
       this.recipes = recipes;
       this.scope.recipes = recipes;
-      this.scope.userInfo = userInfo;
+      this.scope.userInfo = this.scope.$parent.user;
+      this.scope.signedIn = this.scope.$parent.signedIn;
       setTimeout(function() {
         var allTabs, gg, tabs, _i, _len, _results;
         gg = new CBPGridGallery(document.getElementById('grid-gallery'));
@@ -27,8 +28,6 @@
         }
         return _results;
       }, 1000);
-      this.scope.msg = "hello world";
-      return;
     }
 
     return BaazarController;

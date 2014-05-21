@@ -1,9 +1,10 @@
 MonkeyWrench = angular.module 'MonkeyWrench'
 class BaazarController
-	@$inject: ['$scope','$routeParams','Baazar','recipes','userInfo'] 
-	constructor:(@scope,@routeParams,@Baazar,@recipes,userInfo)->
+	@$inject: ['$scope','$routeParams','Baazar','recipes'] 
+	constructor:(@scope,@routeParams,@Baazar,@recipes)->
 		@scope.recipes = recipes
-		@scope.userInfo = userInfo;
+		@scope.userInfo = @scope.$parent.user;
+		@scope.signedIn = @scope.$parent.signedIn;
 		setTimeout ()=>
 			gg 			= new CBPGridGallery document.getElementById( 'grid-gallery' )
 			allTabs 	= document.getElementsByClassName('tabs')
@@ -11,7 +12,4 @@ class BaazarController
 				new CBPFWTabs tabs
 		,1000  
 
-		@scope.msg = "hello world"
-		return
-		
 MonkeyWrench.controller 'BaazarController',BaazarController

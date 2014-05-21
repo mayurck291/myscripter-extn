@@ -14,11 +14,6 @@
             'Baazar', function(Baazar) {
               return Baazar.get();
             }
-          ],
-          userInfo: [
-            'GPauth', function(GPauth) {
-              return GPauth.getUserInfo();
-            }
           ]
         }
       }).when('/New', {

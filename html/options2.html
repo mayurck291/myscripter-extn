@@ -15,61 +15,81 @@
     <link href='/css/skeleton.css' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="/css/demo.css" />
     <link rel="stylesheet" type="text/css" href="/css/component.css" />
-    <link rel="stylesheet" type="text/css" href="/css/menu.css" />
+    <link rel="stylesheet" type="text/css" href="/css/menu2.css" />
     <!-- <link rel="stylesheet" type="text/css" href="/css/myicons.css" /> -->
     <!-- gridGAllery -->
 </head>
 
 <body ng-controller="BodyController">
-    <div style="position:absolute;top:0;left:0;right:0;height:70px;background:#47a3da">
-        <h1 style="margin-left:10%;margin-top:20px;color:white">Monkey Wrench</h1>
-        <span class="pull-right">
-            <span ng-show="!signedIn">
-                <h3>
-                    <a href="" ng-click="signIn()">signIn</a>
-                </h3>
-            </span>
-            <span ng-show="signedIn">
-                <span>{{user.name}}</span>
-                <br>
-                <span>{{user._id}}</span>
-                <br>
-                <img ng-src="{{user.img}}+&sz=30" alt="{{user.name}}">
-                <br>
-                <a href="" ng-click="signOut()">signOut</a>
-            </span>
-        </span>
-        <alert>
-            <span ng-class="alert.class" ng-show="alert.show">
-                {{alert.msg}}===={{alert}}
-            </span>
-        </alert>
-    </div>
-    <hr>
-    <ng-view></ng-view>
 
-    <div class="container">
-        <nav id="bt-menu" class="bt-menu">
-            <a href="" class="bt-menu-trigger">
-                <span></span>
-            </a>
+    <div id="st-container" class="st-container">
+        <!--    
+                example menus 
+                these menus will be on top of the push wrapper
+            -->
+
+
+        <nav class="st-menu st-effect-10" id="menu-10">
+            <h2 class="icon icon-stack">Monkey Wrench</h2>
             <ul>
-                <li>
-                    <a href="#!/" class="icon icon-cup">Hello</a>
+                <li><a class="icon icon-data" href="#!/">Home</a>
                 </li>
-                <li><a href="#!/New" class="icon icon-cup">Refresh</a>
+                <li><a class="icon icon-location" href="#!/New">New</a>
                 </li>
-                <li><a href="#!/Baazar" class="icon icon-truck">Lock</a>
-                </li>
-                <li><a href="#" class="icon icon-shop">Sound</a>
-                </li>
-                <li><a href="#" class="icon icon-shop">Favorite</a>
+                <li><a class="icon icon-study" href="#!/Baazar">Baazar</a>
                 </li>
             </ul>
         </nav>
 
-    </div>
 
+        <!-- content push wrapper -->
+        <div class="st-pusher">
+            <div class="st-content">
+                <!-- this is the wrapper for the content -->
+                <div class="st-content-inner">
+                    <!-- extra div for emulating position:fixed of the menu -->
+                    <!-- Top Navigation -->
+                    <header class="codrops-header" style="position:absolute;top:0;left:0;right:0;height:70px;background:#47a3da;color:white">
+                        <div>
+                            <div id="st-trigger-effects" class="pull-left">
+                                <button data-effect="st-effect-10">Scale Up</button>
+                            </div>
+                            <h1 class="pull-left" style="margin-left:10%;margin-top:20px;">Monkey Wrench</h1>
+                            <span class="pull-right">
+                                <span ng-show="!signedIn">
+                                    <h3>
+                                        <a href="" ng-click="signIn()">signIn</a>
+                                    </h3>
+                                </span>
+                                <span ng-show="signedIn">
+                                    <span>{{user.name}}</span>
+                                    <span>{{user._id}}</span>
+                                    <img ng-src="{{user.img}}+&sz=30" alt="{{user.name}}">
+                                    <a href="" ng-click="signOut()">signOut</a>
+                                </span>
+                            </span>
+                            <alert class="position:absolute;top:0;left:0;right:0;height:70px;background:#47a3da;">
+                                <span ng-class="alert.class" ng-show="alert.show">
+                                    {{alert.msg}}===={{alert}}
+                                </span>
+                            </alert>
+                        </div>
+
+                    </header>
+                    <div class="main clearfix ">
+                        <div style="margin-top:80px">
+                            <ng-view></ng-view>
+                        </div>
+                    </div>
+                    <!-- /main -->
+                </div>
+                <!-- /st-content-inner -->
+            </div>
+            <!-- /st-content -->
+        </div>
+        <!-- /st-pusher -->
+    </div>
+    <!-- /st-container -->
     <!-- /container -->
 
     <!-- gridGAllery -->
@@ -77,7 +97,8 @@
     <script src="/js/lib/gridGallery/masonry.pkgd.min.js"></script>
     <script src="/js/lib/gridGallery/classie.js"></script>
     <script src="/js/lib/gridGallery/cbpGridGallery.js"></script>
-    <script type="text/javascript" src="/js/lib/menu/borderMenu.js"></script>
+    <!-- // <script type="text/javascript" src="/js/lib/menu/borderMenu.js"></script> -->
+    <script type="text/javascript" src="/js/lib/menu/sidebarEffects.js"></script>
 
     <!-- services -->
     <script type="text/javascript" src="/js/app/services/GPAuth.js"></script>

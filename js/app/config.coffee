@@ -8,9 +8,6 @@ MonkeyWrench.config ['$routeProvider','$locationProvider',
 				recipes:['Baazar',(Baazar)->
 					Baazar.get()
 				]
-				,userInfo:['GPauth',(GPauth)->
-					GPauth.getUserInfo()
-				]
 			).when('/New'
 				,templateUrl:'/html/partials/new.html'
 				,controller:'NewProjectController'
