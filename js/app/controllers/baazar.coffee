@@ -11,7 +11,7 @@ class BaazarController
 			gg 			= new CBPGridGallery document.getElementById( 'grid-gallery' )
 			allTabs 	= document.getElementsByClassName('tabs')
 			for tabs in allTabs
-				new CBPFWTabs tabs
+				new CBPFWTabs(tabs)
 			return
 		,1000  
 
