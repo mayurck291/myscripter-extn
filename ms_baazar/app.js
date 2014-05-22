@@ -56,6 +56,8 @@ app.get( '/list/:page', recipeController.list );
 app.get( '/newestRecipes', recipeController.newestRecipes );
 app.get( '/get', metaController.get );
 app.get( '/myRecipes/:email', recipeController.myRecipes );
+app.get( '/getRecipe/:id', recipeController.getRecipe );
+
 app.post( '/saveRecipe', recipeController.saveRecipe );
 app.post( '/favourite', metaController.favourite );
 app.post( '/karma', metaController.karma );

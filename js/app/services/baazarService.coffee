@@ -13,7 +13,7 @@ class Baazar
 		@myFavRecipesUrl  		= "#{@domain}/myFavourite"		# NEW 10
 		@topTenWeekUrl  		= "#{@domain}/topTenWeek"		# TOP TEN OF CURRENT WEEK
 		@newestRecipesUrl  		= "#{@domain}/newestRecipes"		# NEW 10
-
+		@getRecipeUrl 			= "#{@domain}/getRecipe"
 		### POST CALLS ###
 		@postRecipeUrl 			= "#{@domain}/postRecipe"
 		@favRecipeUrl 			= "#{@domain}/favourite"
@@ -60,19 +60,16 @@ class Baazar
 		@$http.post(@updateUserUrl,user)
 		return 
 
-	trending:->
+	getRecipe:(id)->
 		defer = @$q.defer()
-		@$http.get(@trendingUrl)
+		url = "#{@getRecipeUrl}/#{id}"
+
+		@$http.get(url)
 			.success(
 				(response,status) =>
-					@handleGetCall(defer,response)
+					defer.resolve(response)
 					return 
 					)
-			.error(
-				(response,status) =>
-					@handleGetCall(defer,response);
-					return 
-				)
 		defer.promise 
 
 	topTenWeek:->

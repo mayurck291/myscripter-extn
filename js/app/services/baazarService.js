@@ -26,6 +26,7 @@
       this.myFavRecipesUrl = "" + this.domain + "/myFavourite";
       this.topTenWeekUrl = "" + this.domain + "/topTenWeek";
       this.newestRecipesUrl = "" + this.domain + "/newestRecipes";
+      this.getRecipeUrl = "" + this.domain + "/getRecipe";
       /* POST CALLS
       */
 
@@ -69,14 +70,13 @@
       this.$http.post(this.updateUserUrl, user);
     };
 
-    Baazar.prototype.trending = function() {
-      var defer,
+    Baazar.prototype.getRecipe = function(id) {
+      var defer, url,
         _this = this;
       defer = this.$q.defer();
-      this.$http.get(this.trendingUrl).success(function(response, status) {
-        _this.handleGetCall(defer, response);
-      }).error(function(response, status) {
-        _this.handleGetCall(defer, response);
+      url = "" + this.getRecipeUrl + "/" + id;
+      this.$http.get(url).success(function(response, status) {
+        defer.resolve(response);
       });
       return defer.promise;
     };

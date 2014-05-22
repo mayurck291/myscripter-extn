@@ -191,4 +191,27 @@
     });
   };
 
+  exports.getRecipe = function(request, response) {
+    var id,
+      _this = this;
+    id = request.params.id;
+    console.log("getting recipe with id " + id);
+    if (id != null) {
+      return Recipe.findOne({
+        _id: id
+      }).exec(function(error, recipe) {
+        var ingredients;
+        if (error != null) {
+          return response.json({}, 500);
+        } else {
+          ingredients = recipe.ingredients;
+          ingredients.forked = true;
+          return response.json(ingredients, 200);
+        }
+      });
+    } else {
+      return response.json({}, 500);
+    }
+  };
+
 }).call(this);

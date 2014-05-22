@@ -1,7 +1,7 @@
 MonkeyWrench = angular.module 'MonkeyWrench'
 class BaazarController
-	@$inject: ['$scope','$routeParams','$timeout','$route','Baazar','recipes','GPauth','Alert'] 
-	constructor:(@scope,@routeParams,@timeout,@route,@Baazar,@recipes,@gp,@Alert)->
+	@$inject: ['$scope','$routeParams','$timeout','$route','Baazar','recipes','GPauth','Alert','Project'] 
+	constructor:(@scope,@routeParams,@timeout,@route,@Baazar,@recipes,@gp,@Alert,@Project)->
 		### fucking masonary sucks ###
 		reload = localStorage.getItem('reload')
 		if reload? and reload is "true"
@@ -33,6 +33,7 @@ class BaazarController
 		@scope.karma 			= @karma
 		@scope.postComment		= @postComment
 		@scope.disableKarmaSubmit  = @disableKarmaSubmit
+		@scope.install 			= @install
 		@timeout ()=>
 			@scope.$apply ()=>	
 				allTabs = document.getElementsByClassName('tabs')
@@ -136,6 +137,15 @@ class BaazarController
 					@scope.show.docomment 		= false
 					@scope.cf.usercomment 		= null
 				)
-		
+
+	install:(id)=>
+		@Alert.warning("Loading....")
+		@Baazar.getRecipe(id).then((recipe)=>
+				recipe.forked = true
+				@Project.save(recipe)
+				@Alert.success()
+			,()=>
+				@Alert.error("Error occurred ....try later...")
+				)
 
 MonkeyWrench.controller 'BaazarController',BaazarController

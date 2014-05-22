@@ -7,9 +7,9 @@
 
   BaazarController = (function() {
 
-    BaazarController.$inject = ['$scope', '$routeParams', '$timeout', '$route', 'Baazar', 'recipes', 'GPauth', 'Alert'];
+    BaazarController.$inject = ['$scope', '$routeParams', '$timeout', '$route', 'Baazar', 'recipes', 'GPauth', 'Alert', 'Project'];
 
-    function BaazarController(scope, routeParams, timeout, route, Baazar, recipes, gp, Alert) {
+    function BaazarController(scope, routeParams, timeout, route, Baazar, recipes, gp, Alert, Project) {
       var reload,
         _this = this;
       this.scope = scope;
@@ -20,6 +20,9 @@
       this.recipes = recipes;
       this.gp = gp;
       this.Alert = Alert;
+      this.Project = Project;
+      this.install = __bind(this.install, this);
+
       this.postComment = __bind(this.postComment, this);
 
       this.karma = __bind(this.karma, this);
@@ -61,6 +64,7 @@
       this.scope.karma = this.karma;
       this.scope.postComment = this.postComment;
       this.scope.disableKarmaSubmit = this.disableKarmaSubmit;
+      this.scope.install = this.install;
       this.timeout(function() {
         return _this.scope.$apply(function() {
           var allTabs, gg, tab, tabs, _i, _len;
@@ -189,6 +193,18 @@
         _this.Alert.error('Failed to update.Try later...:(');
         _this.scope.show.docomment = false;
         return _this.scope.cf.usercomment = null;
+      });
+    };
+
+    BaazarController.prototype.install = function(id) {
+      var _this = this;
+      this.Alert.warning("Loading....");
+      return this.Baazar.getRecipe(id).then(function(recipe) {
+        recipe.forked = true;
+        _this.Project.save(recipe);
+        return _this.Alert.success();
+      }, function() {
+        return _this.Alert.error("Error occurred ....try later...");
       });
     };
 

@@ -89,6 +89,8 @@ class Project
 		else
 			return {}
 
+	install:(project)=>
+		
 
 MonkeyWrench = angular.module 'MonkeyWrench'
 MonkeyWrench.service 'Project',['Alert',Project]

@@ -7,7 +7,7 @@
                 <li ng-repeat="recipe in recipes">
                     <figure>
                         <!-- ng-repeat="img in recipe._id.imgs" -->
-                        <img ng-src="{{recipe._id.imgs[0]}}" />
+                        <img style="height:160px" ng-src="{{recipe._id.imgs[0]}}" />
                         <figcaption>
                             <h3>{{recipe._id.title}}</h3>
                             <p>By {{recipe._id.author.name}}</p>
@@ -44,6 +44,13 @@
                                     <span ng-repeat="i in getStars(5)" class="icc" ng-class="{'icon-star2':($index+1) <= recipe.karmac,'icon-star':($index+1) > recipe.karmac}"></span>
                                     <span style="margin-left:3px">({{recipe.karmac}})</span>
                                 </span>
+                                <span class="pull-left det">
+                                    <a href="" class="icc" ng-click="install(recipe._id._id)">
+                                        <span class="icon-magnet"></span>
+                                        <strong>Install</strong>
+                                    </a>
+                                </span>
+
                             </div>
                             <!-- </div> -->
                         </figcaption>
