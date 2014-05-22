@@ -14,53 +14,62 @@ class Project
 			autoApply:no,
 			forked	:false
 
+	isEmpty:(value)->
+		[null,undefined,""].indexOf(value) > -1
+
 	nextSequence:->
-		seq = localStorage.getItem 'sequence'
+		seq = $.jStorage.get('sequence')
 		if seq?
-			localStorage.set( 'sequence', seq + 1 )
+			$.jStorage.set( 'sequence', seq + 1 )
 			return seq
 		else
-			localStorage.set( 'sequence', 2 )
+			$.jStorage.set( 'sequence', 2 )
 			return 1
 
 	getIndices:->
-		indexes = localStorage.get( 'prjmyindexes_9' )
+		indexes = $.jStorage.get( 'prjmyindexes_9' )
 		if indexes?
 			return indexes
 		else
 			return {}  
 
 	saveIndices:( indexes )->
-		localStorage.setItem( 'prjmyindexes_9', indexes )
+		$.jStorage.set( 'prjmyindexes_9', indexes )
 
 	saveProject :( id, project )->
-		localStorage.setItem( id, project )
+		$.jStorage.set( id, project )
 		@Alert.success( "Hurrah.!! Project saved successfully" )
 
 	save: ( project ,old_url)->
- 
-		if not project.id?
-			project.id = nextSequence( )
-
-		saveProject( project.id, project )
+		if @isEmpty(project.id)
+			project.id = @nextSequence( )
+		console.log("saving project",project)
+		@saveProject( project.id, project )
 
 		all_indexes = @getIndices( )
+		console.log("all indices",all_indexes)
 
 		cur_url = project.url
 
-		if not all_indexes[ cur_url ]?
+		console.log("is empty index for #{cur_url}")
+		if @isEmpty(all_indexes[ cur_url ])
 			all_indexes[ cur_url ] = [ ]
 
-		if not old_url?
+		console.log("empty old url to #{cur_url}")
+		if @isEmpty(old_url)
 			old_url = cur_url
 
+		console.log("check index of #{project.id} in #{cur_url} index #{all_indexes[cur_url]}")
 		if all_indexes[ cur_url ].indexOf( project.id ) is -1
 			all_indexes[ cur_url ].push( project.id )
+
+		console.log("after update #{project.id} in #{cur_url} index #{all_indexes[cur_url]}")
 
 		if cur_url isnt old_url and all_indexes[ old_url ] and all_indexes[ old_url ].indexOf( project.id ) > -1
 			all_indexes[ old_url ].splice( all_indexes[ old_url ].indexOf( project.id ), 1 )
 
-		saveIndices( all_indexes )
+		console.log("if edition remove old entry from indices #{project.id} in old url #{old_url} index #{all_indexes[old_url]}")
+		@saveIndices( all_indexes )
 		return
 
 	delete_project:(project)->
@@ -71,12 +80,12 @@ class Project
 		return
 
 	get_project:( id )->
-		return localStorage.getItem( id );
+		return $.jStorage.get( id );
 
 	get_all_projects:->
-		projects = localStorage.getItem( 'prjmyscripts_9' ) 
+		projects = $.jStorage.get( 'prjmyscripts_9' ) 
 		if projects isnt null and projects isnt undefined
-			return localStorage.getItem( 'prjmyscripts_9' )
+			return $.jStorage.get( 'prjmyscripts_9' )
 		else
 			return {}
 

@@ -34,7 +34,6 @@
       */
 
       reload = localStorage.getItem('reload');
-      console.log("reload is of type", typeof reload);
       if ((reload != null) && reload === "true") {
         console.log("will reload");
         localStorage.setItem('reload', false);
@@ -155,7 +154,7 @@
             },
             body: body
           };
-          recipe.karma.push(obj);
+          recipe.karma.unshift(obj);
         }
         _this.scope.fm.karma = 1;
         _this.scope.fm.body = null;
@@ -182,7 +181,7 @@
           body: _this.scope.cf.usercomment,
           date: Date.now()
         };
-        recipe._id.comments.push(obj);
+        recipe._id.comments.unshift(obj);
         _this.scope.show.docomment = false;
         _this.scope.cf.usercomment = null;
         return _this.Alert.success('Yeah ....!!..');

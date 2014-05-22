@@ -7,16 +7,18 @@
 
   NewProjectController = (function() {
 
-    NewProjectController.$inject = ['$scope', '$routeParams', 'Baazar', 'Project'];
+    NewProjectController.$inject = ['$scope', '$routeParams', 'Baazar', 'Project', 'Alert'];
 
-    function NewProjectController(scope, routeParams, Baazar, Project) {
+    function NewProjectController(scope, routeParams, Baazar, Project, Alert) {
       var _this = this;
       this.scope = scope;
       this.routeParams = routeParams;
       this.Baazar = Baazar;
-      this.create = __bind(this.create, this);
+      this.Project = Project;
+      this.Alert = Alert;
+      this.save = __bind(this.save, this);
 
-      this.scope.curProject = Project["new"]();
+      this.scope.curProject = this.Project["new"]();
       this.scope.curProject.name = 'parin rocks';
       setTimeout(function() {
         var cbtab, tabs;
@@ -24,10 +26,15 @@
         return cbtab = new CBPFWTabs(tabs);
       }, 300);
       this.scope.msg = "hello world";
+      this.scope.save = this.save;
       return;
     }
 
-    NewProjectController.prototype.create = function() {};
+    NewProjectController.prototype.save = function() {
+      console.log("saving....");
+      this.Project.save(angular.copy(this.scope.curProject));
+      return this.Alert.success("Hurrah....project saved...");
+    };
 
     return NewProjectController;
 

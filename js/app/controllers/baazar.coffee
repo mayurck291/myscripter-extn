@@ -4,7 +4,6 @@ class BaazarController
 	constructor:(@scope,@routeParams,@timeout,@route,@Baazar,@recipes,@gp,@Alert)->
 		### fucking masonary sucks ###
 		reload = localStorage.getItem('reload')
-		console.log "reload is of type",typeof reload
 		if reload? and reload is "true"
 			console.log "will reload"
 			localStorage.setItem('reload',no)
@@ -97,7 +96,7 @@ class BaazarController
 							img	:user.img,
 							name:user.name
 						body:body
-						recipe.karma.push(obj)
+						recipe.karma.unshift(obj)
 
 					# @scope.fm 			= {}
 					@scope.fm.karma		= 1
@@ -126,7 +125,7 @@ class BaazarController
 							name:@scope.user.name
 						body: @scope.cf.usercomment
 						date:Date.now()
-					recipe._id.comments.push(obj)
+					recipe._id.comments.unshift(obj)
 
 					@scope.show.docomment 		= false
 					@scope.cf.usercomment 		= null

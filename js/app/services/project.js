@@ -25,21 +25,25 @@
       };
     };
 
+    Project.prototype.isEmpty = function(value) {
+      return [null, void 0, ""].indexOf(value) > -1;
+    };
+
     Project.prototype.nextSequence = function() {
       var seq;
-      seq = localStorage.getItem('sequence');
+      seq = $.jStorage.get('sequence');
       if (seq != null) {
-        localStorage.set('sequence', seq + 1);
+        $.jStorage.set('sequence', seq + 1);
         return seq;
       } else {
-        localStorage.set('sequence', 2);
+        $.jStorage.set('sequence', 2);
         return 1;
       }
     };
 
     Project.prototype.getIndices = function() {
       var indexes;
-      indexes = localStorage.get('prjmyindexes_9');
+      indexes = $.jStorage.get('prjmyindexes_9');
       if (indexes != null) {
         return indexes;
       } else {
@@ -48,35 +52,42 @@
     };
 
     Project.prototype.saveIndices = function(indexes) {
-      return localStorage.setItem('prjmyindexes_9', indexes);
+      return $.jStorage.set('prjmyindexes_9', indexes);
     };
 
     Project.prototype.saveProject = function(id, project) {
-      localStorage.setItem(id, project);
+      $.jStorage.set(id, project);
       return this.Alert.success("Hurrah.!! Project saved successfully");
     };
 
     Project.prototype.save = function(project, old_url) {
       var all_indexes, cur_url;
-      if (!(project.id != null)) {
-        project.id = nextSequence();
+      if (this.isEmpty(project.id)) {
+        project.id = this.nextSequence();
       }
-      saveProject(project.id, project);
+      console.log("saving project", project);
+      this.saveProject(project.id, project);
       all_indexes = this.getIndices();
+      console.log("all indices", all_indexes);
       cur_url = project.url;
-      if (!(all_indexes[cur_url] != null)) {
+      console.log("is empty index for " + cur_url);
+      if (this.isEmpty(all_indexes[cur_url])) {
         all_indexes[cur_url] = [];
       }
-      if (!(old_url != null)) {
+      console.log("empty old url to " + cur_url);
+      if (this.isEmpty(old_url)) {
         old_url = cur_url;
       }
+      console.log("check index of " + project.id + " in " + cur_url + " index " + all_indexes[cur_url]);
       if (all_indexes[cur_url].indexOf(project.id) === -1) {
         all_indexes[cur_url].push(project.id);
       }
+      console.log("after update " + project.id + " in " + cur_url + " index " + all_indexes[cur_url]);
       if (cur_url !== old_url && all_indexes[old_url] && all_indexes[old_url].indexOf(project.id) > -1) {
         all_indexes[old_url].splice(all_indexes[old_url].indexOf(project.id), 1);
       }
-      saveIndices(all_indexes);
+      console.log("if edition remove old entry from indices " + project.id + " in old url " + old_url + " index " + all_indexes[old_url]);
+      this.saveIndices(all_indexes);
     };
 
     Project.prototype.delete_project = function(project) {
@@ -88,14 +99,14 @@
     };
 
     Project.prototype.get_project = function(id) {
-      return localStorage.getItem(id);
+      return $.jStorage.get(id);
     };
 
     Project.prototype.get_all_projects = function() {
       var projects;
-      projects = localStorage.getItem('prjmyscripts_9');
+      projects = $.jStorage.get('prjmyscripts_9');
       if (projects !== null && projects !== void 0) {
-        return localStorage.getItem('prjmyscripts_9');
+        return $.jStorage.get('prjmyscripts_9');
       } else {
         return {};
       }

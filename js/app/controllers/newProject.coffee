@@ -1,10 +1,10 @@
 MonkeyWrench = angular.module 'MonkeyWrench'
 
 class NewProjectController
-	@$inject: ['$scope','$routeParams','Baazar','Project'] 
+	@$inject: ['$scope','$routeParams','Baazar','Project','Alert'] 
 
-	constructor:(@scope,@routeParams,@Baazar,Project)->
-		@scope.curProject = Project.new()
+	constructor:(@scope,@routeParams,@Baazar,@Project,@Alert)->
+		@scope.curProject = @Project.new()
 		@scope.curProject.name = 'parin rocks'
 		setTimeout ()=>
 			tabs 	= new CBPFWTabs document.getElementById('form')
@@ -12,9 +12,13 @@ class NewProjectController
 		,300  
 
 		@scope.msg = "hello world"
+		@scope.save = @save
 		return
 
-	create:=>
+	save:()=>
+		console.log "saving...."
+		@Project.save(angular.copy(@scope.curProject))
+		@Alert.success("Hurrah....project saved...")
 		
 
 
