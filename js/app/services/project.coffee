@@ -1,5 +1,6 @@
 class Project
 	constructor:(@Alert)->
+
 	new:()->
 		template = 
 			name	:null,
@@ -10,7 +11,8 @@ class Project
 			js		:null,
 			css 	:null,
 			enabled :yes,
-			autoApply:no
+			autoApply:no,
+			forked	:false
 
 	nextSequence:->
 		seq = localStorage.getItem 'sequence'
@@ -28,7 +30,7 @@ class Project
 		else
 			return {}  
 
-	saveIndices:->( indexes ) {
+	saveIndices:( indexes )->
 		localStorage.setItem( 'prjmyindexes_9', indexes )
 
 	saveProject :( id, project )->
@@ -66,3 +68,18 @@ class Project
 		localStorage.removeItem( project.id )
 		all_indexes[ project.url ].splice( all_indexes[ project.url ].indexOf( $scope.cur_project.id ), 1 )
 		saveIndices( all_indexes )
+		return
+
+	get_project:( id )->
+		return localStorage.getItem( id );
+
+	get_all_projects:->
+		projects = localStorage.getItem( 'prjmyscripts_9' ) 
+		if projects isnt null and projects isnt undefined
+			return localStorage.getItem( 'prjmyscripts_9' )
+		else
+			return {}
+
+
+MonkeyWrench = angular.module 'MonkeyWrench'
+MonkeyWrench.service 'Project',['Alert',Project]

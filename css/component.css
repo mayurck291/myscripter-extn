@@ -438,116 +438,9 @@ span.nav-close:before {
 }
 .cbp-mc-form label {
     display: block;
-    padding: 40px 5px 5px 2px;
-    font-size: 1.1em;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    cursor: pointer;
-}
-.cbp-mc-form input, .cbp-mc-form textarea, .cbp-mc-form select {
-    font-family:'Lato', Calibri, Arial, sans-serif;
-    line-height: 1.5;
-    font-size: 1.4em;
-    padding: 5px 10px;
-    color: #47a3da;
-    display: block;
-    width: 100%;
-    background: transparent;
-}
-.cbp-mc-form input, .cbp-mc-form textarea {
-    border: 3px solid #47a3da;
-}
-.cbp-mc-form textarea {
-    min-height: 200px;
-}
-.cbp-mc-form input:focus, .cbp-mc-form textarea:focus, .cbp-mc-form label:active + input, .cbp-mc-form label:active + textarea {
-    outline: none;
-    border: 3px solid #47a3da;
-}
-.cbp-mc-form select:focus {
-    outline: none;
-}
-::-webkit-input-placeholder {
-    opacity: 0.4;
-    /* WebKit browsers */
-    color: #47a3da;
-    font-style: italic;
-}
-:-moz-placeholder {
-    opacity: 0.4;
-    /* Mozilla Firefox 4 to 18 */
-    color: #47a3da;
-    font-style: italic;
-}
-::-moz-placeholder {
-    opacity: 0.4;
-    /* Mozilla Firefox 19+ */
-    color: #47a3da;
-    font-style: italic;
-}
-:-ms-input-placeholder {
-    opacity: 0.4;
-    /* Internet Explorer 10+ */
-    color: #47a3da;
-    font-style: italic;
-}
-.cbp-mc-submit-wrap {
-    text-align: center;
-    padding-top: 40px;
-    clear: both;
-}
-.cbp-mc-form input.cbp-mc-submit {
-    background: #47a3da;
-    border: none;
-    color: #47a3da;
-    width: auto;
-    cursor: pointer;
-    text-transform: uppercase;
-    display: inline-block;
-    padding: 15px 30px;
-    font-size: 1.1em;
-    border-radius: 2px;
-    letter-spacing: 1px;
-}
-.cbp-mc-form input.cbp-mc-submit:hover {
-    background: #1478b1;
-}
-@media screen and (max-width: 70em) {
-    .cbp-mc-column {
-        width: 50%;
-    }
-    .cbp-mc-column:nth-child(3) {
-        width: 100%;
-    }
-}
-@media screen and (max-width: 48em) {
-    .cbp-mc-column {
-        width: 100%;
-        padding: 10px;
-    }
-}
-.cbp-mc-form {
-    position: relative;
-}
-/* Clearfix hack by Nicolas Gallagher: http://nicolasgallagher.com/micro-clearfix-hack/ */
- .cbp-mc-form:before, .cbp-mc-form:after {
-    content:" ";
-    display: table;
-}
-.cbp-mc-form:after {
-    clear: both;
-}
-.cbp-mc-column {
-    width: 33%;
-    padding: 10px 30px;
-    float: left;
-}
-.cbp-mc-form label {
-    display: block;
-    padding: 40px 5px 5px 2px;
-    font-size: 1.1em;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    padding: 21px 5px 5px 2px;
+    font-size: 1em;
+    /*text-transform: uppercase;*/
     cursor: pointer;
 }
 .cbp-mc-form input, .cbp-mc-form textarea, .cbp-mc-form select {
@@ -619,7 +512,7 @@ span.nav-close:before {
 .cbp-mc-form input.cbp-mc-submit:hover {
     background: #1478b1;
 }
-@media screen and (max-width: 70em) {
+/*@media screen and (max-width: 70em) {
     .cbp-mc-column {
         width: 50%;
     }
@@ -632,8 +525,8 @@ span.nav-close:before {
         width: 100%;
         padding: 10px;
     }
-}
-.drop-down ul {
+}*/
+ .drop-down ul {
     -webkit-font-smoothing:antialiased;
     background: #47a3da;
     list-style: none;

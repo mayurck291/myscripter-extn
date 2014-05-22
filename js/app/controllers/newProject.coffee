@@ -1,15 +1,21 @@
 MonkeyWrench = angular.module 'MonkeyWrench'
+
 class NewProjectController
-	@$inject: ['$scope','$routeParams','Baazar'] 
-	constructor:(@scope,@routeParams,@Baazar,@recipes,userInfo)->
-		@scope.recipes = recipes
-		@scope.userInfo = userInfo;
+	@$inject: ['$scope','$routeParams','Baazar','Project'] 
+
+	constructor:(@scope,@routeParams,@Baazar,Project)->
+		@scope.curProject = Project.new()
+		@scope.curProject.name = 'parin rocks'
 		setTimeout ()=>
 			tabs 	= new CBPFWTabs document.getElementById('form')
-			new CBPFWTabs tabs
-		,1000  
+			cbtab 	= new CBPFWTabs tabs
+		,300  
 
 		@scope.msg = "hello world"
 		return
+
+	create:=>
 		
+
+
 MonkeyWrench.controller 'NewProjectController',NewProjectController

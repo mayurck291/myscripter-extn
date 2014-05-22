@@ -223,17 +223,6 @@ function MyScriptsController( $scope, $http, alertService, GPauth, Baazar ) {
         $scope.cur_project.external.css.splice( key, 1 );
     };
 
-    $scope.move_up = function ( key, array ) {
-        var value = array[ key ];
-        array[ key ] = array[ key - 1 ];
-        array[ key - 1 ] = value;
-    };
-
-    $scope.move_down = function ( key, array ) {
-        var value = array[ key ];
-        array[ key ] = array[ key + 1 ];
-        array[ key + 1 ] = value;
-    };
 
     function nullOrEmpty( input ) {
         return [ '', undefined, null ].indexOf( input ) > -1;

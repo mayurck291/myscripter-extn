@@ -25,22 +25,45 @@
         <div class="content">
             <section id="settings">
                 <label for="name">Name</label>
-                <input type="text" id="name" name="name" placeholder="e.g. Google Beautify">
+                <input ng-model="curProject.name" type="text" id="name" name="name" placeholder="e.g. Google Beautify">
+
                 <label for="URL">URL</label>
-                <input type="text" id="URL" name="URL" placeholder="e.g. https://www.google.co.in">
+                <input ng-model="curProject.url" type="text" id="URL" name="URL" placeholder="e.g. https://www.google.co.in">
+
+
                 <label for="URL">External JS URL</label>
                 <input type="text" id="URL" name="URL" placeholder="e.g. http://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.9/angular-route.js">
+
                 <label for="URL">External CSS URL</label>
                 <input type="text" id="URL" name="URL" placeholder="e.g. http://example.com/css/beautify.css">
+
+
+                <div class="sixteen columns">
+                    <br>
+                    <div class="three columns pull-left">
+                        Enabled
+                        <a href="" ng-click="curProject.enabled = !curProject.enabled">
+                            <span class="icc" ng-class="{'icon-on':curProject.enabled,'icon-off':!curProject.enabled}" style="font-size: larger;"></span>
+                        </a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </div>
+                    <div class="three columns" style="margin-left:50px">
+                        Auto Apply
+                        <a href="" ng-click="curProject.autoApply = !curProject.autoApply">
+                            <span class="icc" ng-class="{'icon-on':curProject.autoApply,'icon-off':!curProject.autoApply}" style="font-size: larger;"></span>
+                        </a>
+                    </div>
+                </div>
+
             </section>
             <section id="js">
-                <textarea name="" id="" cols="30" rows="19"></textarea>
+                <textarea ng-model="curProject.js" name="" id="" cols="30" rows="19"></textarea>
             </section>
             <section id="css">
-                <textarea name="" id="" cols="30" rows="19"></textarea>
+                <textarea ng-model="curProject.css" name="" id="" cols="30" rows="19"></textarea>
             </section>
             <div class="cbp-mc-submit-wrap">
-                <input class="cbp-mc-submit" type="submit" value="Save" />
+                <input ng-click="save()" class="cbp-mc-submit" type="submit" value="Save" />
             </div>
         </div>
 
