@@ -9,10 +9,10 @@ class EditProjectController
 		if pid isnt null and pid isnt undefined
 			@scope.curProject = @Project.get(pid)
 		else
-			@location.href = '/'
+			@location.path('/')
 
 		if @scope.curProject is null or @scope.curProject is undefined
-			@location.href = '/'
+			@location.path('/')
 
 		console.log "pid is #{pid}"
 		######################################################################################

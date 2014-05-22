@@ -24,10 +24,10 @@
       if (pid !== null && pid !== void 0) {
         this.scope.curProject = this.Project.get(pid);
       } else {
-        this.location.href = '/';
+        this.location.path('/');
       }
       if (this.scope.curProject === null || this.scope.curProject === void 0) {
-        this.location.href = '/';
+        this.location.path('/');
       }
       console.log("pid is " + pid);
       this.scope.oldurl = this.scope.curProject.url;
