@@ -69,7 +69,7 @@ class BodyController
 		project.enabled = !project.enabled
 		@Project.save(project)
 		@Alert.success("Hurray.....Recipe saved...")
-		
+
 	edit:(project)=>
 		if project.forked
 			@Alert.error("Can't edit installed Recipe.....instead FORK it...")
@@ -77,6 +77,12 @@ class BodyController
 			p = "/Edit/"+project.id
 			console.log "path is #{p}"
 			@location.path(p)
+
+	fork:(project)=>
+		project.forked = false
+		@Project.save(project)
+		@Alert.success("Successfully forked ...! #{project.name} will appear in 'My Recipes'")
+
 		
 		
 MonkeyWrench.controller 'BodyController',BodyController

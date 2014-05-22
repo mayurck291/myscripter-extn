@@ -19,6 +19,8 @@
       this.gp = gp;
       this.Alert = Alert;
       this.Project = Project;
+      this.fork = __bind(this.fork, this);
+
       this.edit = __bind(this.edit, this);
 
       this.save = __bind(this.save, this);
@@ -110,6 +112,12 @@
         console.log("path is " + p);
         return this.location.path(p);
       }
+    };
+
+    BodyController.prototype.fork = function(project) {
+      project.forked = false;
+      this.Project.save(project);
+      return this.Alert.success("Successfully forked ...! " + project.name + " will appear in 'My Recipes'");
     };
 
     return BodyController;
