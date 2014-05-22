@@ -1,7 +1,17 @@
 <div>
+    <br>
     <button class="cbp-mc-submit" ng-click="openFile()">
         Open screenshots
         <span class="icon-images"></span>
     </button>
+    <span>press ctrl + click to select multiple files</span>
+    <br>
+    <br>
+    <div class="row">
+        <span ng-repeat="img in imgs" class="pull-left">
+            <img style="box-shadow: 0px 0px 15px #999;height:200px;width:300px;margin-right:30px" ng-src="{{img.data}}" alt="img.name">
+        </span>
+    </div>
+    <hr>
     <input style="display:none" type="file" accept="image/*" class="btn btn-warning" name="imgs" id="imgs" title="Import Files" multiple>
 </div>

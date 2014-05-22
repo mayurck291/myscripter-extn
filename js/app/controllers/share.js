@@ -94,6 +94,10 @@
     ShareProjectController.prototype.share = function() {
       var curProject, file, fileSelect, files, formData, requestURL, xhr, _i, _len,
         _this = this;
+      if (!this.scope.signedIn) {
+        this.Alert.error("You must LOG IN in-order to share Recipe.");
+        return;
+      }
       curProject = angular.copy(this.scope.curProject);
       requestURL = this.Baazar.domain + '/saveRecipe';
       fileSelect = document.getElementById('imgs');

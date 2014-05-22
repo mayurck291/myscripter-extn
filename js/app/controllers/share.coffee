@@ -66,6 +66,9 @@ class ShareProjectController
 		@Project.save(@scope.curProject)
 
 	share:()=>
+		unless @scope.signedIn
+			@Alert.error("You must LOG IN in-order to share Recipe.")
+			return
 		curProject = angular.copy(@scope.curProject)
 
 		requestURL = @Baazar.domain + '/saveRecipe'

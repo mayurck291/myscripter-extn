@@ -42,7 +42,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="project in allProjects|filter:{forked:false}">
+                        <tr ng-repeat="project in allProjects|filter:{forked:false} track by $index">
                             <td>{{$index+1}}</td>
                             <td>{{project.name}}</td>
                             <td>{{project.url}}</td>

@@ -5,20 +5,27 @@ MonkeyWrench.directive( 'fileimport', function ( ) {
             // onfileselect: "&"
         },
         controller: function ( $scope, $element, $attrs, $transclude ) {
+            $scope.imgs = [ ]
             $scope.handleFileSelect = function ( evt ) {
                 $scope.filesData = [ ];
                 var files = evt.target.files; // FileList object
                 // console.log( files );
-
-                var f = files[ 0 ];
-                if ( f ) {
-                    var r = new FileReader( );
-                    r.onload = function ( e ) {
-                        var contents = e.target.result;
-                        $scope.$parent.onselect( contents );
+                for ( i = 0; i < files.length; i++ ) {
+                    var f = files[ i ];
+                    if ( f ) {
+                        var r = new FileReader( );
+                        r.onload = function ( e ) {
+                            $scope.$apply( function ( ) {
+                                var img = {}
+                                img.data = e.target.result
+                                img.name = f.name
+                                $scope.imgs.push( img );
+                            } );
+                        }
+                        r.readAsDataURL( f );
                     }
-                    r.readAsDataURL( f );
                 }
+
             }
 
             $scope.openFile = function ( ) {
