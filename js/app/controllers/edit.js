@@ -31,6 +31,7 @@
       }
       if (this.scope.curProject.forked) {
         this.Alert.error('Opps...can not edit installed Recipe...instead FORK it and then make it AWESOME.');
+        this.location.path('/');
       }
       this.scope.oldurl = this.scope.curProject.url;
       setTimeout(function() {

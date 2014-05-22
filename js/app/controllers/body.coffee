@@ -1,8 +1,8 @@
 MonkeyWrench = angular.module 'MonkeyWrench'
 class BodyController
-	@$inject: ['$scope','$routeParams','Baazar','GPauth','Alert','Project'] 
+	@$inject: ['$scope','$routeParams','$location','Baazar','GPauth','Alert','Project'] 
 
-	constructor:(@scope,@routeParams,@Baazar,@gp,@Alert,@Project)->
+	constructor:(@scope,@routeParams,@location,@Baazar,@gp,@Alert,@Project)->
 		@scope.alert 		= @Alert.bind()
 		@scope.signIn 		= @signIn
 		@scope.signOut 		= @signOut
@@ -10,7 +10,6 @@ class BodyController
 		# if Yes get  userinfo
 		projects = @Project.getAll()
 		@scope.projectIds = []
-		@scope.save = @save
 		for project_url,ids of projects
 			@scope.projectIds.push ids...
 
@@ -32,6 +31,11 @@ class BodyController
 			tabs 	= new CBPFWTabs document.getElementById('home')
 			cbtab 	= new CBPFWTabs tabs
 		,300  
+
+		#### Functions ####### 
+		@scope.save = @save
+		@scope.edit = @edit
+
 		return
 
 	getUserInfo :=>
@@ -64,5 +68,15 @@ class BodyController
 	save:(project)=>
 		project.enabled = !project.enabled
 		@Project.save(project)
+		@Alert.success("Hurray.....Recipe saved...")
+		
+	edit:(project)=>
+		if project.forked
+			@Alert.error("Can't edit installed Recipe.....instead FORK it...")
+		else
+			p = "/Edit/"+project.id
+			console.log "path is #{p}"
+			@location.path(p)
+		
 		
 MonkeyWrench.controller 'BodyController',BodyController

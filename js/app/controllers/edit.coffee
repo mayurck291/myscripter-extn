@@ -16,7 +16,7 @@ class EditProjectController
 
 		if @scope.curProject.forked 
 			@Alert.error('Opps...can not edit installed Recipe...instead FORK it and then make it AWESOME.')
-		
+			@location.path('/')
 		######################################################################################
 		@scope.oldurl = @scope.curProject.url
 		

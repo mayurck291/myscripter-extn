@@ -52,17 +52,19 @@
                                 </a>
                             </td>
                             <td>
-                                <a href="#!/Edit/{{project.id}}" ng-click="share" title="Edit {{project.name}}">
-                                    <span class="icon-edit icc"></span>
+                                <a href="" ng-click="edit(project)" title="Edit {{project.name}}">
+                                    <span class="icon-edit icc" style="margin-right:5px"></span>
                                 </a>
-                                <a href="" ng-click="share" title="Share {{project.name}}">
-                                    <span class="icon-share icc"></span>
+                                <a href="" title="Share {{project.name}}">
+                                    <span class="icon-share icc" style="margin-right:5px"></span>
                                 </a>
-                                <a href="" ng-click="share" title="Delete {{project.name}}">
-                                    <span class="icon-remove icc"></span>
+
+                                <a href="" title="Download {{project.name}}">
+                                    <span class="icon-download icc" style="margin-right:5px"></span>
                                 </a>
-                                <a href="" ng-click="share" title="Download {{project.name}}">
-                                    <span class="icon-dowonload icc"></span>
+
+                                <a href="" title="Delete {{project.name}}">
+                                    <span class="icon-remove icc" style="margin-left:23px"></span>
                                 </a>
                             </td>
                         </tr>
@@ -94,7 +96,8 @@
                                     <span class="icc" ng-class="{'icon-on':project.enabled,'icon-off':!project.enabled}" style="font-size: larger;"></span>
                                 </a>
                             </td>
-                            <td>fork,rate,favourite</td>
+                            <td>fork,rate,favourite
+                            </td>
                         </tr>
                         <!-- more rows are possible -->
                     </tbody>

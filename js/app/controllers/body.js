@@ -7,17 +7,20 @@
 
   BodyController = (function() {
 
-    BodyController.$inject = ['$scope', '$routeParams', 'Baazar', 'GPauth', 'Alert', 'Project'];
+    BodyController.$inject = ['$scope', '$routeParams', '$location', 'Baazar', 'GPauth', 'Alert', 'Project'];
 
-    function BodyController(scope, routeParams, Baazar, gp, Alert, Project) {
+    function BodyController(scope, routeParams, location, Baazar, gp, Alert, Project) {
       var id, ids, project_url, projects, _i, _len, _ref, _ref1,
         _this = this;
       this.scope = scope;
       this.routeParams = routeParams;
+      this.location = location;
       this.Baazar = Baazar;
       this.gp = gp;
       this.Alert = Alert;
       this.Project = Project;
+      this.edit = __bind(this.edit, this);
+
       this.save = __bind(this.save, this);
 
       this.signOut = __bind(this.signOut, this);
@@ -31,7 +34,6 @@
       this.scope.signOut = this.signOut;
       projects = this.Project.getAll();
       this.scope.projectIds = [];
-      this.scope.save = this.save;
       for (project_url in projects) {
         ids = projects[project_url];
         (_ref = this.scope.projectIds).push.apply(_ref, ids);
@@ -54,6 +56,8 @@
         tabs = new CBPFWTabs(document.getElementById('home'));
         return cbtab = new CBPFWTabs(tabs);
       }, 300);
+      this.scope.save = this.save;
+      this.scope.edit = this.edit;
       return;
     }
 
@@ -93,7 +97,19 @@
 
     BodyController.prototype.save = function(project) {
       project.enabled = !project.enabled;
-      return this.Project.save(project);
+      this.Project.save(project);
+      return this.Alert.success("Hurray.....Recipe saved...");
+    };
+
+    BodyController.prototype.edit = function(project) {
+      var p;
+      if (project.forked) {
+        return this.Alert.error("Can't edit installed Recipe.....instead FORK it...");
+      } else {
+        p = "/Edit/" + project.id;
+        console.log("path is " + p);
+        return this.location.path(p);
+      }
     };
 
     return BodyController;
