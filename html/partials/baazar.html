@@ -28,15 +28,22 @@
                                 <h3>{{recipe._id.title}}</h3>
                             </div>
                             <div style="color: grey;margin-left: 7px;line-height: 52px;" class="pull-left">
-                                <span class="pull-left">By {{recipe._id.author.name}}||</span>
-                                <span class="pull-left">
+                                <span class="pull-left det">By {{recipe._id.author.name}}</span>
+                                <span class="pull-left det">
                                     <span class="icon-users icc"></span>
-                                    {{recipe.userc}}||</span>
-                                <span class="pull-left">
-                                    <span class=" icon-heart icc"></span>{{recipe.favc}}||</span>
-                                <span class="pull-left">
+                                    <span style="margin-left:3px">
+                                        {{recipe.userc}}
+                                    </span>
+                                </span>
+                                <span class="pull-left det">
+                                    <span class=" icon-heart icc"></span>
+                                    <span style="margin-left:3px">{{recipe.favc}}
+                                    </span>
+                                </span>
+                                <span class="pull-left det">
                                     <span ng-repeat="i in getStars(recipe.karmac)" class="icon-star2 icc"></span>
                                     <span ng-repeat="i in getRemStars(recipe.karmac)" class=" icon-star icc"></span>
+                                    <span style="margin-left:3px">({{recipe.karmac}})</span>
                                 </span>
                             </div>
                             <!-- </div> -->
@@ -67,17 +74,17 @@
                                     <slider srcs="{{recipe._id.imgs}}" />
                                 </section>
                                 <section id="description">
-                                    <p>{{recipe._id.desc}}</p>
+                                    <p style="border: 1px solid;padding: 8px 8px 8px 11px;font-weight: 500;">{{recipe._id.desc}}</p>
                                 </section>
                                 <section id="comments" style="padding: 20px 10px 20px 10px !important;">
                                     <div ng-show="!signedIn" class="comment-msg">
                                         You must LOGIN to comment
                                     </div>
                                     <div ng-show="signedIn">
-                                        <div class="comment-msg" ng-show="!docomment">
-                                            <a href="" ng-click="docomment=true"><b>Comment as {{user.name}}</b></a>
+                                        <div class="comment-msg" ng-show="!show.docomment">
+                                            <a href="" ng-click="show.docomment=true"><b>Comment as {{user.name}}</b></a>
                                         </div>
-                                        <div id="custom comment" ng-show="docomment" class="container" style="">
+                                        <div id="custom comment" ng-show="show.docomment" class="container" style="">
                                             <div class="row">
                                                 <div class="two columns">
                                                     <div class="two columns">
@@ -91,9 +98,10 @@
                                                     <div class="tip left">
                                                         <div class="row comment-body">
                                                             <form action="" class="cbp-mc-form">
-                                                                <textarea name="cols" rows="4" cols="50" class="tip left two columns" type="text" placeholder="your comment" ng-model="comment" style="max-width:500px"></textarea>
-                                                                <input class="cbp-mc-submit" style="margin-left: 10px;height: 48px;" ng-disabled="!comment" type="submit">
-                                                                <a href="" ng-show="docomment" ng-click="docomment=false">Cancel</a>
+                                                                <textarea name="cols" rows="4" cols="50" class="tip left two columns" placeholder="Your comment" ng-model="cf.usercomment" style="max-width:500px"></textarea>
+                                                                <input ng-click="postComment(recipe)" class="cbp-mc-submit" style="margin-left: 10px;height: 48px;" ng-disabled="!cf.usercomment" type="submit">
+
+                                                                <a href="" ng-show="show.docomment" ng-click="show.docomment=false">Cancel</a>
                                                             </form>
                                                         </div>
                                                     </div>
@@ -101,7 +109,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div ng-show="!docomment" class="container comments-box">
+                                    <div ng-show="!show.docomment" class="container comments-box">
                                         <div class="row" ng-repeat="comment in recipe._id.comments">
                                             <div class="two columns">
                                                 <div class="two columns">
@@ -129,10 +137,10 @@
                                         You must LOGIN to comment
                                     </div>
                                     <div ng-show="signedIn">
-                                        <div class="comment-msg" ng-show="!docomment">
-                                            <a href="" ng-click="docomment=true"><b>Review as {{user.name}}</b></a>
+                                        <div class="comment-msg" ng-show="!show.dokarma">
+                                            <a href="" ng-click="show.dokarma=true"><b>Review as {{user.name}}</b></a>
                                         </div>
-                                        <div id="custom comment" ng-show="docomment" class="container" style="">
+                                        <div id="custom comment" ng-show="show.dokarma" class="container" style="">
                                             <div class="row">
                                                 <div class="two columns">
                                                     <div class="two columns">
@@ -145,24 +153,24 @@
                                                 <div class="eight columns">
                                                     <div class="tip left">
                                                         <div class="row comment-body">
-                                                            <form name="karmaform" class="cbp-mc-form" ng-init="fm.rating=1">
+                                                            <form name="karmaform" class="cbp-mc-form" ng-init="fm.karma=1">
                                                                 <div class="row">
                                                                     Karma
-                                                                    <span ng-repeat="i in getStars(fm.rating)" class="icon-star2 icc" ng-click="decRating()"></span>
-                                                                    <span ng-repeat="i in getRemStars(fm.rating)" class="icon-star icc" ng-click="incRating()"></span>
-
+                                                                    <a href="" ng-click="rate($index+1)" ng-repeat="i in getStars(5)">
+                                                                        <span class="icc" ng-class="{'icon-star2':($index+1) <= fm.karma,'icon-star':($index+1) > fm.karma}"></span>
+                                                                    </a>
                                                                 </div>
 
                                                                 <textarea name="cols" rows="4" cols="50" class="tip left two columns" type="text" placeholder="your comment" ng-model="fm.body" style="max-width:500px"></textarea>
-                                                                <input class="cbp-mc-submit" style="margin-left: 10px;height: 48px;" ng-disabled="!comment" type="submit">
-                                                                <a href="" ng-show="docomment" ng-click="docomment=false">Cancel</a>
+                                                                <input class="cbp-mc-submit" style="margin-left: 10px;height: 48px;" ng-disabled="disableKarmaSubmit()" type="submit" ng-click="karma(recipe)">
+                                                                <a href="" ng-show="show.dokarma" ng-click="show.dokarma=false">Cancel</a>
                                                             </form>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div id="reviews">
+                                        <div id="reviews" ng-show="!show.dokarma">
                                             <div ng-repeat="karma in recipe.karma" class="row">
                                                 <span ng-repeat="i in getStars(karma.karma)" class="icon-star2 icc"></span>
                                                 <span ng-repeat="i in getRemStars(karma.karma)" class=" icon-star icc"></span>

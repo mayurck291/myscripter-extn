@@ -75,13 +75,7 @@
     logger.info("[ insertMetaInfo ] [ START ]");
     meta = {
       _id: recipe._id,
-      users: [recipe.author],
-      karma: [
-        {
-          user: recipe.author,
-          karma: 8
-        }
-      ]
+      users: [recipe.author]
     };
     meta = new Meta(meta);
     logger.info("[ insertMetaInfo ] new meta is " + meta);

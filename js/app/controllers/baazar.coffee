@@ -1,7 +1,7 @@
 MonkeyWrench = angular.module 'MonkeyWrench'
 class BaazarController
-	@$inject: ['$scope','$routeParams','$timeout','$route','Baazar','recipes','GPauth'] 
-	constructor:(@scope,@routeParams,@timeout,@route,@Baazar,@recipes,@gp)->
+	@$inject: ['$scope','$routeParams','$timeout','$route','Baazar','recipes','GPauth','Alert'] 
+	constructor:(@scope,@routeParams,@timeout,@route,@Baazar,@recipes,@gp,@Alert)->
 		### fucking masonary sucks ###
 		reload = localStorage.getItem('reload')
 		console.log "reload is of type",typeof reload
@@ -21,11 +21,19 @@ class BaazarController
 				@scope.user = null
 				@scope.signedIn = no
 		)
+		@scope.cf 		 		= {}
+		@scope.cf.usercomment 	= null
+		@scope.show 			= {}
+		@scope.show.dokarma 	= false
+		@scope.show.docomment 	= false
 
-		@scope.getStars = @getStars
-		@scope.getRemStars = @getRemStars
-		@scope.incRating = @incRating
-		@scope.decRating = @decRating
+		@scope.getStars 		= @getStars
+		@scope.getRemStars 		= @getRemStars
+		@scope.rate				= @rate;
+		@scope.fm 				= {}
+		@scope.karma 			= @karma
+		@scope.postComment		= @postComment
+		@scope.disableKarmaSubmit  = @disableKarmaSubmit
 		@timeout ()=>
 			@scope.$apply ()=>	
 				allTabs = document.getElementsByClassName('tabs')
@@ -34,18 +42,22 @@ class BaazarController
 					tab = new CBPFWTabs(tabs)
 				localStorage.setItem('reload',yes)
 				gg = new CBPGridGallery(document.getElementById( 'grid-gallery' ))
-		,200  
+		,1000  
 
 	getStars:(range)->
-		[1..range]
+		if range?
+			[1..range]
+		else
+			return []
 
 	getRemStars:(range)->
 		if range is undefined
 			range = 1
+		else if range is 5
+			[]
 		else
-			range += 1
-			
-		[range..10]
+			range +=1
+			[range..5]
 
 	getUserInfo :=>
 		@gp.getUserInfo().then(
@@ -56,20 +68,75 @@ class BaazarController
 					()=>@gp.signOut()
 		)
 
-	incRating:()=>
-		if not @scope.fm?
-			@scop.fm = {} 
-		if @scope.fm.rating >= 5
-			return
-		else
-			@scope.fm.rating -= 1 
+	rate:(star)=>
+		if @scope.fm is null or @scope.fm is undefined
+			@scope.fm = {} 
+		
+		@scope.fm.karma = star 
 
-	decRating:()=>
-		if not @scope.fm?
-			@scop.fm = {} 
-		if @scope.fm.rating >= 5
-			return
-		else
-			@scope.fm.rating -= 1 
+	disableKarmaSubmit:()=>
+		if @scope.fm? and @scope.fm.karma? and @scope.fm.body? then return false else return true
+			
+		
+	karma:(recipe)=>
+		@Baazar.giveKarmaToRecipe(@scope.user._id,recipe['_id']['_id'],@scope.fm.karma,@scope.fm.body).then(
+				()=>
+					
+					found = false
+					for karma,i in recipe.karma
+						if karma.user._id is @scope.user._id
+							recipe.karma[i].body = @scope.fm.body 
+							recipe.karma[i].karma = @scope.fm.karma
+							found = true
+
+					if not found
+						obj = 
+						karma:karma,
+						user:
+							_id	:user._id,
+							img	:user.img,
+							name:user.name
+						body:body
+						recipe.karma.push(obj)
+
+					# @scope.fm 			= {}
+					@scope.fm.karma		= 1
+					@scope.fm.body		= null
+
+					@scope.show.dokarma 		= undefined
+					@Alert.success('Yeah ....!!..')
+
+			,()=>
+					@Alert.error('Failed to update.Try later...:(')
+					@scope.fm.karma		= 1
+					@scope.fm.body		= null
+					@scope.show.dokarma 		= no
+					return
+			)
+		return
+
+	postComment:(recipe)=>
+		@Baazar.postComment(recipe['_id']['_id'],@scope.user._id,@scope.cf.usercomment).then(
+				()=>
+
+					obj = 
+						user:
+							_id	:@scope.user._id,
+							img	:@scope.user.img,
+							name:@scope.user.name
+						body: @scope.cf.usercomment
+						date:Date.now()
+					recipe._id.comments.push(obj)
+
+					@scope.show.docomment 		= false
+					@scope.cf.usercomment 		= null
+					@Alert.success('Yeah ....!!..')
+
+			,()=>
+					@Alert.error('Failed to update.Try later...:(')
+					@scope.show.docomment 		= false
+					@scope.cf.usercomment 		= null
+				)
+		
 
 MonkeyWrench.controller 'BaazarController',BaazarController

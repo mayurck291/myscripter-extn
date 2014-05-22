@@ -198,39 +198,40 @@ class Baazar
 		defer 		= @$q.defer()
 		
 		payload = 
-			_id : id
+			_id :recipeID
 			user:user
-			body:body
+			body:comment
 
-		@$http.post(@postCommentUrl,comment)
+		@$http.post(@postCommentUrl,payload)
 			.success(
 				(response,status) =>
-					@handlePostCall(defer,response)
+					defer.resolve()
 					return 
 					)
 			.error(
 				(response,status) =>
-					@handlePostCall(defer,response);
+					defer.reject()
 					return 
 				)
 		defer.promise 	
 	
-	giveKarmaToRecipe:(user,recipeID,karma)->
+	giveKarmaToRecipe:(user,recipeID,karma,body)->
 		defer 		= @$q.defer()
 		payload 	= 
 			_id : recipeID,
 			user:user,
-			karma:karma
+			karma:karma,
+			body:body
 
 		@$http.post(@giveKarmaToRecipeUrl,payload)
 			.success(
 				(response,status) =>
-					@handlePostCall(defer,response)
+					defer.resolve()
 					return 
 					)
 			.error(
 				(response,status) =>
-					@handlePostCall(defer,response);
+					defer.reject()
 					return 
 				)
 		defer.promise

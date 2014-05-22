@@ -61,21 +61,23 @@
   };
 
   exports.karma = function(request, response) {
-    var addNewEntry, karma, params, query, user, _id;
+    var addNewEntry, body, karma, params, query, user, _id;
     logger.info("[ karma ] START");
     params = request.body;
     _id = params._id;
     user = params.user;
     karma = params.karma;
+    body = params.body;
     logger.info("[ karma ] " + user + " -> " + karma + " -> " + _id);
     addNewEntry = function() {
       var query, updates;
-      logger.info("[ addNewEntry ] START adding new entry for " + user + " -> " + karma + " -> " + _id);
+      logger.info("[ addNewEntry ] START adding new entry for " + user + " -> " + karma + " -> " + body + " -> " + _id);
       updates = {
         '$addToSet': {
           karma: {
-            _id: user,
-            karma: karma
+            user: user,
+            karma: karma,
+            body: body
           }
         }
       };
@@ -91,7 +93,7 @@
     };
     query = {
       _id: _id,
-      'karma._id': user
+      'karma.user': user
     };
     Meta.findOne(query, function(error, doc) {
       var entry, i, _i, _len, _ref;
@@ -107,8 +109,9 @@
         _ref = doc.karma;
         for (i = _i = 0, _len = _ref.length; _i < _len; i = ++_i) {
           entry = _ref[i];
-          if (doc.karma[i]._id === user) {
+          if (doc.karma[i].user === user) {
             doc.karma[i].karma = karma;
+            doc.karma[i].body = body;
             doc.save(function(error, updatedDoc) {
               if (error != null) {
                 logger.info("[ karma ] END try again later....");

@@ -65,7 +65,6 @@ insertMetaInfo = (recipe)->
     meta = 
         _id : recipe._id,
         users : [recipe.author]
-        karma : [{user:recipe.author,karma:8}]
 
     meta = new Meta(meta)
 

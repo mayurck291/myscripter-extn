@@ -7,9 +7,9 @@
 
   BaazarController = (function() {
 
-    BaazarController.$inject = ['$scope', '$routeParams', '$timeout', '$route', 'Baazar', 'recipes', 'GPauth'];
+    BaazarController.$inject = ['$scope', '$routeParams', '$timeout', '$route', 'Baazar', 'recipes', 'GPauth', 'Alert'];
 
-    function BaazarController(scope, routeParams, timeout, route, Baazar, recipes, gp) {
+    function BaazarController(scope, routeParams, timeout, route, Baazar, recipes, gp, Alert) {
       var reload,
         _this = this;
       this.scope = scope;
@@ -19,9 +19,14 @@
       this.Baazar = Baazar;
       this.recipes = recipes;
       this.gp = gp;
-      this.decRating = __bind(this.decRating, this);
+      this.Alert = Alert;
+      this.postComment = __bind(this.postComment, this);
 
-      this.incRating = __bind(this.incRating, this);
+      this.karma = __bind(this.karma, this);
+
+      this.disableKarmaSubmit = __bind(this.disableKarmaSubmit, this);
+
+      this.rate = __bind(this.rate, this);
 
       this.getUserInfo = __bind(this.getUserInfo, this);
 
@@ -45,10 +50,18 @@
         _this.scope.user = null;
         return _this.scope.signedIn = false;
       });
+      this.scope.cf = {};
+      this.scope.cf.usercomment = null;
+      this.scope.show = {};
+      this.scope.show.dokarma = false;
+      this.scope.show.docomment = false;
       this.scope.getStars = this.getStars;
       this.scope.getRemStars = this.getRemStars;
-      this.scope.incRating = this.incRating;
-      this.scope.decRating = this.decRating;
+      this.scope.rate = this.rate;
+      this.scope.fm = {};
+      this.scope.karma = this.karma;
+      this.scope.postComment = this.postComment;
+      this.scope.disableKarmaSubmit = this.disableKarmaSubmit;
       this.timeout(function() {
         return _this.scope.$apply(function() {
           var allTabs, gg, tab, tabs, _i, _len;
@@ -61,30 +74,36 @@
           localStorage.setItem('reload', true);
           return gg = new CBPGridGallery(document.getElementById('grid-gallery'));
         });
-      }, 200);
+      }, 1000);
     }
 
     BaazarController.prototype.getStars = function(range) {
       var _i, _results;
-      return (function() {
-        _results = [];
-        for (var _i = 1; 1 <= range ? _i <= range : _i >= range; 1 <= range ? _i++ : _i--){ _results.push(_i); }
-        return _results;
-      }).apply(this);
+      if (range != null) {
+        return (function() {
+          _results = [];
+          for (var _i = 1; 1 <= range ? _i <= range : _i >= range; 1 <= range ? _i++ : _i--){ _results.push(_i); }
+          return _results;
+        }).apply(this);
+      } else {
+        return [];
+      }
     };
 
     BaazarController.prototype.getRemStars = function(range) {
       var _i, _results;
       if (range === void 0) {
-        range = 1;
+        return range = 1;
+      } else if (range === 5) {
+        return [];
       } else {
         range += 1;
+        return (function() {
+          _results = [];
+          for (var _i = range; range <= 5 ? _i <= 5 : _i >= 5; range <= 5 ? _i++ : _i--){ _results.push(_i); }
+          return _results;
+        }).apply(this);
       }
-      return (function() {
-        _results = [];
-        for (var _i = range; range <= 10 ? _i <= 10 : _i >= 10; range <= 10 ? _i++ : _i--){ _results.push(_i); }
-        return _results;
-      }).apply(this);
     };
 
     BaazarController.prototype.getUserInfo = function() {
@@ -97,26 +116,81 @@
       });
     };
 
-    BaazarController.prototype.incRating = function() {
-      if (!(this.scope.fm != null)) {
-        this.scop.fm = {};
+    BaazarController.prototype.rate = function(star) {
+      if (this.scope.fm === null || this.scope.fm === void 0) {
+        this.scope.fm = {};
       }
-      if (this.scope.fm.rating >= 5) {
+      return this.scope.fm.karma = star;
+    };
 
+    BaazarController.prototype.disableKarmaSubmit = function() {
+      if ((this.scope.fm != null) && (this.scope.fm.karma != null) && (this.scope.fm.body != null)) {
+        return false;
       } else {
-        return this.scope.fm.rating -= 1;
+        return true;
       }
     };
 
-    BaazarController.prototype.decRating = function() {
-      if (!(this.scope.fm != null)) {
-        this.scop.fm = {};
-      }
-      if (this.scope.fm.rating >= 5) {
+    BaazarController.prototype.karma = function(recipe) {
+      var _this = this;
+      this.Baazar.giveKarmaToRecipe(this.scope.user._id, recipe['_id']['_id'], this.scope.fm.karma, this.scope.fm.body).then(function() {
+        var found, i, karma, obj, _i, _len, _ref;
+        found = false;
+        _ref = recipe.karma;
+        for (i = _i = 0, _len = _ref.length; _i < _len; i = ++_i) {
+          karma = _ref[i];
+          if (karma.user._id === _this.scope.user._id) {
+            recipe.karma[i].body = _this.scope.fm.body;
+            recipe.karma[i].karma = _this.scope.fm.karma;
+            found = true;
+          }
+        }
+        if (!found) {
+          obj = {
+            karma: karma,
+            user: {
+              _id: user._id,
+              img: user.img,
+              name: user.name
+            },
+            body: body
+          };
+          recipe.karma.push(obj);
+        }
+        _this.scope.fm.karma = 1;
+        _this.scope.fm.body = null;
+        _this.scope.show.dokarma = void 0;
+        return _this.Alert.success('Yeah ....!!..');
+      }, function() {
+        _this.Alert.error('Failed to update.Try later...:(');
+        _this.scope.fm.karma = 1;
+        _this.scope.fm.body = null;
+        _this.scope.show.dokarma = false;
+      });
+    };
 
-      } else {
-        return this.scope.fm.rating -= 1;
-      }
+    BaazarController.prototype.postComment = function(recipe) {
+      var _this = this;
+      return this.Baazar.postComment(recipe['_id']['_id'], this.scope.user._id, this.scope.cf.usercomment).then(function() {
+        var obj;
+        obj = {
+          user: {
+            _id: _this.scope.user._id,
+            img: _this.scope.user.img,
+            name: _this.scope.user.name
+          },
+          body: _this.scope.cf.usercomment,
+          date: Date.now()
+        };
+        recipe._id.comments.push(obj);
+        _this.scope.show.docomment = false;
+        _this.scope.cf.usercomment = null;
+        return _this.Alert.success('Yeah ....!!..');
+      }, function() {
+        _this.Alert.error('Failed to update.Try later...:(');
+        _this.scope.show.docomment = false;
+        return _this.scope.cf.usercomment = null;
+      });
     };
 
     return BaazarController;

@@ -20,7 +20,8 @@ metaSchema = new Schema(
         type:[
                 {   
                     user:{type:String,ref:'user',index:false},
-                    karma:{type:Number,default:1}
+                    karma:{type:Number,default:1},
+                    body:{type:String,default:""},
                     _id:false,
                     id:false
                 }
@@ -47,7 +48,10 @@ metaSchema
         for k,i in this.karma
             karmac += k.karma
 
-        Math.ceil(karmac/i)
+        if karmac is 0
+            return 0
+        else
+            Math.ceil(karmac/i)
 
 
 

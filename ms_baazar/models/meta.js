@@ -47,6 +47,10 @@
             type: Number,
             "default": 1
           },
+          body: {
+            type: String,
+            "default": ""
+          },
           _id: false,
           id: false
         }
@@ -77,7 +81,11 @@
       k = _ref[i];
       karmac += k.karma;
     }
-    return Math.ceil(karmac / i);
+    if (karmac === 0) {
+      return 0;
+    } else {
+      return Math.ceil(karmac / i);
+    }
   });
 
   Meta = mongoose.model('meta', metaSchema);

@@ -73,13 +73,14 @@ exports.karma = (request,response)->
     _id = params._id
     user = params.user
     karma = params.karma
+    body   = params.body
 
     logger.info "[ karma ] #{user} -> #{karma} -> #{_id}"
 
 
     addNewEntry = ()->
-        logger.info "[ addNewEntry ] START adding new entry for #{user} -> #{karma} -> #{_id}"
-        updates = '$addToSet':{karma:{_id:user,karma:karma}}
+        logger.info "[ addNewEntry ] START adding new entry for #{user} -> #{karma} -> #{body} -> #{_id}"
+        updates = '$addToSet':{karma:{user:user,karma:karma,body:body}}
         query  = _id:_id
         Meta.update {_id:_id},updates,(error,noOfDocsUpdated)->
             logger.info "[ addNewEntry ] END #{user} gave #{karma} to recipe #{_id} , #{error}, updated #{noOfDocsUpdated} docs"
@@ -88,7 +89,7 @@ exports.karma = (request,response)->
 
     query = 
         _id:_id,
-        'karma._id':user
+        'karma.user':user
 
     Meta.findOne query,(error,doc)->
         logger.info "[ karma ] checking if entry exists for #{user} -> #{karma} -> #{_id}"
@@ -98,8 +99,10 @@ exports.karma = (request,response)->
         else if doc?
             logger.info "[ karma ] exists !! updating karma for #{_id} by #{user} to #{karma}"
             for entry,i in doc.karma
-                if doc.karma[i]._id is user
-                    doc.karma[i].karma = karma              
+                # console.log "processing doc #{entry}"
+                if doc.karma[i].user is user
+                    doc.karma[i].karma = karma  
+                    doc.karma[i].body = body            
                     doc.save (error,updatedDoc)->
                         if error?
                             logger.info "[ karma ] END try again later...."

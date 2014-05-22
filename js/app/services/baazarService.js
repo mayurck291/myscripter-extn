@@ -179,31 +179,32 @@
         _this = this;
       defer = this.$q.defer();
       payload = {
-        _id: id,
+        _id: recipeID,
         user: user,
-        body: body
+        body: comment
       };
-      this.$http.post(this.postCommentUrl, comment).success(function(response, status) {
-        _this.handlePostCall(defer, response);
+      this.$http.post(this.postCommentUrl, payload).success(function(response, status) {
+        defer.resolve();
       }).error(function(response, status) {
-        _this.handlePostCall(defer, response);
+        defer.reject();
       });
       return defer.promise;
     };
 
-    Baazar.prototype.giveKarmaToRecipe = function(user, recipeID, karma) {
+    Baazar.prototype.giveKarmaToRecipe = function(user, recipeID, karma, body) {
       var defer, payload,
         _this = this;
       defer = this.$q.defer();
       payload = {
         _id: recipeID,
         user: user,
-        karma: karma
+        karma: karma,
+        body: body
       };
       this.$http.post(this.giveKarmaToRecipeUrl, payload).success(function(response, status) {
-        _this.handlePostCall(defer, response);
+        defer.resolve();
       }).error(function(response, status) {
-        _this.handlePostCall(defer, response);
+        defer.reject();
       });
       return defer.promise;
     };
