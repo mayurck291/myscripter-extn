@@ -98,7 +98,7 @@
       saveIndices(all_indexes);
     };
 
-    Project.prototype.get_project = function(id) {
+    Project.prototype.get = function(id) {
       return $.jStorage.get(id);
     };
 

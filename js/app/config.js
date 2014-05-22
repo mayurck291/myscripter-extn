@@ -19,9 +19,14 @@
       }).when('/New', {
         templateUrl: '/html/partials/new.html',
         controller: 'NewProjectController'
+      }).when('/Edit/:pid', {
+        templateUrl: '/html/partials/new.html',
+        controller: 'EditProjectController'
       }).when('/', {
         templateUrl: '/html/partials/home.html',
         controller: 'BodyController'
+      }).otherwise({
+        redirectTo: '/'
       });
       $locationProvider.html5Mode(false).hashPrefix('!');
     }

@@ -5,13 +5,13 @@ class NewProjectController
 
 	constructor:(@scope,@routeParams,@Baazar,@Project,@Alert)->
 		@scope.curProject = @Project.new()
+		console.log @routeParams
 		@scope.curProject.name = 'parin rocks'
 		setTimeout ()=>
 			tabs 	= new CBPFWTabs document.getElementById('form')
 			cbtab 	= new CBPFWTabs tabs
 		,300  
 
-		@scope.msg = "hello world"
 		@scope.save = @save
 		return
 

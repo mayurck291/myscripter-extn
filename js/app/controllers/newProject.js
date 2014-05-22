@@ -19,13 +19,13 @@
       this.save = __bind(this.save, this);
 
       this.scope.curProject = this.Project["new"]();
+      console.log(this.routeParams);
       this.scope.curProject.name = 'parin rocks';
       setTimeout(function() {
         var cbtab, tabs;
         tabs = new CBPFWTabs(document.getElementById('form'));
         return cbtab = new CBPFWTabs(tabs);
       }, 300);
-      this.scope.msg = "hello world";
       this.scope.save = this.save;
       return;
     }

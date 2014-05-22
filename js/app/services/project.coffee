@@ -79,7 +79,7 @@ class Project
 		saveIndices( all_indexes )
 		return
 
-	get_project:( id )->
+	get:( id )->
 		return $.jStorage.get( id );
 
 	get_all_projects:->
