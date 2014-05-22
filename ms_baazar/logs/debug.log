@@ -14426,3 +14426,47 @@ response from an upstream server.<br />
 14:54:59 - [32minfo[39m: [ karma ] checking if entry exists for parin2092@gmail.com -> 3 -> 5379adf00fce52e33120ea2c
 14:54:59 - [32minfo[39m: [ karma ] exists !! updating karma for 5379adf00fce52e33120ea2c by parin2092@gmail.com to 3
 14:54:59 - [32minfo[39m: [ karma ] END parin2092@gmail.com updated 5379adf00fce52e33120ea2c's karma to 3
+14:58:34 - [32minfo[39m: Getting all meta info of all the recipes
+14:58:34 - [32minfo[39m: sending recip
+14:58:35 - [32minfo[39m: Getting all meta info of all the recipes
+14:58:35 - [32minfo[39m: sending recip
+14:59:00 - [32minfo[39m: Getting all meta info of all the recipes
+14:59:00 - [32minfo[39m: sending recip
+14:59:00 - [32minfo[39m: Getting all meta info of all the recipes
+14:59:00 - [32minfo[39m: sending recip
+14:59:16 - [32minfo[39m: [ karma ] START
+14:59:16 - [32minfo[39m: [ karma ] parin2092@gmail.com -> 5 -> 5379adf00fce52e33120ea2c
+14:59:16 - [32minfo[39m: [ karma ] checking if entry exists for parin2092@gmail.com -> 5 -> 5379adf00fce52e33120ea2c
+14:59:16 - [32minfo[39m: [ karma ] exists !! updating karma for 5379adf00fce52e33120ea2c by parin2092@gmail.com to 5
+14:59:16 - [32minfo[39m: [ karma ] END parin2092@gmail.com updated 5379adf00fce52e33120ea2c's karma to 5
+15:00:17 - [32minfo[39m: Getting all meta info of all the recipes
+15:00:17 - [32minfo[39m: sending recip
+15:00:17 - [32minfo[39m: Getting all meta info of all the recipes
+15:00:17 - [32minfo[39m: sending recip
+15:00:27 - [32minfo[39m: [ karma ] START
+15:00:27 - [32minfo[39m: [ karma ] parin2092@gmail.com -> 3 -> 5379adf00fce52e33120ea2c
+15:00:27 - [32minfo[39m: [ karma ] checking if entry exists for parin2092@gmail.com -> 3 -> 5379adf00fce52e33120ea2c
+15:00:27 - [32minfo[39m: [ karma ] exists !! updating karma for 5379adf00fce52e33120ea2c by parin2092@gmail.com to 3
+15:00:27 - [32minfo[39m: [ karma ] END parin2092@gmail.com updated 5379adf00fce52e33120ea2c's karma to 3
+15:01:26 - [32minfo[39m: Getting all meta info of all the recipes
+15:01:26 - [32minfo[39m: sending recip
+15:01:26 - [32minfo[39m: Getting all meta info of all the recipes
+15:01:26 - [32minfo[39m: sending recip
+15:01:45 - [32minfo[39m: [ karma ] START
+15:01:45 - [32minfo[39m: [ karma ] parin2092@gmail.com -> 3 -> 5379adc30fce52e33120ea2b
+15:01:45 - [32minfo[39m: [ karma ] checking if entry exists for parin2092@gmail.com -> 3 -> 5379adc30fce52e33120ea2b
+15:01:45 - [32minfo[39m: [ karma ] exists !! updating karma for 5379adc30fce52e33120ea2b by parin2092@gmail.com to 3
+15:01:45 - [32minfo[39m: [ karma ] END parin2092@gmail.com updated 5379adc30fce52e33120ea2b's karma to 3
+15:02:45 - [32minfo[39m: Getting all meta info of all the recipes
+15:02:45 - [32minfo[39m: sending recip
+15:02:45 - [32minfo[39m: Getting all meta info of all the recipes
+15:02:45 - [32minfo[39m: sending recip
+15:02:54 - [32minfo[39m: [ karma ] START
+15:02:54 - [32minfo[39m: [ karma ] parin2092@gmail.com -> 5 -> 5379adc30fce52e33120ea2b
+15:02:54 - [32minfo[39m: [ karma ] checking if entry exists for parin2092@gmail.com -> 5 -> 5379adc30fce52e33120ea2b
+15:02:54 - [32minfo[39m: [ karma ] exists !! updating karma for 5379adc30fce52e33120ea2b by parin2092@gmail.com to 5
+15:02:54 - [32minfo[39m: [ karma ] END parin2092@gmail.com updated 5379adc30fce52e33120ea2b's karma to 5
+15:02:57 - [32minfo[39m: Getting all meta info of all the recipes
+15:02:57 - [32minfo[39m: sending recip
+15:02:57 - [32minfo[39m: Getting all meta info of all the recipes
+15:02:57 - [32minfo[39m: sending recip

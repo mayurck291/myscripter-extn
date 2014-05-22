@@ -41,8 +41,7 @@
                                     </span>
                                 </span>
                                 <span class="pull-left det">
-                                    <span ng-repeat="i in getStars(recipe.karmac)" class="icon-star2 icc"></span>
-                                    <span ng-repeat="i in getRemStars(recipe.karmac)" class=" icon-star icc"></span>
+                                    <span ng-repeat="i in getStars(5)" class="icc" ng-class="{'icon-star2':($index+1) <= recipe.karmac,'icon-star':($index+1) > recipe.karmac}"></span>
                                     <span style="margin-left:3px">({{recipe.karmac}})</span>
                                 </span>
                             </div>
@@ -170,11 +169,30 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div id="reviews" ng-show="!show.dokarma">
-                                            <div ng-repeat="karma in recipe.karma" class="row">
-                                                <span ng-repeat="i in getStars(karma.karma)" class="icon-star2 icc"></span>
-                                                <span ng-repeat="i in getRemStars(karma.karma)" class=" icon-star icc"></span>
-                                                by {{karma.user.name}}
+                                        <div id="reviews" ng-show="!show.dokarma" class="container">
+                                            <div class="row" ng-repeat="karma in recipe.karma">
+                                                <div class="two columns">
+                                                    <div class="two columns">
+                                                        <img ng-src="{{karma.user.img}}+&sz=100" alt="{{karma.user.name}}" />
+                                                    </div>
+                                                    <div class="four column avatar">
+                                                        {{karma.user.name}}
+                                                    </div>
+                                                </div>
+                                                <div class="eight columns">
+                                                    <div class="tip left">
+                                                        <div class="row comment-body">
+                                                            <form class="cbp-mc-form">
+                                                                <div class="row">
+                                                                    <span ng-repeat="i in getStars(5)" class="icc" ng-class="{'icon-star2':($index+1) <= karma.karma,'icon-star':($index+1) > karma.karma}"></span>
+                                                                </div>
+                                                                <span class="row date">
+                                                                    {{karma.body}}
+                                                                </span>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
