@@ -1,65 +1,42 @@
-// http://stackoverflow.com/questions/14712463/angularjs-file-drag-and-drop-in-directive
-
-var fd = angular.module( 'fileUpload', [ ] );
-fd.directive( 'fileDropzone', function ( ) {
+MonkeyWrench = angular.module( 'MonkeyWrench' );
+MonkeyWrench.directive( 'fileimport', function ( ) {
     return {
-        restrict: 'A',
         scope: {
-            file: '=',
-            fileName: '='
+            // onfileselect: "&"
         },
-        link: function ( scope, element, attrs ) {
-            var checkSize, isTypeValid, processDragOverOrEnter, validMimeTypes;
-            processDragOverOrEnter = function ( event ) {
-                if ( event != null ) {
-                    event.preventDefault( );
-                }
-                event.dataTransfer.effectAllowed = 'copy';
-                return false;
-            };
-            validMimeTypes = attrs.fileDropzone;
-            checkSize = function ( size ) {
-                var _ref;
-                if ( ( ( _ref = attrs.maxFileSize ) === ( void 0 ) || _ref === '' ) || ( size / 1024 ) / 1024 < attrs.maxFileSize ) {
-                    return true;
-                } else {
-                    alert( "File must be smaller than " + attrs.maxFileSize + " MB" );
-                    return false;
-                }
-            };
-            isTypeValid = function ( type ) {
-                if ( ( validMimeTypes === ( void 0 ) || validMimeTypes === '' ) || validMimeTypes.indexOf( type ) > -1 ) {
-                    return true;
-                } else {
-                    alert( "Invalid file type.  File must be one of following types " + validMimeTypes );
-                    return false;
-                }
-            };
-            element.bind( 'dragover', processDragOverOrEnter );
-            element.bind( 'dragenter', processDragOverOrEnter );
-            return element.bind( 'drop', function ( event ) {
-                var file, name, reader, size, type;
-                if ( event != null ) {
-                    event.preventDefault( );
-                }
-                reader = new FileReader( );
-                reader.onload = function ( evt ) {
-                    if ( checkSize( size ) && isTypeValid( type ) ) {
-                        return scope.$apply( function ( ) {
-                            scope.file = evt.target.result;
-                            if ( angular.isString( scope.fileName ) ) {
-                                return scope.fileName = name;
-                            }
-                        } );
+        controller: function ( $scope, $element, $attrs, $transclude ) {
+            $scope.handleFileSelect = function ( evt ) {
+                $scope.filesData = [ ];
+                var files = evt.target.files; // FileList object
+                // console.log( files );
+
+                var f = files[ 0 ];
+                if ( f ) {
+                    var r = new FileReader( );
+                    r.onload = function ( e ) {
+                        var contents = e.target.result;
+                        $scope.$parent.onselect( contents );
                     }
-                };
-                file = event.dataTransfer.files[ 0 ];
-                name = file.name;
-                type = file.type;
-                size = file.size;
-                reader.readAsDataURL( file );
-                return false;
-            } );
+                    r.readAsDataURL( f );
+                }
+            }
+
+            $scope.openFile = function ( ) {
+                console.log( "-------------------" );
+                console.log( angular.element( document.querySelector( "#imgs" ) ) );
+                angular.element( document.querySelector( "#imgs" ) )[ 0 ].click( );
+            }
+        },
+        // require: 'ngModel', // Array = multiple requires, ? = optional, ^ = check parent elements
+        restrict: 'E', // E = Element, A = Attribute, C = Class, M = Comment
+        // template:
+        templateUrl: '/html/partials/fileimport.html',
+        replace: true,
+        // transclude: true,
+        // compile: function(tElement, tAttrs, function transclude(function(scope, cloneLinkingFn){ return function linking(scope, elm, attrs){}})),
+        link: function ( $scope, iElm, iAttrs, controller ) {
+            // var input = iElm[ 0 ];
+            iElm.on( 'change', $scope.handleFileSelect );
         }
     };
 } );

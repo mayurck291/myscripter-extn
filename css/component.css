@@ -509,7 +509,23 @@ span.nav-close:before {
     border-radius: 2px;
     letter-spacing: 1px;
 }
-.cbp-mc-form input.cbp-mc-submit:hover {
+.cbp-mc-form button.cbp-mc-submit:hover {
+    background: #1478b1;
+}
+.cbp-mc-form button.cbp-mc-submit {
+    background: #47a3da;
+    border: none;
+    color: white;
+    width: auto;
+    cursor: pointer;
+    text-transform: uppercase;
+    display: inline-block;
+    padding: 15px 30px;
+    font-size: 1.1em;
+    border-radius: 2px;
+    letter-spacing: 1px;
+}
+.cbp-mc-form button.cbp-mc-submit:hover {
     background: #1478b1;
 }
 /*@media screen and (max-width: 70em) {

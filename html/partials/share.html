@@ -1,0 +1,24 @@
+<form role="form" name="shareform" class="cbp-mc-form">
+    <div id="form" class="tabs">
+
+        <div class="container">
+            <label for="name">Name</label>
+            <input ng-model="curProject.name" type="text" id="name" name="name" placeholder="e.g. Google Beautify">
+
+            <label for="desc">Description</label>
+            <textarea rows="4" ng-model="curProject.desc" id="desc" name="desc" placeholder="e.g. this is how i beautified twitter .....">
+            </textarea>
+
+            <fileimport></fileimport>
+            <!-- <input type="file" name="imgs" id="imgs" multiple> -->
+            <span>press ctrl + click to select multiple files
+            </span>
+            <span>
+                <img ng-src="" alt="">
+            </span>
+            <div class="cbp-mc-submit-wrap">
+                <button ng-click="share()" class="cbp-mc-submit" type="submit" value="Save" ng-disabled="isDisabled()">Share</button>
+            </div>
+        </div>
+    </div>
+</form>

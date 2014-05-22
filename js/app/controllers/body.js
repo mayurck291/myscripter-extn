@@ -19,6 +19,8 @@
       this.gp = gp;
       this.Alert = Alert;
       this.Project = Project;
+      this.share = __bind(this.share, this);
+
       this.fork = __bind(this.fork, this);
 
       this.edit = __bind(this.edit, this);
@@ -60,6 +62,8 @@
       }, 300);
       this.scope.save = this.save;
       this.scope.edit = this.edit;
+      this.scope.fork = this.fork;
+      this.scope.share = this.share;
       return;
     }
 
@@ -118,6 +122,16 @@
       project.forked = false;
       this.Project.save(project);
       return this.Alert.success("Successfully forked ...! " + project.name + " will appear in 'My Recipes'");
+    };
+
+    BodyController.prototype.share = function(project) {
+      var p;
+      if (project.forked) {
+        return this.Alert.error("Can't share installed Recipe.....");
+      } else {
+        p = "/Share/" + project.id;
+        return this.location.path(p);
+      }
     };
 
     return BodyController;

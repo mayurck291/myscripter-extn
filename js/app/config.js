@@ -22,6 +22,9 @@
       }).when('/Edit/:pid', {
         templateUrl: '/html/partials/new.html',
         controller: 'EditProjectController'
+      }).when('/Share/:pid', {
+        templateUrl: '/html/partials/share.html',
+        controller: 'ShareProjectController'
       }).when('/', {
         templateUrl: '/html/partials/home.html',
         controller: 'BodyController'

@@ -433,6 +433,9 @@
 input[type="submit"]:disabled {
     background:#C3D6E2 !important;
 }
+button:disabled {
+    background:#C3D6E2 !important;
+}
 .comment-msg {
     padding: 10px 5px 10px 17px;
     background: darkgrey;

@@ -35,6 +35,8 @@ class BodyController
 		#### Functions ####### 
 		@scope.save = @save
 		@scope.edit = @edit
+		@scope.fork = @fork
+		@scope.share = @share
 
 		return
 
@@ -83,6 +85,11 @@ class BodyController
 		@Project.save(project)
 		@Alert.success("Successfully forked ...! #{project.name} will appear in 'My Recipes'")
 
-		
+	share:(project)=>
+		if project.forked
+			@Alert.error("Can't share installed Recipe.....")
+		else
+			p = "/Share/"+project.id
+			@location.path(p)
 		
 MonkeyWrench.controller 'BodyController',BodyController
