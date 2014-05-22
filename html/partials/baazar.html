@@ -87,8 +87,10 @@
                                         You must LOGIN to comment
                                     </div>
                                     <div ng-show="signedIn">
-                                        <div class="comment-msg" ng-show="!show.docomment">
-                                            <a href="" ng-click="show.docomment=true"><b>Comment as {{user.name}}</b></a>
+                                        <div ng-show="!show.docomment" style=";font-weight:bold;margin-top:18px;margin-bottom:18px">
+                                            <a href="" style="" ng-click="show.docomment=true">
+                                                <strong style="color:#47a3da !important">Comment as {{user.name}}</strong>
+                                            </a>
                                         </div>
                                         <div id="custom comment" ng-show="show.docomment" class="container" style="">
                                             <div class="row">
@@ -143,8 +145,10 @@
                                         You must LOGIN to comment
                                     </div>
                                     <div ng-show="signedIn">
-                                        <div class="comment-msg" ng-show="!show.dokarma">
-                                            <a href="" ng-click="show.dokarma=true"><b>Review as {{user.name}}</b></a>
+                                        <div ng-show="!show.dokarma" style=";font-weight:bold;margin-top:18px;margin-bottom:18px">
+                                            <a href="" style="" ng-click="show.dokarma=true">
+                                                <strong style="color:#47a3da !important">Review as {{user.name}}</strong>
+                                            </a>
                                         </div>
                                         <div id="custom comment" ng-show="show.dokarma" class="container" style="">
                                             <div class="row">
