@@ -7,15 +7,19 @@
 
   BodyController = (function() {
 
-    BodyController.$inject = ['$scope', '$routeParams', 'Baazar', 'GPauth', 'Alert'];
+    BodyController.$inject = ['$scope', '$routeParams', 'Baazar', 'GPauth', 'Alert', 'Project'];
 
-    function BodyController(scope, routeParams, Baazar, gp, Alert) {
-      var _this = this;
+    function BodyController(scope, routeParams, Baazar, gp, Alert, Project) {
+      var id, ids, project_url, projects, _i, _len, _ref, _ref1,
+        _this = this;
       this.scope = scope;
       this.routeParams = routeParams;
       this.Baazar = Baazar;
       this.gp = gp;
       this.Alert = Alert;
+      this.Project = Project;
+      this.save = __bind(this.save, this);
+
       this.signOut = __bind(this.signOut, this);
 
       this.signIn = __bind(this.signIn, this);
@@ -25,6 +29,19 @@
       this.scope.alert = this.Alert.bind();
       this.scope.signIn = this.signIn;
       this.scope.signOut = this.signOut;
+      projects = this.Project.getAll();
+      this.scope.projectIds = [];
+      this.scope.save = this.save;
+      for (project_url in projects) {
+        ids = projects[project_url];
+        (_ref = this.scope.projectIds).push.apply(_ref, ids);
+      }
+      this.scope.allProjects = [];
+      _ref1 = this.scope.projectIds;
+      for (_i = 0, _len = _ref1.length; _i < _len; _i++) {
+        id = _ref1[_i];
+        this.scope.allProjects.push(Project.get(id));
+      }
       this.gp.load().then(function() {
         return _this.getUserInfo();
       }, function() {
@@ -32,6 +49,11 @@
         _this.scope.signedIn = false;
         return console.log("User not signed in");
       });
+      setTimeout(function() {
+        var cbtab, tabs;
+        tabs = new CBPFWTabs(document.getElementById('home'));
+        return cbtab = new CBPFWTabs(tabs);
+      }, 300);
       return;
     }
 
@@ -67,6 +89,11 @@
       });
       this.scope.user = null;
       this.scope.signedIn = false;
+    };
+
+    BodyController.prototype.save = function(project) {
+      project.enabled = !project.enabled;
+      return this.Project.save(project);
     };
 
     return BodyController;

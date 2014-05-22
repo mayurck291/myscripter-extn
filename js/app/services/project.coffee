@@ -82,10 +82,10 @@ class Project
 	get:( id )->
 		return $.jStorage.get( id );
 
-	get_all_projects:->
-		projects = $.jStorage.get( 'prjmyscripts_9' ) 
+	getAll:->
+		projects = $.jStorage.get( 'prjmyindexes_9' ) 
 		if projects isnt null and projects isnt undefined
-			return $.jStorage.get( 'prjmyscripts_9' )
+			return projects
 		else
 			return {}
 

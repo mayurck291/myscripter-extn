@@ -102,11 +102,11 @@
       return $.jStorage.get(id);
     };
 
-    Project.prototype.get_all_projects = function() {
+    Project.prototype.getAll = function() {
       var projects;
-      projects = $.jStorage.get('prjmyscripts_9');
+      projects = $.jStorage.get('prjmyindexes_9');
       if (projects !== null && projects !== void 0) {
-        return $.jStorage.get('prjmyscripts_9');
+        return projects;
       } else {
         return {};
       }

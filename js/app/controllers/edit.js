@@ -29,7 +29,9 @@
       if (this.scope.curProject === null || this.scope.curProject === void 0) {
         this.location.path('/');
       }
-      console.log("pid is " + pid);
+      if (this.scope.curProject.forked) {
+        this.Alert.error('Opps...can not edit installed Recipe...instead FORK it and then make it AWESOME.');
+      }
       this.scope.oldurl = this.scope.curProject.url;
       setTimeout(function() {
         var cbtab, tabs;

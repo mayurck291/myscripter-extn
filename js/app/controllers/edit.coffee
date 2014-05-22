@@ -14,7 +14,9 @@ class EditProjectController
 		if @scope.curProject is null or @scope.curProject is undefined
 			@location.path('/')
 
-		console.log "pid is #{pid}"
+		if @scope.curProject.forked 
+			@Alert.error('Opps...can not edit installed Recipe...instead FORK it and then make it AWESOME.')
+		
 		######################################################################################
 		@scope.oldurl = @scope.curProject.url
 		

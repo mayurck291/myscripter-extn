@@ -28,10 +28,77 @@
         </nav>
         <div class="content">
             <section id="my">
-
+                <br>
+                <br>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>URL</th>
+                            <th>Enabled</th>
+                            <th>Controls</th>
+                            <!-- more columns are possible -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="project in allProjects|filter:{forked:false}">
+                            <td>{{$index+1}}</td>
+                            <td>{{project.name}}</td>
+                            <td>{{project.url}}</td>
+                            <td>
+                                <a href="" ng-click="save(project)">
+                                    <span class="icc" ng-class="{'icon-on':project.enabled,'icon-off':!project.enabled}" style="font-size: larger;"></span>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="#!/Edit/{{project.id}}" ng-click="share" title="Edit {{project.name}}">
+                                    <span class="icon-edit icc"></span>
+                                </a>
+                                <a href="" ng-click="share" title="Share {{project.name}}">
+                                    <span class="icon-share icc"></span>
+                                </a>
+                                <a href="" ng-click="share" title="Delete {{project.name}}">
+                                    <span class="icon-remove icc"></span>
+                                </a>
+                                <a href="" ng-click="share" title="Download {{project.name}}">
+                                    <span class="icon-dowonload icc"></span>
+                                </a>
+                            </td>
+                        </tr>
+                        <!-- more rows are possible -->
+                    </tbody>
+                </table>
             </section>
             <section id="installed">
-                <textarea name="" id="" cols="30" rows="19"></textarea>
+                <br>
+                <br>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>URL</th>
+                            <th>Enabled</th>
+                            <th>Fork</th>
+                            <!-- more columns are possible -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="project in allProjects|filter:{forked:true}">
+                            <td>{{$index+1}}</td>
+                            <td>{{project.name}}</td>
+                            <td>{{project.url}}</td>
+                            <td>
+                                <a href="" ng-click="save(project)">
+                                    <span class="icc" ng-class="{'icon-on':project.enabled,'icon-off':!project.enabled}" style="font-size: larger;"></span>
+                                </a>
+                            </td>
+                            <td>fork,rate,favourite</td>
+                        </tr>
+                        <!-- more rows are possible -->
+                    </tbody>
+                </table>
             </section>
         </div>
 
