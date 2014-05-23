@@ -18,6 +18,8 @@
       this.gp = gp;
       this.Alert = Alert;
       this.Project = Project;
+      this.home = __bind(this.home, this);
+
       this.importProject = __bind(this.importProject, this);
 
       this["delete"] = __bind(this["delete"], this);
@@ -61,6 +63,7 @@
       this.scope["delete"] = this["delete"];
       this.scope.getDownloadLink = this.getDownloadLink;
       this.scope.importProject = this.importProject;
+      this.scope.home = this.home;
       return;
     }
 
@@ -170,6 +173,10 @@
         _this.Project.save(project);
         return _this.getAllProjects();
       });
+    };
+
+    BodyController.prototype.home = function() {
+      return this.location.path('/');
     };
 
     return BodyController;

@@ -19,6 +19,8 @@
       this.Baazar = Baazar;
       this.Project = Project;
       this.Alert = Alert;
+      this["delete"] = __bind(this["delete"], this);
+
       this.save = __bind(this.save, this);
 
       pid = this.routeParams.pid;
@@ -41,6 +43,7 @@
         return cbtab = new CBPFWTabs(tabs);
       }, 300);
       this.scope.save = this.save;
+      this.scope["delete"] = this["delete"];
       return;
     }
 
@@ -48,6 +51,15 @@
       console.log("saving....");
       this.Project.save(angular.copy(this.scope.curProject), this.scope.oldurl);
       return this.Alert.success("Hurrah....project saved...");
+    };
+
+    EditProjectController.prototype["delete"] = function(project) {
+      if (confirm("Are you sure you want to delete recipe " + project.name)) {
+        this.Project["delete"](angular.copy(project));
+        this.Alert.success("Recipe " + project.name + " deleted...");
+        this.scope.curProject = {};
+        return this.location.path('/');
+      }
     };
 
     return EditProjectController;

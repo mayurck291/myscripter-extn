@@ -32,6 +32,7 @@ class BodyController
 		@scope.delete = @delete
 		@scope.getDownloadLink = @getDownloadLink
 		@scope.importProject = @importProject
+		@scope.home  = @home
 		return
 
 	getAllProjects:=>
@@ -117,5 +118,7 @@ class BodyController
 			@Project.save(project)
 			@getAllProjects()
 
-		
+	home:=>
+		@location.path('/')
+	
 MonkeyWrench.controller 'BodyController',BodyController

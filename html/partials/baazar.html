@@ -50,8 +50,8 @@
                                 </span>
                                 <span class="pull-left det">
                                     <a href="" class="icc" ng-click="install(recipe._id._id)">
-                                        <span class="icon-magnet"></span>
-                                        <strong>Install</strong>
+                                        <h3 class="pull-right">
+                                            <span class="icon-magnet"></span>Install</h3>
                                     </a>
                                 </span>
 
@@ -92,9 +92,11 @@
                                         You must LOGIN to comment
                                     </div>
                                     <div ng-show="signedIn">
-                                        <div ng-show="!show.docomment" style=";font-weight:bold;margin-top:18px;margin-bottom:18px">
-                                            <a href="" style="" ng-click="show.docomment=true">
-                                                <strong style="color:#47a3da !important">Comment as {{user.name}}</strong>
+                                        <div class="pull right" ng-show="!show.docomment" style=";font-weight:bold;margin-bottom:18px">
+                                            <a href="" ng-click="show.docomment=true">
+                                                <strong style="color:#47a3da !important">
+                                                    <span class="icon-bubbles3">Add Comment</span>
+                                                </strong>
                                             </a>
                                         </div>
                                         <div id="custom comment" ng-show="show.docomment" class="container" style="">
@@ -114,7 +116,7 @@
                                                                 <textarea name="cols" rows="4" cols="50" class="tip left two columns" placeholder="Your comment" ng-model="cf.usercomment" style="max-width:500px"></textarea>
                                                                 <input ng-click="postComment(recipe)" class="cbp-mc-submit" style="margin-left: 10px;height: 48px;" ng-disabled="!cf.usercomment" type="submit">
 
-                                                                <a href="" ng-show="show.docomment" ng-click="show.docomment=false">Cancel</a>
+                                                                <a href="" style="color:#47a3da" ng-show="show.docomment" ng-click="show.docomment=false">Cancel</a>
                                                             </form>
                                                         </div>
                                                     </div>
@@ -153,8 +155,10 @@
                                     </div>
                                     <div ng-show="signedIn">
                                         <div ng-show="!show.dokarma" style=";font-weight:bold;margin-top:18px;margin-bottom:18px">
-                                            <a href="" style="" ng-click="show.dokarma=true">
-                                                <strong style="color:#47a3da !important">Review as {{user.name}}</strong>
+                                            <a href="" ng-click="show.dokarma=true">
+                                                <strong style="color:#47a3da !important">
+                                                    <span class="icon-edit">Review</span>
+                                                </strong>
                                             </a>
                                         </div>
                                         <div id="custom comment" ng-show="show.dokarma" class="container" style="">
@@ -180,7 +184,7 @@
 
                                                                 <textarea name="cols" rows="4" cols="50" class="tip left two columns" type="text" placeholder="your comment" ng-model="fm.body" style="max-width:500px"></textarea>
                                                                 <input class="cbp-mc-submit" style="margin-left: 10px;height: 48px;" ng-disabled="disableKarmaSubmit()" type="submit" ng-click="karma(recipe)">
-                                                                <a href="" ng-show="show.dokarma" ng-click="show.dokarma=false">Cancel</a>
+                                                                <a href="" style="color:#47a3da" ng-show="show.dokarma" ng-click="show.dokarma=false">Cancel</a>
                                                             </form>
                                                         </div>
                                                     </div>

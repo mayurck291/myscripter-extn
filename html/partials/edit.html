@@ -64,12 +64,22 @@
             </section>
             <div class="cbp-mc-submit-wrap">
                 <button ng-click="save()" class="cbp-mc-submit">
-                    <span class="icon-disk">Save</span>
+                    <span class="icon-disk">Update</span>
                 </button>
                 <button ng-click="home()" class="cbp-mc-submit">
                     <span class="icon-cancel">Cancel</span>
                 </button>
+                <div>
+                    <br>
+                    <a href="" title="Delete {{curProject.name}}" ng-click="delete(curProject)">
+                        <h2 style=";color:red">
+                            Delete {{curProject.name}}
+                            <span class="icon-remove" style="margin-right:10px"></span>
+                        </h2>
+                    </a>
+                </div>
                 <!-- <input type="submit" value="Save" /> -->
             </div>
         </div>
+
 </form>

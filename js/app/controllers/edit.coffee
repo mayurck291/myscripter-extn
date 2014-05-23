@@ -27,11 +27,19 @@ class EditProjectController
 		,300  
 
 		@scope.save = @save
+		@scope.delete = @delete
 		return
 
 	save:()=>
 		console.log "saving...."
 		@Project.save(angular.copy(@scope.curProject),@scope.oldurl)
 		@Alert.success("Hurrah....project saved...")
-		
+	
+	delete:(project)=>
+		if confirm "Are you sure you want to delete recipe #{project.name}"
+			@Project.delete(angular.copy(project))
+			@Alert.success("Recipe #{project.name} deleted...")
+			@scope.curProject = {}
+			@location.path('/')
+			
 MonkeyWrench.controller 'EditProjectController',EditProjectController

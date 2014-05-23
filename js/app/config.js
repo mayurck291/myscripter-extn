@@ -20,7 +20,7 @@
         templateUrl: '/html/partials/new.html',
         controller: 'NewProjectController'
       }).when('/Edit/:pid', {
-        templateUrl: '/html/partials/new.html',
+        templateUrl: '/html/partials/edit.html',
         controller: 'EditProjectController'
       }).when('/Share/:pid', {
         templateUrl: '/html/partials/share.html',
