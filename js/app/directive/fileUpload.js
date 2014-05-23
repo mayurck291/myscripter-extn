@@ -75,7 +75,8 @@ MonkeyWrench.directive( 'download', function ( ) {
             delete obj.id;
             data = "text/json;charset=utf-8," + encodeURIComponent( JSON.stringify( obj ) );
             // console.log( obj.name )
-            iElm.html( '<a  href="data:' + data + '" download="' + obj.name + '.json"><span class="icon-download icc" style="margin-right:10px"></span></a>' );
+            name = obj[ 'name' ] + '.json';
+            iElm.html( '<a title="Download ' + obj.name + '" href="data:' + data + '" download="' + name + '"><span class="icon-download icc" style="margin-right:10px"></span></a>' );
         }
     };
 } );

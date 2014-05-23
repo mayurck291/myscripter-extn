@@ -93,12 +93,13 @@
                                         <!-- <a href="{{getDownloadLink(project)}}" title="Download {{project.name}}">
                                     <span class="icon-download icc" style="margin-right:10px"></span>
                                 </a> -->
-                                        <download project="project"></download>
-                                        <a href="" title="Delete {{project.name}}" ng-click="delete(project)">
-                                            <span class="icon-remove icc" style="margin-right:10px"></span>
-                                        </a>
                                         <a href="" title="Fork {{project.name}}" ng-click="fork(project)">
                                             <span class="icon-forkandspoon icc" style="margin-right:10px"></span>
+                                        </a>
+                                        <download project="project"></download>
+
+                                        <a href="" title="Delete {{project.name}}" ng-click="delete(project)">
+                                            <span class="icon-remove icc" style="margin-right:10px"></span>
                                         </a>
                                     </td>
                                 </tr>

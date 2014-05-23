@@ -95,15 +95,16 @@ function myScripter( tab, popUpClicked ) {
             console.log( "[end] gettng data for " + idsx );
 
             // when url is matched against localstorage
+            if ( false === d.enabled ) {
+                console.log( cur_regex + " - url has enabled as false." );
+                continue;
+            }
 
             if ( false === d.autoApply && false == popUpClicked ) {
                 console.log( cur_regex + " - url has autoApply as false." );
                 continue;
             }
-            if ( false === d.enabled ) {
-                console.log( cur_regex + " - url has enabled as false." );
-                continue;
-            }
+
             un = [ "", undefined, null ];
             if ( un.indexOf( d.js ) == -1 ) {
                 inline_js = d.js;
