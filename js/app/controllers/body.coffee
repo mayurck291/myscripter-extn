@@ -108,13 +108,14 @@ class BodyController
 			@getAllProjects()
 
 	importProject:(project)=>
-		project = angular.fromJson(project)
-		project.forked = false
-		project.name += " (imported)"
-		delete project.id
-		@Project.save(project)
-		@Alert.success("Successfully imported recipe ...! #{project.name} will appear in 'My Recipes'")
-		@getAllProjects()
+		@scope.$apply ()=>
+			project = angular.fromJson(project)
+			project.forked = false
+			project.name += " (imported)"
+			delete project.id
+			@Alert.success("Successfully imported recipe ...! #{project.name} will appear in 'My Recipes'")
+			@Project.save(project)
+			@getAllProjects()
 
 		
 MonkeyWrench.controller 'BodyController',BodyController

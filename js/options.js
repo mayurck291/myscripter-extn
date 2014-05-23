@@ -16,7 +16,9 @@ MyScriptsModule.directive( 'fileimport', function ( ) {
                     var r = new FileReader( );
                     r.onload = function ( e ) {
                         var contents = e.target.result;
-                        $scope.$parent.onselect( contents );
+                        $scope.$apply( function ( ) {
+                            $scope.$parent.onselect( contents );
+                        } )
                     }
                     r.readAsText( f );
                 } else {

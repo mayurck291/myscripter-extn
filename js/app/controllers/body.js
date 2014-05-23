@@ -160,13 +160,16 @@
     };
 
     BodyController.prototype.importProject = function(project) {
-      project = angular.fromJson(project);
-      project.forked = false;
-      project.name += " (imported)";
-      delete project.id;
-      this.Project.save(project);
-      this.Alert.success("Successfully imported recipe ...! " + project.name + " will appear in 'My Recipes'");
-      return this.getAllProjects();
+      var _this = this;
+      return this.scope.$apply(function() {
+        project = angular.fromJson(project);
+        project.forked = false;
+        project.name += " (imported)";
+        delete project.id;
+        _this.Alert.success("Successfully imported recipe ...! " + project.name + " will appear in 'My Recipes'");
+        _this.Project.save(project);
+        return _this.getAllProjects();
+      });
     };
 
     return BodyController;
