@@ -16,15 +16,24 @@ class Alert
 		@alert.msg  = msg
 		@alert.show = yes
 		switch msgType
-			when "success" then @alert.class= @classSuccess
-			when "error" then @alert.class= @classError
-			when "warning" then @alert.class= @classWarning
+			when "success" 
+				@alert.class= @classSuccess
+				@alert.type = msgType
+			when "error" 
+				@alert.class= @classError
+				@alert.type = msgType
+			when "warning" 
+				@alert.class= @classWarning
+				@alert.type = msgType
 			else 
 				@alert.class    = "" 
 				@alert.msg      = ""
 				@alert.show     = no
 		#hide alert after
-		@timeout @hide,time
+		if @timeout.cancel(@promise)
+			@promise = @timeout @hide,time
+		else
+			@promise = @timeout @hide,time
 		return
 
 	bind:()=> return @alert

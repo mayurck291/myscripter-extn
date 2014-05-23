@@ -38,19 +38,26 @@
       switch (msgType) {
         case "success":
           this.alert["class"] = this.classSuccess;
+          this.alert.type = msgType;
           break;
         case "error":
           this.alert["class"] = this.classError;
+          this.alert.type = msgType;
           break;
         case "warning":
           this.alert["class"] = this.classWarning;
+          this.alert.type = msgType;
           break;
         default:
           this.alert["class"] = "";
           this.alert.msg = "";
           this.alert.show = false;
       }
-      this.timeout(this.hide, time);
+      if (this.timeout.cancel(this.promise)) {
+        this.promise = this.timeout(this.hide, time);
+      } else {
+        this.promise = this.timeout(this.hide, time);
+      }
     };
 
     Alert.prototype.bind = function() {
