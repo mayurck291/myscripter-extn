@@ -38,8 +38,7 @@
             -->
 
         <nav class="st-menu st-effect-10" id="menu-10">
-            <h2 class="icon icon-stack">
-                <span class="icon-heart2"></span>Monkey Wrench</h2>
+            <h2>Monkey Wrench</h2>
             <ul>
                 <li>
                     <a class="icon icon-data" href="#!/">
@@ -82,18 +81,22 @@
                         <div>
                             <div id="st-trigger-effects" class="pull-left">
                                 <div data-effect="st-effect-10">
-                                    <span class="icon-menu" style="padding: 15px 15px 4px 10px;font-size: 2.5em;
-                                    margin-right: 15px;cursor: pointer;position: relative;top: 9px;border-right: 1px solid;"></span>
+                                    <span class="icon-menu" style="
+                                    margin-right: 15px;padding: 41px 16px 18px 15px;font-size: 1.7em;cursor: pointer;position: relative;top: 15px;border-right: 1px solid;"></span>
                                 </div>
                             </div>
                             <div class="pull-left" style="margin-top: -11px;">
-                                <h1>Monkey Wrench</h1>
+                                <h1>
+                                    Monkey Wrench
+                                    <span class="icon-wrench"></span>
+                                </h1>
                             </div>
                             <span class="pull-right">
                                 <div ng-show="!signedIn" style="margin-right:30px">
                                     <a href="" ng-click="signIn()">
                                         <h3>
-                                            <span class=" icon-user"></span>signIn
+                                            <span class="icon-googleplus"></span>
+                                            Log In
                                         </h3>
                                     </a>
                                 </div>
@@ -107,17 +110,18 @@
                                             <ul>
                                                 <li><a target="_blank" ng-href="{{user.url}}">{{user._id}}</a>
                                                 </li>
-                                                <li><a href="#" ng-click="signOut()">Sign Out</a>
+                                                <li><a href="#" ng-click="signOut()">Sign Out
+                                                <span class=" icon-exit"></span></a>
                                                 </li>
                                             </ul>
                                         </li>
                                     </ul>
                                 </div>
                             </span>
-                            <alert class="position:absolute;top:0;left:0;right:0;height:70px;background:#47a3da;">
-                                <span ng-class="alert.class" ng-show="alert.show">
-                                    {{alert.msg}}===={{alert}}
-                                </span>
+                            <alert>
+                                <div ng-class="alert.class" ng-show="alert.show" style="position: absolute;top: -6px;z-index: 100000000;text-align: center;left: 0px;width: 100%;font-size: 1.5em;">
+                                    {{alert.msg}}
+                                </div>
                             </alert>
                         </div>
 

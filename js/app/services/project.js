@@ -93,12 +93,12 @@
       this.saveIndices(all_indexes);
     };
 
-    Project.prototype.delete_project = function(project) {
+    Project.prototype["delete"] = function(project) {
       var all_indexes;
-      all_indexes = getIndices();
-      localStorage.removeItem(project.id);
-      all_indexes[project.url].splice(all_indexes[project.url].indexOf($scope.cur_project.id), 1);
-      saveIndices(all_indexes);
+      all_indexes = this.getIndices();
+      $.jStorage.deleteKey(project.id);
+      all_indexes[project.url].splice(all_indexes[project.url].indexOf(project.id), 1);
+      this.saveIndices(all_indexes);
     };
 
     Project.prototype.get = function(id) {

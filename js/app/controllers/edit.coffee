@@ -1,9 +1,9 @@
 MonkeyWrench = angular.module 'MonkeyWrench'
 
 class EditProjectController
-	@$inject: ['$scope','$routeParams','$location','Baazar','Project','Alert'] 
+	@$inject: ['$scope','$routeParams','$timeout','$location','Baazar','Project','Alert'] 
 
-	constructor:(@scope,@routeParams,@location,@Baazar,@Project,@Alert)->
+	constructor:(@scope,@routeParams,@timeout,@location,@Baazar,@Project,@Alert)->
 		pid = @routeParams.pid
 
 		if pid isnt null and pid isnt undefined
@@ -15,8 +15,9 @@ class EditProjectController
 			@location.path('/')
 
 		if @scope.curProject.forked 
-			@Alert.error('Opps...can not edit installed Recipe...instead FORK it and then make it AWESOME.')
 			@location.path('/')
+			@Alert.error('Opps...can not edit installed Recipe...instead FORK it and then make it AWESOME.')
+
 		######################################################################################
 		@scope.oldurl = @scope.curProject.url
 		

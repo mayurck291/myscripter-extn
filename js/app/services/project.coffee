@@ -72,11 +72,11 @@ class Project
 		@saveIndices( all_indexes )
 		return
 
-	delete_project:(project)->
-		all_indexes = getIndices( )
-		localStorage.removeItem( project.id )
-		all_indexes[ project.url ].splice( all_indexes[ project.url ].indexOf( $scope.cur_project.id ), 1 )
-		saveIndices( all_indexes )
+	delete:(project)->
+		all_indexes = @getIndices( )
+		$.jStorage.deleteKey( project.id )
+		all_indexes[ project.url ].splice( all_indexes[ project.url ].indexOf( project.id ), 1 )
+		@saveIndices( all_indexes )
 		return
 
 	get:( id )->

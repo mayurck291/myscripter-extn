@@ -44,8 +44,8 @@
         this.location.path('/');
       }
       if (this.scope.curProject.forked) {
-        this.Alert.error('Opps...can not share installed Recipe...instead FORK it and then make it AWESOME.');
         this.location.path('/');
+        this.Alert.error('Opps...can not share installed Recipe...instead FORK it and then make it AWESOME.');
       }
       this.gp.load().then(function() {
         return _this.getUserInfo();

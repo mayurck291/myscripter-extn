@@ -1,4 +1,5 @@
 <form class="cbp-mc-form">
+
     <style>
     .cbp-mc-form {
         font-family:'Lato', Calibri, Arial, sans-serif;
@@ -44,26 +45,26 @@
                     <tbody>
                         <tr ng-repeat="project in allProjects|filter:{forked:false} track by $index">
                             <td>{{$index+1}}</td>
-                            <td>{{project.name}}</td>
+                            <td><a href="" title="click to edit {{project.name}}" ng-click="edit(project)" style="font-weight: bold;color: #47a3da;">{{project.name}}</a>
+                            </td>
                             <td>{{project.url}}</td>
                             <td>
                                 <a href="" ng-click="save(project)">
                                     <span class="icc" ng-class="{'icon-on':project.enabled,'icon-off':!project.enabled}" style="font-size: larger;"></span>
                                 </a>
                             </td>
-                            <td>
-                                <a href="" ng-click="edit(project)" title="Edit {{project.name}}">
+                            <td style="width: 15%;">
+                                <!--  <a href="" ng-click="edit(project)" title="Edit {{project.name}}">
                                     <span class="icon-edit icc" style="margin-right:5px"></span>
-                                </a>
+                                </a> -->
                                 <a href="" ng-click="share(project)" title="Share {{project.name}}">
-                                    <span class="icon-share icc" style="margin-right:5px"></span>
+                                    <span class="icon-share icc" style="margin-right:10px"></span>
                                 </a>
                                 <a href="" title="Download {{project.name}}">
-                                    <span class="icon-download icc" style="margin-right:5px"></span>
+                                    <span class="icon-download icc" style="margin-right:10px"></span>
                                 </a>
-
-                                <a href="" title="Delete {{project.name}}">
-                                    <span class="icon-remove icc" style="margin-left:5px"></span>
+                                <a href="" title="Delete {{project.name}}" ng-click="delete(project)">
+                                    <span class="icon-remove icc" style="margin-right:10px"></span>
                                 </a>
                             </td>
                         </tr>
@@ -95,7 +96,14 @@
                                     <span class="icc" ng-class="{'icon-on':project.enabled,'icon-off':!project.enabled}" style="font-size: larger;"></span>
                                 </a>
                             </td>
-                            <td>fork,rate,favourite
+                            <td style="width:15%">
+                                <!-- fork,rate,favourite -->
+                                <a href="" title="Fork {{project.name}}" ng-click="fork(project)">
+                                    <span class="icon-forkandspoon icc" style="margin-right:10px"></span>
+                                </a>
+                                <a href="" title="Delete {{project.name}}" ng-click="delete(project)">
+                                    <span class="icon-remove icc" style="margin-right:10px"></span>
+                                </a>
                             </td>
                         </tr>
                         <!-- more rows are possible -->

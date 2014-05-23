@@ -14,8 +14,8 @@ class ShareProjectController
 			@location.path('/')
 
 		if @scope.curProject.forked 
-			@Alert.error('Opps...can not share installed Recipe...instead FORK it and then make it AWESOME.')
 			@location.path('/')
+			@Alert.error('Opps...can not share installed Recipe...instead FORK it and then make it AWESOME.')
 
 		@gp.load().then(
 			()=> @getUserInfo()

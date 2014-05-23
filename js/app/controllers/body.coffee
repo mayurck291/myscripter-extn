@@ -8,15 +8,7 @@ class BodyController
 		@scope.signOut 		= @signOut
 		# check if user is signed in 
 		# if Yes get  userinfo
-		projects = @Project.getAll()
-		@scope.projectIds = []
-		for project_url,ids of projects
-			@scope.projectIds.push ids...
-
-		@scope.allProjects = []
-
-		for id in @scope.projectIds
-			@scope.allProjects.push Project.get(id)
+		@getAllProjects()
 
 		@gp.load().then(
 			()=> @getUserInfo()
@@ -37,7 +29,20 @@ class BodyController
 		@scope.edit = @edit
 		@scope.fork = @fork
 		@scope.share = @share
+		@scope.delete = @delete
 
+		return
+
+	getAllProjects:=>
+		projects = @Project.getAll()
+		@scope.projectIds = []
+		for project_url,ids of projects
+			@scope.projectIds.push ids...
+
+		@scope.allProjects = []
+
+		for id in @scope.projectIds
+			@scope.allProjects.push @Project.get(id)
 		return
 
 	getUserInfo :=>
@@ -91,5 +96,11 @@ class BodyController
 		else
 			p = "/Share/"+project.id
 			@location.path(p)
+		
+	delete:(project)=>
+		if confirm "Are you sure you want to delete recipe #{project.name}"
+			@Project.delete(angular.copy(project))
+			@getAllProjects()
+				
 		
 MonkeyWrench.controller 'BodyController',BodyController

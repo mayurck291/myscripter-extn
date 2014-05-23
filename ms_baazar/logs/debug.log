@@ -14607,3 +14607,15 @@ response from an upstream server.<br />
 01:29:45 - [32minfo[39m: [ comment ] trying to update recipe 5379adf00fce52e33120ea2c
 01:29:45 - [32minfo[39m: [ comment ] ran query for recipe 5379adf00fce52e33120ea2c with error: null and 1 updates
 01:29:45 - [32minfo[39m: [ comment ] END sending 200
+10:39:34 - [32minfo[39m: Getting all meta info of all the recipes
+10:39:35 - [32minfo[39m: sending recip
+10:39:35 - [32minfo[39m: Getting all meta info of all the recipes
+10:39:35 - [32minfo[39m: sending recip
+11:27:04 - [32minfo[39m: Getting all meta info of all the recipes
+11:27:05 - [32minfo[39m: sending recip
+11:27:05 - [32minfo[39m: Getting all meta info of all the recipes
+11:27:05 - [32minfo[39m: sending recip
+12:09:19 - [32minfo[39m: Getting all meta info of all the recipes
+12:09:20 - [32minfo[39m: sending recip
+12:09:20 - [32minfo[39m: Getting all meta info of all the recipes
+12:09:20 - [32minfo[39m: sending recip

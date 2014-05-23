@@ -10,8 +10,7 @@
     BodyController.$inject = ['$scope', '$routeParams', '$location', 'Baazar', 'GPauth', 'Alert', 'Project'];
 
     function BodyController(scope, routeParams, location, Baazar, gp, Alert, Project) {
-      var id, ids, project_url, projects, _i, _len, _ref, _ref1,
-        _this = this;
+      var _this = this;
       this.scope = scope;
       this.routeParams = routeParams;
       this.location = location;
@@ -19,6 +18,8 @@
       this.gp = gp;
       this.Alert = Alert;
       this.Project = Project;
+      this["delete"] = __bind(this["delete"], this);
+
       this.share = __bind(this.share, this);
 
       this.fork = __bind(this.fork, this);
@@ -33,21 +34,12 @@
 
       this.getUserInfo = __bind(this.getUserInfo, this);
 
+      this.getAllProjects = __bind(this.getAllProjects, this);
+
       this.scope.alert = this.Alert.bind();
       this.scope.signIn = this.signIn;
       this.scope.signOut = this.signOut;
-      projects = this.Project.getAll();
-      this.scope.projectIds = [];
-      for (project_url in projects) {
-        ids = projects[project_url];
-        (_ref = this.scope.projectIds).push.apply(_ref, ids);
-      }
-      this.scope.allProjects = [];
-      _ref1 = this.scope.projectIds;
-      for (_i = 0, _len = _ref1.length; _i < _len; _i++) {
-        id = _ref1[_i];
-        this.scope.allProjects.push(Project.get(id));
-      }
+      this.getAllProjects();
       this.gp.load().then(function() {
         return _this.getUserInfo();
       }, function() {
@@ -64,8 +56,25 @@
       this.scope.edit = this.edit;
       this.scope.fork = this.fork;
       this.scope.share = this.share;
+      this.scope["delete"] = this["delete"];
       return;
     }
+
+    BodyController.prototype.getAllProjects = function() {
+      var id, ids, project_url, projects, _i, _len, _ref, _ref1;
+      projects = this.Project.getAll();
+      this.scope.projectIds = [];
+      for (project_url in projects) {
+        ids = projects[project_url];
+        (_ref = this.scope.projectIds).push.apply(_ref, ids);
+      }
+      this.scope.allProjects = [];
+      _ref1 = this.scope.projectIds;
+      for (_i = 0, _len = _ref1.length; _i < _len; _i++) {
+        id = _ref1[_i];
+        this.scope.allProjects.push(this.Project.get(id));
+      }
+    };
 
     BodyController.prototype.getUserInfo = function() {
       var _this = this;
@@ -131,6 +140,13 @@
       } else {
         p = "/Share/" + project.id;
         return this.location.path(p);
+      }
+    };
+
+    BodyController.prototype["delete"] = function(project) {
+      if (confirm("Are you sure you want to delete recipe " + project.name)) {
+        this.Project["delete"](angular.copy(project));
+        return this.getAllProjects();
       }
     };
 

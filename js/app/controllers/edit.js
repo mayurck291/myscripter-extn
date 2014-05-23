@@ -7,13 +7,14 @@
 
   EditProjectController = (function() {
 
-    EditProjectController.$inject = ['$scope', '$routeParams', '$location', 'Baazar', 'Project', 'Alert'];
+    EditProjectController.$inject = ['$scope', '$routeParams', '$timeout', '$location', 'Baazar', 'Project', 'Alert'];
 
-    function EditProjectController(scope, routeParams, location, Baazar, Project, Alert) {
+    function EditProjectController(scope, routeParams, timeout, location, Baazar, Project, Alert) {
       var pid,
         _this = this;
       this.scope = scope;
       this.routeParams = routeParams;
+      this.timeout = timeout;
       this.location = location;
       this.Baazar = Baazar;
       this.Project = Project;
@@ -30,8 +31,8 @@
         this.location.path('/');
       }
       if (this.scope.curProject.forked) {
-        this.Alert.error('Opps...can not edit installed Recipe...instead FORK it and then make it AWESOME.');
         this.location.path('/');
+        this.Alert.error('Opps...can not edit installed Recipe...instead FORK it and then make it AWESOME.');
       }
       this.scope.oldurl = this.scope.curProject.url;
       setTimeout(function() {
