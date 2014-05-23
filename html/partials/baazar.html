@@ -10,7 +10,11 @@
                         <img style="height:160px" ng-src="{{recipe._id.imgs[0]}}" />
                         <figcaption>
                             <h3>{{recipe._id.title}}</h3>
-                            <p>By {{recipe._id.author.name}}</p>
+                            <!-- <p>By {{recipe._id.author.name}}</p> -->
+                            <div>
+                                <span ng-repeat="i in getStars(5)" class="icc" ng-class="{'icon-star2':($index+1) <= recipe.karmac,'icon-star':($index+1) > recipe.karmac}"></span>
+                                <span style="margin-left:3px">({{recipe.karmac}})</span>
+                            </div>
                         </figcaption>
                     </figure>
                 </li>

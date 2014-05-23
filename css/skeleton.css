@@ -417,7 +417,7 @@
     background: grey;
 }
 .comments-box {
-    height:440px !important;
+    height:420px !important;
     width:720px !important;
     overflow:scroll !important;
 }
