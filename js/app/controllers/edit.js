@@ -19,6 +19,14 @@
       this.Baazar = Baazar;
       this.Project = Project;
       this.Alert = Alert;
+      this.addcss = __bind(this.addcss, this);
+
+      this.removecss = __bind(this.removecss, this);
+
+      this.addjs = __bind(this.addjs, this);
+
+      this.removejs = __bind(this.removejs, this);
+
       this["delete"] = __bind(this["delete"], this);
 
       this.save = __bind(this.save, this);
@@ -44,6 +52,10 @@
       }, 300);
       this.scope.save = this.save;
       this.scope["delete"] = this["delete"];
+      this.scope.removecss = this.removecss;
+      this.scope.removejs = this.removejs;
+      this.scope.addjs = this.addjs;
+      this.scope.addcss = this.addcss;
       return;
     }
 
@@ -60,6 +72,28 @@
         this.scope.curProject = {};
         return this.location.path('/');
       }
+    };
+
+    EditProjectController.prototype.removejs = function(index) {
+      return this.scope.curProject.external.js.splice(index, 1);
+    };
+
+    EditProjectController.prototype.addjs = function() {
+      if (this.scope.curProject.external.js.indexOf(this.scope.extjs === -1)) {
+        this.scope.curProject.external.js.push(this.scope.extjs);
+      }
+      return this.scope.extjs = null;
+    };
+
+    EditProjectController.prototype.removecss = function(index) {
+      return this.scope.curProject.external.css.splice(index, 1);
+    };
+
+    EditProjectController.prototype.addcss = function() {
+      if (this.scope.curProject.external.css.indexOf(this.scope.extcss === -1)) {
+        this.scope.curProject.external.css.push(this.scope.extcss);
+      }
+      return this.scope.extcss = null;
     };
 
     return EditProjectController;

@@ -28,6 +28,10 @@ class EditProjectController
 
 		@scope.save = @save
 		@scope.delete = @delete
+		@scope.removecss = @removecss
+		@scope.removejs = @removejs
+		@scope.addjs = @addjs
+		@scope.addcss = @addcss
 		return
 
 	save:()=>
@@ -41,5 +45,22 @@ class EditProjectController
 			@Alert.success("Recipe #{project.name} deleted...")
 			@scope.curProject = {}
 			@location.path('/')
-			
+	
+	removejs:(index)=>
+		@scope.curProject.external.js.splice(index,1)
+
+	addjs:()=>
+		if @scope.curProject.external.js.indexOf @scope.extjs is -1
+			@scope.curProject.external.js.push(@scope.extjs)
+		@scope.extjs = null
+
+	removecss:(index)=>
+		@scope.curProject.external.css.splice(index,1)
+
+	addcss:()=>
+		if @scope.curProject.external.css.indexOf @scope.extcss is -1
+			@scope.curProject.external.css.push(@scope.extcss)
+		@scope.extcss = null
+
+
 MonkeyWrench.controller 'EditProjectController',EditProjectController
