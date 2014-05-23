@@ -61,14 +61,14 @@ var SidebarMenuEffects = ( function ( ) {
             } );
         } );
 
-        links.forEach( function ( el, i ) {
+        // links.forEach( function ( el, i ) {
 
-            el.addEventListener( eventtype, function ( ev ) {
-                // ev.stopPropagation( );
-                resetMenu( );
-                document.removeEventListener( eventtype, bodyClickFn );
-            } );
-        } );
+        //     el.addEventListener( eventtype, function ( ev ) {
+        //         // ev.stopPropagation( );
+        //         resetMenu( );
+        //         // document.removeEventListener( eventtype, bodyClickFn );
+        //     } );
+        // } );
 
     }
 

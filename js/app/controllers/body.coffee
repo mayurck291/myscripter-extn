@@ -33,6 +33,25 @@ class BodyController
 		@scope.getDownloadLink = @getDownloadLink
 		@scope.importProject = @importProject
 		@scope.home  = @home
+		@scope.new  = @new
+		@scope.baazar  = @baazar
+		@scope.help  = @help
+
+
+		@scope.$on('$routeChangeStart',(next,current)=>
+			console.log "loading......."
+			@scope.showLoader = yes 
+			)
+
+		@scope.$on('$routeChangeSuccess',(next,current)=>
+			console.log "end......."
+			@scope.showLoader = no 
+			)
+
+		@scope.$on('$routeChangeError',(next,current)=>
+			console.log "end......."
+			@scope.showLoader = no 
+			)
 		return
 
 	getAllProjects:=>
@@ -120,5 +139,19 @@ class BodyController
 
 	home:=>
 		@location.path('/')
+		resetMenu()
+
+	new:=>
+		@location.path('/New')
+		resetMenu()
+
+	baazar:=>
+		@location.path('/Baazar')
+		resetMenu()
+
+	help:=>
+		@location.path('/Help')
+		resetMenu()
+
 	
 MonkeyWrench.controller 'BodyController',BodyController

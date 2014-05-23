@@ -18,6 +18,12 @@
       this.gp = gp;
       this.Alert = Alert;
       this.Project = Project;
+      this.help = __bind(this.help, this);
+
+      this.baazar = __bind(this.baazar, this);
+
+      this["new"] = __bind(this["new"], this);
+
       this.home = __bind(this.home, this);
 
       this.importProject = __bind(this.importProject, this);
@@ -64,6 +70,21 @@
       this.scope.getDownloadLink = this.getDownloadLink;
       this.scope.importProject = this.importProject;
       this.scope.home = this.home;
+      this.scope["new"] = this["new"];
+      this.scope.baazar = this.baazar;
+      this.scope.help = this.help;
+      this.scope.$on('$routeChangeStart', function(next, current) {
+        console.log("loading.......");
+        return _this.scope.showLoader = true;
+      });
+      this.scope.$on('$routeChangeSuccess', function(next, current) {
+        console.log("end.......");
+        return _this.scope.showLoader = false;
+      });
+      this.scope.$on('$routeChangeError', function(next, current) {
+        console.log("end.......");
+        return _this.scope.showLoader = false;
+      });
       return;
     }
 
@@ -176,7 +197,23 @@
     };
 
     BodyController.prototype.home = function() {
-      return this.location.path('/');
+      this.location.path('/');
+      return resetMenu();
+    };
+
+    BodyController.prototype["new"] = function() {
+      this.location.path('/New');
+      return resetMenu();
+    };
+
+    BodyController.prototype.baazar = function() {
+      this.location.path('/Baazar');
+      return resetMenu();
+    };
+
+    BodyController.prototype.help = function() {
+      this.location.path('/Help');
+      return resetMenu();
     };
 
     return BodyController;
