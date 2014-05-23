@@ -1,4 +1,4 @@
-<form class="cbp-mc-form" ng-keydown="handleKeyBoardEvent($event)">
+<div class="cbp-mc-form" ng-keydown="handleKeyBoardEvent($event)">
     <div id="form" class="tabs">
         <nav>
             <ul>
@@ -30,13 +30,26 @@
                 <label for="URL">URL</label>
                 <input ng-model="curProject.url" type="text" id="URL" name="URL" placeholder="e.g. https://www.google.co.in">
 
-
-                <label for="extjs">External JS URL</label>
-                <input type="text" id="extjs" name="extjs" placeholder="e.g. http://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.9/angular-route.js">
-
-                <label for="extcss">External CSS URL</label>
-                <input type="text" id="extcss" name="extcss" placeholder="e.g. http://example.com/css/beautify.css">
-
+                <form action="" ng-submit="addjs()">
+                    <label for="extjs">External JS URL</label>
+                    <input type="text" id="extjs" ng-model="extjs" name="extjs" placeholder="e.g. http://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.9/angular-route.js">
+                    <a href="" class="pull-right" style="margin-top:-35px;margin-right:20px;color:#47a3df" ng-click="addjs()"><b>[+]</b></a>
+                    <div ng-repeat="js in curProject.external.js track by $index ">
+                        <strong>
+                            <a href="" style="margin-right:20px;color:#47a3df" ng-click="removejs($index)">[x]</a>&nbsp;{{js}}
+                        </strong>
+                    </div>
+                </form>
+                <form action="" ng-submit="addcss()">
+                    <label for="extcss">External CSS URL</label>
+                    <input type="text" id="extcss" name="extcss" ng-model="extcss" placeholder="e.g. http://example.com/css/beautify.css">
+                    <a href="" class="pull-right" style="margin-top:-35px;margin-right:20px;color:#47a3df" ng-click="addcss()"><b>[+]</b></a>
+                    <div ng-repeat="css in curProject.external.css track by $index ">
+                        <strong>
+                            <a href="" style="margin-right:20px;color:#47a3df" ng-click="removecss($index)">[x]</a>&nbsp;{{css}}
+                        </strong>
+                    </div>
+                </form>
 
                 <div class="sixteen columns">
                     <br>
@@ -72,4 +85,4 @@
                 <!-- <input type="submit" value="Save" /> -->
             </div>
         </div>
-</form>
+    </div>

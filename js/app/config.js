@@ -25,6 +25,9 @@
       }).when('/Share/:pid', {
         templateUrl: '/html/partials/share.html',
         controller: 'ShareProjectController'
+      }).when('/Help', {
+        templateUrl: '/html/partials/help.html',
+        controller: 'BodyController'
       }).when('/', {
         templateUrl: '/html/partials/home.html',
         controller: 'BodyController'

@@ -16,6 +16,14 @@
       this.Baazar = Baazar;
       this.Project = Project;
       this.Alert = Alert;
+      this.addcss = __bind(this.addcss, this);
+
+      this.removecss = __bind(this.removecss, this);
+
+      this.addjs = __bind(this.addjs, this);
+
+      this.removejs = __bind(this.removejs, this);
+
       this.save = __bind(this.save, this);
 
       this.scope.curProject = this.Project["new"]();
@@ -26,6 +34,10 @@
         return cbtab = new CBPFWTabs(tabs);
       }, 100);
       this.scope.save = this.save;
+      this.scope.removecss = this.removecss;
+      this.scope.removejs = this.removejs;
+      this.scope.addjs = this.addjs;
+      this.scope.addcss = this.addcss;
       return;
     }
 
@@ -37,6 +49,28 @@
       console.log("saving....");
       this.Project.save(angular.copy(this.scope.curProject));
       return this.Alert.success("Hurrah....project saved...");
+    };
+
+    NewProjectController.prototype.removejs = function(index) {
+      return this.scope.curProject.external.js.splice(index, 1);
+    };
+
+    NewProjectController.prototype.addjs = function() {
+      if (this.scope.curProject.external.js.indexOf(this.scope.extjs === -1)) {
+        this.scope.curProject.external.js.push(this.scope.extjs);
+      }
+      return this.scope.extjs = null;
+    };
+
+    NewProjectController.prototype.removecss = function(index) {
+      return this.scope.curProject.external.css.splice(index, 1);
+    };
+
+    NewProjectController.prototype.addcss = function() {
+      if (this.scope.curProject.external.css.indexOf(this.scope.extcss === -1)) {
+        this.scope.curProject.external.css.push(this.scope.extcss);
+      }
+      return this.scope.extcss = null;
     };
 
     return NewProjectController;
