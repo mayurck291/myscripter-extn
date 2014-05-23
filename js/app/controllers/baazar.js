@@ -202,7 +202,7 @@
       return this.Baazar.getRecipe(id).then(function(recipe) {
         recipe.forked = true;
         _this.Project.save(recipe);
-        return _this.Alert.success();
+        return _this.Alert.success("Yeahh...!! recipe installed.");
       }, function() {
         return _this.Alert.error("Error occurred ....try later...");
       });

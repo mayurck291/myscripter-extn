@@ -143,7 +143,7 @@ class BaazarController
 		@Baazar.getRecipe(id).then((recipe)=>
 				recipe.forked = true
 				@Project.save(recipe)
-				@Alert.success()
+				@Alert.success("Yeahh...!! recipe installed.")
 			,()=>
 				@Alert.error("Error occurred ....try later...")
 				)
