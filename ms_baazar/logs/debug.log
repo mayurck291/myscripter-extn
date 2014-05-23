@@ -14716,3 +14716,25 @@ response from an upstream server.<br />
 12:40:19 - [32minfo[39m: sending recip
 12:40:20 - [32minfo[39m: Getting all meta info of all the recipes
 12:40:20 - [32minfo[39m: sending recip
+12:42:15 - [32minfo[39m: [ karma ] START
+12:42:15 - [32minfo[39m: [ karma ] parin2092@gmail.com -> 5 -> 5379adf00fce52e33120ea2c
+12:42:15 - [32minfo[39m: [ karma ] checking if entry exists for parin2092@gmail.com -> 5 -> 5379adf00fce52e33120ea2c
+12:42:15 - [32minfo[39m: [ karma ] exists !! updating karma for 5379adf00fce52e33120ea2c by parin2092@gmail.com to 5
+12:42:15 - [32minfo[39m: [ karma ] END parin2092@gmail.com updated 5379adf00fce52e33120ea2c's karma to 5
+12:42:29 - [32minfo[39m: [ comment ] START
+12:42:29 - [32minfo[39m: [ comment ] parin2092@gmail.com commented i don't think it will work on recipe 5379adf00fce52e33120ea2c
+12:42:29 - [32minfo[39m: [ comment ] trying to update recipe 5379adf00fce52e33120ea2c
+12:42:29 - [32minfo[39m: [ comment ] ran query for recipe 5379adf00fce52e33120ea2c with error: null and 1 updates
+12:42:29 - [32minfo[39m: [ comment ] END sending 200
+12:57:56 - [32minfo[39m: Getting all meta info of all the recipes
+12:57:57 - [32minfo[39m: sending recip
+12:57:58 - [32minfo[39m: Getting all meta info of all the recipes
+12:57:58 - [32minfo[39m: sending recip
+12:58:46 - [32minfo[39m: Getting all meta info of all the recipes
+12:58:46 - [32minfo[39m: sending recip
+12:58:46 - [32minfo[39m: Getting all meta info of all the recipes
+12:58:46 - [32minfo[39m: sending recip
+12:59:09 - [32minfo[39m: Getting all meta info of all the recipes
+12:59:09 - [32minfo[39m: sending recip
+12:59:10 - [32minfo[39m: Getting all meta info of all the recipes
+12:59:10 - [32minfo[39m: sending recip
