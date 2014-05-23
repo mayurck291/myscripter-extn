@@ -14648,3 +14648,47 @@ response from an upstream server.<br />
 12:15:23 - [32minfo[39m: sending recip
 12:15:23 - [32minfo[39m: Getting all meta info of all the recipes
 12:15:23 - [32minfo[39m: sending recip
+12:29:19 - [32minfo[39m: [ saveRecipe ] [ START ]
+12:29:19 - [32minfo[39m: [ saveRecipe ] do upsert query
+12:29:19 - [32minfo[39m: [ saveRecipe ] 1 docs updated with error : null 
+12:29:19 - [32minfo[39m: [ saveRecipe ] calling [ insertMetaInfo ]
+12:29:19 - [32minfo[39m: [ insertMetaInfo ] [ START ]
+12:29:19 - [32minfo[39m: [ insertMetaInfo ] new meta is { _id: 537ef1c77405559539142dc7,
+  karma: [],
+  forks: 0,
+  favs: [],
+  users: [ 'parin2092@gmail.com' ] }
+12:29:19 - [32minfo[39m: [ insertMetaInfo ] query for 537ef1c77405559539142dc7
+12:29:19 - [32minfo[39m: [ saveRecipe ] 200 sending http response 
+12:29:19 - [32minfo[39m: [ saveRecipe ] 200 response sent 
+12:29:19 - [32minfo[39m: 200 upload images to imgur
+12:29:19 - [32minfo[39m: Trying to upload images to imgur
+12:29:19 - [32minfo[39m: async started => upload images to imgur
+12:29:19 - [32minfo[39m: [ insertMetaInfo ] inserting new
+12:29:19 - [32minfo[39m: [ insertMetaInfo ] [ END ] 537ef1c77405559539142dc7 inserted new metainfo { __v: 0,
+  _id: 537ef1c77405559539142dc7,
+  karma: [],
+  forks: 0,
+  favs: [],
+  users: [ 'parin2092@gmail.com' ] } with null error
+12:29:22 - [32minfo[39m: doneCallback multiple File upload
+12:29:22 - [32minfo[39m: yeah baby.....
+12:29:48 - [32minfo[39m: [ saveRecipe ] [ START ]
+12:29:48 - [32minfo[39m: [ saveRecipe ] do upsert query
+12:29:48 - [32minfo[39m: [ saveRecipe ] 1 docs updated with error : null 
+12:29:48 - [32minfo[39m: [ saveRecipe ] calling [ insertMetaInfo ]
+12:29:48 - [32minfo[39m: [ insertMetaInfo ] [ START ]
+12:29:48 - [32minfo[39m: [ insertMetaInfo ] new meta is { _id: 537ef1c77405559539142dc7,
+  karma: [],
+  forks: 0,
+  favs: [],
+  users: [ 'parin2092@gmail.com' ] }
+12:29:48 - [32minfo[39m: [ insertMetaInfo ] query for 537ef1c77405559539142dc7
+12:29:48 - [32minfo[39m: [ saveRecipe ] 200 sending http response 
+12:29:48 - [32minfo[39m: [ saveRecipe ] 200 response sent 
+12:29:48 - [32minfo[39m: 200 upload images to imgur
+12:29:48 - [32minfo[39m: Trying to upload images to imgur
+12:29:48 - [32minfo[39m: async started => upload images to imgur
+12:29:48 - [32minfo[39m: [ insertMetaInfo ] [ END ] 537ef1c77405559539142dc7 already there 
+12:29:55 - [32minfo[39m: doneCallback multiple File upload
+12:29:55 - [32minfo[39m: yeah baby.....
