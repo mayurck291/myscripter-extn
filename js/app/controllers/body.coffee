@@ -138,23 +138,23 @@ class BodyController
 			@getAllProjects()
 
 	home:=>
-		@scope.showLoader = yes
-		resetMenu()
+		# @scope.showLoader = yes
+		document.getElementsByTagName('body')[0].click()
 		@location.path('/')
 
 	new:=>
-		@scope.showLoader = yes
-		resetMenu()
+		# @scope.showLoader = yes
+		document.getElementsByTagName('body')[0].click()
 		@location.path('/New')
 
 	baazar:=>
-		@scope.showLoader = yes
-		resetMenu()
+		# @scope.showLoader = yes
+		document.getElementsByTagName('body')[0].click()
 		@location.path('/Baazar')
 
 	help:=>
-		@scope.showLoader = yes
-		resetMenu()
+		# @scope.showLoader = yes
+		document.getElementsByTagName('body')[0].click()
 		@location.path('/Help')
 
 	

@@ -197,26 +197,22 @@
     };
 
     BodyController.prototype.home = function() {
-      this.scope.showLoader = true;
-      resetMenu();
+      document.getElementsByTagName('body')[0].click();
       return this.location.path('/');
     };
 
     BodyController.prototype["new"] = function() {
-      this.scope.showLoader = true;
-      resetMenu();
+      document.getElementsByTagName('body')[0].click();
       return this.location.path('/New');
     };
 
     BodyController.prototype.baazar = function() {
-      this.scope.showLoader = true;
-      resetMenu();
+      document.getElementsByTagName('body')[0].click();
       return this.location.path('/Baazar');
     };
 
     BodyController.prototype.help = function() {
-      this.scope.showLoader = true;
-      resetMenu();
+      document.getElementsByTagName('body')[0].click();
       return this.location.path('/Help');
     };
 
