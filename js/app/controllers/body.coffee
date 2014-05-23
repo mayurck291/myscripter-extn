@@ -1,8 +1,8 @@
 MonkeyWrench = angular.module 'MonkeyWrench'
 class BodyController
-	@$inject: ['$scope','$routeParams','$location','Baazar','GPauth','Alert','Project'] 
+	@$inject: ['$scope','$routeParams','$timeout','$location','Baazar','GPauth','Alert','Project'] 
 
-	constructor:(@scope,@routeParams,@location,@Baazar,@gp,@Alert,@Project)->
+	constructor:(@scope,@routeParams,@timeout,@location,@Baazar,@gp,@Alert,@Project)->
 		@scope.alert 		= @Alert.bind()
 		@scope.signIn 		= @signIn
 		@scope.signOut 		= @signOut
@@ -19,7 +19,7 @@ class BodyController
 				console.log("User not signed in")
 		)
 
-		setTimeout ()=>
+		@timeout ()=>
 			tabs 	= new CBPFWTabs document.getElementById('home')
 			cbtab 	= new CBPFWTabs tabs
 		,100  

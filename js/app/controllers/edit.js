@@ -45,7 +45,7 @@
         this.Alert.error('Opps...can not edit installed Recipe...instead FORK it and then make it AWESOME.');
       }
       this.scope.oldurl = this.scope.curProject.url;
-      setTimeout(function() {
+      this.timeout(function() {
         var cbtab, tabs;
         tabs = new CBPFWTabs(document.getElementById('form'));
         return cbtab = new CBPFWTabs(tabs);

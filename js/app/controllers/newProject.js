@@ -7,12 +7,13 @@
 
   NewProjectController = (function() {
 
-    NewProjectController.$inject = ['$scope', '$routeParams', 'Baazar', 'Project', 'Alert'];
+    NewProjectController.$inject = ['$scope', '$routeParams', '$timeout', 'Baazar', 'Project', 'Alert'];
 
-    function NewProjectController(scope, routeParams, Baazar, Project, Alert) {
+    function NewProjectController(scope, routeParams, timeout, Baazar, Project, Alert) {
       var _this = this;
       this.scope = scope;
       this.routeParams = routeParams;
+      this.timeout = timeout;
       this.Baazar = Baazar;
       this.Project = Project;
       this.Alert = Alert;
@@ -28,7 +29,7 @@
 
       this.scope.curProject = this.Project["new"]();
       console.log(this.routeParams);
-      setTimeout(function() {
+      this.timeout(function() {
         var cbtab, tabs;
         tabs = new CBPFWTabs(document.getElementById('form'));
         return cbtab = new CBPFWTabs(tabs);

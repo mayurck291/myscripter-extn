@@ -21,7 +21,7 @@ class EditProjectController
 		######################################################################################
 		@scope.oldurl = @scope.curProject.url
 		
-		setTimeout ()=>
+		@timeout ()=>
 			tabs 	= new CBPFWTabs document.getElementById('form')
 			cbtab 	= new CBPFWTabs tabs
 		,300  

@@ -7,12 +7,13 @@
 
   BodyController = (function() {
 
-    BodyController.$inject = ['$scope', '$routeParams', '$location', 'Baazar', 'GPauth', 'Alert', 'Project'];
+    BodyController.$inject = ['$scope', '$routeParams', '$timeout', '$location', 'Baazar', 'GPauth', 'Alert', 'Project'];
 
-    function BodyController(scope, routeParams, location, Baazar, gp, Alert, Project) {
+    function BodyController(scope, routeParams, timeout, location, Baazar, gp, Alert, Project) {
       var _this = this;
       this.scope = scope;
       this.routeParams = routeParams;
+      this.timeout = timeout;
       this.location = location;
       this.Baazar = Baazar;
       this.gp = gp;
@@ -57,7 +58,7 @@
         _this.scope.signedIn = false;
         return console.log("User not signed in");
       });
-      setTimeout(function() {
+      this.timeout(function() {
         var cbtab, tabs;
         tabs = new CBPFWTabs(document.getElementById('home'));
         return cbtab = new CBPFWTabs(tabs);

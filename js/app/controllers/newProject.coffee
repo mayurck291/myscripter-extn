@@ -1,12 +1,12 @@
 MonkeyWrench = angular.module 'MonkeyWrench'
 
 class NewProjectController
-	@$inject: ['$scope','$routeParams','Baazar','Project','Alert'] 
+	@$inject: ['$scope','$routeParams','$timeout','Baazar','Project','Alert'] 
 
-	constructor:(@scope,@routeParams,@Baazar,@Project,@Alert)->
+	constructor:(@scope,@routeParams,@timeout,@Baazar,@Project,@Alert)->
 		@scope.curProject = @Project.new()
 		console.log @routeParams
-		setTimeout ()=>
+		@timeout ()=>
 			tabs 	= new CBPFWTabs document.getElementById('form')
 			cbtab 	= new CBPFWTabs tabs
 		,100  
