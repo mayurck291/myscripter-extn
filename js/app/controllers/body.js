@@ -197,23 +197,27 @@
     };
 
     BodyController.prototype.home = function() {
-      this.location.path('/');
-      return resetMenu();
+      this.scope.showLoader = true;
+      resetMenu();
+      return this.location.path('/');
     };
 
     BodyController.prototype["new"] = function() {
-      this.location.path('/New');
-      return resetMenu();
+      this.scope.showLoader = true;
+      resetMenu();
+      return this.location.path('/New');
     };
 
     BodyController.prototype.baazar = function() {
-      this.location.path('/Baazar');
-      return resetMenu();
+      this.scope.showLoader = true;
+      resetMenu();
+      return this.location.path('/Baazar');
     };
 
     BodyController.prototype.help = function() {
-      this.location.path('/Help');
-      return resetMenu();
+      this.scope.showLoader = true;
+      resetMenu();
+      return this.location.path('/Help');
     };
 
     return BodyController;

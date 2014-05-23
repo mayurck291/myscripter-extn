@@ -138,20 +138,24 @@ class BodyController
 			@getAllProjects()
 
 	home:=>
-		@location.path('/')
+		@scope.showLoader = yes
 		resetMenu()
+		@location.path('/')
 
 	new:=>
-		@location.path('/New')
+		@scope.showLoader = yes
 		resetMenu()
+		@location.path('/New')
 
 	baazar:=>
-		@location.path('/Baazar')
+		@scope.showLoader = yes
 		resetMenu()
+		@location.path('/Baazar')
 
 	help:=>
-		@location.path('/Help')
+		@scope.showLoader = yes
 		resetMenu()
+		@location.path('/Help')
 
 	
 MonkeyWrench.controller 'BodyController',BodyController
