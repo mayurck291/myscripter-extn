@@ -28,10 +28,15 @@
                     <figure>
                         <figcaption>
                             <!-- <div class="container"> -->
-                            <div class="pull-left">
-                                <h3>{{recipe._id.title}}</h3>
-                            </div>
-                            <div style="color: grey;margin-left: 7px;line-height: 52px;" class="pull-left">
+                            <h3>{{recipe._id.title}}</h3>
+                            <span class="pull-right det">
+                                <a href="" class="icc" ng-click="install(recipe._id._id)">
+                                    <h3 class="pull-right">
+                                        <span class="icon-lightning"></span>install</h3>
+                                </a>
+                            </span>
+
+                            <div style="color: grey;">
                                 <span class="pull-left det">By {{recipe._id.author.name}}</span>
                                 <span class="pull-left det">
                                     <span class="icon-users icc"></span>
@@ -48,13 +53,6 @@
                                     <span ng-repeat="i in getStars(5)" class="icc" ng-class="{'icon-star2':($index+1) <= recipe.karmac,'icon-star':($index+1) > recipe.karmac}"></span>
                                     <span style="margin-left:3px">({{recipe.karmac}})</span>
                                 </span>
-                                <span class="pull-left det">
-                                    <a href="" class="icc" ng-click="install(recipe._id._id)">
-                                        <h3 class="pull-right">
-                                            <span class="icon-magnet"></span>Install</h3>
-                                    </a>
-                                </span>
-
                             </div>
                             <!-- </div> -->
                         </figcaption>

@@ -103,7 +103,7 @@ class BaazarController
 					@scope.fm.karma		= 1
 					@scope.fm.body		= null
 
-					@scope.show.dokarma 		= undefined
+					@scope.show.dokarma 		= false
 					@Alert.success('Yeah ....!!..')
 
 			,()=>

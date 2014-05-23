@@ -10,17 +10,19 @@
 
 
     <div ng-show="!allProjects.length" class="container">
-        <div class="panel-body text-center" ng-show="!all_project_names.length != 0">
+        <div class="panel-body text-center">
             <div class="">
                 <h1>
-                    <span class="icon-sad icc"></span>&nbsp;You have no scripts yet - Go ahead and
+                    <span class="icon-sad icc"></span>&nbsp;You have no recipes yet- Go ahead and
                     <a href="" style="color:black" ng-click="new()">
-                        Add one</a>...</h1>
-                or install readymade recipe from <a href="" style="color:black" ng-click="baazar()">
-                        Recipe Baazar</a>...</h1>
+                        Add one
+                    </a>
+                    or install readymade recipe from
+                    <a href="" style="color:black" ng-click="baazar()">
+                        Recipe Baazar</a>
+                </h1>
             </div>
-
-            <p style="margin-top: 20px;">
+            <p>
                 <h3>... or read our simple <a href="" style="color:black" ng-click="help()">Help</a> document</h3>
             </p>
         </div>
@@ -38,7 +40,7 @@
                     </li>
                     <li>
                         <a href="#installed">
-                            <span class="icon-install"></span>
+                            <span class=" icon-lightning"></span>
                             Installed Recipes
                         </a>
                     </li>
@@ -47,20 +49,15 @@
             <div class="content">
                 <section id="my">
                     <div ng-show="!(allProjects|filter:{forked:false}).length">
-                        <div class="panel-body text-center" ng-show="!all_project_names.length != 0">
-                            <div class="">
-                                <h1>
-                                    <span class="icon-sad icc"></span>&nbsp;You have not installed any recipes yet - Visit &nbsp;
-                                    <a href="" style="color:black" ng-click="baazar()">
-                                        <span class="icon-food">
-                                        </span>Recipe Baazar
-                                    </a>
-                                </h1>
-                            </div>
-                        </div>
+                        <h1>
+                            <span class="icon-sad icc"></span>&nbsp;You have no created any recipes yet - go ahead and <a href="" ng-click="new()" style="color:black">Add New</a> or Visit &nbsp;
+                            <a href="" style="color:black" ng-click="baazar()">
+                                <span class="icon-food">
+                                </span>Recipe Baazar
+                            </a>
+                        </h1>
                     </div>
                     <div ng-show="(allProjects|filter:{forked:false}).length">
-                        <br>
                         <br>
                         <import callback="importProject(project)"></import>
                         <br>
@@ -113,8 +110,8 @@
                 <section id="installed">
                     <br>
                     <br>
-                    <div ng-show="!(allProjects|filter:{forked:true}).length.length" class="container">
-                        <div class="panel-body text-center" ng-show="!all_project_names.length != 0">
+                    <div ng-show="!(allProjects|filter:{forked:true}).length" class="container">
+                        <div class="panel-body text-center">
                             <div class="">
                                 <h1>
                                     <span class="icon-sad icc"></span>&nbsp;You have not installed any recipes yet - Visit &nbsp;
@@ -126,7 +123,7 @@
                             </div>
                         </div>
                     </div>
-                    <table ng-show="(allProjects|filter:{forked:true}).length.length">
+                    <table ng-show="(allProjects|filter:{forked:true}).length">
                         <thead>
                             <tr>
                                 <th>#</th>
@@ -164,4 +161,5 @@
                 </section>
             </div>
         </div>
+    </div>
 </form>

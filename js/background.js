@@ -84,8 +84,10 @@ function myScripter( tab, popUpClicked ) {
         if ( !cur_regex.test( tab.url ) ) {
             return true;
         }
-
-        $.each( prjmyindexes_9[ regex_url ], function ( key, value ) {
+        // all projects = prjmyindexes_9[regex_url].length
+        var ap = prjmyindexes_9[ regex_url ].length;
+        for ( i = 0; i < ap; i++ ) {
+            value = prjmyindexes_9[ regex_url ][ i ]
             var idsx = parseInt( value, 10 );
             console.log( "[start] gettng data for " + idsx );
             var d = $.jStorage.get( idsx );
@@ -96,11 +98,11 @@ function myScripter( tab, popUpClicked ) {
 
             if ( false === d.autoApply && false == popUpClicked ) {
                 console.log( cur_regex + " - url has autoApply as false." );
-                return false;
+                continue;
             }
             if ( false === d.enabled ) {
                 console.log( cur_regex + " - url has enabled as false." );
-                return false;
+                continue;
             }
             un = [ "", undefined, null ];
             if ( un.indexOf( d.js ) == -1 ) {
@@ -139,7 +141,7 @@ function myScripter( tab, popUpClicked ) {
                     console.log( 'inline css insertion completed' );
                 } );
             }
-        } );
+        }
 
 
     } );
