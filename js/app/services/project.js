@@ -23,7 +23,7 @@
         js: null,
         css: null,
         enabled: true,
-        autoApply: false,
+        autoApply: true,
         forked: false
       };
     };

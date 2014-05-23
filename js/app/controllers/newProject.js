@@ -20,17 +20,20 @@
 
       this.scope.curProject = this.Project["new"]();
       console.log(this.routeParams);
-      this.scope.curProject.name = 'parin rocks';
       setTimeout(function() {
         var cbtab, tabs;
         tabs = new CBPFWTabs(document.getElementById('form'));
         return cbtab = new CBPFWTabs(tabs);
-      }, 300);
+      }, 100);
       this.scope.save = this.save;
       return;
     }
 
     NewProjectController.prototype.save = function() {
+      if (this.scope.curProject.name === null || this.scope.curProject.url === null) {
+        this.Alert.error("Recipe Name and URL can't be empty..");
+        return;
+      }
       console.log("saving....");
       this.Project.save(angular.copy(this.scope.curProject));
       return this.Alert.success("Hurrah....project saved...");

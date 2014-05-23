@@ -69,15 +69,15 @@
     };
 
     Alert.prototype.success = function(msg) {
-      return this.helper("success", msg, 4000);
+      return this.helper("success", msg, 2500);
     };
 
     Alert.prototype.error = function(msg) {
-      return this.helper("error", msg, 5500);
+      return this.helper("error", msg, 3500);
     };
 
     Alert.prototype.warning = function(msg) {
-      return this.helper("warning", msg, 4000);
+      return this.helper("warning", msg, 2500);
     };
 
     return Alert;

@@ -18,6 +18,8 @@
       this.gp = gp;
       this.Alert = Alert;
       this.Project = Project;
+      this.importProject = __bind(this.importProject, this);
+
       this["delete"] = __bind(this["delete"], this);
 
       this.share = __bind(this.share, this);
@@ -51,12 +53,14 @@
         var cbtab, tabs;
         tabs = new CBPFWTabs(document.getElementById('home'));
         return cbtab = new CBPFWTabs(tabs);
-      }, 300);
+      }, 100);
       this.scope.save = this.save;
       this.scope.edit = this.edit;
       this.scope.fork = this.fork;
       this.scope.share = this.share;
       this.scope["delete"] = this["delete"];
+      this.scope.getDownloadLink = this.getDownloadLink;
+      this.scope.importProject = this.importProject;
       return;
     }
 
@@ -128,9 +132,14 @@
     };
 
     BodyController.prototype.fork = function(project) {
-      project.forked = false;
-      this.Project.save(project);
-      return this.Alert.success("Successfully forked ...! " + project.name + " will appear in 'My Recipes'");
+      var forked;
+      forked = angular.copy(project);
+      forked.forked = false;
+      forked.name += " (forked)";
+      delete forked.id;
+      this.Project.save(forked);
+      this.Alert.success("Successfully forked ...! " + project.name + " will appear in 'My Recipes'");
+      return this.getAllProjects();
     };
 
     BodyController.prototype.share = function(project) {
@@ -148,6 +157,16 @@
         this.Project["delete"](angular.copy(project));
         return this.getAllProjects();
       }
+    };
+
+    BodyController.prototype.importProject = function(project) {
+      project = angular.fromJson(project);
+      project.forked = false;
+      project.name += " (imported)";
+      delete project.id;
+      this.Project.save(project);
+      this.Alert.success("Successfully imported recipe ...! " + project.name + " will appear in 'My Recipes'");
+      return this.getAllProjects();
     };
 
     return BodyController;

@@ -11,7 +11,7 @@ class Project
 			js		:null,
 			css 	:null,
 			enabled :yes,
-			autoApply:no,
+			autoApply:yes,
 			forked	:false
 
 	isEmpty:(value)->

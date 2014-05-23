@@ -22,7 +22,7 @@ class BodyController
 		setTimeout ()=>
 			tabs 	= new CBPFWTabs document.getElementById('home')
 			cbtab 	= new CBPFWTabs tabs
-		,300  
+		,100  
 
 		#### Functions ####### 
 		@scope.save = @save
@@ -30,7 +30,8 @@ class BodyController
 		@scope.fork = @fork
 		@scope.share = @share
 		@scope.delete = @delete
-
+		@scope.getDownloadLink = @getDownloadLink
+		@scope.importProject = @importProject
 		return
 
 	getAllProjects:=>
@@ -86,9 +87,13 @@ class BodyController
 			@location.path(p)
 
 	fork:(project)=>
-		project.forked = false
-		@Project.save(project)
+		forked = angular.copy(project)
+		forked.forked = false
+		forked.name += " (forked)"
+		delete forked.id
+		@Project.save(forked)
 		@Alert.success("Successfully forked ...! #{project.name} will appear in 'My Recipes'")
+		@getAllProjects()
 
 	share:(project)=>
 		if project.forked
@@ -101,6 +106,15 @@ class BodyController
 		if confirm "Are you sure you want to delete recipe #{project.name}"
 			@Project.delete(angular.copy(project))
 			@getAllProjects()
-				
+
+	importProject:(project)=>
+		project = angular.fromJson(project)
+		project.forked = false
+		project.name += " (imported)"
+		delete project.id
+		@Project.save(project)
+		@Alert.success("Successfully imported recipe ...! #{project.name} will appear in 'My Recipes'")
+		@getAllProjects()
+
 		
 MonkeyWrench.controller 'BodyController',BodyController
