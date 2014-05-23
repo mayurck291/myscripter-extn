@@ -163,7 +163,7 @@
       forked.name += " (forked)";
       delete forked.id;
       this.Project.save(forked);
-      this.Alert.success("Successfully forked ...! " + project.name + " will appear in 'My Recipes'");
+      this.Alert.success("Successfully forked ");
       return this.getAllProjects();
     };
 

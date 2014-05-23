@@ -112,7 +112,7 @@ class BodyController
 		forked.name += " (forked)"
 		delete forked.id
 		@Project.save(forked)
-		@Alert.success("Successfully forked ...! #{project.name} will appear in 'My Recipes'")
+		@Alert.success("Successfully forked ")
 		@getAllProjects()
 
 	share:(project)=>
