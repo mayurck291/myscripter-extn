@@ -80,7 +80,8 @@
                                     <slider srcs="{{recipe._id.imgs}}" />
                                 </section>
                                 <section id="description">
-                                    <p style="border: 1px solid;padding: 8px 8px 8px 11px;font-weight: 500;">{{recipe._id.desc}}</p>
+                                    <p style="border: 1px solid;padding: 8px 8px 8px 11px;font-weight: 500;">
+                                        <span class="icon-lightning icc"></span>{{recipe._id.desc}}</p>
                                 </section>
                                 <section id="comments" style="padding: 20px 10px 20px 10px !important;">
                                     <div ng-show="!signedIn" class="comment-msg">
@@ -123,16 +124,18 @@
                                                 <div class="two columns">
                                                     <img ng-src="{{comment.user.img}}+&sz=100" alt="{{comment.user.name}}" />
                                                 </div>
-                                                <div class="four column avatar">
+                                                <div class="four column avatar" style="opacity: 0.9;">
                                                     {{comment.user.name}}
                                                 </div>
                                             </div>
                                             <div class="eight columns">
                                                 <div class="tip left">
                                                     <div class="row comment-body">
+                                                        <span class="icon-bubbles3"></span>
                                                         {{comment.body}}
                                                     </div>
                                                     <div class="row date pull-right">
+                                                        <span class="icon-calendar"></span>
                                                         {{comment.date | date:'medium'}}
                                                     </div>
                                                 </div>
@@ -198,6 +201,7 @@
                                                                     <span ng-repeat="i in getStars(5)" class="icc" ng-class="{'icon-star2':($index+1) <= karma.karma,'icon-star':($index+1) > karma.karma}"></span>
                                                                 </div>
                                                                 <span class="row date">
+                                                                    <span class="icon-bubbles3"></span>
                                                                     {{karma.body}}
                                                                 </span>
                                                             </form>
