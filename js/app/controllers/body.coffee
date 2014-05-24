@@ -8,8 +8,6 @@ class BodyController
 		@scope.signOut 		= @signOut
 		# check if user is signed in 
 		# if Yes get  userinfo
-		@getAllProjects()
-
 		@gp.load().then(
 			()=> @getUserInfo()
 		,
@@ -19,19 +17,7 @@ class BodyController
 				console.log("User not signed in")
 		)
 
-		@timeout ()=>
-			tabs 	= new CBPFWTabs document.getElementById('home')
-			cbtab 	= new CBPFWTabs tabs
-		,100  
-
 		#### Functions ####### 
-		@scope.save = @save
-		@scope.edit = @edit
-		@scope.fork = @fork
-		@scope.share = @share
-		@scope.delete = @delete
-		@scope.getDownloadLink = @getDownloadLink
-		@scope.importProject = @importProject
 		@scope.home  = @home
 		@scope.new  = @new
 		@scope.baazar  = @baazar
@@ -54,17 +40,7 @@ class BodyController
 			)
 		return
 
-	getAllProjects:=>
-		projects = @Project.getAll()
-		@scope.projectIds = []
-		for project_url,ids of projects
-			@scope.projectIds.push ids...
-
-		@scope.allProjects = []
-
-		for id in @scope.projectIds
-			@scope.allProjects.push @Project.get(id)
-		return
+	
 
 	getUserInfo :=>
 		@gp.getUserInfo().then(
@@ -74,6 +50,7 @@ class BodyController
 				,
 					()=>@gp.signOut()
 		)
+
 	signIn :=>
 		console.log (@gp)
 		console.log("signing in .....")
@@ -92,50 +69,6 @@ class BodyController
 		@scope.user = null
 		@scope.signedIn = no
 		return
-
-	save:(project)=>
-		project.enabled = !project.enabled
-		@Project.save(project)
-		@Alert.success("Hurray.....Recipe saved...")
-
-	edit:(project)=>
-		if project.forked
-			@Alert.error("Can't edit installed Recipe.....instead FORK it...")
-		else
-			p = "/Edit/"+project.id
-			console.log "path is #{p}"
-			@location.path(p)
-
-	fork:(project)=>
-		forked = angular.copy(project)
-		forked.forked = false
-		forked.name += " (forked)"
-		delete forked.id
-		@Project.save(forked)
-		@Alert.success("Successfully forked ")
-		@getAllProjects()
-
-	share:(project)=>
-		if project.forked
-			@Alert.error("Can't share installed Recipe.....")
-		else
-			p = "/Share/"+project.id
-			@location.path(p)
-		
-	delete:(project)=>
-		if confirm "Are you sure you want to delete recipe #{project.name}"
-			@Project.delete(angular.copy(project))
-			@getAllProjects()
-
-	importProject:(project)=>
-		@scope.$apply ()=>
-			project = angular.fromJson(project)
-			project.forked = false
-			project.name += " (imported)"
-			delete project.id
-			@Alert.success("Successfully imported recipe ...! #{project.name} will appear in 'My Recipes'")
-			@Project.save(project)
-			@getAllProjects()
 
 	home:=>
 		# @scope.showLoader = yes

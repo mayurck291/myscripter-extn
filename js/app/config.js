@@ -30,7 +30,7 @@
         controller: 'BodyController'
       }).when('/', {
         templateUrl: '/html/partials/home.html',
-        controller: 'BodyController'
+        controller: 'HomeController'
       }).otherwise({
         redirectTo: '/'
       });

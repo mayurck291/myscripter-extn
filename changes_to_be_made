@@ -1,0 +1,27 @@
+= DO NOT BREAK WORKING THINGS =
+
+Reduce delay on click of menu of left
+
+//Ability to add multiple external libraries - JS and CSS
+//No HELP!!
+//Show comment box or something that makes me realise that I can click to comment - not some arbitary
+//Same for review
+//Install button should be more actionable - so that it  becomes the primary button on the screen
+//Give a back button or close button from the project edit screen to go to home page
+//Make cancel button more visible
+//Ability to remove projects from within the edit screen
+//I should be able to import projects, not just export - because that makes no sense ;-)
+//I should be able to fork my own projects
+//I should be able to download all recipes, not just my own
+//Export doesn't work - makes sense, considering there is no option to import
+//Fork thing was weird - If you know what I mean
+//Default name for project name should be empty
+//Auto apply on by default
+//Installed recipes should have both others' recipes and my own
+
+
+TODO =>
+Let's have tabs for popular, etc.
+In recipe bazaar, show some text on clicking on recipe
+My recipes is not default tab, Installed recipes is...
+Code is broken - saved same project twice and two entries were made

@@ -7,7 +7,7 @@ class NewProjectController
 		@scope.curProject = @Project.new()
 		console.log @routeParams
 		@timeout ()=>
-			tabs 	= new CBPFWTabs document.getElementById('form')
+			tabs 	= document.getElementById('form')
 			cbtab 	= new CBPFWTabs tabs
 		,100  
 

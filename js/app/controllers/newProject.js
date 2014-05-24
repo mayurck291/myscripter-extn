@@ -31,7 +31,7 @@
       console.log(this.routeParams);
       this.timeout(function() {
         var cbtab, tabs;
-        tabs = new CBPFWTabs(document.getElementById('form'));
+        tabs = document.getElementById('form');
         return cbtab = new CBPFWTabs(tabs);
       }, 100);
       this.scope.save = this.save;
