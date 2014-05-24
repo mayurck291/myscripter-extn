@@ -42,7 +42,7 @@ Slider.directive( 'slider', function ( $timeout ) {
             var sliderFunc = function ( ) {
                 timer = $timeout( function ( ) {
                     scope.next( );
-                    timer = $timeout( sliderFunc, 5000 );
+                    // timer = $timeout( sliderFunc, 5000 );
                 }, 5000 );
             };
 

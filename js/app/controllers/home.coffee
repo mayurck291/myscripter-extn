@@ -1,7 +1,7 @@
 MonkeyWrench = angular.module 'MonkeyWrench'
 class HomeController
 	@$inject: ['$scope','$routeParams','$timeout','$location','Baazar','GPauth','Alert','Project'] 
-	
+
 	constructor:(@scope,@routeParams,@timeout,@location,@Baazar,@gp,@Alert,@Project)->
 		@scope.alert 		= @Alert.bind()
 		@scope.signIn 		= @signIn
@@ -32,26 +32,6 @@ class HomeController
 		@scope.delete = @delete
 		@scope.getDownloadLink = @getDownloadLink
 		@scope.importProject = @importProject
-		@scope.home  = @home
-		@scope.new  = @new
-		@scope.baazar  = @baazar
-		@scope.help  = @help
-
-
-		@scope.$on('$routeChangeStart',(next,current)=>
-			console.log "loading......."
-			@scope.showLoader = yes 
-			)
-
-		@scope.$on('$routeChangeSuccess',(next,current)=>
-			console.log "end......."
-			@scope.showLoader = no 
-			)
-
-		@scope.$on('$routeChangeError',(next,current)=>
-			console.log "end......."
-			@scope.showLoader = no 
-			)
 		return
 
 	getAllProjects:=>

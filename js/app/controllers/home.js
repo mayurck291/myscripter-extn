@@ -62,22 +62,6 @@
       this.scope["delete"] = this["delete"];
       this.scope.getDownloadLink = this.getDownloadLink;
       this.scope.importProject = this.importProject;
-      this.scope.home = this.home;
-      this.scope["new"] = this["new"];
-      this.scope.baazar = this.baazar;
-      this.scope.help = this.help;
-      this.scope.$on('$routeChangeStart', function(next, current) {
-        console.log("loading.......");
-        return _this.scope.showLoader = true;
-      });
-      this.scope.$on('$routeChangeSuccess', function(next, current) {
-        console.log("end.......");
-        return _this.scope.showLoader = false;
-      });
-      this.scope.$on('$routeChangeError', function(next, current) {
-        console.log("end.......");
-        return _this.scope.showLoader = false;
-      });
       return;
     }
 

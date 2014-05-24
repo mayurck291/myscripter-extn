@@ -91,12 +91,12 @@ class BaazarController
 
 					if not found
 						obj = 
-						karma:karma,
+						karma:@scope.fm.karma,
 						user:
-							_id	:user._id,
-							img	:user.img,
-							name:user.name
-						body:body
+							_id	:@scope.user._id,
+							img	:@scope.user.img,
+							name:@scope.user.name
+						body:@scope.fm.body
 						recipe.karma.unshift(obj)
 
 					# @scope.fm 			= {}

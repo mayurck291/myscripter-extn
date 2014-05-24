@@ -150,19 +150,19 @@
         }
         if (!found) {
           obj = {
-            karma: karma,
+            karma: _this.scope.fm.karma,
             user: {
-              _id: user._id,
-              img: user.img,
-              name: user.name
+              _id: _this.scope.user._id,
+              img: _this.scope.user.img,
+              name: _this.scope.user.name
             },
-            body: body
+            body: _this.scope.fm.body
           };
           recipe.karma.unshift(obj);
         }
         _this.scope.fm.karma = 1;
         _this.scope.fm.body = null;
-        _this.scope.show.dokarma = void 0;
+        _this.scope.show.dokarma = false;
         return _this.Alert.success('Yeah ....!!..');
       }, function() {
         _this.Alert.error('Failed to update.Try later...:(');
