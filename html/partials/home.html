@@ -11,20 +11,23 @@
 
     <div ng-show="!allProjects.length" class="container">
         <div class="panel-body text-center">
-            <div class="">
+            <div class="container" style="text-align:center">
                 <h1>
-                    <span class="icon-sad icc"></span>&nbsp;You have no recipes yet- Go ahead and
-                    <a href="" style="color:black" ng-click="new()">
-                        Add one
-                    </a>
-                    or install readymade recipe from
-                    <a href="" style="color:black" ng-click="baazar()">
-                        Recipe Baazar</a>
+                    You have no recipes yet-
+                    <span class="icon-sad icc"></span>&nbsp;
                 </h1>
+                <h3>
+                    Go ahead and
+                    <a href="" style="color:black" ng-click="new()">
+                        Cook
+                    </a>
+                    ..or install ready-made recipes from
+                    <a href="" style="color:black" ng-click="baazar()">
+                        <span class="icon-food"></span>Recipe Baazar</a>
+                    <br>
+                    <br>still need help ??..read our simple <a href="" style="color:black" ng-click="help()">Help</a> document
+                </h3>
             </div>
-            <p>
-                <h3>... or read our simple <a href="" style="color:black" ng-click="help()">Help</a> document</h3>
-            </p>
         </div>
     </div>
     <div ng-show="allProjects.length">
@@ -48,14 +51,18 @@
             </nav>
             <div class="content">
                 <section id="my">
-                    <div ng-show="!(allProjects|filter:{forked:false}).length">
-                        <h1>
-                            <span class="icon-sad icc"></span>&nbsp;You have no recipes yet - go ahead and <a href="" ng-click="new()" style="color:black">Add New</a> or Visit &nbsp;
-                            <a href="" style="color:black" ng-click="baazar()">
+                    <div class="container" ng-show="!(allProjects|filter:{forked:false}).length">
+                        <h1 style="text-align: center;">
+                            <span class="icon-sad icc"></span>&nbsp;You have no recipes yet - go ahead and
+                            <a href="" ng-click="new()" style="color:black">
+                                <span class="icon-add"></span>Cook</a>
+
+                        </h1>
+                        <!--  or Visit &nbsp; -->
+                        <!-- <a href="" style="color:black" ng-click="baazar()">
                                 <span class="icon-food">
                                 </span>Recipe Baazar
-                            </a>
-                        </h1>
+                            </a> -->
                     </div>
                     <div ng-show="(allProjects|filter:{forked:false}).length">
                         <br>

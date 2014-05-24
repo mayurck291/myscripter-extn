@@ -66,7 +66,7 @@
     };
 
     EditProjectController.prototype["delete"] = function(project) {
-      if (confirm("Are you sure you want to delete recipe " + project.name)) {
+      if (confirm("Are you sure you want to delete recipe " + project.name + " ?")) {
         this.Project["delete"](angular.copy(project));
         this.Alert.success("Recipe " + project.name + " deleted...");
         this.scope.curProject = {};
@@ -79,7 +79,7 @@
     };
 
     EditProjectController.prototype.addjs = function() {
-      if (this.scope.curProject.external.js.indexOf(this.scope.extjs === -1)) {
+      if (this.scope.curProject.external.js.indexOf(this.scope.extjs) === -1 && this.scope.extjs !== null && this.scope.extjs !== void 0) {
         this.scope.curProject.external.js.push(this.scope.extjs);
       }
       return this.scope.extjs = null;
@@ -90,7 +90,7 @@
     };
 
     EditProjectController.prototype.addcss = function() {
-      if (this.scope.curProject.external.css.indexOf(this.scope.extcss === -1)) {
+      if (this.scope.curProject.external.css.indexOf(this.scope.extcss) === -1 && this.scope.extcss !== null && this.scope.extcss !== void 0) {
         this.scope.curProject.external.css.push(this.scope.extcss);
       }
       return this.scope.extcss = null;

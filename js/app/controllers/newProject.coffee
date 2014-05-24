@@ -31,7 +31,7 @@ class NewProjectController
 		@scope.curProject.external.js.splice(index,1)
 
 	addjs:()=>
-		if @scope.curProject.external.js.indexOf @scope.extjs is -1
+		if @scope.curProject.external.js.indexOf(@scope.extjs) is -1 and @scope.extjs isnt null and @scope.extjs isnt undefined
 			@scope.curProject.external.js.push(@scope.extjs)
 		@scope.extjs = null
 
@@ -39,7 +39,7 @@ class NewProjectController
 		@scope.curProject.external.css.splice(index,1)
 
 	addcss:()=>
-		if @scope.curProject.external.css.indexOf @scope.extcss is -1
+		if @scope.curProject.external.css.indexOf(@scope.extcss) is -1 and @scope.extcss isnt null and @scope.extcss isnt undefined
 			@scope.curProject.external.css.push(@scope.extcss)
 		@scope.extcss = null
 		

@@ -40,7 +40,7 @@ class EditProjectController
 		@Alert.success("Hurrah....project saved...")
 	
 	delete:(project)=>
-		if confirm "Are you sure you want to delete recipe #{project.name}"
+		if confirm "Are you sure you want to delete recipe #{project.name} ?"
 			@Project.delete(angular.copy(project))
 			@Alert.success("Recipe #{project.name} deleted...")
 			@scope.curProject = {}
@@ -50,7 +50,7 @@ class EditProjectController
 		@scope.curProject.external.js.splice(index,1)
 
 	addjs:()=>
-		if @scope.curProject.external.js.indexOf @scope.extjs is -1
+		if @scope.curProject.external.js.indexOf(@scope.extjs) is -1 and @scope.extjs isnt null and @scope.extjs isnt undefined
 			@scope.curProject.external.js.push(@scope.extjs)
 		@scope.extjs = null
 
@@ -58,9 +58,8 @@ class EditProjectController
 		@scope.curProject.external.css.splice(index,1)
 
 	addcss:()=>
-		if @scope.curProject.external.css.indexOf @scope.extcss is -1
+		if @scope.curProject.external.css.indexOf(@scope.extcss) is -1 and @scope.extcss isnt null and @scope.extcss isnt undefined
 			@scope.curProject.external.css.push(@scope.extcss)
 		@scope.extcss = null
-
 
 MonkeyWrench.controller 'EditProjectController',EditProjectController
