@@ -46,7 +46,8 @@ class BaazarController
 					tab = new CBPFWTabs(tabs)
 				localStorage.setItem('reload',yes)
 				gg = new CBPGridGallery(document.getElementById( 'grid-gallery' ))
-		,1000  
+		,1000
+		,true
 
 	getStars:(range)->
 		if range?

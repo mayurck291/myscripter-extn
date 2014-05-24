@@ -22,7 +22,8 @@ class HomeController
 		@timeout ()=>
 			tabs 	= document.getElementById('home')
 			cbtab 	= new CBPFWTabs tabs
-		,100  
+		,100
+		,true
 
 		#### Functions ####### 
 		@scope.save = @save

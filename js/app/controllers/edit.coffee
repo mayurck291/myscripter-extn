@@ -24,7 +24,8 @@ class EditProjectController
 		@timeout ()=>
 			tabs 	= new CBPFWTabs document.getElementById('form')
 			cbtab 	= new CBPFWTabs tabs
-		,300  
+		,300
+		,true
 
 		@scope.save = @save
 		@scope.delete = @delete

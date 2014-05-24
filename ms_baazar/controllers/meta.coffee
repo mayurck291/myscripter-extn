@@ -64,6 +64,11 @@ exports.get = (request,response)->
 
                 Recipe.populate recipes,options,(error,recipes)->
                     logger.info "sending recip"
+                    # setTimeout(
+                    #     ()=>response.json(recipes,200)
+                    #     3000
+                    # )
+
                     response.json recipes,200
 
 

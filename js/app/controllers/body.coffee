@@ -77,22 +77,42 @@ class BodyController
 	home:=>
 		# @scope.showLoader = yes
 		document.getElementsByTagName('body')[0].click()
-		@location.path('/')
+		@timeout(
+			()=>
+				@location.path('/')
+			,0
+			,true
+		)
 
 	new:=>
 		# @scope.showLoader = yes
 		document.getElementsByTagName('body')[0].click()
-		@location.path('/New')
+		@timeout(
+			()=>
+				@location.path('/New')
+			,0
+			,true
+		)
 
 	baazar:=>
 		# @scope.showLoader = yes
 		document.getElementsByTagName('body')[0].click()
-		@location.path('/Baazar')
+		@timeout(
+			()=>
+				@location.path('/Baazar')
+			,0
+			,true
+		)
 
 	help:=>
 		# @scope.showLoader = yes
 		document.getElementsByTagName('body')[0].click()
-		@location.path('/Help')
+		@timeout(
+			()=>
+				@location.path('/Help')
+			,0
+			,true
+		)
 
 	
 MonkeyWrench.controller 'BodyController',BodyController

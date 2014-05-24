@@ -10,6 +10,7 @@ class NewProjectController
 			tabs 	= document.getElementById('form')
 			cbtab 	= new CBPFWTabs(tabs)
 		,100
+		,true
 
 		@scope.save = @save
 		@scope.removecss = @removecss
