@@ -546,10 +546,10 @@ button:disabled {
     height: 100%;
 }
 .slide-pop.ng-enter, .slide-pop.ng-leave {
-    -webkit-transition: all 0.3s linear;
-    -moz-transition: all 0.3s linear;
-    -o-transition: all 0.3s linear;
-    transition: all 0.3s linear;
+    -webkit-transition: all 0.5s linear;
+    -moz-transition: all 0.5s linear;
+    -o-transition: all 0.5s linear;
+    transition: all 0.5s linear;
 }
 .slide-pop.ng-enter {
     opacity: 0;
@@ -605,4 +605,23 @@ button:disabled {
     -ms-transform: scale(.5);
     -o-transform: scale(.5);
     transform: scale(.5);
+}
+.animate-enter, .animate-leave {
+    -webkit-transition: 300ms cubic-bezier(0.600, -0.280, 0.735, 0.045) all;
+    -moz-transition: 300ms cubic-bezier(0.600, -0.280, 0.735, 0.045) all;
+    -ms-transition: 300ms cubic-bezier(0.600, -0.280, 0.735, 0.045) all;
+    -o-transition: 300ms cubic-bezier(0.600, -0.280, 0.735, 0.045) all;
+    transition: 300ms cubic-bezier(0.600, -0.280, 0.735, 0.045) all;
+}
+.animate-enter {
+    left: 100%;
+}
+.animate-enter.animate-enter-active {
+    left: 0;
+}
+.animate-leave {
+    left: 0;
+}
+.animate-leave.animate-leave-active {
+    left: -100%;
 }
