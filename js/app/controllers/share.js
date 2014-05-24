@@ -20,6 +20,8 @@
       this.Baazar = Baazar;
       this.Project = Project;
       this.Alert = Alert;
+      this.deleteUserInfo = __bind(this.deleteUserInfo, this);
+
       this.getUserInfo = __bind(this.getUserInfo, this);
 
       this.share = __bind(this.share, this);
@@ -47,6 +49,8 @@
         this.location.path('/');
         this.Alert.error('Opps...can not share installed Recipe...instead FORK it and then make it AWESOME.');
       }
+      this.scope.$on('login', this.getUserInfo);
+      this.scope.$on('logout', this.deleteUserInfo);
       this.gp.load().then(function() {
         return _this.getUserInfo();
       }, function() {
@@ -145,6 +149,11 @@
       }, function() {
         return _this.gp.signOut();
       });
+    };
+
+    ShareProjectController.prototype.deleteUserInfo = function() {
+      this.scope.user = null;
+      return this.scope.signedIn = false;
     };
 
     return ShareProjectController;

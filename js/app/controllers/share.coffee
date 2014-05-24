@@ -17,6 +17,9 @@ class ShareProjectController
 			@location.path('/')
 			@Alert.error('Opps...can not share installed Recipe...instead FORK it and then make it AWESOME.')
 
+		@scope.$on('login',@getUserInfo)
+		@scope.$on('logout',@deleteUserInfo)
+
 		@gp.load().then(
 			()=> @getUserInfo()
 		,
@@ -122,5 +125,9 @@ class ShareProjectController
 				,
 					()=>@gp.signOut()
 		)
+
+	deleteUserInfo:=>
+		@scope.user = null
+		@scope.signedIn = no
 		
 MonkeyWrench.controller 'ShareProjectController',ShareProjectController

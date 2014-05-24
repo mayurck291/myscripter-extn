@@ -20,6 +20,16 @@
       return this.state;
     };
 
+    GPauth.prototype.setUserInfo = function(user) {
+      return this.userInfo = {
+        _id: user.emails[0]["value"],
+        name: user.displayName,
+        img: user.image.url,
+        authToken: this.accessToken,
+        url: user.url
+      };
+    };
+
     GPauth.prototype.getToken = function(interactive) {
       var defer, option,
         _this = this;
@@ -52,13 +62,7 @@
       };
       this.$http.get(this.authenticationURL, config).success(function(response, status) {
         if (status === 200) {
-          _this.userInfo = {
-            _id: response.emails[0]["value"],
-            name: response.displayName,
-            img: response.image.url,
-            authToken: _this.accessToken,
-            url: response.url
-          };
+          _this.setUserInfo(response);
           _this.state = _this.STATE_AUTH_TOKEN_ACQUIRED;
           defer.resolve(_this.userInfo);
         } else {
@@ -109,6 +113,14 @@
 
     GPauth.prototype.load = function() {
       return this.getToken(false);
+    };
+
+    GPauth.prototype.onChange = function(callback) {
+      var _this = this;
+      return chrome.identity.onSignInChanged.addListener(function(account, signedIn) {
+        console.log("=====================================");
+        return console.log("" + account + " is signedIn : " + signedIn);
+      });
     };
 
     return GPauth;

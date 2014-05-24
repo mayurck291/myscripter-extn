@@ -31,6 +31,8 @@
 
       this.rate = __bind(this.rate, this);
 
+      this.deleteUserInfo = __bind(this.deleteUserInfo, this);
+
       this.getUserInfo = __bind(this.getUserInfo, this);
 
       /* fucking masonary sucks
@@ -65,6 +67,8 @@
       this.scope.postComment = this.postComment;
       this.scope.disableKarmaSubmit = this.disableKarmaSubmit;
       this.scope.install = this.install;
+      this.scope.$on('login', this.getUserInfo);
+      this.scope.$on('logout', this.deleteUserInfo);
       this.timeout(function() {
         return _this.scope.$apply(function() {
           var allTabs, gg, tab, tabs, _i, _len;
@@ -117,6 +121,11 @@
       }, function() {
         return _this.gp.signOut();
       });
+    };
+
+    BaazarController.prototype.deleteUserInfo = function() {
+      this.scope.user = null;
+      return this.scope.signedIn = false;
     };
 
     BaazarController.prototype.rate = function(star) {

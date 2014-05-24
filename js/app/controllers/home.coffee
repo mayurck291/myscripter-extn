@@ -32,6 +32,10 @@ class HomeController
 		@scope.delete = @delete
 		@scope.getDownloadLink = @getDownloadLink
 		@scope.importProject = @importProject
+
+		@scope.$on('login',@getUserInfo)
+		@scope.$on('logout',@deleteUserInfo)
+
 		return
 
 	getAllProjects:=>
@@ -54,6 +58,11 @@ class HomeController
 				,
 					()=>@gp.signOut()
 		)
+
+	deleteUserInfo:=>
+		@scope.user = null
+		@scope.signedIn = no
+
 	signIn :=>
 		console.log (@gp)
 		console.log("signing in .....")
@@ -98,6 +107,8 @@ class HomeController
 	share:(project)=>
 		if project.forked
 			@Alert.error("Can't share installed Recipe.....")
+		else if not @scope.signedIn
+			@Alert.error("You must Log In to share Recipe....")
 		else
 			p = "/Share/"+project.id
 			@location.path(p)

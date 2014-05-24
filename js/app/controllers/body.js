@@ -31,6 +31,8 @@
 
       this.signIn = __bind(this.signIn, this);
 
+      this.deleteUserInfo = __bind(this.deleteUserInfo, this);
+
       this.getUserInfo = __bind(this.getUserInfo, this);
 
       this.scope.alert = this.Alert.bind();
@@ -48,15 +50,12 @@
       this.scope.baazar = this.baazar;
       this.scope.help = this.help;
       this.scope.$on('$routeChangeStart', function(next, current) {
-        console.log("loading.......");
         return _this.scope.showLoader = true;
       });
       this.scope.$on('$routeChangeSuccess', function(next, current) {
-        console.log("end.......");
         return _this.scope.showLoader = false;
       });
       this.scope.$on('$routeChangeError', function(next, current) {
-        console.log("end.......");
         return _this.scope.showLoader = false;
       });
       return;
@@ -66,16 +65,20 @@
       var _this = this;
       return this.gp.getUserInfo().then(function(user) {
         _this.scope.user = user;
-        return _this.scope.signedIn = true;
+        _this.scope.signedIn = true;
+        return _this.scope.$broadcast('login');
       }, function() {
         return _this.gp.signOut();
       });
     };
 
+    BodyController.prototype.deleteUserInfo = function() {
+      this.scope.user = null;
+      return this.scope.signedIn = false;
+    };
+
     BodyController.prototype.signIn = function() {
       var _this = this;
-      console.log(this.gp);
-      console.log("signing in .....");
       this.Alert.warning("Loading...........:)");
       this.gp.signIn().then(function() {
         return _this.getUserInfo();
@@ -94,6 +97,7 @@
       });
       this.scope.user = null;
       this.scope.signedIn = false;
+      this.scope.$broadcast('logout');
     };
 
     BodyController.prototype.home = function() {

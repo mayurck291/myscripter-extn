@@ -34,6 +34,10 @@ class BaazarController
 		@scope.postComment		= @postComment
 		@scope.disableKarmaSubmit  = @disableKarmaSubmit
 		@scope.install 			= @install
+
+		@scope.$on('login',@getUserInfo)
+		@scope.$on('logout',@deleteUserInfo)
+		
 		@timeout ()=>
 			@scope.$apply ()=>	
 				allTabs = document.getElementsByClassName('tabs')
@@ -67,6 +71,10 @@ class BaazarController
 				,
 					()=>@gp.signOut()
 		)
+
+	deleteUserInfo:=>
+		@scope.user = null
+		@scope.signedIn = no
 
 	rate:(star)=>
 		if @scope.fm is null or @scope.fm is undefined

@@ -11,6 +11,14 @@ class GPauth
 
 	getState:-> @state
 
+	setUserInfo:(user)->
+		@userInfo = 
+			_id		: user.emails[ 0 ]["value"]
+            ,name 	: user.displayName
+            ,img  	: user.image.url
+            ,authToken: @accessToken
+            ,url 	: user.url
+
 	getToken:(interactive)->
 		# console.log("GPauth GETTING TOKEN");
 
@@ -42,12 +50,7 @@ class GPauth
 			.success(
 				(response,status) =>
 					if status is 200
-						@userInfo = 
-	            			_id		: response.emails[ 0 ]["value"]
-		                    ,name 	: response.displayName
-		                    ,img  	: response.image.url
-		                    ,authToken: @accessToken
-		                    ,url 	: response.url
+						@setUserInfo(response)
 						@state = @STATE_AUTH_TOKEN_ACQUIRED
 						defer.resolve( @userInfo )
 					else 
@@ -92,6 +95,12 @@ class GPauth
 	load:->
 		# console.log("GPauth LOAD");
 		@getToken(false)
+
+	onChange:(callback)->
+		chrome.identity.onSignInChanged.addListener (account,signedIn)=>
+			console.log "====================================="
+			console.log "#{account} is signedIn : #{signedIn}"
+			# callback()
 
 AuthModule = angular.module 'AuthModule',[]
 AuthModule.service 'GPauth',["$http", "$q",GPauth]

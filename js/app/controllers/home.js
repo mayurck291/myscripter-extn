@@ -35,6 +35,8 @@
 
       this.signIn = __bind(this.signIn, this);
 
+      this.deleteUserInfo = __bind(this.deleteUserInfo, this);
+
       this.getUserInfo = __bind(this.getUserInfo, this);
 
       this.getAllProjects = __bind(this.getAllProjects, this);
@@ -62,6 +64,8 @@
       this.scope["delete"] = this["delete"];
       this.scope.getDownloadLink = this.getDownloadLink;
       this.scope.importProject = this.importProject;
+      this.scope.$on('login', this.getUserInfo);
+      this.scope.$on('logout', this.deleteUserInfo);
       return;
     }
 
@@ -89,6 +93,11 @@
       }, function() {
         return _this.gp.signOut();
       });
+    };
+
+    HomeController.prototype.deleteUserInfo = function() {
+      this.scope.user = null;
+      return this.scope.signedIn = false;
     };
 
     HomeController.prototype.signIn = function() {
@@ -147,6 +156,8 @@
       var p;
       if (project.forked) {
         return this.Alert.error("Can't share installed Recipe.....");
+      } else if (!this.scope.signedIn) {
+        return this.Alert.error("You must Log In to share Recipe....");
       } else {
         p = "/Share/" + project.id;
         return this.location.path(p);
