@@ -8,8 +8,8 @@ class NewProjectController
 		console.log @routeParams
 		@timeout ()=>
 			tabs 	= document.getElementById('form')
-			cbtab 	= new CBPFWTabs tabs
-		,100  
+			cbtab 	= new CBPFWTabs(tabs)
+		,100
 
 		@scope.save = @save
 		@scope.removecss = @removecss

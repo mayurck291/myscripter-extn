@@ -42,13 +42,13 @@ class Alert
 		@helper(null,null,null)
 
 	success:( msg )=>
-		@helper "success",msg,2500
+		@helper "success",msg,2000
 	
 	error:( msg )=>
-		@helper "error",msg,3500
+		@helper "error",msg,3000
 	
 	warning:( msg )=>
-		@helper "warning",msg,2500
+		@helper "warning",msg,2000
 	
 
 MonkeyWrench.service "Alert",["$timeout",Alert]
