@@ -33,6 +33,7 @@ class EditProjectController
 		@scope.removejs = @removejs
 		@scope.addjs = @addjs
 		@scope.addcss = @addcss
+		@scope.$on('save',@save)
 		return
 
 	save:()=>

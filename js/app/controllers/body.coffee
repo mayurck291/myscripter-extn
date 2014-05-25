@@ -6,6 +6,7 @@ class BodyController
 		@scope.alert 		= @Alert.bind()
 		@scope.signIn 		= @signIn
 		@scope.signOut 		= @signOut
+		console.log @location.path()
 		# check if user is signed in 
 		# if Yes get  userinfo
 		@gp.load().then(
@@ -18,10 +19,12 @@ class BodyController
 		)
 
 		#### Functions ####### 
-		@scope.home  = @home
-		@scope.new  = @new
-		@scope.baazar  = @baazar
-		@scope.help  = @help
+		@scope.home  			= @home
+		@scope.new  			= @new
+		@scope.baazar  			= @baazar
+		@scope.help  			= @help
+		@scope.handleKeyBoardEvent = @handleKeyBoardEvent
+
 		@scope.$on('$routeChangeStart',(next,current)=>
 			# console.log "loading......."
 			@scope.showLoader = yes 
@@ -114,5 +117,28 @@ class BodyController
 			,true
 		)
 
-	
+	handleKeyBoardEvent :(event)=>
+		console.log "Called"
+		if event.ctrlKey or event.metaKey
+			key = String.fromCharCode( event.which ).toLowerCase( ) 
+			path = @location.path()
+			console.log path
+			switch key
+				when 's'
+					if path is "/New" or path.indexOf('/Edit') > -1
+						event.preventDefault( )
+						@scope.$broadcast( 'save' )
+				when 'p'
+					event.preventDefault( )
+					if  path is "/New" or path.indexOf('/Edit') > -1
+						sure = confirm( "Are you sure ? all UNSAVED changes will be lost.!!" )
+						if sure
+							@new()
+					else
+						@new()
+				when 'h'
+					event.preventDefault( )
+					@home()
+
+
 MonkeyWrench.controller 'BodyController',BodyController

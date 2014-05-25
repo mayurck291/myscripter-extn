@@ -68,28 +68,21 @@
       if (this.isEmpty(project.id)) {
         project.id = this.nextSequence();
       }
-      console.log("saving project", project);
       this.saveProject(project.id, project);
       all_indexes = this.getIndices();
-      console.log("all indices", all_indexes);
       cur_url = project.url;
-      console.log("is empty index for " + cur_url);
       if (this.isEmpty(all_indexes[cur_url])) {
         all_indexes[cur_url] = [];
       }
-      console.log("empty old url to " + cur_url);
       if (this.isEmpty(old_url)) {
         old_url = cur_url;
       }
-      console.log("check index of " + project.id + " in " + cur_url + " index " + all_indexes[cur_url]);
       if (all_indexes[cur_url].indexOf(project.id) === -1) {
         all_indexes[cur_url].push(project.id);
       }
-      console.log("after update " + project.id + " in " + cur_url + " index " + all_indexes[cur_url]);
       if (cur_url !== old_url && all_indexes[old_url] && all_indexes[old_url].indexOf(project.id) > -1) {
         all_indexes[old_url].splice(all_indexes[old_url].indexOf(project.id), 1);
       }
-      console.log("if edition remove old entry from indices " + project.id + " in old url " + old_url + " index " + all_indexes[old_url]);
       this.saveIndices(all_indexes);
     };
 

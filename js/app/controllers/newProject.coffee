@@ -5,7 +5,6 @@ class NewProjectController
 
 	constructor:(@scope,@routeParams,@timeout,@Baazar,@Project,@Alert)->
 		@scope.curProject = @Project.new()
-		console.log @routeParams
 		@timeout ()=>
 			tabs 	= document.getElementById('form')
 			cbtab 	= new CBPFWTabs(tabs)
@@ -17,6 +16,7 @@ class NewProjectController
 		@scope.removejs = @removejs
 		@scope.addjs = @addjs
 		@scope.addcss = @addcss
+		@scope.$on('save',@save)
 		return
 
 	save:()=>
@@ -44,6 +44,4 @@ class NewProjectController
 			@scope.curProject.external.css.push(@scope.extcss)
 		@scope.extcss = null
 		
-
-
 MonkeyWrench.controller 'NewProjectController',NewProjectController

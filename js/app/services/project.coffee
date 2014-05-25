@@ -43,32 +43,32 @@ class Project
 	save: ( project ,old_url)->
 		if @isEmpty(project.id)
 			project.id = @nextSequence( )
-		console.log("saving project",project)
+		# console.log("saving project",project)
 		@saveProject( project.id, project )
 
 		all_indexes = @getIndices( )
-		console.log("all indices",all_indexes)
+		# console.log("all indices",all_indexes)
 
 		cur_url = project.url
 
-		console.log("is empty index for #{cur_url}")
+		# console.log("is empty index for #{cur_url}")
 		if @isEmpty(all_indexes[ cur_url ])
 			all_indexes[ cur_url ] = [ ]
 
-		console.log("empty old url to #{cur_url}")
+		# console.log("empty old url to #{cur_url}")
 		if @isEmpty(old_url)
 			old_url = cur_url
 
-		console.log("check index of #{project.id} in #{cur_url} index #{all_indexes[cur_url]}")
+		# console.log("check index of #{project.id} in #{cur_url} index #{all_indexes[cur_url]}")
 		if all_indexes[ cur_url ].indexOf( project.id ) is -1
 			all_indexes[ cur_url ].push( project.id )
 
-		console.log("after update #{project.id} in #{cur_url} index #{all_indexes[cur_url]}")
+		# console.log("after update #{project.id} in #{cur_url} index #{all_indexes[cur_url]}")
 
 		if cur_url isnt old_url and all_indexes[ old_url ] and all_indexes[ old_url ].indexOf( project.id ) > -1
 			all_indexes[ old_url ].splice( all_indexes[ old_url ].indexOf( project.id ), 1 )
 
-		console.log("if edition remove old entry from indices #{project.id} in old url #{old_url} index #{all_indexes[old_url]}")
+		# console.log("if edition remove old entry from indices #{project.id} in old url #{old_url} index #{all_indexes[old_url]}")
 		@saveIndices( all_indexes )
 		return
 
