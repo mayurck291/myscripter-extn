@@ -139,6 +139,10 @@ class BodyController
 				when 'h'
 					event.preventDefault( )
 					@home()
+				when 'b'
+					event.preventDefault( )
+					@baazar()
+
 
 
 MonkeyWrench.controller 'BodyController',BodyController

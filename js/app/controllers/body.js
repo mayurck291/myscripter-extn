@@ -164,6 +164,9 @@
           case 'h':
             event.preventDefault();
             return this.home();
+          case 'b':
+            event.preventDefault();
+            return this.baazar();
         }
       }
     };
