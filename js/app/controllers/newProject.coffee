@@ -43,5 +43,5 @@ class NewProjectController
 		if @scope.curProject.external.css.indexOf(@scope.extcss) is -1 and @scope.extcss isnt null and @scope.extcss isnt undefined
 			@scope.curProject.external.css.push(@scope.extcss)
 		@scope.extcss = null
-		
+	
 MonkeyWrench.controller 'NewProjectController',NewProjectController
