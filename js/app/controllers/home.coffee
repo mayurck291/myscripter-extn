@@ -98,6 +98,7 @@ class HomeController
 		forked.forked = false
 		forked.name += " (forked)"
 		delete forked.id
+		delete forked._id
 		@Project.save(forked)
 		@Alert.success("Successfully forked ")
 		@getAllProjects()
