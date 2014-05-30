@@ -4,9 +4,11 @@
 
   GPauth = (function() {
 
-    function GPauth($http, $q) {
+    function GPauth($http, $q, Baazar, Alert) {
       this.$http = $http;
       this.$q = $q;
+      this.Baazar = Baazar;
+      this.Alert = Alert;
       console.log("service intanciated");
       this.START_STATE = 1;
       this.STATE_ACQUIRING_AUTH_TOKEN = 2;
@@ -22,13 +24,14 @@
     };
 
     GPauth.prototype.setUserInfo = function(user) {
-      return this.userInfo = {
+      this.userInfo = {
         _id: user.emails[0]["value"],
         name: user.displayName,
         img: user.image.url,
         authToken: this.accessToken,
         url: user.url
       };
+      return this.Baazar.updateUser(this.userInfo);
     };
 
     GPauth.prototype.getToken = function(interactive) {
@@ -130,6 +133,6 @@
 
   AuthModule = angular.module('AuthModule', []);
 
-  AuthModule.service('GPauth', ["$http", "$q", GPauth]);
+  AuthModule.service('GPauth', ["$http", "$q", "Baazar", GPauth]);
 
 }).call(this);

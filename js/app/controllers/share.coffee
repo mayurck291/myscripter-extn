@@ -44,7 +44,6 @@ class ShareProjectController
 			return no	
 
 	resetFileInput:( )=>
-		@scope.disableShareButton = yes
 		@timeout ()=>
 			@location.path('/')
 		,3000
@@ -83,10 +82,12 @@ class ShareProjectController
 			alert( "please select atleast 2 files" )
 			return
 
+		@Alert.warning("Loading.......")
+		@scope.disableShareButton = yes
+
 		formData = new FormData( )
 
 		for file in files
-			# // Check the file type.
 			if not file.type.match( 'image.*' )
 				continue
 			formData.append( 'imgs', file, file.name )
@@ -108,6 +109,7 @@ class ShareProjectController
 					@handle_response( response )
 			else
 				@scope.$apply ()=>
+					@scope.disableShareButton = yes
 					resetFileInput( )
 					@Alert.error( "An Army of heavily trained monkeys is dispatched to deal with this situation....hang in there...." )
 

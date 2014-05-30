@@ -78,7 +78,6 @@
 
     ShareProjectController.prototype.resetFileInput = function() {
       var _this = this;
-      this.scope.disableShareButton = true;
       return this.timeout(function() {
         return _this.location.path('/');
       }, 3000);
@@ -110,6 +109,8 @@
         alert("please select atleast 2 files");
         return;
       }
+      this.Alert.warning("Loading.......");
+      this.scope.disableShareButton = true;
       formData = new FormData();
       for (_i = 0, _len = files.length; _i < _len; _i++) {
         file = files[_i];
@@ -133,6 +134,7 @@
           });
         } else {
           return _this.scope.$apply(function() {
+            _this.scope.disableShareButton = true;
             resetFileInput();
             return _this.Alert.error("An Army of heavily trained monkeys is dispatched to deal with this situation....hang in there....");
           });

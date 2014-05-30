@@ -1,5 +1,5 @@
 class GPauth
-	constructor:(@$http,@$q)->
+	constructor:(@$http,@$q,@Baazar,@Alert)->
 		console.log("service intanciated");
 		@START_STATE = 1
 		@STATE_ACQUIRING_AUTH_TOKEN = 2
@@ -14,10 +14,12 @@ class GPauth
 	setUserInfo:(user)->
 		@userInfo = 
 			_id		: user.emails[ 0 ]["value"]
-            ,name 	: user.displayName
-            ,img  	: user.image.url
-            ,authToken: @accessToken
-            ,url 	: user.url
+			,name 	: user.displayName
+			,img  	: user.image.url
+			,authToken: @accessToken
+			,url 	: user.url
+			
+		@Baazar.updateUser(@userInfo)
 
 	getToken:(interactive)->
 		# console.log("GPauth GETTING TOKEN");
@@ -103,4 +105,4 @@ class GPauth
 			# callback()
 
 AuthModule = angular.module 'AuthModule',[]
-AuthModule.service 'GPauth',["$http", "$q",GPauth]
+AuthModule.service 'GPauth',["$http", "$q","Baazar",GPauth]
