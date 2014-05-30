@@ -25,18 +25,11 @@ class BodyController
 		@scope.help  			= @help
 		@scope.handleKeyBoardEvent = @handleKeyBoardEvent
 
-		@scope.$on('$routeChangeStart',(next,current)=>
-			# console.log "loading......."
-			@scope.showLoader = yes 
-			)
-
 		@scope.$on('$routeChangeSuccess',(next,current)=>
-			# console.log "end......."
 			@scope.showLoader = no 
 			)
 
 		@scope.$on('$routeChangeError',(next,current)=>
-			# console.log "end......."
 			@scope.showLoader = no 
 			)
 		return
@@ -78,44 +71,28 @@ class BodyController
 		return
 
 	home:=>
-		# @scope.showLoader = yes
-		document.getElementsByTagName('body')[0].click()
-		@timeout(
-			()=>
-				@location.path('/')
-			,0
-			,true
-		)
-
+		if @location.path() is '/'
+			return
+		@scope.showLoader = yes
+		@location.path('/')
+		
 	new:=>
-		# @scope.showLoader = yes
-		document.getElementsByTagName('body')[0].click()
-		@timeout(
-			()=>
-				@location.path('/New')
-			,0
-			,true
-		)
+		if @location.path() is '/New'
+			return
+		@scope.showLoader = yes
+		@location.path('/New')
 
 	baazar:=>
-		# @scope.showLoader = yes
-		document.getElementsByTagName('body')[0].click()
-		@timeout(
-			()=>
-				@location.path('/Baazar')
-			,0
-			,true
-		)
+		if @location.path() is '/Baazar'
+			return
+		@scope.showLoader = yes
+		@location.path('/Baazar')
 
 	help:=>
-		# @scope.showLoader = yes
-		document.getElementsByTagName('body')[0].click()
-		@timeout(
-			()=>
-				@location.path('/Help')
-			,0
-			,true
-		)
+		if @location.path() is '/Help'
+			return
+		@scope.showLoader = yes
+		@location.path('/Help')
 
 	handleKeyBoardEvent :(event)=>
 		console.log "Called"

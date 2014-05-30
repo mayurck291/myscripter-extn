@@ -53,9 +53,6 @@
       this.scope.baazar = this.baazar;
       this.scope.help = this.help;
       this.scope.handleKeyBoardEvent = this.handleKeyBoardEvent;
-      this.scope.$on('$routeChangeStart', function(next, current) {
-        return _this.scope.showLoader = true;
-      });
       this.scope.$on('$routeChangeSuccess', function(next, current) {
         return _this.scope.showLoader = false;
       });
@@ -105,35 +102,35 @@
     };
 
     BodyController.prototype.home = function() {
-      var _this = this;
-      document.getElementsByTagName('body')[0].click();
-      return this.timeout(function() {
-        return _this.location.path('/');
-      }, 0, true);
+      if (this.location.path() === '/') {
+        return;
+      }
+      this.scope.showLoader = true;
+      return this.location.path('/');
     };
 
     BodyController.prototype["new"] = function() {
-      var _this = this;
-      document.getElementsByTagName('body')[0].click();
-      return this.timeout(function() {
-        return _this.location.path('/New');
-      }, 0, true);
+      if (this.location.path() === '/New') {
+        return;
+      }
+      this.scope.showLoader = true;
+      return this.location.path('/New');
     };
 
     BodyController.prototype.baazar = function() {
-      var _this = this;
-      document.getElementsByTagName('body')[0].click();
-      return this.timeout(function() {
-        return _this.location.path('/Baazar');
-      }, 0, true);
+      if (this.location.path() === '/Baazar') {
+        return;
+      }
+      this.scope.showLoader = true;
+      return this.location.path('/Baazar');
     };
 
     BodyController.prototype.help = function() {
-      var _this = this;
-      document.getElementsByTagName('body')[0].click();
-      return this.timeout(function() {
-        return _this.location.path('/Help');
-      }, 0, true);
+      if (this.location.path() === '/Help') {
+        return;
+      }
+      this.scope.showLoader = true;
+      return this.location.path('/Help');
     };
 
     BodyController.prototype.handleKeyBoardEvent = function(event) {
