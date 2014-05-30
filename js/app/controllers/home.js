@@ -144,7 +144,9 @@
       forked.forked = false;
       forked.name += " (forked)";
       delete forked.id;
-      delete forked._id;
+      if (forked._id != null) {
+        delete forked._id;
+      }
       this.Project.save(forked);
       this.Alert.success("Successfully forked ");
       return this.getAllProjects();

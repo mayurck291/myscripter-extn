@@ -599,8 +599,8 @@ span.nav-close:before {
     width: 100%;
 }
 .drop-down li ul a:hover {
-    background: #EAF6FD;
-    color: #47a3da;
+    background: #71BFED;
+    color: #fff;
 }
 /* Clearfix */
  .cf:after, .cf:before {

@@ -16199,3 +16199,47 @@ response from an upstream server.<br />
 15:55:57 - [32minfo[39m: sending recip
 15:55:58 - [32minfo[39m: Getting all meta info of all the recipes
 15:55:58 - [32minfo[39m: sending recip
+15:57:40 - [32minfo[39m: Getting all meta info of all the recipes
+15:57:40 - [32minfo[39m: sending recip
+15:57:41 - [32minfo[39m: Getting all meta info of all the recipes
+15:57:41 - [32minfo[39m: sending recip
+15:58:36 - [32minfo[39m: Getting all meta info of all the recipes
+15:58:36 - [32minfo[39m: sending recip
+15:58:37 - [32minfo[39m: Getting all meta info of all the recipes
+15:58:37 - [32minfo[39m: sending recip
+15:59:13 - [32minfo[39m: Getting all meta info of all the recipes
+15:59:13 - [32minfo[39m: sending recip
+15:59:16 - [32minfo[39m: Getting all meta info of all the recipes
+15:59:16 - [32minfo[39m: sending recip
+15:59:16 - [32minfo[39m: Getting all meta info of all the recipes
+15:59:16 - [32minfo[39m: sending recip
+15:59:28 - [32minfo[39m: Getting all meta info of all the recipes
+15:59:28 - [32minfo[39m: sending recip
+15:59:28 - [32minfo[39m: Getting all meta info of all the recipes
+15:59:28 - [32minfo[39m: sending recip
+15:59:58 - [32minfo[39m: Getting all meta info of all the recipes
+15:59:58 - [32minfo[39m: sending recip
+15:59:59 - [32minfo[39m: Getting all meta info of all the recipes
+15:59:59 - [32minfo[39m: sending recip
+16:00:05 - [32minfo[39m: Getting all meta info of all the recipes
+16:00:05 - [32minfo[39m: sending recip
+16:00:06 - [32minfo[39m: Getting all meta info of all the recipes
+16:00:06 - [32minfo[39m: sending recip
+16:00:26 - [32minfo[39m: [ karma ] START
+16:00:26 - [32minfo[39m: [ karma ] parin2092@gmail.com -> 4 -> 53882a11fde0e53c204c9e7f
+16:00:26 - [32minfo[39m: [ karma ] checking if entry exists for parin2092@gmail.com -> 4 -> 53882a11fde0e53c204c9e7f
+16:00:26 - [32minfo[39m: [ karma ] END doesn't exist calling [ addNewEntry ]
+16:00:26 - [32minfo[39m: [ addNewEntry ] START adding new entry for parin2092@gmail.com -> 4 -> {"4":{"external":{"js":[],"css":[]},"autoApply":false,"enabled":true,"css":"","js":"alert('come on dude ....get a life .....')","url":"flipkart.com","name":"flipkart","forked":true,"id":4,"$$hashKey":"09C"},"5":{"external":{"js":[],"css":[]},"autoApply":true,"enabled":true,"css":"","js":"alert('come on dude ....get a life .....')","url":"facebook","name":"fb","forked":false,"id":5},"6":{"external":{"js":[],"css":[]},"autoApply":false,"enabled":true,"css":"","js":"alert('come on dude ....get a life .....')","url":"flipkart.com","name":"flipkart (forked)","forked":false,"id":6},"__jstorage_meta":{"CRC32":{"4":"2.1578030260","5":"2.4120971470","6":"2.1934318007","sequence":"2.2333669747","prjmyindexes_9":"2.2297333880"},"TTL":{}},"sequence":7,"prjmyindexes_9":{"google":[],"facebook":[5],"stackoverflow":[],"flipkart.com":[4,6]}}{"4":{"external":{"js":[],"css":[]},"autoApply":false,"enabled":true,"css":"","js":"alert('come on dude ....get a life .....')","url":"flipkart.com","name":"flipkart","forked":true,"id":4,"$$hashKey":"09C"},"5":{"external":{"js":[],"css":[]},"autoApply":true,"enabled":true,"css":"","js":"alert('come on dude ....get a life .....')","url":"facebook","name":"fb","forked":false,"id":5},"6":{"external":{"js":[],"css":[]},"autoApply":false,"enabled":true,"css":"","js":"alert('come on dude ....get a life .....')","url":"flipkart.com","name":"flipkart (forked)","forked":false,"id":6},"__jstorage_meta":{"CRC32":{"4":"2.1578030260","5":"2.4120971470","6":"2.1934318007","sequence":"2.2333669747","prjmyindexes_9":"2.2297333880"},"TTL":{}},"sequence":7,"prjmyindexes_9":{"google":[],"facebook":[5],"stackoverflow":[],"flipkart.com":[4,6]}} -> 53882a11fde0e53c204c9e7f
+16:00:26 - [32minfo[39m: [ addNewEntry ] END parin2092@gmail.com gave 4 to recipe 53882a11fde0e53c204c9e7f , null, updated 1 docs
+16:00:45 - [32minfo[39m: Getting all meta info of all the recipes
+16:00:46 - [32minfo[39m: sending recip
+16:00:46 - [32minfo[39m: Getting all meta info of all the recipes
+16:00:46 - [32minfo[39m: sending recip
+16:00:58 - [32minfo[39m: Getting all meta info of all the recipes
+16:00:58 - [32minfo[39m: sending recip
+16:00:59 - [32minfo[39m: Getting all meta info of all the recipes
+16:00:59 - [32minfo[39m: sending recip
+16:01:30 - [32minfo[39m: Getting all meta info of all the recipes
+16:01:30 - [32minfo[39m: sending recip
+16:01:30 - [32minfo[39m: Getting all meta info of all the recipes
+16:01:30 - [32minfo[39m: sending recip

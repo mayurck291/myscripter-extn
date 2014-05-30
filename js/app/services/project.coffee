@@ -38,7 +38,7 @@ class Project
 
 	saveProject :( id, project )->
 		$.jStorage.set( id, project )
-		@Alert.success( "Hurrah.!! Project saved successfully" )
+		# @Alert.success( "Hurrah.!! Project saved successfully" )
 
 	save: ( project ,old_url)->
 		if @isEmpty(project.id)

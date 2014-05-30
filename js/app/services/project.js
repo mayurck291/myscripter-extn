@@ -59,8 +59,7 @@
     };
 
     Project.prototype.saveProject = function(id, project) {
-      $.jStorage.set(id, project);
-      return this.Alert.success("Hurrah.!! Project saved successfully");
+      return $.jStorage.set(id, project);
     };
 
     Project.prototype.save = function(project, old_url) {
