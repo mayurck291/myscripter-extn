@@ -1,4 +1,3 @@
-MonkeyWrench = angular.module 'MonkeyWrench'
 class HomeController
 	@$inject: ['$scope','$routeParams','$timeout','$location','Baazar','GPauth','Alert','Project'] 
 
@@ -6,8 +5,6 @@ class HomeController
 		@scope.alert 		= @Alert.bind()
 		@scope.signIn 		= @signIn
 		@scope.signOut 		= @signOut
-		# check if user is signed in 
-		# if Yes get  userinfo
 		@getAllProjects()
 
 		@gp.load().then(
