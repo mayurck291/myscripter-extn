@@ -23,138 +23,97 @@
     <link rel="stylesheet" type="text/css" href="/css/icons.css" />
     <link rel="stylesheet" type="text/css" href="/css/demo.css" />
     <link rel="stylesheet" type="text/css" href="/css/component.css" />
-    <link rel="stylesheet" type="text/css" href="/css/menu2.css" />
     <link rel="stylesheet" type="text/css" href="/css/slider.css" />
-    <!-- <link rel="stylesheet" type="text/css" href="/css/myicons.css" /> -->
-    <!-- gridGAllery -->
 </head>
 
 <body ng-controller="BodyController" ng-keydown="handleKeyBoardEvent($event)">
 
-    <div id="st-container" class="st-container">
-        <!--    
-                example menus 
-                these menus will be on top of the push wrapper
-            -->
-        <div ng-show="showLoader" style="position:fixed;top:0;left:0;right:0;bottom:0;z-index:10000;background-color:rgba(255,255,255,0.5);">
-            <img alt="Submitting Please Wait..!" style="position:fixed;top:30%;left:40%;" src="/imgs/loader.gif">
-        </div>
+    <div ng-show="showLoader" style="position:fixed;top:0;left:0;right:0;bottom:0;z-index:10000;background-color:rgba(255,255,255,0.5);">
+        <img alt="Submitting Please Wait..!" style="position:fixed;top:30%;left:40%;" src="/imgs/loader.gif">
+    </div>
 
-        <nav class="st-menu st-effect-1" id="menu-1">
-            <h2 style="font-weight: bold;font-size: 1.7em;color: white;">Monkey Wrench
-                <span class="icon-wrench"></span>
-            </h2>
-            <ul>
-                <li>
-                    <a class="icon icon-data" href="" ng-click="home()">
-                        <h2 style="display:inline;color:white">
-                            <span class="icon-home"></span>
+    <!-- content push wrapper -->
+    <div class="st-pusher">
+        <div class="st-content">
+            <!-- this is the wrapper for the content -->
+            <div class="st-content-inner">
+                <!-- extra div for emulating position:fixed of the menu -->
+                <!-- Top Navigation -->
+                <header class="codrops-header" style="position:absolute;top:0;left:0;right:0;height:55px;background:#47a3da;color:white">
+                    <div class="pull-left" style="margin-top: -7px;width:70%;">
+                        <h2 class="pull-left clickable" ng-click="home()">
+                            <span class="icon-wrench"></span>
+                            Monkey Wrench
                         </h2>
-                        Home</a>
-                </li>
-                <li>
-                    <a class="icon icon-location" href="" ng-click="new()">
-                        <h2 style="display:inline;color:white">
+
+                        <h2 class="pull-left clickable" ng-click="new()">
                             <span class="icon-new"></span>
-                        </h2>New</a>
-                </li>
-                <li>
-                    <a class="icon icon-study" href="" ng-click="baazar()">
-                        <h2 style="display:inline;color:white">
-                            <span class="icon-food"></span>
-                        </h2>Recipe Baazar</a>
-                </li>
-                <li>
-                    <a class="icon icon-study" href="" ng-click="help()">
-                        <h2 style="display:inline;color:white">
-                            <span class="icon-question"></span>
+                            New
                         </h2>
-                        Help</a>
-                </li>
-            </ul>
-        </nav>
+
+                        <h2 class="pull-left clickable" ng-click="baazar()">
+                            <span class="icon-food"></span>
+                            Recipe Baazar
+                        </h2>
+
+                        <h2 class="pull-left clickable" ng-click="help()">
+                            <span class="icon-question"></span>Help
+                        </h2>
+                    </div>
 
 
-        <!-- content push wrapper -->
-        <div class="st-pusher">
-            <div class="st-content">
-                <!-- this is the wrapper for the content -->
-                <div class="st-content-inner">
-                    <!-- extra div for emulating position:fixed of the menu -->
-                    <!-- Top Navigation -->
-                    <header class="codrops-header" style="position:absolute;top:0;left:0;right:0;height:55px;background:#47a3da;color:white">
-                        <div>
-                            <div id="st-trigger-effects" class="pull-left">
-                                <div data-effect="st-effect-1">
-                                    <span class="icon-menu" style="
-                                    margin-right: 15px;padding: 41px 16px 18px 15px;font-size: 1.7em;cursor: pointer;position: relative;top: 15px;border-right: 1px solid;"></span>
-                                </div>
-                            </div>
-                            <div class="pull-left" style="margin-top: -11px;">
-                                <h1>
-                                    Monkey Wrench
-                                    <span class="icon-wrench"></span>
-                                </h1>
-                            </div>
-                            <span class="pull-right">
-                                <div ng-show="!signedIn" style="margin-right:30px">
-                                    <a href="" ng-click="signIn()">
-                                        <h3>
-                                            <span class="icon-googleplus"></span>
-                                            Log In
-                                        </h3>
+
+                    <span class="pull-right" style="width:30%">
+                        <div class="pull-right" ng-show="!signedIn" style="margin-right:30px">
+                            <a href="" ng-click="signIn()">
+                                <h3>
+                                    <span class="icon-googleplus"></span>
+                                    Log In
+                                </h3>
+                            </a>
+                        </div>
+                        <div ng-show="signedIn" class="pull-right">
+                            <ul class="drop-down cf" style="list-style:none">
+                                <li>
+                                    <a class="dropdown" href="">
+                                        Hello
+                                        <img class="circle" style="position:relative;top:10px;height:30px;margin-right:5px" ng-src="{{user.img}}" alt="{{user.name}}">{{user.name}}
                                     </a>
-                                </div>
-                                <div ng-show="signedIn" class="pull-right">
-                                    <ul class="drop-down cf" style="list-style:none">
+                                    <ul>
                                         <li>
-                                            <a class="dropdown" href="">
-                                                Hello <img style="position:relative;top:10px;height:30px" ng-src="{{user.img}}" alt="{{user.name}}">
-                                                {{user.name}}
+                                            <a target="_blank" ng-href="{{user.url}}">{{user._id}}</a>
+                                        </li>
+                                        <li>
+                                            <a href="" ng-click="signOut()">Log Out
+                                                <span class=" icon-exit"></span>
                                             </a>
-                                            <ul>
-                                                <li><a target="_blank" ng-href="{{user.url}}">{{user._id}}</a>
-                                                </li>
-                                                <li><a href="" ng-click="signOut()">Log Out
-                                                <span class=" icon-exit"></span></a>
-                                                </li>
-                                            </ul>
                                         </li>
                                     </ul>
-                                </div>
-                            </span>
-                            <alert>
-                                <div ng-class="alert.class" ng-show="alert.show" style="position: fixed;top: -6px;z-index: 100000000;text-align: center;left: 0px;width: 100%;font-size: 1.5em;">
-                                    <span ng-class="{'icon-happy':alert.type=='success','icon-sad':alert.type=='error','icon-shocked':alert.type=='warning'}"></span>{{alert.msg}}
-                                </div>
-                            </alert>
+                                </li>
+                            </ul>
                         </div>
+                    </span>
 
-                    </header>
-                    <div class="main clearfix ">
-                        <div style="margin-top:80px">
-                            <!-- class="slide-pop" -->
-                            <div ng-view class="slide-pop"></div>
-                        </div>
+
+                </header>
+                <alert>
+                    <div ng-class="alert.class" ng-show="alert.show" style="position: fixed;top: -6px;z-index: 100000000;text-align: center;left: 0px;width: 100%;font-size: 1.5em;">
+                        <span ng-class="{'icon-happy':alert.type=='success','icon-sad':alert.type=='error','icon-shocked':alert.type=='warning'}"></span>{{alert.msg}}
                     </div>
-                    <!-- /main -->
+                </alert>
+                <div class="main clearfix ">
+                    <div style="margin-top:80px">
+                        <div ng-view class="slide-pop"></div>
+                    </div>
                 </div>
-                <!-- /st-content-inner -->
             </div>
-            <!-- /st-content -->
         </div>
-        <!-- /st-pusher -->
     </div>
-    <!-- /st-container -->
-    <!-- /container -->
 
-    <!-- gridGAllery -->
 
     <script src="/js/lib/gridGallery/cbpTabs.js"></script>
     <script src="/js/lib/gridGallery/cbpGridGallery.js"></script>
 
-    <!-- // <script type="text/javascript" src="/js/lib/menu/borderMenu.js"></script> -->
-    <script type="text/javascript" src="/js/lib/menu/sidebarEffects.js"></script>
     <script type="text/javascript" src="/js/slider.js"></script>
 
     <!-- services -->

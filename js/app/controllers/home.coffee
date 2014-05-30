@@ -86,7 +86,7 @@ class HomeController
 	save:(project)=>
 		project.enabled = !project.enabled
 		@Project.save(project)
-		@Alert.success("Hurray.....Recipe saved...")
+		# @Alert.success("Hurray.....Recipe saved...")
 
 	edit:(project)=>
 		if project.forked

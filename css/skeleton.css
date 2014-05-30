@@ -625,3 +625,14 @@ button:disabled {
 .animate-leave.animate-leave-active {
     left: -100%;
 }
+.clickable {
+    color:white;
+    cursor: pointer;
+    margin-left: 3%;
+}
+.clickable:hover {
+    opacity: 0.9;
+}
+.circle {
+    border-radius:50%
+}

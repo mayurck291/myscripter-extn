@@ -7,6 +7,7 @@
     function GPauth($http, $q) {
       this.$http = $http;
       this.$q = $q;
+      console.log("service intanciated");
       this.START_STATE = 1;
       this.STATE_ACQUIRING_AUTH_TOKEN = 2;
       this.STATE_AUTH_TOKEN_ACQUIRED = 3;

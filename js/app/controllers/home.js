@@ -126,8 +126,7 @@
 
     HomeController.prototype.save = function(project) {
       project.enabled = !project.enabled;
-      this.Project.save(project);
-      return this.Alert.success("Hurray.....Recipe saved...");
+      return this.Project.save(project);
     };
 
     HomeController.prototype.edit = function(project) {
