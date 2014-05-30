@@ -83,7 +83,7 @@
 
     BodyController.prototype.signIn = function() {
       var _this = this;
-      this.Alert.warning("Loading...........:)");
+      this.Alert.warning("Loading....");
       this.gp.signIn().then(function() {
         return _this.getUserInfo();
       }, function(error) {

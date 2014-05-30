@@ -60,7 +60,7 @@ class BodyController
 	signIn :=>
 		# console.log (@gp)
 		# console.log("signing in .....")
-		@Alert.warning("Loading...........:)")
+		@Alert.warning("Loading....")
 		@gp.signIn().then(
 			() => @getUserInfo()
 		,
