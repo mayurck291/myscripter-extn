@@ -636,3 +636,6 @@ button:disabled {
 .circle {
     border-radius:50%
 }
+a {
+    text-decoration: none;
+}
