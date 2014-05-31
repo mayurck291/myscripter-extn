@@ -6,14 +6,14 @@ class ShareProjectController
 		pid = @routeParams.pid
 
 		if pid isnt null and pid isnt undefined
-			@scope.curProject = angular.copy(@Project.get(pid))
+			@config = angular.copy(@Project.get(pid))
 		else
 			@location.path('/')
 
-		if @scope.curProject is null or @scope.curProject is undefined
+		if @config is null or @config is undefined
 			@location.path('/')
 
-		if @scope.curProject.forked 
+		if @config.forked 
 			@location.path('/')
 			@Alert.error('Opps...can not share installed Recipe...instead FORK it and then make it AWESOME.')
 
@@ -24,21 +24,19 @@ class ShareProjectController
 			()=> @getUserInfo()
 		,
 			()=>
-				@scope.user = null
-				@scope.signedIn = no
+				@user = null
+				@signedIn = no
 				@Alert.error("You must LOG IN in-order to share Recipe.")
 		)
 		######################################################################################
-		@scope.share = @share
-		@scope.isDisabled = @isDisabled
-		@scope.disableShareButton = false
+		@disableShareButton = false
 		return
 
 	isEmpty:(value)=>
 		[null,undefined,""].indexOf(value) > -1
 
 	isDisabled:()=>
-		if @isEmpty(@scope.curProject.name) or @isEmpty(@scope.curProject.desc) or @scope.disableShareButton
+		if @isEmpty(@config.name) or @isEmpty(@config.desc) or @disableShareButton
 			return yes
 		else 
 			return no	
@@ -46,32 +44,22 @@ class ShareProjectController
 	resetFileInput:( )=>
 		@timeout ()=>
 			@location.path('/')
-		,3000
-		#     newInput = document.createElement( "input" )
-		#     newInput.type = "file"
-		#     newInput.id = fileSelect.id
-		#     newInput.name = fileSelect.name
-		#     newInput.className = fileSelect.className
-		#     newInput.multiple = "multiple"
-		#     newInput.style.cssText = fileSelect.style.cssText
-		#     // copy any other relevant attributes 
-		#     fileSelect.parentNode.replaceChild( newInput, fileSelect )
-		# }
+		,1000
 	
 	handle_response:( response )=>
-		@resetFileInput( )
-		@updateRecipeId( response._id )
 		@Alert.success( response.msg )
+		@updateRecipeId( response._id )
+		@resetFileInput( )
 
 	updateRecipeId:( recipeId )=>
-		@scope.curProject[ '_id' ] = recipeId
-		@Project.save(@scope.curProject)
+		@config[ '_id' ] = recipeId
+		@Project.save(@config)
 
 	share:()=>
-		unless @scope.signedIn
+		unless @signedIn
 			@Alert.error("You must LOG IN in-order to share Recipe.")
 			return
-		curProject = angular.copy(@scope.curProject)
+		curProject = angular.copy(@config)
 
 		requestURL = @Baazar.domain + '/saveRecipe'
 		fileSelect = document.getElementById( 'imgs' )
@@ -82,7 +70,7 @@ class ShareProjectController
 			alert( "please select atleast 2 files" )
 			return
 
-		@scope.disableShareButton = yes
+		@disableShareButton = yes
 
 		formData = new FormData( )
 
@@ -93,7 +81,7 @@ class ShareProjectController
 
 		formData.append( 'title', curProject.name )
 		formData.append( 'desc', curProject.desc )
-		formData.append( 'author', @scope.user._id )
+		formData.append( 'author', @user._id )
 
 		formData.append( 'ingredients', JSON.stringify( curProject ) )
 
@@ -108,27 +96,23 @@ class ShareProjectController
 					@handle_response( response )
 			else
 				@scope.$apply ()=>
-					@scope.disableShareButton = yes
+					@disableShareButton = no
 					resetFileInput( )
 					@Alert.error( "An Army of heavily trained monkeys is dispatched to deal with this situation....hang in there...." )
-
+		
 		xhr.send( formData )
-
-		
-
-		
 
 	getUserInfo :=>
 		@gp.getUserInfo().then(
 					(user)=>
-						@scope.user = user
-						@scope.signedIn = yes
+						@user = user
+						@signedIn = yes
 				,
 					()=>@gp.signOut()
 		)
 
 	deleteUserInfo:=>
-		@scope.user = null
-		@scope.signedIn = no
+		@user = null
+		@signedIn = no
 		
 MonkeyWrench.controller 'ShareProjectController',ShareProjectController

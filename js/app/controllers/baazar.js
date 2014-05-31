@@ -210,6 +210,8 @@
       this.Alert.warning("Loading....");
       return this.Baazar.getRecipe(id).then(function(recipe) {
         recipe.forked = true;
+        recipe.favourited = false;
+        recipe._id = id;
         _this.Project.save(recipe);
         return _this.Alert.success("Yeahh...!! recipe installed.");
       }, function() {

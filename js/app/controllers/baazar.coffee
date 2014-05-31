@@ -151,6 +151,8 @@ class BaazarController
 		@Alert.warning("Loading....")
 		@Baazar.getRecipe(id).then((recipe)=>
 				recipe.forked = true
+				recipe.favourited = no
+				recipe._id = id
 				@Project.save(recipe)
 				@Alert.success("Yeahh...!! recipe installed.")
 			,()=>

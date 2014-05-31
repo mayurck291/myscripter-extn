@@ -16,31 +16,15 @@ exports.favourite = (request,response)->
 
     update = 
         "$addToSet": { favs : user},
-        "$inc" : { favc : 1 }
 
     Meta.where({_id:_id})
         .where('favs').ne(user)
         .update update,(e,r)->
-            logger.info "=========================================================="
-            console.log r
-            logger.info "=========================================================="
+            if e?
+                response.json(500,{})
+            else
+                response.json(200,{})
 
-
-    # Meta.find query,(e,r)->
-    #     logger.info "=========================================================="
-    #     console.log r
-    #     logger.info "=========================================================="
-
-    # update = 
-    #     "$addToSet": { favs : user},
-    #     "$inc" : { favc : 1 }
-    # update = 
-    #     "$addToSet": { favs : user},
-    #     "$inc" : { favc : 1 }
-    # Meta.update query,update,(error,noOfDocsUpdated)->
-    #     console.log user," Favorited recipe ", _id
-
-# exports.popular 
 exports.get = (request,response)->
     logger.info "Getting all meta info of all the recipes"
     userFilter = '-authToken -updatedAt'

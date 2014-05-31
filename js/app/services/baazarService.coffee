@@ -258,16 +258,8 @@ class Baazar
 			_id:recipeID
 
 		@$http.post(@favRecipeUrl,payload)
-			.success(
-				(response,status) =>
-					@handlePostCall(defer,response)
-					return 
-					)
-			.error(
-				(response,status) =>
-					@handlePostCall(defer,response);
-					return 
-				)
+			.success(defer.resolve)
+			.error(defer.reject)
 		defer.promise 
 
 BaazarModule = angular.module "BaazarModule",[]

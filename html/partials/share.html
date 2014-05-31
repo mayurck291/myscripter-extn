@@ -3,30 +3,25 @@
 
         <div class="content" style="margin-left:10%;margin-right:10%">
             <label for="name">Name</label>
-            <input ng-model="curProject.name" type="text" id="name" name="name" placeholder="e.g. Google Beautify">
+            <input ng-model="ShareProject.config.name" type="text" id="name" name="name" placeholder="e.g. Google Beautify">
 
             <label for="desc">Description</label>
-            <textarea rows="4" ng-model="curProject.desc" id="desc" name="desc" placeholder="e.g. this is how i beautified twitter .....">
+            <textarea rows="4" ng-model="ShareProject.config.desc" id="desc" name="desc" placeholder="e.g. this is how i beautified twitter .....">
             </textarea>
 
             <fileimport></fileimport>
-            <!-- <input type="file" name="imgs" id="imgs" multiple> -->
-            <span>
-                <img ng-src="" alt="">
-            </span>
+
             <div class="cbp-mc-submit-wrap">
-                <img ng-show="disableShareButton" src="/imgs/circle.gif" alt="">
-                <button ng-click="share()" class="cbp-mc-submit" type="submit" value="Save" ng-disabled="isDisabled()">
-                    <span ng-show="!disableShareButton">
+                <img ng-show="ShareProject.disableShareButton" src="/imgs/circle.gif" alt="">
+                <button ng-click="ShareProject.share()" class="cbp-mc-submit" type="submit" value="Save" ng-disabled="ShareProject.isDisabled()">
+                    <span ng-show="!ShareProject.disableShareButton">
                         <span class="icon-share"></span>
                         Share
                     </span>
-                    <span ng-show="disableShareButton">
+                    <span ng-show="ShareProject.disableShareButton">
                         Sharing...
                     </span>
                 </button>
-                <!-- ng-show="disableShareButton" -->
-
             </div>
         </div>
     </div>

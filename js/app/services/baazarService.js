@@ -223,18 +223,13 @@
     };
 
     Baazar.prototype.favourite = function(user, recipeID) {
-      var defer, payload,
-        _this = this;
+      var defer, payload;
       defer = this.$q.defer();
       payload = {
         user: user,
         _id: recipeID
       };
-      this.$http.post(this.favRecipeUrl, payload).success(function(response, status) {
-        _this.handlePostCall(defer, response);
-      }).error(function(response, status) {
-        _this.handlePostCall(defer, response);
-      });
+      this.$http.post(this.favRecipeUrl, payload).success(defer.resolve).error(defer.reject);
       return defer.promise;
     };
 

@@ -38,14 +38,14 @@
 
       pid = this.routeParams.pid;
       if (pid !== null && pid !== void 0) {
-        this.scope.curProject = angular.copy(this.Project.get(pid));
+        this.config = angular.copy(this.Project.get(pid));
       } else {
         this.location.path('/');
       }
-      if (this.scope.curProject === null || this.scope.curProject === void 0) {
+      if (this.config === null || this.config === void 0) {
         this.location.path('/');
       }
-      if (this.scope.curProject.forked) {
+      if (this.config.forked) {
         this.location.path('/');
         this.Alert.error('Opps...can not share installed Recipe...instead FORK it and then make it AWESOME.');
       }
@@ -54,13 +54,11 @@
       this.gp.load().then(function() {
         return _this.getUserInfo();
       }, function() {
-        _this.scope.user = null;
-        _this.scope.signedIn = false;
+        _this.user = null;
+        _this.signedIn = false;
         return _this.Alert.error("You must LOG IN in-order to share Recipe.");
       });
-      this.scope.share = this.share;
-      this.scope.isDisabled = this.isDisabled;
-      this.scope.disableShareButton = false;
+      this.disableShareButton = false;
       return;
     }
 
@@ -69,7 +67,7 @@
     };
 
     ShareProjectController.prototype.isDisabled = function() {
-      if (this.isEmpty(this.scope.curProject.name) || this.isEmpty(this.scope.curProject.desc) || this.scope.disableShareButton) {
+      if (this.isEmpty(this.config.name) || this.isEmpty(this.config.desc) || this.disableShareButton) {
         return true;
       } else {
         return false;
@@ -80,28 +78,28 @@
       var _this = this;
       return this.timeout(function() {
         return _this.location.path('/');
-      }, 3000);
+      }, 1000);
     };
 
     ShareProjectController.prototype.handle_response = function(response) {
-      this.resetFileInput();
+      this.Alert.success(response.msg);
       this.updateRecipeId(response._id);
-      return this.Alert.success(response.msg);
+      return this.resetFileInput();
     };
 
     ShareProjectController.prototype.updateRecipeId = function(recipeId) {
-      this.scope.curProject['_id'] = recipeId;
-      return this.Project.save(this.scope.curProject);
+      this.config['_id'] = recipeId;
+      return this.Project.save(this.config);
     };
 
     ShareProjectController.prototype.share = function() {
       var curProject, file, fileSelect, files, formData, requestURL, xhr, _i, _len,
         _this = this;
-      if (!this.scope.signedIn) {
+      if (!this.signedIn) {
         this.Alert.error("You must LOG IN in-order to share Recipe.");
         return;
       }
-      curProject = angular.copy(this.scope.curProject);
+      curProject = angular.copy(this.config);
       requestURL = this.Baazar.domain + '/saveRecipe';
       fileSelect = document.getElementById('imgs');
       files = fileSelect.files;
@@ -109,7 +107,7 @@
         alert("please select atleast 2 files");
         return;
       }
-      this.scope.disableShareButton = true;
+      this.disableShareButton = true;
       formData = new FormData();
       for (_i = 0, _len = files.length; _i < _len; _i++) {
         file = files[_i];
@@ -120,7 +118,7 @@
       }
       formData.append('title', curProject.name);
       formData.append('desc', curProject.desc);
-      formData.append('author', this.scope.user._id);
+      formData.append('author', this.user._id);
       formData.append('ingredients', JSON.stringify(curProject));
       xhr = new XMLHttpRequest();
       xhr.open('POST', requestURL, true);
@@ -133,7 +131,7 @@
           });
         } else {
           return _this.scope.$apply(function() {
-            _this.scope.disableShareButton = true;
+            _this.disableShareButton = false;
             resetFileInput();
             return _this.Alert.error("An Army of heavily trained monkeys is dispatched to deal with this situation....hang in there....");
           });
@@ -145,16 +143,16 @@
     ShareProjectController.prototype.getUserInfo = function() {
       var _this = this;
       return this.gp.getUserInfo().then(function(user) {
-        _this.scope.user = user;
-        return _this.scope.signedIn = true;
+        _this.user = user;
+        return _this.signedIn = true;
       }, function() {
         return _this.gp.signOut();
       });
     };
 
     ShareProjectController.prototype.deleteUserInfo = function() {
-      this.scope.user = null;
-      return this.scope.signedIn = false;
+      this.user = null;
+      return this.signedIn = false;
     };
 
     return ShareProjectController;

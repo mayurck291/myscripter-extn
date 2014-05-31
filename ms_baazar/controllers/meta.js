@@ -23,17 +23,16 @@
     update = {
       "$addToSet": {
         favs: user
-      },
-      "$inc": {
-        favc: 1
       }
     };
     return Meta.where({
       _id: _id
     }).where('favs').ne(user).update(update, function(e, r) {
-      logger.info("==========================================================");
-      console.log(r);
-      return logger.info("==========================================================");
+      if (e != null) {
+        return response.json(500, {});
+      } else {
+        return response.json(200, {});
+      }
     });
   };
 

@@ -19,12 +19,14 @@ MonkeyWrench.config ['$routeProvider','$locationProvider',
 			).when('/Share/:pid'
 				,templateUrl:'/html/partials/share.html'
 				,controller:'ShareProjectController'
+				,controllerAs:'ShareProject'
 			).when('/Help'
 				,templateUrl:'/html/partials/help.html'
 				,controller:'BodyController'
 			).when('/'
 				,templateUrl:'/html/partials/home.html'
 				,controller:'HomeController'
+				,controllerAs:'Home'
 			).otherwise(
 				{redirectTo:'/'}
 			)

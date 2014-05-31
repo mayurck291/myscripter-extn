@@ -9,7 +9,7 @@
     </style>
 
 
-    <div ng-show="!allProjects.length" class="container">
+    <div ng-show="!Home.allProjects.length" class="container">
         <div class="panel-body text-center">
             <div class="container" style="text-align:center">
                 <h1>
@@ -18,19 +18,20 @@
                 </h1>
                 <h3>
                     Go ahead and
-                    <a href="" style="color:black" ng-click="new()">
+                    <a href="" style="color:black" ng-click="Home.new()">
                         Cook
                     </a>
                     ..or install ready-made recipes from
-                    <a href="" style="color:black" ng-click="baazar()">
+                    <a href="" style="color:black" ng-click="Home.baazar()">
                         <span class="icon-food"></span>Recipe Baazar</a>
                     <br>
-                    <br>still need help ??..read our simple <a href="" style="color:black" ng-click="help()">Help</a> document
+                    <br>still need help ??..read our simple
+                    <a href="" style="color:black" ng-click="Home.help()">Help</a>document
                 </h3>
             </div>
         </div>
     </div>
-    <div ng-show="allProjects.length">
+    <div ng-show="Home.allProjects.length">
 
         <div id="home" class="tabs">
             <nav>
@@ -51,10 +52,10 @@
             </nav>
             <div class="content">
                 <section id="my">
-                    <div class="container" ng-show="!(allProjects|filter:{forked:false}).length">
+                    <div class="container" ng-show="!(Home.allProjects|filter:{forked:false}).length">
                         <h1 style="text-align: center;">
                             <span class="icon-sad icc"></span>&nbsp;You have no recipes yet - go ahead and
-                            <a href="" ng-click="new()" style="color:black">
+                            <a href="" ng-click="Home.new()" style="color:black">
                                 <span class="icon-add"></span>Cook</a>
 
                         </h1>
@@ -64,9 +65,9 @@
                                 </span>Recipe Baazar
                             </a> -->
                     </div>
-                    <div ng-show="(allProjects|filter:{forked:false}).length">
+                    <div ng-show="(Home.allProjects|filter:{forked:false}).length">
                         <br>
-                        <import callback="importProject(project)"></import>
+                        <import callback="Home.importProject(project)"></import>
                         <br>
                         <table>
                             <thead>
@@ -80,13 +81,14 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr ng-repeat="project in allProjects|filter:{forked:false} track by $index">
+                                <tr ng-repeat="project in Home.allProjects|filter:{forked:false} track by $index">
                                     <td>{{$index+1}}</td>
-                                    <td><a href="" title="click to edit {{project.name}}" ng-click="edit(project)" style="font-weight: bold;color: #47a3da;">{{project.name}}</a>
+                                    <td>
+                                        <a href="" title="click to edit {{project.name}}" ng-click="Home.edit(project)" style="font-weight: bold;color: #47a3da;">{{project.name}}</a>
                                     </td>
                                     <td>{{project.url}}</td>
                                     <td>
-                                        <a href="" ng-click="save(project)">
+                                        <a href="" ng-click="Home.save(project)">
                                             <span class="icc" ng-class="{'icon-on':project.enabled,'icon-off':!project.enabled}" style="font-size: larger;"></span>
                                         </a>
                                     </td>
@@ -94,18 +96,18 @@
                                         <!--  <a href="" ng-click="edit(project)" title="Edit {{project.name}}">
                                     <span class="icon-edit icc" style="margin-right:5px"></span>
                                 </a> -->
-                                        <a href="" ng-click="share(project)" title="Share {{project.name}}">
+                                        <a href="" ng-click="Home.share(project)" title="Share {{project.name}}">
                                             <span class="icon-share icc" style="margin-right:10px"></span>
                                         </a>
                                         <!-- <a href="{{getDownloadLink(project)}}" title="Download {{project.name}}">
                                     <span class="icon-download icc" style="margin-right:10px"></span>
                                 </a> -->
-                                        <a href="" title="Fork {{project.name}}" ng-click="fork(project)">
+                                        <a href="" title="Fork {{project.name}}" ng-click="Home.fork(project)">
                                             <span class="icon-forkandspoon icc" style="margin-right:10px"></span>
                                         </a>
                                         <download project="project"></download>
 
-                                        <a href="" title="Delete {{project.name}}" ng-click="delete(project)">
+                                        <a href="" title="Delete {{project.name}}" ng-click="Home.delete(project)">
                                             <span class="icon-remove icc" style="margin-right:10px"></span>
                                         </a>
                                     </td>
@@ -118,12 +120,12 @@
                 <section id="installed">
                     <br>
                     <br>
-                    <div ng-show="!(allProjects|filter:{forked:true}).length" class="container">
+                    <div ng-show="!(Home.allProjects|filter:{forked:true}).length" class="container">
                         <div class="panel-body text-center">
                             <div class="">
                                 <h1>
                                     <span class="icon-sad icc"></span>&nbsp;You have not installed any recipes yet - Visit &nbsp;
-                                    <a href="" style="color:black" ng-click="baazar()">
+                                    <a href="" style="color:black" ng-click="Home.baazar()">
                                         <span class="icon-food">
                                         </span>Recipe Baazar
                                     </a>
@@ -131,7 +133,7 @@
                             </div>
                         </div>
                     </div>
-                    <table ng-show="(allProjects|filter:{forked:true}).length">
+                    <table ng-show="(Home.allProjects|filter:{forked:true}).length">
                         <thead>
                             <tr>
                                 <th>#</th>
@@ -143,22 +145,25 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="project in allProjects|filter:{forked:true}">
+                            <tr ng-repeat="project in Home.allProjects|filter:{forked:true}">
                                 <td>{{$index+1}}</td>
                                 <td>{{project.name}}</td>
                                 <td>{{project.url}}</td>
                                 <td>
-                                    <a href="" ng-click="save(project)">
+                                    <a href="" ng-click="Home.save(project)">
                                         <span class="icc" ng-class="{'icon-on':project.enabled,'icon-off':!project.enabled}" style="font-size: larger;"></span>
                                     </a>
                                 </td>
-                                <td style="width:15%">
+                                <td style="width:20%">
                                     <!-- fork,rate,favourite -->
-                                    <a href="" title="Fork {{project.name}}" ng-click="fork(project)">
+                                    <a href="" title="Favourite {{project.name}}" ng-click="Home.favourite(project)">
+                                        <span class="icon-heart2 icc" style="margin-right:10px"></span>
+                                    </a>
+                                    <a href="" title="Fork {{project.name}}" ng-click="Home.fork(project)">
                                         <span class="icon-forkandspoon icc" style="margin-right:10px"></span>
                                     </a>
                                     <download project="project"></download>
-                                    <a href="" title="Delete {{project.name}}" ng-click="delete(project)">
+                                    <a href="" title="Delete {{project.name}}" ng-click="Home.delete(project)">
                                         <span class="icon-remove icc" style="margin-right:10px"></span>
                                     </a>
                                 </td>

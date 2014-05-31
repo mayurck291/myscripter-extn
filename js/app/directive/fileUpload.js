@@ -72,11 +72,16 @@ MonkeyWrench.directive( 'download', function ( ) {
         link: function ( $scope, iElm, iAttrs, controller ) {
             // var input = iElm[ 0 ];
             var obj = angular.copy( $scope.project );
-            delete obj.id;
+            if ( obj.id ) {
+                delete obj.id;
+            }
+            if ( obj._id ) {
+                delete obj._id;
+            }
             data = "text/json;charset=utf-8," + encodeURIComponent( JSON.stringify( obj ) );
             // console.log( obj.name )
             name = obj[ 'name' ] + '.json';
-            iElm.html( '<a title="Download ' + obj.name + '" href="data:' + data + '" download="' + name + '"><span class="icon-download icc" style="margin-right:10px"></span></a>' );
+            iElm.html( '<a title="Download ' + obj.name + '" href="data:' + data + '" download="download.json"><span class="icon-download icc" style="margin-right:10px"></span></a>' );
         }
     };
 } );
@@ -97,7 +102,9 @@ MonkeyWrench.directive( 'import', function ( ) {
                     var r = new FileReader( );
                     r.onload = function ( e ) {
                         var contents = e.target.result;
-                        $scope.$parent.importProject( contents );
+                        $scope.callback( {
+                            project: contents
+                        } );
                     }
                     r.readAsText( f );
                 } else {
