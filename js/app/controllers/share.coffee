@@ -82,7 +82,6 @@ class ShareProjectController
 			alert( "please select atleast 2 files" )
 			return
 
-		@Alert.warning("Loading.......")
 		@scope.disableShareButton = yes
 
 		formData = new FormData( )

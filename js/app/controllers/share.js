@@ -109,7 +109,6 @@
         alert("please select atleast 2 files");
         return;
       }
-      this.Alert.warning("Loading.......");
       this.scope.disableShareButton = true;
       formData = new FormData();
       for (_i = 0, _len = files.length; _i < _len; _i++) {

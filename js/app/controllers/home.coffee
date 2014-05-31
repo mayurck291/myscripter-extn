@@ -114,7 +114,7 @@ class HomeController
 			@location.path(p)
 		
 	delete:(project)=>
-		if confirm "Are you sure you want to delete recipe #{project.name}"
+		if confirm "Are you sure you want to delete recipe \n '#{project.name}' ?"
 			@Project.delete(angular.copy(project))
 			@getAllProjects()
 

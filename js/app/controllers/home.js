@@ -165,7 +165,7 @@
     };
 
     HomeController.prototype["delete"] = function(project) {
-      if (confirm("Are you sure you want to delete recipe " + project.name)) {
+      if (confirm("Are you sure you want to delete recipe \n '" + project.name + "' ?")) {
         this.Project["delete"](angular.copy(project));
         return this.getAllProjects();
       }

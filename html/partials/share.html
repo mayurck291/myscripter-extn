@@ -15,9 +15,18 @@
                 <img ng-src="" alt="">
             </span>
             <div class="cbp-mc-submit-wrap">
-                <button ng-click="share()" class="cbp-mc-submit" type="submit" value="Save" ng-disabled="isDisabled()">Share
-                    <span class="icon-share"></span>
+                <img ng-show="disableShareButton" src="/imgs/circle.gif" alt="">
+                <button ng-click="share()" class="cbp-mc-submit" type="submit" value="Save" ng-disabled="isDisabled()">
+                    <span ng-show="!disableShareButton">
+                        <span class="icon-share"></span>
+                        Share
+                    </span>
+                    <span ng-show="disableShareButton">
+                        Sharing...
+                    </span>
                 </button>
+                <!-- ng-show="disableShareButton" -->
+
             </div>
         </div>
     </div>
