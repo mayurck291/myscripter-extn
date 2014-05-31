@@ -4,44 +4,52 @@ class NewProjectController
 	@$inject: ['$scope','$routeParams','$timeout','Baazar','Project','Alert'] 
 
 	constructor:(@scope,@routeParams,@timeout,@Baazar,@Project,@Alert)->
-		@scope.curProject = @Project.new()
+		@config = @Project.new()
+		@extjs = null
+		@extcss = null
 		@timeout ()=>
 			tabs 	= document.getElementById('form')
 			cbtab 	= new CBPFWTabs(tabs)
 		,100
 		,true
 
-		@scope.save = @save
-		@scope.removecss = @removecss
-		@scope.removejs = @removejs
-		@scope.addjs = @addjs
-		@scope.addcss = @addcss
+		
 		@scope.$on('save',@save)
 		return
 
-	save:()=>
-		if @scope.curProject.name is null or @scope.curProject.url is null
+	save:()->
+		if @config.name is null or @config.url is null
 			@Alert.error("Recipe Name and URL can't be empty..")
 			return
 		
 		console.log "saving...."
-		@Project.save(angular.copy(@scope.curProject))
+		@Project.save(angular.copy(@config))
 		@Alert.success("Hurrah....project saved...")
 
-	removejs:(index)=>
-		@scope.curProject.external.js.splice(index,1)
+	removejs:(index)->
+		@config.external.js.splice(index,1)
 
-	addjs:()=>
-		if @scope.curProject.external.js.indexOf(@scope.extjs) is -1 and @scope.extjs isnt null and @scope.extjs isnt undefined
-			@scope.curProject.external.js.push(@scope.extjs)
-		@scope.extjs = null
+	addjs:()->
+		if @config.external.js.indexOf(@extjs) is -1 and @extjs isnt null and @extjs isnt undefined
+			@config.external.js.push(@extjs)
+		@extjs = null
 
-	removecss:(index)=>
-		@scope.curProject.external.css.splice(index,1)
+	removecss:(index)->
+		@config.external.css.splice(index,1)
 
-	addcss:()=>
-		if @scope.curProject.external.css.indexOf(@scope.extcss) is -1 and @scope.extcss isnt null and @scope.extcss isnt undefined
-			@scope.curProject.external.css.push(@scope.extcss)
-		@scope.extcss = null
+	moveUp:(index,array)->
+		temp = array[index]
+		array[index] = array[index-1]
+		array[index-1] = temp
+
+	moveDown:(index,array)->
+		temp = array[index]
+		array[index] = array[index+1]
+		array[index+1] = temp
+
+	addcss:()->
+		if @config.external.css.indexOf(@extcss) is -1 and @extcss isnt null and @extcss isnt undefined
+			@config.external.css.push(@extcss)
+		@extcss = null
 	
 MonkeyWrench.controller 'NewProjectController',NewProjectController

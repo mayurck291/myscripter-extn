@@ -18,7 +18,8 @@
         }
       }).when('/New', {
         templateUrl: '/html/partials/new.html',
-        controller: 'NewProjectController'
+        controller: 'NewProjectController',
+        controllerAs: 'NewProject'
       }).when('/Edit/:pid', {
         templateUrl: '/html/partials/edit.html',
         controller: 'EditProjectController'

@@ -11,6 +11,7 @@ MonkeyWrench.config ['$routeProvider','$locationProvider',
 			).when('/New'
 				,templateUrl:'/html/partials/new.html'
 				,controller:'NewProjectController'
+				,controllerAs:'NewProject'
 			).when('/Edit/:pid'
 				,templateUrl:'/html/partials/edit.html'
 				,controller:'EditProjectController'
