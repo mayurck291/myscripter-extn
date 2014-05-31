@@ -25,29 +25,39 @@
         <div class="content">
             <section id="settings">
                 <label for="name">Name</label>
-                <input ng-model="curProject.name" type="text" id="name" name="name" placeholder="e.g. Google Beautify">
+                <input ng-model="EditProject.config.name" type="text" id="name" name="name" placeholder="e.g. Google Beautify">
 
                 <label for="URL">URL</label>
-                <input ng-model="curProject.url" type="text" id="URL" name="URL" placeholder="e.g. https://www.google.co.in">
+                <input ng-model="EditProject.config.url" type="text" id="URL" name="URL" placeholder="e.g. https://www.google.co.in">
 
 
-                <form action="" ng-submit="addjs()">
+                <form action="" ng-submit="EditProject.addjs()">
                     <label for="extjs">External JS URL</label>
-                    <input type="text" id="extjs" ng-model="extjs" name="extjs" placeholder="e.g. http://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.9/angular-route.js">
-                    <a href="" class="pull-right" style="margin-top:-35px;margin-right:20px;color:#47a3df" ng-click="addjs()"><b>[+]</b></a>
-                    <div ng-repeat="js in curProject.external.js track by $index ">
+                    <input type="text" id="extjs" ng-model="EditProject.extjs" name="extjs" placeholder="e.g. http://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.9/angular-route.js">
+                    <a href="" class="pull-right" style="margin-top:-35px;margin-right:20px;color:#47a3df" ng-click="EditProject.addjs()"><b>[+]</b>
+                    </a>
+                    <div ng-repeat="js in EditProject.config.external.js track by $index ">
                         <strong>
-                            <a href="" style="margin-right:20px;color:#47a3df" ng-click="removejs($index)">[x]</a>&nbsp;{{js}}
+                            <a href="" style="margin-right:20px;color:#47a3df" ng-click="EditProject.removejs($index)">[x]</a>&nbsp;{{js}}
+                            <span class="pull-right">
+                                <a href="" ng-show="$index != 0" ng-click="EditProject.moveUp($index,EditProject.config.external.js)">Up</a>
+                                <a href="" ng-show="$index+1 != EditProject.config.external.js.length" ng-click="EditProject.moveDown($index,EditProject.config.external.js)">Down</a>
+                            </span>
                         </strong>
                     </div>
                 </form>
                 <form action="" ng-submit="addcss()">
                     <label for="extcss">External CSS URL</label>
-                    <input type="text" id="extcss" name="extcss" ng-model="extcss" placeholder="e.g. http://example.com/css/beautify.css">
-                    <a href="" class="pull-right" style="margin-top:-35px;margin-right:20px;color:#47a3df" ng-click="addcss()"><b>[+]</b></a>
-                    <div ng-repeat="css in curProject.external.css track by $index ">
+                    <input type="text" id="extcss" name="extcss" ng-model="EditProject.extcss" placeholder="e.g. http://example.com/css/beautify.css">
+                    <a href="" class="pull-right" style="margin-top:-35px;margin-right:20px;color:#47a3df" ng-click="EditProject.addcss()"><b>[+]</b>
+                    </a>
+                    <div ng-repeat="css in EditProject.config.external.css track by $index ">
                         <strong>
-                            <a href="" style="margin-right:20px;color:#47a3df" ng-click="removecss($index)">[x]</a>&nbsp;{{css}}
+                            <a href="" style="margin-right:20px;color:#47a3df" ng-click="EditProject.removecss($index)">[x]</a>&nbsp;{{css}}
+                            <span class="pull-right">
+                                <a href="" ng-show="$index != 0" ng-click="EditProject.moveUp($index,EditProject.config.external.css)">Up</a>
+                                <a href="" ng-show="$index+1 != EditProject.config.external.css.length" ng-click="EditProject.moveDown($index,EditProject.config.external.css)">Down</a>
+                            </span>
                         </strong>
                     </div>
                 </form>
@@ -57,38 +67,38 @@
                     <br>
                     <div class="three columns pull-left">
                         Enabled
-                        <a href="" ng-click="curProject.enabled = !curProject.enabled">
-                            <span class="icc" ng-class="{'icon-on':curProject.enabled,'icon-off':!curProject.enabled}" style="font-size: larger;"></span>
+                        <a href="" ng-click="EditProject.config.enabled = !EditProject.config.enabled">
+                            <span class="icc" ng-class="{'icon-on':EditProject.config.enabled,'icon-off':!EditProject.config.enabled}" style="font-size: larger;"></span>
                         </a>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     </div>
                     <div class="three columns" style="margin-left:50px">
                         Auto Apply
-                        <a href="" ng-click="curProject.autoApply = !curProject.autoApply">
-                            <span class="icc" ng-class="{'icon-on':curProject.autoApply,'icon-off':!curProject.autoApply}" style="font-size: larger;"></span>
+                        <a href="" ng-click="EditProject.config.autoApply = !EditProject.config.autoApply">
+                            <span class="icc" ng-class="{'icon-on':EditProject.config.autoApply,'icon-off':!EditProject.config.autoApply}" style="font-size: larger;"></span>
                         </a>
                     </div>
                 </div>
 
             </section>
             <section id="js">
-                <textarea ng-model="curProject.js" name="" id="" cols="30" rows="19"></textarea>
+                <textarea ng-model="EditProject.config.js" name="" id="" cols="30" rows="19"></textarea>
             </section>
             <section id="css">
-                <textarea ng-model="curProject.css" name="" id="" cols="30" rows="19"></textarea>
+                <textarea ng-model="EditProject.config.css" name="" id="" cols="30" rows="19"></textarea>
             </section>
             <div class="cbp-mc-submit-wrap">
-                <button ng-click="save()" class="cbp-mc-submit">
+                <button ng-click="EditProject.save()" class="cbp-mc-submit">
                     <span class="icon-disk">Update</span>
                 </button>
-                <button ng-click="home()" class="cbp-mc-submit">
+                <button ng-click="Home.home()" class="cbp-mc-submit">
                     <span class="icon-cancel">Cancel</span>
                 </button>
                 <div>
                     <br>
-                    <a href="" title="Delete {{curProject.name}}" ng-click="delete(curProject)">
+                    <a href="" title="Delete {{EditProject.config.name}}" ng-click="EditProject.delete(EditProject.config)">
                         <h2 style=";color:red">
-                            Delete {{curProject.name}}
+                            Delete {{EditProject.config.name}}
                             <span class="icon-remove" style="margin-right:10px"></span>
                         </h2>
                     </a>

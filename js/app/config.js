@@ -22,7 +22,8 @@
         controllerAs: 'NewProject'
       }).when('/Edit/:pid', {
         templateUrl: '/html/partials/edit.html',
-        controller: 'EditProjectController'
+        controller: 'EditProjectController',
+        controllerAs: 'EditProject'
       }).when('/Share/:pid', {
         templateUrl: '/html/partials/share.html',
         controller: 'ShareProjectController'

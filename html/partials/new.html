@@ -23,7 +23,6 @@
             </ul>
         </nav>
         <div class="content">
-            <a href="" ng-click></a>
             <section id="settings">
                 <label for="name">Name</label>
                 <input ng-model="NewProject.config.name" type="text" id="name" name="name" placeholder="e.g. Google Beautify">
@@ -58,7 +57,6 @@
                                 <a href="" ng-show="$index != 0" ng-click="NewProject.moveUp($index,NewProject.config.external.css)">Up</a>
                                 <a href="" ng-show="$index+1 != NewProject.config.external.css.length" ng-click="NewProject.moveDown($index,NewProject.config.external.css)">Down</a>
                             </span>
-                            <span class="pull-right"></span>
                         </strong>
                     </div>
                 </form>

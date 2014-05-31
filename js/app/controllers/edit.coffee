@@ -7,19 +7,19 @@ class EditProjectController
 		pid = @routeParams.pid
 
 		if pid isnt null and pid isnt undefined
-			@scope.curProject = @Project.get(pid)
+			@config = @Project.get(pid)
 		else
 			@location.path('/')
 
-		if @scope.curProject is null or @scope.curProject is undefined
+		if @config is null or @config is undefined
 			@location.path('/')
 
-		if @scope.curProject.forked 
+		if @config.forked 
 			@location.path('/')
 			@Alert.error('Opps...can not edit installed Recipe...instead FORK it and then make it AWESOME.')
 
 		######################################################################################
-		@scope.oldurl = @scope.curProject.url
+		@oldurl = @config.url
 		
 		@timeout ()=>
 			tabs 	= new CBPFWTabs document.getElementById('form')
@@ -27,41 +27,44 @@ class EditProjectController
 		,300
 		,true
 
-		@scope.save = @save
-		@scope.delete = @delete
-		@scope.removecss = @removecss
-		@scope.removejs = @removejs
-		@scope.addjs = @addjs
-		@scope.addcss = @addcss
 		@scope.$on('save',@save)
 		return
 
-	save:()=>
-		console.log "saving...."
-		@Project.save(angular.copy(@scope.curProject),@scope.oldurl)
+	save:()->
+		@Project.save(angular.copy(@config),@oldurl)
 		@Alert.success("Hurrah....project saved...")
 	
-	delete:(project)=>
+	delete:(project)->
 		if confirm "Are you sure you want to delete recipe #{project.name} ?"
 			@Project.delete(angular.copy(project))
 			@Alert.success("Recipe #{project.name} deleted...")
-			@scope.curProject = {}
+			@config = {}
 			@location.path('/')
 	
-	removejs:(index)=>
-		@scope.curProject.external.js.splice(index,1)
+	removejs:(index)->
+		@config.external.js.splice(index,1)
 
-	addjs:()=>
-		if @scope.curProject.external.js.indexOf(@scope.extjs) is -1 and @scope.extjs isnt null and @scope.extjs isnt undefined
-			@scope.curProject.external.js.push(@scope.extjs)
+	addjs:()->
+		if @config.external.js.indexOf(@scope.extjs) is -1 and @scope.extjs isnt null and @scope.extjs isnt undefined
+			@config.external.js.push(@scope.extjs)
 		@scope.extjs = null
 
-	removecss:(index)=>
-		@scope.curProject.external.css.splice(index,1)
+	removecss:(index)->
+		@config.external.css.splice(index,1)
 
-	addcss:()=>
-		if @scope.curProject.external.css.indexOf(@scope.extcss) is -1 and @scope.extcss isnt null and @scope.extcss isnt undefined
-			@scope.curProject.external.css.push(@scope.extcss)
+	addcss:()->
+		if @config.external.css.indexOf(@scope.extcss) is -1 and @scope.extcss isnt null and @scope.extcss isnt undefined
+			@config.external.css.push(@scope.extcss)
 		@scope.extcss = null
 
+	moveUp:(index,array)->
+		temp = array[index]
+		array[index] = array[index-1]
+		array[index-1] = temp
+
+	moveDown:(index,array)->
+		temp = array[index]
+		array[index] = array[index+1]
+		array[index+1] = temp
+	
 MonkeyWrench.controller 'EditProjectController',EditProjectController
