@@ -60,6 +60,7 @@ app.get( '/getRecipe/:id', recipeController.getRecipe );
 
 app.post( '/saveRecipe', recipeController.saveRecipe );
 app.post( '/favourite', metaController.favourite );
+app.post( '/unfavourite', metaController.unfavourite );
 app.post( '/karma', metaController.karma );
 app.post( '/comment', recipeController.comment );
 

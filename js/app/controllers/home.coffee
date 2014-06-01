@@ -117,5 +117,18 @@ class HomeController
 			)
 		else
 			@Alert.error("You thought we are that dumb....!! Move on dude...")
+
+	unfavourite:(recipe)->
+		if recipe._id?
+			@Baazar.unfavourite(@user._id,recipe.id).then(
+				()=>
+					recipe.favourited = no
+					@Project.save(recipe)
+			,	
+				()=>
+					Alert.error("An army of heavily trained monkeys is dispatched to deal with situation...hang in there...!!")
+			)
+		else
+			@Alert.error("You thought we are that dumb....!! Move on dude...")
 		
 MonkeyWrench.controller 'HomeController',HomeController

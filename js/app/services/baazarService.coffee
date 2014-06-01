@@ -17,6 +17,7 @@ class Baazar
 		### POST CALLS ###
 		@postRecipeUrl 			= "#{@domain}/postRecipe"
 		@favRecipeUrl 			= "#{@domain}/favourite"
+		@unFavRecipeUrl 		= "#{@domain}/unfavourite"
 		@postCommentUrl 		= "#{@domain}/comment"
 		@giveKarmaToRecipeUrl 	= "#{@domain}/karma"
 		@incUsersRecipesUrl  	= "#{@domain}/incUsersRecipes"		# NEW 10
@@ -258,6 +259,19 @@ class Baazar
 			_id:recipeID
 
 		@$http.post(@favRecipeUrl,payload)
+			.success(defer.resolve)
+			.error(defer.reject)
+		defer.promise 
+
+
+	unfavourite:(user,recipeID)->
+		defer 		= @$q.defer()
+		
+		payload = 
+			user:user,
+			_id:recipeID
+
+		@$http.post(@unFavRecipeUrl,payload)
 			.success(defer.resolve)
 			.error(defer.reject)
 		defer.promise 

@@ -153,6 +153,20 @@
       }
     };
 
+    HomeController.prototype.unfavourite = function(recipe) {
+      var _this = this;
+      if (recipe._id != null) {
+        return this.Baazar.unfavourite(this.user._id, recipe.id).then(function() {
+          recipe.favourited = false;
+          return _this.Project.save(recipe);
+        }, function() {
+          return Alert.error("An army of heavily trained monkeys is dispatched to deal with situation...hang in there...!!");
+        });
+      } else {
+        return this.Alert.error("You thought we are that dumb....!! Move on dude...");
+      }
+    };
+
     return HomeController;
 
   })();

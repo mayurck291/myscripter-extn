@@ -25,6 +25,27 @@ exports.favourite = (request,response)->
             else
                 response.json(200,{})
 
+exports.unfavourite = (request,response)->
+    params = request.body
+    _id = params._id
+    user = params.user
+
+    logger.info "#{user} UnFavorited recipe #{_id}"
+
+    query = 
+        _id:_id
+        favs:user
+
+    updates = 
+        "$pull": { favs : user},
+
+    Meta.where({_id:_id})
+        .update updates,(e,r)->
+            if e?
+                response.json(500,{})
+            else
+                response.json(200,{})
+
 exports.get = (request,response)->
     logger.info "Getting all meta info of all the recipes"
     userFilter = '-authToken -updatedAt'

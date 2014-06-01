@@ -156,8 +156,11 @@
                                 </td>
                                 <td style="width:20%">
                                     <!-- fork,rate,favourite -->
-                                    <a href="" title="Favourite {{project.name}}" ng-click="Home.favourite(project)">
+                                    <a href="" ng-show="!project.favourited" title="Favourite {{project.name}}" ng-click="Home.favourite(project)">
                                         <span class="icon-heart2 icc" style="margin-right:10px"></span>
+                                    </a>
+                                    <a href="" ng-show="project.favourited" title="Un-Favourite {{project.name}}" ng-click="Home.unfavourite(project)">
+                                        <span class="icon-heart icc" style="margin-right:10px"></span>
                                     </a>
                                     <a href="" title="Fork {{project.name}}" ng-click="Home.fork(project)">
                                         <span class="icon-forkandspoon icc" style="margin-right:10px"></span>

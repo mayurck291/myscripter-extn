@@ -32,6 +32,7 @@
 
       this.postRecipeUrl = "" + this.domain + "/postRecipe";
       this.favRecipeUrl = "" + this.domain + "/favourite";
+      this.unFavRecipeUrl = "" + this.domain + "/unfavourite";
       this.postCommentUrl = "" + this.domain + "/comment";
       this.giveKarmaToRecipeUrl = "" + this.domain + "/karma";
       this.incUsersRecipesUrl = "" + this.domain + "/incUsersRecipes";
@@ -230,6 +231,17 @@
         _id: recipeID
       };
       this.$http.post(this.favRecipeUrl, payload).success(defer.resolve).error(defer.reject);
+      return defer.promise;
+    };
+
+    Baazar.prototype.unfavourite = function(user, recipeID) {
+      var defer, payload;
+      defer = this.$q.defer();
+      payload = {
+        user: user,
+        _id: recipeID
+      };
+      this.$http.post(this.unFavRecipeUrl, payload).success(defer.resolve).error(defer.reject);
       return defer.promise;
     };
 

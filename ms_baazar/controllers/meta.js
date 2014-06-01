@@ -36,6 +36,32 @@
     });
   };
 
+  exports.unfavourite = function(request, response) {
+    var params, query, updates, user, _id;
+    params = request.body;
+    _id = params._id;
+    user = params.user;
+    logger.info("" + user + " UnFavorited recipe " + _id);
+    query = {
+      _id: _id,
+      favs: user
+    };
+    updates = {
+      "$pull": {
+        favs: user
+      }
+    };
+    return Meta.where({
+      _id: _id
+    }).update(updates, function(e, r) {
+      if (e != null) {
+        return response.json(500, {});
+      } else {
+        return response.json(200, {});
+      }
+    });
+  };
+
   exports.get = function(request, response) {
     var finalJson, userFilter;
     logger.info("Getting all meta info of all the recipes");
