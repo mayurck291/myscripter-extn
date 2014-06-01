@@ -42,21 +42,26 @@
 
                             <div style="color: grey;">
                                 <span class="pull-left det">By {{recipe._id.author.name}}</span>
-                                <span class="pull-left det">
+                                <span class="pull-left det" title="Users">
                                     <span class="icon-users icc"></span>
                                     <span style="margin-left:3px">
                                         {{recipe.userc}}
                                     </span>
                                 </span>
-                                <span class="pull-left det">
+                                <span class="pull-left det" title="Loved">
                                     <span class=" icon-heart icc"></span>
                                     <span style="margin-left:3px">{{recipe.favc}}
                                     </span>
                                 </span>
-                                <span class="pull-left det">
+                                <span class="pull-left det" title="Forks">
+                                    <span class=" icon-forkandspoon icc"></span>
+                                    <span style="margin-left:3px">{{recipe.forks}}</span>
+                                </span>
+                                <span class="pull-left det" title="Karma">
                                     <span ng-repeat="i in getStars(5)" class="icc" ng-class="{'icon-star2':($index+1) <= recipe.karmac,'icon-star':($index+1) > recipe.karmac}"></span>
                                     <span style="margin-left:3px">({{recipe.karmac}})</span>
                                 </span>
+
                             </div>
                             <!-- </div> -->
                         </figcaption>

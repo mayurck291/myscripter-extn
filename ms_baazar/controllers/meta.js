@@ -109,7 +109,7 @@
     logger.info("Getting all meta info of all the recipes");
     userFilter = '-authToken -updatedAt';
     finalJson = [];
-    return Meta.find({}).populate('_id', '-ingredients').populate('users', userFilter).populate('favs', userFilter).populate('karma.user', userFilter).sort().exec(function(error, recipes) {
+    return Meta.find({}).populate('_id', '-ingredients').populate('users', userFilter).populate('favs', userFilter).populate('karma.user', userFilter).sort('userc').exec(function(error, recipes) {
       var options;
       if (error) {
         return res.json(500);

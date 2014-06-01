@@ -92,7 +92,7 @@ exports.get = (request,response)->
         .populate('users',userFilter)
         .populate('favs',userFilter)
         .populate('karma.user',userFilter)
-        .sort()
+        .sort('userc')
         .exec (error,recipes)->
             if error
                 res.json(500)
