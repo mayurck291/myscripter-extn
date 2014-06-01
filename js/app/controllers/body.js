@@ -40,7 +40,6 @@
       this.scope.alert = this.Alert.bind();
       this.scope.signIn = this.signIn;
       this.scope.signOut = this.signOut;
-      console.log(this.location.path());
       this.gp.load().then(function() {
         return _this.getUserInfo();
       }, function() {

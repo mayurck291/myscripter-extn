@@ -4,10 +4,13 @@ MonkeyWrench.directive( 'fileimport', function ( ) {
         scope: {
             // onfileselect: "&"
         },
-        controller: function ( $scope, $element, $attrs, $transclude ) {
+        controller: function ( $scope, $element, $attrs, $transclude, $timeout ) {
             $scope.imgs = [ ]
             $scope.handleFileSelect = function ( evt ) {
                 $scope.filesData = [ ];
+                $timeout( function ( ) {
+                    $scope.imgs = [ ];
+                }, 0, true );
                 var files = evt.target.files; // FileList object
                 // console.log( files );
                 for ( i = 0; i < files.length; i++ ) {
@@ -29,8 +32,6 @@ MonkeyWrench.directive( 'fileimport', function ( ) {
             }
 
             $scope.openFile = function ( ) {
-                console.log( "-------------------" );
-                console.log( angular.element( document.querySelector( "#imgs" ) ) );
                 angular.element( document.querySelector( "#imgs" ) )[ 0 ].click( );
             }
         },

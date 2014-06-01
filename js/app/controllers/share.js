@@ -24,18 +24,6 @@
 
       this.getUserInfo = __bind(this.getUserInfo, this);
 
-      this.share = __bind(this.share, this);
-
-      this.updateRecipeId = __bind(this.updateRecipeId, this);
-
-      this.handle_response = __bind(this.handle_response, this);
-
-      this.resetFileInput = __bind(this.resetFileInput, this);
-
-      this.isDisabled = __bind(this.isDisabled, this);
-
-      this.isEmpty = __bind(this.isEmpty, this);
-
       pid = this.routeParams.pid;
       if (pid !== null && pid !== void 0) {
         this.config = angular.copy(this.Project.get(pid));
@@ -49,8 +37,12 @@
         this.location.path('/');
         this.Alert.error('Opps...can not share installed Recipe...instead FORK it and then make it AWESOME.');
       }
-      this.scope.$on('login', this.getUserInfo);
-      this.scope.$on('logout', this.deleteUserInfo);
+      this.scope.$on('login', function() {
+        return _this.getUserInfo();
+      });
+      this.scope.$on('logout', function() {
+        return _this.deleteUserInfo();
+      });
       this.gp.load().then(function() {
         return _this.getUserInfo();
       }, function() {

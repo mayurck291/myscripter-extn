@@ -9,7 +9,6 @@
       this.$q = $q;
       this.Baazar = Baazar;
       this.Alert = Alert;
-      console.log("service intanciated");
       this.START_STATE = 1;
       this.STATE_ACQUIRING_AUTH_TOKEN = 2;
       this.STATE_AUTH_TOKEN_ACQUIRED = 3;

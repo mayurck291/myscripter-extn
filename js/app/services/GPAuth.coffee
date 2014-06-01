@@ -1,6 +1,5 @@
 class GPauth
 	constructor:(@$http,@$q,@Baazar,@Alert)->
-		console.log("service intanciated");
 		@START_STATE = 1
 		@STATE_ACQUIRING_AUTH_TOKEN = 2
 		@STATE_AUTH_TOKEN_ACQUIRED = 3

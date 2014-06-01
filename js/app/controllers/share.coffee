@@ -17,8 +17,8 @@ class ShareProjectController
 			@location.path('/')
 			@Alert.error('Opps...can not share installed Recipe...instead FORK it and then make it AWESOME.')
 
-		@scope.$on('login',@getUserInfo)
-		@scope.$on('logout',@deleteUserInfo)
+		@scope.$on('login',()=>@getUserInfo())
+		@scope.$on('logout',()=>@deleteUserInfo())
 
 		@gp.load().then(
 			()=> @getUserInfo()
@@ -32,30 +32,30 @@ class ShareProjectController
 		@disableShareButton = false
 		return
 
-	isEmpty:(value)=>
+	isEmpty:(value)->
 		[null,undefined,""].indexOf(value) > -1
 
-	isDisabled:()=>
+	isDisabled:()->
 		if @isEmpty(@config.name) or @isEmpty(@config.desc) or @disableShareButton
 			return yes
 		else 
 			return no	
 
-	resetFileInput:( )=>
+	resetFileInput:->
 		@timeout ()=>
 			@location.path('/')
 		,1000
 	
-	handle_response:( response )=>
+	handle_response:( response )->
 		@Alert.success( response.msg )
 		@updateRecipeId( response._id )
 		@resetFileInput( )
 
-	updateRecipeId:( recipeId )=>
+	updateRecipeId:( recipeId )->
 		@config[ '_id' ] = recipeId
 		@Project.save(@config)
 
-	share:()=>
+	share:->
 		unless @signedIn
 			@Alert.error("You must LOG IN in-order to share Recipe.")
 			return

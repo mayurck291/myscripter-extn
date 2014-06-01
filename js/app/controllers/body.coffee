@@ -6,7 +6,7 @@ class BodyController
 		@scope.alert 		= @Alert.bind()
 		@scope.signIn 		= @signIn
 		@scope.signOut 		= @signOut
-		console.log @location.path()
+		# console.log @location.path()
 		# check if user is signed in 
 		# if Yes get  userinfo
 		@gp.load().then(
