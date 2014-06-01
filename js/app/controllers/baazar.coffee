@@ -135,7 +135,7 @@ class BaazarController
 							name:@scope.user.name
 						body: @scope.cf.usercomment
 						date:Date.now()
-					recipe._id.comments.unshift(obj)
+					recipe._id.comments.push(obj)
 
 					@scope.show.docomment 		= false
 					@scope.cf.usercomment 		= null
@@ -147,8 +147,9 @@ class BaazarController
 					@scope.cf.usercomment 		= null
 				)
 
-	install:(id)=>
-		@Alert.warning("Loading....")
+	install:(recipeInfo)=>
+		id = recipeInfo._id._id
+		@showLoader = yes
 		@Baazar.getRecipe(id).then((recipe)=>
 				recipe.forked = true
 				recipe.favourited = no
@@ -156,6 +157,18 @@ class BaazarController
 				@Project.save(recipe)
 				@Baazar.incUsersRecipes(@scope.user._id,id)
 				@Alert.success("Yeahh...!! recipe installed.")
+				found = no
+				for user in recipeInfo.users
+					if user._id is @scope.user._id
+						found = yes
+						return
+				if not found
+					user =
+						_id	:@scope.user._id,
+						img	:@scope.user.img,
+						name:@scope.user.name
+					recipeInfo.users.push(user)
+					recipeInfo.userc += 1
 			,()=>
 				@Alert.error("An army of heavily trained monkeys is dispatched to deal with this situation...hang in there...")
 				)

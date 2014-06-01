@@ -194,7 +194,7 @@
           body: _this.scope.cf.usercomment,
           date: Date.now()
         };
-        recipe._id.comments.unshift(obj);
+        recipe._id.comments.push(obj);
         _this.scope.show.docomment = false;
         _this.scope.cf.usercomment = null;
         return _this.Alert.success('Yeah ....!!..');
@@ -205,16 +205,37 @@
       });
     };
 
-    BaazarController.prototype.install = function(id) {
-      var _this = this;
-      this.Alert.warning("Loading....");
+    BaazarController.prototype.install = function(recipeInfo) {
+      var id,
+        _this = this;
+      id = recipeInfo._id._id;
+      this.showLoader = true;
       return this.Baazar.getRecipe(id).then(function(recipe) {
+        var found, user, _i, _len, _ref;
         recipe.forked = true;
         recipe.favourited = false;
         recipe._id = id;
         _this.Project.save(recipe);
         _this.Baazar.incUsersRecipes(_this.scope.user._id, id);
-        return _this.Alert.success("Yeahh...!! recipe installed.");
+        _this.Alert.success("Yeahh...!! recipe installed.");
+        found = false;
+        _ref = recipeInfo.users;
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          user = _ref[_i];
+          if (user._id === _this.scope.user._id) {
+            found = true;
+            return;
+          }
+        }
+        if (!found) {
+          user = {
+            _id: _this.scope.user._id,
+            img: _this.scope.user.img,
+            name: _this.scope.user.name
+          };
+          recipeInfo.users.push(user);
+          return recipeInfo.userc += 1;
+        }
       }, function() {
         return _this.Alert.error("An army of heavily trained monkeys is dispatched to deal with this situation...hang in there...");
       });

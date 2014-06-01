@@ -18789,3 +18789,425 @@ response from an upstream server.<br />
   authToken: 'ya29.KAAehzJJDx0JCSYAAADohx_RUCj4yKKktXjekZjF4wc329GccRxiMNbVuo1a4kfzL2BakU6S3I6za7K6d5g',
   updatedAt: Sun Jun 01 2014 15:42:28 GMT+0530 (IST) } 'parin2092@gmail.com'
 15:42:28 - [32minfo[39m: After update null 1
+15:43:15 - [32minfo[39m: Getting all meta info of all the recipes
+15:43:15 - [32minfo[39m: sending recip
+15:44:28 - [33mwarn[39m: hello there HOW YOU DOING ?
+15:44:28 - [32minfo[39m: { name: 'parin kataria',
+  img: 'https://lh5.googleusercontent.com/-M4t0yyY0zEQ/AAAAAAAAAAI/AAAAAAAABjI/HMwza_cq5fU/photo.jpg?sz=50',
+  authToken: 'ya29.KAAehzJJDx0JCSYAAADohx_RUCj4yKKktXjekZjF4wc329GccRxiMNbVuo1a4kfzL2BakU6S3I6za7K6d5g',
+  updatedAt: Sun Jun 01 2014 15:44:28 GMT+0530 (IST) } 'parin2092@gmail.com'
+15:44:28 - [32minfo[39m: After update null 1
+15:46:28 - [33mwarn[39m: hello there HOW YOU DOING ?
+15:46:28 - [32minfo[39m: { name: 'parin kataria',
+  img: 'https://lh5.googleusercontent.com/-M4t0yyY0zEQ/AAAAAAAAAAI/AAAAAAAABjI/HMwza_cq5fU/photo.jpg?sz=50',
+  authToken: 'ya29.KAAehzJJDx0JCSYAAADohx_RUCj4yKKktXjekZjF4wc329GccRxiMNbVuo1a4kfzL2BakU6S3I6za7K6d5g',
+  updatedAt: Sun Jun 01 2014 15:46:28 GMT+0530 (IST) } 'parin2092@gmail.com'
+15:46:28 - [32minfo[39m: After update null 1
+15:48:36 - [33mwarn[39m: hello there HOW YOU DOING ?
+15:48:36 - [32minfo[39m: { name: 'Parin Kataria',
+  img: 'https://lh6.googleusercontent.com/-kOmNKCxybVM/AAAAAAAAAAI/AAAAAAAAAFg/9OOtKOfVwcw/photo.jpg?sz=50',
+  authToken: 'ya29.KABmn-VCqFehoyYAAADC03jrrF2j5DPJ8TY9e8xlbtDTLduyeCyeY_KKm9OpRDeCLKzPy9QaaQURNp1i2vw',
+  updatedAt: Sun Jun 01 2014 15:48:36 GMT+0530 (IST) } 'parinkataria@gmail.com'
+15:48:36 - [32minfo[39m: After update null 1
+15:48:37 - [33mwarn[39m: hello there HOW YOU DOING ?
+15:48:37 - [32minfo[39m: { name: 'Parin Kataria',
+  img: 'https://lh6.googleusercontent.com/-kOmNKCxybVM/AAAAAAAAAAI/AAAAAAAAAFg/9OOtKOfVwcw/photo.jpg?sz=50',
+  authToken: 'ya29.KABmn-VCqFehoyYAAADC03jrrF2j5DPJ8TY9e8xlbtDTLduyeCyeY_KKm9OpRDeCLKzPy9QaaQURNp1i2vw',
+  updatedAt: Sun Jun 01 2014 15:48:37 GMT+0530 (IST) } 'parinkataria@gmail.com'
+15:48:37 - [32minfo[39m: After update null 1
+15:48:37 - [32minfo[39m: Getting all meta info of all the recipes
+15:48:37 - [32minfo[39m: sending recip
+15:48:38 - [32minfo[39m: Getting all meta info of all the recipes
+15:48:38 - [32minfo[39m: sending recip
+15:48:38 - [33mwarn[39m: hello there HOW YOU DOING ?
+15:48:38 - [32minfo[39m: { name: 'Parin Kataria',
+  img: 'https://lh6.googleusercontent.com/-kOmNKCxybVM/AAAAAAAAAAI/AAAAAAAAAFg/9OOtKOfVwcw/photo.jpg?sz=50',
+  authToken: 'ya29.KABmn-VCqFehoyYAAADC03jrrF2j5DPJ8TY9e8xlbtDTLduyeCyeY_KKm9OpRDeCLKzPy9QaaQURNp1i2vw',
+  updatedAt: Sun Jun 01 2014 15:48:38 GMT+0530 (IST) } 'parinkataria@gmail.com'
+15:48:38 - [32minfo[39m: After update null 1
+15:48:38 - [33mwarn[39m: hello there HOW YOU DOING ?
+15:48:38 - [32minfo[39m: { name: 'Parin Kataria',
+  img: 'https://lh6.googleusercontent.com/-kOmNKCxybVM/AAAAAAAAAAI/AAAAAAAAAFg/9OOtKOfVwcw/photo.jpg?sz=50',
+  authToken: 'ya29.KABmn-VCqFehoyYAAADC03jrrF2j5DPJ8TY9e8xlbtDTLduyeCyeY_KKm9OpRDeCLKzPy9QaaQURNp1i2vw',
+  updatedAt: Sun Jun 01 2014 15:48:38 GMT+0530 (IST) } 'parinkataria@gmail.com'
+15:48:38 - [32minfo[39m: After update null 1
+15:48:39 - [32minfo[39m: Getting all meta info of all the recipes
+15:48:39 - [32minfo[39m: sending recip
+15:48:40 - [33mwarn[39m: hello there HOW YOU DOING ?
+15:48:40 - [32minfo[39m: { name: 'Parin Kataria',
+  img: 'https://lh6.googleusercontent.com/-kOmNKCxybVM/AAAAAAAAAAI/AAAAAAAAAFg/9OOtKOfVwcw/photo.jpg?sz=50',
+  authToken: 'ya29.KABmn-VCqFehoyYAAADC03jrrF2j5DPJ8TY9e8xlbtDTLduyeCyeY_KKm9OpRDeCLKzPy9QaaQURNp1i2vw',
+  updatedAt: Sun Jun 01 2014 15:48:40 GMT+0530 (IST) } 'parinkataria@gmail.com'
+15:48:40 - [32minfo[39m: After update null 1
+15:48:40 - [33mwarn[39m: hello there HOW YOU DOING ?
+15:48:40 - [32minfo[39m: { name: 'Parin Kataria',
+  img: 'https://lh6.googleusercontent.com/-kOmNKCxybVM/AAAAAAAAAAI/AAAAAAAAAFg/9OOtKOfVwcw/photo.jpg?sz=50',
+  authToken: 'ya29.KABmn-VCqFehoyYAAADC03jrrF2j5DPJ8TY9e8xlbtDTLduyeCyeY_KKm9OpRDeCLKzPy9QaaQURNp1i2vw',
+  updatedAt: Sun Jun 01 2014 15:48:40 GMT+0530 (IST) } 'parinkataria@gmail.com'
+15:48:40 - [32minfo[39m: After update null 1
+15:48:50 - [32minfo[39m: parinkataria@gmail.com is now using recipe 538afbc9409d0ee00fb37001
+15:50:40 - [33mwarn[39m: hello there HOW YOU DOING ?
+15:50:40 - [32minfo[39m: { name: 'Parin Kataria',
+  img: 'https://lh6.googleusercontent.com/-kOmNKCxybVM/AAAAAAAAAAI/AAAAAAAAAFg/9OOtKOfVwcw/photo.jpg?sz=50',
+  authToken: 'ya29.KABmn-VCqFehoyYAAADC03jrrF2j5DPJ8TY9e8xlbtDTLduyeCyeY_KKm9OpRDeCLKzPy9QaaQURNp1i2vw',
+  updatedAt: Sun Jun 01 2014 15:50:40 GMT+0530 (IST) } 'parinkataria@gmail.com'
+15:50:40 - [32minfo[39m: After update null 1
+15:51:41 - [32minfo[39m: Getting all meta info of all the recipes
+15:51:41 - [32minfo[39m: sending recip
+15:51:42 - [32minfo[39m: Getting all meta info of all the recipes
+15:51:42 - [32minfo[39m: sending recip
+15:51:42 - [33mwarn[39m: hello there HOW YOU DOING ?
+15:51:42 - [32minfo[39m: { name: 'Parin Kataria',
+  img: 'https://lh6.googleusercontent.com/-kOmNKCxybVM/AAAAAAAAAAI/AAAAAAAAAFg/9OOtKOfVwcw/photo.jpg?sz=50',
+  authToken: 'ya29.KABmn-VCqFehoyYAAADC03jrrF2j5DPJ8TY9e8xlbtDTLduyeCyeY_KKm9OpRDeCLKzPy9QaaQURNp1i2vw',
+  updatedAt: Sun Jun 01 2014 15:51:42 GMT+0530 (IST) } 'parinkataria@gmail.com'
+15:51:42 - [32minfo[39m: After update null 1
+15:51:42 - [33mwarn[39m: hello there HOW YOU DOING ?
+15:51:42 - [32minfo[39m: { name: 'Parin Kataria',
+  img: 'https://lh6.googleusercontent.com/-kOmNKCxybVM/AAAAAAAAAAI/AAAAAAAAAFg/9OOtKOfVwcw/photo.jpg?sz=50',
+  authToken: 'ya29.KABmn-VCqFehoyYAAADC03jrrF2j5DPJ8TY9e8xlbtDTLduyeCyeY_KKm9OpRDeCLKzPy9QaaQURNp1i2vw',
+  updatedAt: Sun Jun 01 2014 15:51:42 GMT+0530 (IST) } 'parinkataria@gmail.com'
+15:51:42 - [32minfo[39m: After update null 1
+15:51:46 - [32minfo[39m: parinkataria@gmail.com is now using recipe 538afbc9409d0ee00fb37001
+15:53:05 - [32minfo[39m: Getting all meta info of all the recipes
+15:53:05 - [32minfo[39m: sending recip
+15:53:06 - [32minfo[39m: Getting all meta info of all the recipes
+15:53:06 - [32minfo[39m: sending recip
+15:53:07 - [33mwarn[39m: hello there HOW YOU DOING ?
+15:53:07 - [32minfo[39m: { name: 'Parin Kataria',
+  img: 'https://lh6.googleusercontent.com/-kOmNKCxybVM/AAAAAAAAAAI/AAAAAAAAAFg/9OOtKOfVwcw/photo.jpg?sz=50',
+  authToken: 'ya29.KABmn-VCqFehoyYAAADC03jrrF2j5DPJ8TY9e8xlbtDTLduyeCyeY_KKm9OpRDeCLKzPy9QaaQURNp1i2vw',
+  updatedAt: Sun Jun 01 2014 15:53:07 GMT+0530 (IST) } 'parinkataria@gmail.com'
+15:53:07 - [32minfo[39m: After update null 1
+15:53:07 - [33mwarn[39m: hello there HOW YOU DOING ?
+15:53:07 - [32minfo[39m: { name: 'Parin Kataria',
+  img: 'https://lh6.googleusercontent.com/-kOmNKCxybVM/AAAAAAAAAAI/AAAAAAAAAFg/9OOtKOfVwcw/photo.jpg?sz=50',
+  authToken: 'ya29.KABmn-VCqFehoyYAAADC03jrrF2j5DPJ8TY9e8xlbtDTLduyeCyeY_KKm9OpRDeCLKzPy9QaaQURNp1i2vw',
+  updatedAt: Sun Jun 01 2014 15:53:07 GMT+0530 (IST) } 'parinkataria@gmail.com'
+15:53:07 - [32minfo[39m: After update null 1
+15:53:11 - [32minfo[39m: parinkataria@gmail.com is now using recipe 538afbc9409d0ee00fb37001
+15:53:23 - [32minfo[39m: Getting all meta info of all the recipes
+15:53:23 - [32minfo[39m: sending recip
+15:53:41 - [32minfo[39m: parinkataria@gmail.com is now using recipe 538afbc9409d0ee00fb37001
+15:53:45 - [32minfo[39m: parinkataria@gmail.com is now using recipe 538afbc9409d0ee00fb37001
+15:54:00 - [32minfo[39m: Getting all meta info of all the recipes
+15:54:00 - [32minfo[39m: sending recip
+15:55:07 - [33mwarn[39m: hello there HOW YOU DOING ?
+15:55:07 - [32minfo[39m: { name: 'Parin Kataria',
+  img: 'https://lh6.googleusercontent.com/-kOmNKCxybVM/AAAAAAAAAAI/AAAAAAAAAFg/9OOtKOfVwcw/photo.jpg?sz=50',
+  authToken: 'ya29.KABmn-VCqFehoyYAAADC03jrrF2j5DPJ8TY9e8xlbtDTLduyeCyeY_KKm9OpRDeCLKzPy9QaaQURNp1i2vw',
+  updatedAt: Sun Jun 01 2014 15:55:07 GMT+0530 (IST) } 'parinkataria@gmail.com'
+15:55:07 - [32minfo[39m: After update null 1
+15:55:39 - [32minfo[39m: Getting all meta info of all the recipes
+15:55:39 - [32minfo[39m: sending recip
+15:55:40 - [32minfo[39m: Getting all meta info of all the recipes
+15:55:40 - [32minfo[39m: sending recip
+15:55:40 - [33mwarn[39m: hello there HOW YOU DOING ?
+15:55:40 - [32minfo[39m: { name: 'parin kataria',
+  img: 'https://lh5.googleusercontent.com/-M4t0yyY0zEQ/AAAAAAAAAAI/AAAAAAAABjI/HMwza_cq5fU/photo.jpg?sz=50',
+  authToken: 'ya29.KAAehzJJDx0JCSYAAADohx_RUCj4yKKktXjekZjF4wc329GccRxiMNbVuo1a4kfzL2BakU6S3I6za7K6d5g',
+  updatedAt: Sun Jun 01 2014 15:55:40 GMT+0530 (IST) } 'parin2092@gmail.com'
+15:55:40 - [32minfo[39m: After update null 1
+15:55:40 - [33mwarn[39m: hello there HOW YOU DOING ?
+15:55:40 - [32minfo[39m: { name: 'parin kataria',
+  img: 'https://lh5.googleusercontent.com/-M4t0yyY0zEQ/AAAAAAAAAAI/AAAAAAAABjI/HMwza_cq5fU/photo.jpg?sz=50',
+  authToken: 'ya29.KAAehzJJDx0JCSYAAADohx_RUCj4yKKktXjekZjF4wc329GccRxiMNbVuo1a4kfzL2BakU6S3I6za7K6d5g',
+  updatedAt: Sun Jun 01 2014 15:55:40 GMT+0530 (IST) } 'parin2092@gmail.com'
+15:55:40 - [32minfo[39m: After update null 1
+15:55:42 - [33mwarn[39m: hello there HOW YOU DOING ?
+15:55:42 - [32minfo[39m: { name: 'parin kataria',
+  img: 'https://lh5.googleusercontent.com/-M4t0yyY0zEQ/AAAAAAAAAAI/AAAAAAAABjI/HMwza_cq5fU/photo.jpg?sz=50',
+  authToken: 'ya29.KAAehzJJDx0JCSYAAADohx_RUCj4yKKktXjekZjF4wc329GccRxiMNbVuo1a4kfzL2BakU6S3I6za7K6d5g',
+  updatedAt: Sun Jun 01 2014 15:55:42 GMT+0530 (IST) } 'parin2092@gmail.com'
+15:55:42 - [32minfo[39m: After update null 1
+15:55:46 - [33mwarn[39m: hello there HOW YOU DOING ?
+15:55:46 - [32minfo[39m: { name: 'parin kataria',
+  img: 'https://lh5.googleusercontent.com/-M4t0yyY0zEQ/AAAAAAAAAAI/AAAAAAAABjI/HMwza_cq5fU/photo.jpg?sz=50',
+  authToken: 'ya29.KAAehzJJDx0JCSYAAADohx_RUCj4yKKktXjekZjF4wc329GccRxiMNbVuo1a4kfzL2BakU6S3I6za7K6d5g',
+  updatedAt: Sun Jun 01 2014 15:55:46 GMT+0530 (IST) } 'parin2092@gmail.com'
+15:55:46 - [32minfo[39m: After update null 1
+15:55:52 - [32minfo[39m: [ saveRecipe ] [ START ]
+15:55:52 - [32minfo[39m: [ saveRecipe ] do upsert query
+15:55:52 - [32minfo[39m: [ saveRecipe ] 1 docs updated with error : null 
+15:55:52 - [32minfo[39m: [ saveRecipe ] calling [ insertMetaInfo ]
+15:55:52 - [32minfo[39m: [ insertMetaInfo ] [ START ]
+15:55:52 - [32minfo[39m: [ insertMetaInfo ] new meta is { _id: 538ad7c083057a8326374a20,
+  karma: [],
+  forks: 0,
+  favs: [],
+  users: [ 'parin2092@gmail.com' ] }
+15:55:52 - [32minfo[39m: [ insertMetaInfo ] query for 538ad7c083057a8326374a20
+15:55:52 - [32minfo[39m: [ saveRecipe ] 200 sending http response 
+15:55:52 - [32minfo[39m: [ saveRecipe ] 200 response sent 
+15:55:52 - [32minfo[39m: 200 upload images to imgur
+15:55:52 - [32minfo[39m: Trying to upload images to imgur
+15:55:52 - [32minfo[39m: async started => upload images to imgur
+15:55:52 - [32minfo[39m: [ insertMetaInfo ] inserting new
+15:55:52 - [32minfo[39m: [ insertMetaInfo ] [ END ] 538ad7c083057a8326374a20 inserted new metainfo { __v: 0,
+  _id: 538ad7c083057a8326374a20,
+  karma: [],
+  forks: 0,
+  favs: [],
+  users: [ 'parin2092@gmail.com' ] } with null error
+15:55:54 - [33mwarn[39m: hello there HOW YOU DOING ?
+15:55:54 - [32minfo[39m: { name: 'parin kataria',
+  img: 'https://lh5.googleusercontent.com/-M4t0yyY0zEQ/AAAAAAAAAAI/AAAAAAAABjI/HMwza_cq5fU/photo.jpg?sz=50',
+  authToken: 'ya29.KAAehzJJDx0JCSYAAADohx_RUCj4yKKktXjekZjF4wc329GccRxiMNbVuo1a4kfzL2BakU6S3I6za7K6d5g',
+  updatedAt: Sun Jun 01 2014 15:55:54 GMT+0530 (IST) } 'parin2092@gmail.com'
+15:55:54 - [32minfo[39m: After update null 1
+15:56:05 - [32minfo[39m: doneCallback multiple File upload
+15:56:05 - [32minfo[39m: yeah baby.....
+15:56:44 - [32minfo[39m: Getting all meta info of all the recipes
+15:56:44 - [32minfo[39m: sending recip
+15:56:44 - [32minfo[39m: Getting all meta info of all the recipes
+15:56:44 - [32minfo[39m: sending recip
+15:56:45 - [33mwarn[39m: hello there HOW YOU DOING ?
+15:56:45 - [32minfo[39m: { name: 'parin kataria',
+  img: 'https://lh5.googleusercontent.com/-M4t0yyY0zEQ/AAAAAAAAAAI/AAAAAAAABjI/HMwza_cq5fU/photo.jpg?sz=50',
+  authToken: 'ya29.KAAehzJJDx0JCSYAAADohx_RUCj4yKKktXjekZjF4wc329GccRxiMNbVuo1a4kfzL2BakU6S3I6za7K6d5g',
+  updatedAt: Sun Jun 01 2014 15:56:45 GMT+0530 (IST) } 'parin2092@gmail.com'
+15:56:45 - [32minfo[39m: After update null 1
+15:56:45 - [33mwarn[39m: hello there HOW YOU DOING ?
+15:56:45 - [32minfo[39m: { name: 'parin kataria',
+  img: 'https://lh5.googleusercontent.com/-M4t0yyY0zEQ/AAAAAAAAAAI/AAAAAAAABjI/HMwza_cq5fU/photo.jpg?sz=50',
+  authToken: 'ya29.KAAehzJJDx0JCSYAAADohx_RUCj4yKKktXjekZjF4wc329GccRxiMNbVuo1a4kfzL2BakU6S3I6za7K6d5g',
+  updatedAt: Sun Jun 01 2014 15:56:45 GMT+0530 (IST) } 'parin2092@gmail.com'
+15:56:45 - [32minfo[39m: After update null 1
+15:56:55 - [32minfo[39m: parin2092@gmail.com is now using recipe 538ad7c083057a8326374a20
+15:57:07 - [33mwarn[39m: hello there HOW YOU DOING ?
+15:57:07 - [32minfo[39m: { name: 'Parin Kataria',
+  img: 'https://lh6.googleusercontent.com/-kOmNKCxybVM/AAAAAAAAAAI/AAAAAAAAAFg/9OOtKOfVwcw/photo.jpg?sz=50',
+  authToken: 'ya29.KABmn-VCqFehoyYAAADC03jrrF2j5DPJ8TY9e8xlbtDTLduyeCyeY_KKm9OpRDeCLKzPy9QaaQURNp1i2vw',
+  updatedAt: Sun Jun 01 2014 15:57:07 GMT+0530 (IST) } 'parinkataria@gmail.com'
+15:57:07 - [32minfo[39m: After update null 1
+15:57:34 - [32minfo[39m: Getting all meta info of all the recipes
+15:57:34 - [32minfo[39m: sending recip
+15:57:41 - [32minfo[39m: Getting all meta info of all the recipes
+15:57:41 - [32minfo[39m: sending recip
+15:57:42 - [32minfo[39m: Getting all meta info of all the recipes
+15:57:42 - [32minfo[39m: sending recip
+15:57:42 - [33mwarn[39m: hello there HOW YOU DOING ?
+15:57:42 - [32minfo[39m: { name: 'Parin Kataria',
+  img: 'https://lh6.googleusercontent.com/-kOmNKCxybVM/AAAAAAAAAAI/AAAAAAAAAFg/9OOtKOfVwcw/photo.jpg?sz=50',
+  authToken: 'ya29.KABmn-VCqFehoyYAAADC03jrrF2j5DPJ8TY9e8xlbtDTLduyeCyeY_KKm9OpRDeCLKzPy9QaaQURNp1i2vw',
+  updatedAt: Sun Jun 01 2014 15:57:42 GMT+0530 (IST) } 'parinkataria@gmail.com'
+15:57:42 - [32minfo[39m: After update null 1
+15:57:42 - [33mwarn[39m: hello there HOW YOU DOING ?
+15:57:42 - [32minfo[39m: { name: 'Parin Kataria',
+  img: 'https://lh6.googleusercontent.com/-kOmNKCxybVM/AAAAAAAAAAI/AAAAAAAAAFg/9OOtKOfVwcw/photo.jpg?sz=50',
+  authToken: 'ya29.KABmn-VCqFehoyYAAADC03jrrF2j5DPJ8TY9e8xlbtDTLduyeCyeY_KKm9OpRDeCLKzPy9QaaQURNp1i2vw',
+  updatedAt: Sun Jun 01 2014 15:57:42 GMT+0530 (IST) } 'parinkataria@gmail.com'
+15:57:42 - [32minfo[39m: After update null 1
+15:57:47 - [32minfo[39m: parinkataria@gmail.com is now using recipe 538ad7c083057a8326374a20
+15:57:56 - [32minfo[39m: Getting all meta info of all the recipes
+15:57:56 - [32minfo[39m: sending recip
+15:58:07 - [33mwarn[39m: hello there HOW YOU DOING ?
+15:58:07 - [32minfo[39m: { name: 'Parin Kataria',
+  img: 'https://lh6.googleusercontent.com/-kOmNKCxybVM/AAAAAAAAAAI/AAAAAAAAAFg/9OOtKOfVwcw/photo.jpg?sz=50',
+  authToken: 'ya29.KABmn-VCqFehoyYAAADC03jrrF2j5DPJ8TY9e8xlbtDTLduyeCyeY_KKm9OpRDeCLKzPy9QaaQURNp1i2vw',
+  updatedAt: Sun Jun 01 2014 15:58:07 GMT+0530 (IST) } 'parinkataria@gmail.com'
+15:58:07 - [32minfo[39m: After update null 1
+15:58:28 - [32minfo[39m: Getting all meta info of all the recipes
+15:58:28 - [32minfo[39m: sending recip
+15:58:28 - [32minfo[39m: Getting all meta info of all the recipes
+15:58:28 - [32minfo[39m: sending recip
+15:58:29 - [33mwarn[39m: hello there HOW YOU DOING ?
+15:58:29 - [32minfo[39m: { name: 'Parin Kataria',
+  img: 'https://lh6.googleusercontent.com/-kOmNKCxybVM/AAAAAAAAAAI/AAAAAAAAAFg/9OOtKOfVwcw/photo.jpg?sz=50',
+  authToken: 'ya29.KABmn-VCqFehoyYAAADC03jrrF2j5DPJ8TY9e8xlbtDTLduyeCyeY_KKm9OpRDeCLKzPy9QaaQURNp1i2vw',
+  updatedAt: Sun Jun 01 2014 15:58:29 GMT+0530 (IST) } 'parinkataria@gmail.com'
+15:58:29 - [32minfo[39m: After update null 1
+15:58:29 - [33mwarn[39m: hello there HOW YOU DOING ?
+15:58:29 - [32minfo[39m: { name: 'Parin Kataria',
+  img: 'https://lh6.googleusercontent.com/-kOmNKCxybVM/AAAAAAAAAAI/AAAAAAAAAFg/9OOtKOfVwcw/photo.jpg?sz=50',
+  authToken: 'ya29.KABmn-VCqFehoyYAAADC03jrrF2j5DPJ8TY9e8xlbtDTLduyeCyeY_KKm9OpRDeCLKzPy9QaaQURNp1i2vw',
+  updatedAt: Sun Jun 01 2014 15:58:29 GMT+0530 (IST) } 'parinkataria@gmail.com'
+15:58:29 - [32minfo[39m: After update null 1
+15:58:32 - [32minfo[39m: parinkataria@gmail.com is now using recipe 538ad7c083057a8326374a20
+15:58:36 - [33mwarn[39m: hello there HOW YOU DOING ?
+15:58:36 - [32minfo[39m: { name: 'Parin Kataria',
+  img: 'https://lh6.googleusercontent.com/-kOmNKCxybVM/AAAAAAAAAAI/AAAAAAAAAFg/9OOtKOfVwcw/photo.jpg?sz=50',
+  authToken: 'ya29.KABmn-VCqFehoyYAAADC03jrrF2j5DPJ8TY9e8xlbtDTLduyeCyeY_KKm9OpRDeCLKzPy9QaaQURNp1i2vw',
+  updatedAt: Sun Jun 01 2014 15:58:36 GMT+0530 (IST) } 'parinkataria@gmail.com'
+15:58:36 - [32minfo[39m: After update null 1
+15:58:41 - [32minfo[39m: parinkataria@gmail.com Favorited recipe 10
+15:58:44 - [32minfo[39m: Getting all meta info of all the recipes
+15:58:44 - [32minfo[39m: sending recip
+15:58:45 - [33mwarn[39m: hello there HOW YOU DOING ?
+15:58:45 - [32minfo[39m: { name: 'parin kataria',
+  img: 'https://lh5.googleusercontent.com/-M4t0yyY0zEQ/AAAAAAAAAAI/AAAAAAAABjI/HMwza_cq5fU/photo.jpg?sz=50',
+  authToken: 'ya29.KAAehzJJDx0JCSYAAADohx_RUCj4yKKktXjekZjF4wc329GccRxiMNbVuo1a4kfzL2BakU6S3I6za7K6d5g',
+  updatedAt: Sun Jun 01 2014 15:58:45 GMT+0530 (IST) } 'parin2092@gmail.com'
+15:58:45 - [32minfo[39m: After update null 1
+15:58:52 - [32minfo[39m: parinkataria@gmail.com UnFavorited recipe 10
+15:58:56 - [33mwarn[39m: hello there HOW YOU DOING ?
+15:58:56 - [32minfo[39m: { name: 'Parin Kataria',
+  img: 'https://lh6.googleusercontent.com/-kOmNKCxybVM/AAAAAAAAAAI/AAAAAAAAAFg/9OOtKOfVwcw/photo.jpg?sz=50',
+  authToken: 'ya29.KABmn-VCqFehoyYAAADC03jrrF2j5DPJ8TY9e8xlbtDTLduyeCyeY_KKm9OpRDeCLKzPy9QaaQURNp1i2vw',
+  updatedAt: Sun Jun 01 2014 15:58:56 GMT+0530 (IST) } 'parinkataria@gmail.com'
+15:58:56 - [32minfo[39m: After update null 1
+15:58:56 - [33mwarn[39m: hello there HOW YOU DOING ?
+15:58:56 - [32minfo[39m: { name: 'Parin Kataria',
+  img: 'https://lh6.googleusercontent.com/-kOmNKCxybVM/AAAAAAAAAAI/AAAAAAAAAFg/9OOtKOfVwcw/photo.jpg?sz=50',
+  authToken: 'ya29.KABmn-VCqFehoyYAAADC03jrrF2j5DPJ8TY9e8xlbtDTLduyeCyeY_KKm9OpRDeCLKzPy9QaaQURNp1i2vw',
+  updatedAt: Sun Jun 01 2014 15:58:56 GMT+0530 (IST) } 'parinkataria@gmail.com'
+15:58:56 - [32minfo[39m: After update null 1
+15:58:58 - [32minfo[39m: Getting all meta info of all the recipes
+15:58:58 - [32minfo[39m: sending recip
+15:59:06 - [32minfo[39m: parinkataria@gmail.com Favorited recipe 10
+15:59:34 - [32minfo[39m: Getting all meta info of all the recipes
+15:59:34 - [32minfo[39m: sending recip
+15:59:39 - [33mwarn[39m: hello there HOW YOU DOING ?
+15:59:39 - [32minfo[39m: { name: 'parin kataria',
+  img: 'https://lh5.googleusercontent.com/-M4t0yyY0zEQ/AAAAAAAAAAI/AAAAAAAABjI/HMwza_cq5fU/photo.jpg?sz=50',
+  authToken: 'ya29.KAAehzJJDx0JCSYAAADohx_RUCj4yKKktXjekZjF4wc329GccRxiMNbVuo1a4kfzL2BakU6S3I6za7K6d5g',
+  updatedAt: Sun Jun 01 2014 15:59:39 GMT+0530 (IST) } 'parin2092@gmail.com'
+15:59:39 - [32minfo[39m: After update null 1
+15:59:42 - [32minfo[39m: parin2092@gmail.com Favorited recipe 15
+15:59:44 - [32minfo[39m: Getting all meta info of all the recipes
+15:59:44 - [32minfo[39m: sending recip
+15:59:52 - [32minfo[39m: Recipe 538ad7c083057a8326374a20 forked
+15:59:56 - [32minfo[39m: Getting all meta info of all the recipes
+15:59:56 - [32minfo[39m: sending recip
+16:00:03 - [32minfo[39m: Getting all meta info of all the recipes
+16:00:03 - [32minfo[39m: sending recip
+16:00:04 - [32minfo[39m: Getting all meta info of all the recipes
+16:00:04 - [32minfo[39m: sending recip
+16:00:04 - [33mwarn[39m: hello there HOW YOU DOING ?
+16:00:04 - [32minfo[39m: { name: 'parin kataria',
+  img: 'https://lh5.googleusercontent.com/-M4t0yyY0zEQ/AAAAAAAAAAI/AAAAAAAABjI/HMwza_cq5fU/photo.jpg?sz=50',
+  authToken: 'ya29.KAAehzJJDx0JCSYAAADohx_RUCj4yKKktXjekZjF4wc329GccRxiMNbVuo1a4kfzL2BakU6S3I6za7K6d5g',
+  updatedAt: Sun Jun 01 2014 16:00:04 GMT+0530 (IST) } 'parin2092@gmail.com'
+16:00:04 - [32minfo[39m: After update null 1
+16:00:04 - [33mwarn[39m: hello there HOW YOU DOING ?
+16:00:04 - [32minfo[39m: { name: 'parin kataria',
+  img: 'https://lh5.googleusercontent.com/-M4t0yyY0zEQ/AAAAAAAAAAI/AAAAAAAABjI/HMwza_cq5fU/photo.jpg?sz=50',
+  authToken: 'ya29.KAAehzJJDx0JCSYAAADohx_RUCj4yKKktXjekZjF4wc329GccRxiMNbVuo1a4kfzL2BakU6S3I6za7K6d5g',
+  updatedAt: Sun Jun 01 2014 16:00:04 GMT+0530 (IST) } 'parin2092@gmail.com'
+16:00:04 - [32minfo[39m: After update null 1
+16:00:13 - [32minfo[39m: [ comment ] START
+16:00:13 - [32minfo[39m: [ comment ] parin2092@gmail.com commented blah blah on recipe 538ad7c083057a8326374a20
+16:00:13 - [32minfo[39m: [ comment ] trying to update recipe 538ad7c083057a8326374a20
+16:00:13 - [32minfo[39m: [ comment ] ran query for recipe 538ad7c083057a8326374a20 with error: null and 1 updates
+16:00:13 - [32minfo[39m: [ comment ] END sending 200
+16:00:18 - [32minfo[39m: [ karma ] START
+16:00:18 - [32minfo[39m: [ karma ] parin2092@gmail.com -> 5 -> 538ad7c083057a8326374a20
+16:00:18 - [32minfo[39m: [ karma ] checking if entry exists for parin2092@gmail.com -> 5 -> 538ad7c083057a8326374a20
+16:00:18 - [32minfo[39m: [ karma ] END doesn't exist calling [ addNewEntry ]
+16:00:18 - [32minfo[39m: [ addNewEntry ] START adding new entry for parin2092@gmail.com -> 5 -> asdfasdfasdfasdf -> 538ad7c083057a8326374a20
+16:00:18 - [32minfo[39m: [ addNewEntry ] END parin2092@gmail.com gave 5 to recipe 538ad7c083057a8326374a20 , null, updated 1 docs
+16:00:29 - [32minfo[39m: Getting all meta info of all the recipes
+16:00:29 - [32minfo[39m: sending recip
+16:00:48 - [32minfo[39m: Getting all meta info of all the recipes
+16:00:48 - [32minfo[39m: sending recip
+16:00:49 - [32minfo[39m: Getting all meta info of all the recipes
+16:00:49 - [32minfo[39m: sending recip
+16:00:49 - [33mwarn[39m: hello there HOW YOU DOING ?
+16:00:49 - [32minfo[39m: { name: 'Parin Kataria',
+  img: 'https://lh6.googleusercontent.com/-kOmNKCxybVM/AAAAAAAAAAI/AAAAAAAAAFg/9OOtKOfVwcw/photo.jpg?sz=50',
+  authToken: 'ya29.KABmn-VCqFehoyYAAADC03jrrF2j5DPJ8TY9e8xlbtDTLduyeCyeY_KKm9OpRDeCLKzPy9QaaQURNp1i2vw',
+  updatedAt: Sun Jun 01 2014 16:00:49 GMT+0530 (IST) } 'parinkataria@gmail.com'
+16:00:49 - [32minfo[39m: After update null 1
+16:00:49 - [33mwarn[39m: hello there HOW YOU DOING ?
+16:00:49 - [32minfo[39m: { name: 'Parin Kataria',
+  img: 'https://lh6.googleusercontent.com/-kOmNKCxybVM/AAAAAAAAAAI/AAAAAAAAAFg/9OOtKOfVwcw/photo.jpg?sz=50',
+  authToken: 'ya29.KABmn-VCqFehoyYAAADC03jrrF2j5DPJ8TY9e8xlbtDTLduyeCyeY_KKm9OpRDeCLKzPy9QaaQURNp1i2vw',
+  updatedAt: Sun Jun 01 2014 16:00:49 GMT+0530 (IST) } 'parinkataria@gmail.com'
+16:00:49 - [32minfo[39m: After update null 1
+16:01:00 - [32minfo[39m: [ karma ] START
+16:01:00 - [32minfo[39m: [ karma ] parinkataria@gmail.com -> 3 -> 538ad7c083057a8326374a20
+16:01:00 - [32minfo[39m: [ karma ] checking if entry exists for parinkataria@gmail.com -> 3 -> 538ad7c083057a8326374a20
+16:01:00 - [32minfo[39m: [ karma ] END doesn't exist calling [ addNewEntry ]
+16:01:00 - [32minfo[39m: [ addNewEntry ] START adding new entry for parinkataria@gmail.com -> 3 -> blah blah -> 538ad7c083057a8326374a20
+16:01:00 - [32minfo[39m: [ addNewEntry ] END parinkataria@gmail.com gave 3 to recipe 538ad7c083057a8326374a20 , null, updated 1 docs
+16:01:08 - [32minfo[39m: [ comment ] START
+16:01:08 - [32minfo[39m: [ comment ] parinkataria@gmail.com commented asdfasdfasdfasdfasdfasdf on recipe 538ad7c083057a8326374a20
+16:01:08 - [32minfo[39m: [ comment ] trying to update recipe 538ad7c083057a8326374a20
+16:01:08 - [32minfo[39m: [ comment ] ran query for recipe 538ad7c083057a8326374a20 with error: null and 1 updates
+16:01:08 - [32minfo[39m: [ comment ] END sending 200
+16:02:04 - [33mwarn[39m: hello there HOW YOU DOING ?
+16:02:04 - [32minfo[39m: { name: 'parin kataria',
+  img: 'https://lh5.googleusercontent.com/-M4t0yyY0zEQ/AAAAAAAAAAI/AAAAAAAABjI/HMwza_cq5fU/photo.jpg?sz=50',
+  authToken: 'ya29.KAAehzJJDx0JCSYAAADohx_RUCj4yKKktXjekZjF4wc329GccRxiMNbVuo1a4kfzL2BakU6S3I6za7K6d5g',
+  updatedAt: Sun Jun 01 2014 16:02:04 GMT+0530 (IST) } 'parin2092@gmail.com'
+16:02:04 - [32minfo[39m: After update null 1
+16:02:06 - [32minfo[39m: Getting all meta info of all the recipes
+16:02:06 - [32minfo[39m: sending recip
+16:02:06 - [32minfo[39m: Getting all meta info of all the recipes
+16:02:06 - [32minfo[39m: sending recip
+16:02:07 - [33mwarn[39m: hello there HOW YOU DOING ?
+16:02:07 - [32minfo[39m: { name: 'Parin Kataria',
+  img: 'https://lh6.googleusercontent.com/-kOmNKCxybVM/AAAAAAAAAAI/AAAAAAAAAFg/9OOtKOfVwcw/photo.jpg?sz=50',
+  authToken: 'ya29.KABmn-VCqFehoyYAAADC03jrrF2j5DPJ8TY9e8xlbtDTLduyeCyeY_KKm9OpRDeCLKzPy9QaaQURNp1i2vw',
+  updatedAt: Sun Jun 01 2014 16:02:07 GMT+0530 (IST) } 'parinkataria@gmail.com'
+16:02:07 - [32minfo[39m: After update null 1
+16:02:07 - [33mwarn[39m: hello there HOW YOU DOING ?
+16:02:07 - [32minfo[39m: { name: 'Parin Kataria',
+  img: 'https://lh6.googleusercontent.com/-kOmNKCxybVM/AAAAAAAAAAI/AAAAAAAAAFg/9OOtKOfVwcw/photo.jpg?sz=50',
+  authToken: 'ya29.KABmn-VCqFehoyYAAADC03jrrF2j5DPJ8TY9e8xlbtDTLduyeCyeY_KKm9OpRDeCLKzPy9QaaQURNp1i2vw',
+  updatedAt: Sun Jun 01 2014 16:02:07 GMT+0530 (IST) } 'parinkataria@gmail.com'
+16:02:07 - [32minfo[39m: After update null 1
+16:02:12 - [32minfo[39m: [ comment ] START
+16:02:12 - [32minfo[39m: [ comment ] parinkataria@gmail.com commented test on recipe 538ad7c083057a8326374a20
+16:02:12 - [32minfo[39m: [ comment ] trying to update recipe 538ad7c083057a8326374a20
+16:02:12 - [32minfo[39m: [ comment ] ran query for recipe 538ad7c083057a8326374a20 with error: null and 1 updates
+16:02:12 - [32minfo[39m: [ comment ] END sending 200
+16:02:19 - [32minfo[39m: Getting all meta info of all the recipes
+16:02:19 - [32minfo[39m: sending recip
+16:02:19 - [32minfo[39m: Getting all meta info of all the recipes
+16:02:19 - [32minfo[39m: sending recip
+16:02:20 - [33mwarn[39m: hello there HOW YOU DOING ?
+16:02:20 - [32minfo[39m: { name: 'Parin Kataria',
+  img: 'https://lh6.googleusercontent.com/-kOmNKCxybVM/AAAAAAAAAAI/AAAAAAAAAFg/9OOtKOfVwcw/photo.jpg?sz=50',
+  authToken: 'ya29.KABmn-VCqFehoyYAAADC03jrrF2j5DPJ8TY9e8xlbtDTLduyeCyeY_KKm9OpRDeCLKzPy9QaaQURNp1i2vw',
+  updatedAt: Sun Jun 01 2014 16:02:20 GMT+0530 (IST) } 'parinkataria@gmail.com'
+16:02:20 - [32minfo[39m: After update null 1
+16:02:20 - [33mwarn[39m: hello there HOW YOU DOING ?
+16:02:20 - [32minfo[39m: { name: 'Parin Kataria',
+  img: 'https://lh6.googleusercontent.com/-kOmNKCxybVM/AAAAAAAAAAI/AAAAAAAAAFg/9OOtKOfVwcw/photo.jpg?sz=50',
+  authToken: 'ya29.KABmn-VCqFehoyYAAADC03jrrF2j5DPJ8TY9e8xlbtDTLduyeCyeY_KKm9OpRDeCLKzPy9QaaQURNp1i2vw',
+  updatedAt: Sun Jun 01 2014 16:02:20 GMT+0530 (IST) } 'parinkataria@gmail.com'
+16:02:20 - [32minfo[39m: After update null 1
+16:02:40 - [32minfo[39m: [ comment ] START
+16:02:40 - [32minfo[39m: [ comment ] parinkataria@gmail.com commented 32 on recipe 538ad7c083057a8326374a20
+16:02:40 - [32minfo[39m: [ comment ] trying to update recipe 538ad7c083057a8326374a20
+16:02:40 - [32minfo[39m: [ comment ] ran query for recipe 538ad7c083057a8326374a20 with error: null and 1 updates
+16:02:40 - [32minfo[39m: [ comment ] END sending 200
+16:04:04 - [33mwarn[39m: hello there HOW YOU DOING ?
+16:04:04 - [32minfo[39m: { name: 'parin kataria',
+  img: 'https://lh5.googleusercontent.com/-M4t0yyY0zEQ/AAAAAAAAAAI/AAAAAAAABjI/HMwza_cq5fU/photo.jpg?sz=50',
+  authToken: 'ya29.KAAehzJJDx0JCSYAAADohx_RUCj4yKKktXjekZjF4wc329GccRxiMNbVuo1a4kfzL2BakU6S3I6za7K6d5g',
+  updatedAt: Sun Jun 01 2014 16:04:04 GMT+0530 (IST) } 'parin2092@gmail.com'
+16:04:04 - [32minfo[39m: After update null 1
+16:04:20 - [33mwarn[39m: hello there HOW YOU DOING ?
+16:04:20 - [32minfo[39m: { name: 'Parin Kataria',
+  img: 'https://lh6.googleusercontent.com/-kOmNKCxybVM/AAAAAAAAAAI/AAAAAAAAAFg/9OOtKOfVwcw/photo.jpg?sz=50',
+  authToken: 'ya29.KABmn-VCqFehoyYAAADC03jrrF2j5DPJ8TY9e8xlbtDTLduyeCyeY_KKm9OpRDeCLKzPy9QaaQURNp1i2vw',
+  updatedAt: Sun Jun 01 2014 16:04:20 GMT+0530 (IST) } 'parinkataria@gmail.com'
+16:04:20 - [32minfo[39m: After update null 1
+16:04:42 - [32minfo[39m: Getting all meta info of all the recipes
+16:04:42 - [32minfo[39m: sending recip
+16:04:42 - [32minfo[39m: Getting all meta info of all the recipes
+16:04:42 - [32minfo[39m: sending recip
+16:04:43 - [33mwarn[39m: hello there HOW YOU DOING ?
+16:04:43 - [32minfo[39m: { name: 'Parin Kataria',
+  img: 'https://lh6.googleusercontent.com/-kOmNKCxybVM/AAAAAAAAAAI/AAAAAAAAAFg/9OOtKOfVwcw/photo.jpg?sz=50',
+  authToken: 'ya29.KABmn-VCqFehoyYAAADC03jrrF2j5DPJ8TY9e8xlbtDTLduyeCyeY_KKm9OpRDeCLKzPy9QaaQURNp1i2vw',
+  updatedAt: Sun Jun 01 2014 16:04:43 GMT+0530 (IST) } 'parinkataria@gmail.com'
+16:04:43 - [32minfo[39m: After update null 1
+16:04:43 - [33mwarn[39m: hello there HOW YOU DOING ?
+16:04:43 - [32minfo[39m: { name: 'Parin Kataria',
+  img: 'https://lh6.googleusercontent.com/-kOmNKCxybVM/AAAAAAAAAAI/AAAAAAAAAFg/9OOtKOfVwcw/photo.jpg?sz=50',
+  authToken: 'ya29.KABmn-VCqFehoyYAAADC03jrrF2j5DPJ8TY9e8xlbtDTLduyeCyeY_KKm9OpRDeCLKzPy9QaaQURNp1i2vw',
+  updatedAt: Sun Jun 01 2014 16:04:43 GMT+0530 (IST) } 'parinkataria@gmail.com'
+16:04:43 - [32minfo[39m: After update null 1
+16:04:48 - [32minfo[39m: [ comment ] START
+16:04:48 - [32minfo[39m: [ comment ] parinkataria@gmail.com commented asdfasdf on recipe 538ad7c083057a8326374a20
+16:04:48 - [32minfo[39m: [ comment ] trying to update recipe 538ad7c083057a8326374a20
+16:04:48 - [32minfo[39m: [ comment ] ran query for recipe 538ad7c083057a8326374a20 with error: null and 1 updates
+16:04:48 - [32minfo[39m: [ comment ] END sending 200
+16:04:58 - [32minfo[39m: [ comment ] START
+16:04:58 - [32minfo[39m: [ comment ] parinkataria@gmail.com commented 1212134123113121131231231312 on recipe 538ad7c083057a8326374a20
+16:04:58 - [32minfo[39m: [ comment ] trying to update recipe 538ad7c083057a8326374a20
+16:04:58 - [32minfo[39m: [ comment ] ran query for recipe 538ad7c083057a8326374a20 with error: null and 1 updates
+16:04:58 - [32minfo[39m: [ comment ] END sending 200

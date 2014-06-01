@@ -34,7 +34,7 @@
                             <!-- <div class="container"> -->
                             <h3>{{recipe._id.title}}</h3>
                             <span class="pull-right det">
-                                <a href="" class="icc" ng-click="install(recipe._id._id)">
+                                <a href="" class="icc" ng-click="install(recipe)">
                                     <h3 class="pull-right">
                                         <span class="icon-lightning"></span>install</h3>
                                 </a>
@@ -132,7 +132,7 @@
                                         </div>
                                     </div>
                                     <div ng-show="!show.docomment" class="container comments-box">
-                                        <div class="row" ng-repeat="comment in recipe._id.comments | orderBy:'-date' ">
+                                        <div class="row" ng-repeat="comment in recipe._id.comments ">
                                             <div class="two columns">
                                                 <div class="two columns">
                                                     <img ng-src="{{comment.user.img}}+&sz=100" alt="{{comment.user.name}}" />
