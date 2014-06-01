@@ -26,9 +26,9 @@
     <link rel="stylesheet" type="text/css" href="/css/slider.css" />
 </head>
 
-<body ng-controller="BodyController" ng-keydown="handleKeyBoardEvent($event)">
+<body ng-controller="BodyController as MW" ng-keydown="MW.handleKeyBoardEvent($event)">
 
-    <div ng-show="showLoader" style="position:fixed;top:0;left:0;right:0;bottom:0;z-index:10000;background-color:rgba(255, 255, 255, 0.9);">
+    <div ng-show="MW.showLoader" style="position:fixed;top:0;left:0;right:0;bottom:0;z-index:10000;background-color:rgba(255, 255, 255, 0.9);">
         <img alt="Please Wait..!" style="position: fixed;top: 34%;left: 41%;height: 21%;" src="/imgs/loader.gif">
     </div>
 
@@ -41,23 +41,23 @@
                 <!-- Top Navigation -->
                 <header class="codrops-header" style="position:absolute;top:0;left:0;right:0;height:55px;background:#47a3da;color:white">
                     <div class="pull-left" style="margin-top: -7px;width:70%;">
-                        <h2 class="pull-left clickable" ng-click="home()">
+                        <h2 class="pull-left clickable" ng-click="MW.home()">
                             <span class="icon-wrench"></span>
                             Monkey Wrench
 
                         </h2>
 
-                        <h2 class="pull-left clickable" ng-click="new()">
+                        <h2 class="pull-left clickable" ng-click="MW.new()">
                             <span class="icon-new"></span>
                             New
                         </h2>
 
-                        <h2 class="pull-left clickable" ng-click="baazar()">
+                        <h2 class="pull-left clickable" ng-click="MW.baazar()">
                             <span class="icon-food"></span>
                             Recipe Baazar
                         </h2>
 
-                        <h2 class="pull-left clickable" ng-click="help()">
+                        <h2 class="pull-left clickable" ng-click="MW.help()">
                             <span class="icon-question"></span>Help
                         </h2>
                     </div>
@@ -65,27 +65,27 @@
 
 
                     <span class="pull-right" style="width:30%">
-                        <div class="pull-right" ng-show="!signedIn" style="margin-right:30px">
-                            <a href="" ng-click="signIn()">
+                        <div class="pull-right" ng-show="!MW.signedIn" style="margin-right:30px">
+                            <a href="" ng-click="MW.signIn()">
                                 <h3 class="login">
                                     <span class="icon-googleplus"></span>
                                     Log In
                                 </h3>
                             </a>
                         </div>
-                        <div ng-show="signedIn" class="pull-right">
+                        <div ng-show="MW.signedIn" class="pull-right">
                             <ul class="drop-down cf" style="list-style:none">
                                 <li>
                                     <a class="dropdown" href="">
                                         Hello
-                                        <img class="circle" style="position:relative;top:10px;height:30px;margin-right:5px" ng-src="{{user.img}}" alt="{{user.name}}">{{user.name}}
+                                        <img class="circle" style="position:relative;top:10px;height:30px;margin-right:5px" ng-src="{{MW.user.img}}" alt="{{MW.user.name}}">{{MW.user.name}}
                                     </a>
                                     <ul>
                                         <li>
-                                            <a target="_blank" ng-href="{{user.url}}">{{user._id}}</a>
+                                            <a target="_blank" ng-href="{{MW.user.url}}">{{MW.user._id}}</a>
                                         </li>
                                         <li>
-                                            <a href="" ng-click="signOut()">Log Out
+                                            <a href="" ng-click="MW.signOut()">Log Out
                                                 <span class=" icon-exit"></span>
                                             </a>
                                         </li>
@@ -98,8 +98,8 @@
 
                 </header>
                 <alert>
-                    <div ng-class="alert.class" ng-show="alert.show" style="position: fixed;top: -6px;z-index: 100000000;text-align: center;left: 0px;width: 100%;font-size: 1.5em;">
-                        <span ng-class="{'icon-happy':alert.type=='success','icon-sad':alert.type=='error','icon-shocked':alert.type=='warning'}"></span>&nbsp;{{alert.msg}}
+                    <div ng-class="MW.alert.class" ng-show="MW.alert.show" style="position: fixed;top: -6px;z-index: 100000000;text-align: center;left: 0px;width: 100%;font-size: 1.5em;">
+                        <span ng-class="{'icon-happy':MW.alert.type=='success','icon-sad':MW.alert.type=='error','icon-shocked':alert.type=='warning'}"></span>&nbsp;{{MW.alert.msg}}
                     </div>
                 </alert>
                 <div class="main clearfix ">

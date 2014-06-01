@@ -37,7 +37,7 @@ class EditProjectController
 	delete:(project)->
 		if confirm "Are you sure you want to delete recipe #{project.name} ?"
 			@Project.delete(angular.copy(project))
-			@Alert.success("Recipe #{project.name} deleted...")
+			@Alert.success("Recipe '#{project.name}' deleted...")
 			@config = {}
 			@location.path('/')
 	

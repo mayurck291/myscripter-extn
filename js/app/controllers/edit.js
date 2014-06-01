@@ -51,7 +51,7 @@
     EditProjectController.prototype["delete"] = function(project) {
       if (confirm("Are you sure you want to delete recipe " + project.name + " ?")) {
         this.Project["delete"](angular.copy(project));
-        this.Alert.success("Recipe " + project.name + " deleted...");
+        this.Alert.success("Recipe '" + project.name + "' deleted...");
         this.config = {};
         return this.location.path('/');
       }

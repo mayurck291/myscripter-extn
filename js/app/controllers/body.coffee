@@ -3,98 +3,85 @@ class BodyController
 	@$inject: ['$scope','$routeParams','$timeout','$location','Baazar','GPauth','Alert','Project'] 
 
 	constructor:(@scope,@routeParams,@timeout,@location,@Baazar,@gp,@Alert,@Project)->
-		@scope.alert 		= @Alert.bind()
-		@scope.signIn 		= @signIn
-		@scope.signOut 		= @signOut
-		# console.log @location.path()
+		@alert = @Alert.bind()
 		# check if user is signed in 
 		# if Yes get  userinfo
 		@gp.load().then(
 			()=> @getUserInfo()
 		,
 			()=>
-				@scope.user = null
-				@scope.signedIn = no
+				@user = null
+				@signedIn = no
 				console.log("User not signed in")
 		)
 
-		#### Functions ####### 
-		@scope.home  			= @home
-		@scope.new  			= @new
-		@scope.baazar  			= @baazar
-		@scope.help  			= @help
-		@scope.handleKeyBoardEvent = @handleKeyBoardEvent
-
 		@scope.$on('$routeChangeSuccess',(next,current)=>
-			@scope.showLoader = no 
+			@showLoader = no 
 			)
 
 		@scope.$on('$routeChangeError',(next,current)=>
-			@scope.showLoader = no 
+			@showLoader = no 
 			)
 		return
 
 	
 
-	getUserInfo :=>
+	getUserInfo :->
 		@gp.getUserInfo().then(
 					(user)=>
-						@scope.user = user
-						@scope.signedIn = yes
+						@user = user
+						@signedIn = yes
 						@scope.$broadcast('login')
 				,
 					()=>@gp.signOut()
 		)
 
-	deleteUserInfo:=>
-		@scope.user = null
-		@scope.signedIn = no
+	deleteUserInfo:->
+		@user = null
+		@signedIn = no
 	
-	signIn :=>
-		# console.log (@gp)
-		# console.log("signing in .....")
-		@Alert.warning("Loading....")
+	signIn :->
 		@gp.signIn().then(
 			() => @getUserInfo()
 		,
 			(error)=> console.log(error))
 		return
 
-	signOut:=>
+	signOut:->
 		console.log "signing out....."
 		@gp.signOut().then(
 			()=>console.log("out"),
 			()=>console.log("not out"))
-		@scope.user = null
-		@scope.signedIn = no
+		@user = null
+		@signedIn = no
 		@scope.$broadcast('logout')
 		return
 
-	home:=>
+	home:->
 		if @location.path() is '/'
 			return
-		@scope.showLoader = yes
+		@showLoader = yes
 		@location.path('/')
 		
-	new:=>
+	new:->
 		if @location.path() is '/New'
 			return
-		@scope.showLoader = yes
+		@showLoader = yes
 		@location.path('/New')
 
-	baazar:=>
+	baazar:->
 		if @location.path() is '/Baazar'
 			return
-		@scope.showLoader = yes
+		@showLoader = yes
 		@location.path('/Baazar')
 
-	help:=>
+	help:->
 		if @location.path() is '/Help'
 			return
-		@scope.showLoader = yes
+		@showLoader = yes
 		@location.path('/Help')
 
-	handleKeyBoardEvent :(event)=>
+	handleKeyBoardEvent :(event)->
 		console.log "Called"
 		if event.ctrlKey or event.metaKey
 			key = String.fromCharCode( event.which ).toLowerCase( ) 
