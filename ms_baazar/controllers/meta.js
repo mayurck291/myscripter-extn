@@ -62,6 +62,30 @@
     });
   };
 
+  exports.forked = function(request, response) {
+    var params, query, updates, _id;
+    params = request.body;
+    _id = params._id;
+    logger.info("Recipe " + _id + " forked");
+    query = {
+      _id: _id
+    };
+    updates = {
+      "$inc": {
+        forks: 1
+      }
+    };
+    return Meta.where({
+      _id: _id
+    }).update(updates, function(e, r) {
+      if (e != null) {
+        return response.json(500, {});
+      } else {
+        return response.json(200, {});
+      }
+    });
+  };
+
   exports.get = function(request, response) {
     var finalJson, userFilter;
     logger.info("Getting all meta info of all the recipes");

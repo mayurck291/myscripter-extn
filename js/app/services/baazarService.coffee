@@ -21,7 +21,7 @@ class Baazar
 		@postCommentUrl 		= "#{@domain}/comment"
 		@giveKarmaToRecipeUrl 	= "#{@domain}/karma"
 		@incUsersRecipesUrl  	= "#{@domain}/incUsersRecipes"		# NEW 10
-
+		@forkedUrl				= "#{@domain}/forked"
 		# search 			
 		# search/favs
 		# search/karma	
@@ -272,6 +272,17 @@ class Baazar
 			_id:recipeID
 
 		@$http.post(@unFavRecipeUrl,payload)
+			.success(defer.resolve)
+			.error(defer.reject)
+		defer.promise 
+
+	forked:(recipeID)->
+		defer 		= @$q.defer()
+		
+		payload = 
+			_id:recipeID
+
+		@$http.post(@forkedUrl,payload)
 			.success(defer.resolve)
 			.error(defer.reject)
 		defer.promise 

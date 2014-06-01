@@ -87,6 +87,9 @@
     HomeController.prototype.fork = function(project) {
       var forked;
       forked = angular.copy(project);
+      if (project.forked && (project._id != null)) {
+        this.Baazar.forked(project._id);
+      }
       forked.forked = false;
       forked.name += " (forked)";
       delete forked.id;

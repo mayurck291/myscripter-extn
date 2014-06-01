@@ -63,6 +63,7 @@ app.post( '/favourite', metaController.favourite );
 app.post( '/unfavourite', metaController.unfavourite );
 app.post( '/karma', metaController.karma );
 app.post( '/comment', recipeController.comment );
+app.post( '/forked', metaController.forked );
 
 
 // for testing only

@@ -46,6 +46,26 @@ exports.unfavourite = (request,response)->
             else
                 response.json(200,{})
 
+
+exports.forked = (request,response)->
+    params = request.body
+    _id = params._id
+
+    logger.info "Recipe #{_id} forked"
+
+    query = 
+        _id:_id
+
+    updates = 
+        "$inc": { forks : 1}
+
+    Meta.where({_id:_id})
+        .update updates,(e,r)->
+            if e?
+                response.json(500,{})
+            else
+                response.json(200,{})
+
 exports.get = (request,response)->
     logger.info "Getting all meta info of all the recipes"
     userFilter = '-authToken -updatedAt'

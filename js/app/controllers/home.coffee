@@ -65,6 +65,8 @@ class HomeController
 
 	fork:(project)->
 		forked = angular.copy(project)
+		if project.forked and project._id?
+			@Baazar.forked(project._id)
 		forked.forked = false
 		forked.name += " (forked)"
 		delete forked.id

@@ -36,6 +36,7 @@
       this.postCommentUrl = "" + this.domain + "/comment";
       this.giveKarmaToRecipeUrl = "" + this.domain + "/karma";
       this.incUsersRecipesUrl = "" + this.domain + "/incUsersRecipes";
+      this.forkedUrl = "" + this.domain + "/forked";
     }
 
     Baazar.prototype.handleGetCall = function(defer, response) {
@@ -242,6 +243,16 @@
         _id: recipeID
       };
       this.$http.post(this.unFavRecipeUrl, payload).success(defer.resolve).error(defer.reject);
+      return defer.promise;
+    };
+
+    Baazar.prototype.forked = function(recipeID) {
+      var defer, payload;
+      defer = this.$q.defer();
+      payload = {
+        _id: recipeID
+      };
+      this.$http.post(this.forkedUrl, payload).success(defer.resolve).error(defer.reject);
       return defer.promise;
     };
 
