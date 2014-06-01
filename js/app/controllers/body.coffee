@@ -31,7 +31,7 @@ class BodyController
 					(user)=>
 						@user = user
 						@signedIn = yes
-						@showCircle = yes
+						@showCircle = no
 						@scope.$broadcast('login')
 				,
 					()=>@gp.signOut()

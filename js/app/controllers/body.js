@@ -40,7 +40,7 @@
       return this.gp.getUserInfo().then(function(user) {
         _this.user = user;
         _this.signedIn = true;
-        _this.showCircle = true;
+        _this.showCircle = false;
         return _this.scope.$broadcast('login');
       }, function() {
         return _this.gp.signOut();
