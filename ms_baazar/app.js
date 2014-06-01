@@ -64,10 +64,7 @@ app.post( '/unfavourite', metaController.unfavourite );
 app.post( '/karma', metaController.karma );
 app.post( '/comment', recipeController.comment );
 app.post( '/forked', metaController.forked );
-
-
-// for testing only
-// app.get( '/meta/:id', recipeController.meta );
+app.post( '/incUsersRecipes', metaController.incUsersRecipes );
 
 var port = 3000;
 app.listen( port, function ( ) {

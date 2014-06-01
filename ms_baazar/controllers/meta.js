@@ -11,15 +11,11 @@
   async = require('async');
 
   exports.favourite = function(request, response) {
-    var params, query, update, user, _id;
+    var params, update, user, _id;
     params = request.body;
     _id = params._id;
     user = params.user;
     logger.info("" + user + " Favorited recipe " + _id);
-    query = {
-      _id: _id,
-      favs: user
-    };
     update = {
       "$addToSet": {
         favs: user
@@ -28,6 +24,28 @@
     return Meta.where({
       _id: _id
     }).where('favs').ne(user).update(update, function(e, r) {
+      if (e != null) {
+        return response.json(500, {});
+      } else {
+        return response.json(200, {});
+      }
+    });
+  };
+
+  exports.incUsersRecipes = function(request, response) {
+    var params, update, user, _id;
+    params = request.body;
+    _id = params._id;
+    user = params.user;
+    logger.info("" + user + " is now using recipe " + _id);
+    update = {
+      "$addToSet": {
+        users: user
+      }
+    };
+    return Meta.where({
+      _id: _id
+    }).where('users').ne(user).update(update, function(e, r) {
       if (e != null) {
         return response.json(500, {});
       } else {

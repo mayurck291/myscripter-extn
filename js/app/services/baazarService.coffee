@@ -234,21 +234,15 @@ class Baazar
 				)
 		defer.promise
 
-	incUsersRecipes:(recipeID)->
+	incUsersRecipes:(user,recipeID)->
 		defer 		= @$q.defer()
-		url 		= "#{@incUsersRecipesUrl}/#{recipeID}"
+		payload 	= 
+			user:user
+			_id :recipeID
 
-		@$http.post(url,karma)
-			.success(
-				(response,status) =>
-					@handlePostCall(defer,response)
-					return 
-					)
-			.error(
-				(response,status) =>
-					@handlePostCall(defer,response);
-					return 
-				)
+		@$http.post(@incUsersRecipesUrl,payload)
+			.success(defer.resolve)
+			.error(defer.reject)
 		defer.promise 
 
 	favourite:(user,recipeID)->

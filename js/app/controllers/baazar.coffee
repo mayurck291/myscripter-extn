@@ -154,9 +154,10 @@ class BaazarController
 				recipe.favourited = no
 				recipe._id = id
 				@Project.save(recipe)
+				@Baazar.incUsersRecipes(@scope.user._id,id)
 				@Alert.success("Yeahh...!! recipe installed.")
 			,()=>
-				@Alert.error("Error occurred ....try later...")
+				@Alert.error("An army of heavily trained monkeys is dispatched to deal with this situation...hang in there...")
 				)
 
 MonkeyWrench.controller 'BaazarController',BaazarController

@@ -213,9 +213,10 @@
         recipe.favourited = false;
         recipe._id = id;
         _this.Project.save(recipe);
+        _this.Baazar.incUsersRecipes(_this.scope.user._id, id);
         return _this.Alert.success("Yeahh...!! recipe installed.");
       }, function() {
-        return _this.Alert.error("Error occurred ....try later...");
+        return _this.Alert.error("An army of heavily trained monkeys is dispatched to deal with this situation...hang in there...");
       });
     };
 

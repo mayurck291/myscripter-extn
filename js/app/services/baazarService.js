@@ -211,16 +211,14 @@
       return defer.promise;
     };
 
-    Baazar.prototype.incUsersRecipes = function(recipeID) {
-      var defer, url,
-        _this = this;
+    Baazar.prototype.incUsersRecipes = function(user, recipeID) {
+      var defer, payload;
       defer = this.$q.defer();
-      url = "" + this.incUsersRecipesUrl + "/" + recipeID;
-      this.$http.post(url, karma).success(function(response, status) {
-        _this.handlePostCall(defer, response);
-      }).error(function(response, status) {
-        _this.handlePostCall(defer, response);
-      });
+      payload = {
+        user: user,
+        _id: recipeID
+      };
+      this.$http.post(this.incUsersRecipesUrl, payload).success(defer.resolve).error(defer.reject);
       return defer.promise;
     };
 

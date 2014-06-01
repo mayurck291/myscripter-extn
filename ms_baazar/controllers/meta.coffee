@@ -10,10 +10,6 @@ exports.favourite = (request,response)->
 
     logger.info "#{user} Favorited recipe #{_id}"
 
-    query = 
-        _id:_id
-        favs:user
-
     update = 
         "$addToSet": { favs : user},
 
@@ -25,6 +21,25 @@ exports.favourite = (request,response)->
             else
                 response.json(200,{})
 
+
+exports.incUsersRecipes = (request,response)->
+    params = request.body
+    _id = params._id
+    user = params.user
+
+    logger.info "#{user} is now using recipe #{_id}"
+
+    update = 
+        "$addToSet": { users : user},
+
+    Meta.where({_id:_id})
+        .where('users').ne(user)
+        .update update,(e,r)->
+            if e?
+                response.json(500,{})
+            else
+                response.json(200,{})
+                
 exports.unfavourite = (request,response)->
     params = request.body
     _id = params._id
