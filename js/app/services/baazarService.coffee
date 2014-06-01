@@ -57,7 +57,7 @@ class Baazar
 		defer.promise 
 
 	updateUser:(user)=>
-		console.log(user)
+		# console.log(user)
 		@$http.post(@updateUserUrl,user)
 		return 
 
@@ -121,7 +121,7 @@ class Baazar
 	list:(pageno)->
 		pageno = pageno ? 0
 		url = "#{@listUrl}/#{pageno}"
-		console.log(url,@listUrl)
+		# console.log(url,@listUrl)
 		defer = @$q.defer()
 		@$http.get(url)
 			.success(

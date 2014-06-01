@@ -68,7 +68,6 @@
     };
 
     Baazar.prototype.updateUser = function(user) {
-      console.log(user);
       this.$http.post(this.updateUserUrl, user);
     };
 
@@ -124,7 +123,6 @@
         _this = this;
       pageno = pageno != null ? pageno : 0;
       url = "" + this.listUrl + "/" + pageno;
-      console.log(url, this.listUrl);
       defer = this.$q.defer();
       this.$http.get(url).success(function(response, status) {
         defer.resolve(response);

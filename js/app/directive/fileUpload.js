@@ -53,24 +53,12 @@ MonkeyWrench.directive( 'download', function ( ) {
         scope: {
             project: '='
         },
-        controller: function ( $scope, $element, $attrs, $transclude ) {
-            // var obj = angular.copy( $scope.project );
-            // getDownloadLink = ( obj ) {
-            //     delete obj.id;
-            //     data = "text/json;charset=utf-8," + encodeURIComponent( JSON.stringify( obj ) );
-            //     return data;#
-            // }
-            // $element.html( '<a class="glyphicon glyphicon-download-alt" type="button" href="data:' + data + '" download="' + obj.name + '.json">Export</a>' );
-        },
-        // require: 'ngModel', // Array = multiple requires, ? = optional, ^ = check parent elements
+        controller: function ( $scope, $element, $attrs, $transclude ) {},
         restrict: 'E', // E = Element, A = Attribute, C = Class, M = Comment
-        // template:
-        template: '<span><span>',
+        template: '<a></a>',
         replace: true,
-        // transclude: true,
-        // compile: function(tElement, tAttrs, function transclude(function(scope, cloneLinkingFn){ return function linking(scope, elm, attrs){}})),
         link: function ( $scope, iElm, iAttrs, controller ) {
-            // var input = iElm[ 0 ];
+            a = iElm[ 0 ];
             var obj = angular.copy( $scope.project );
             if ( obj.id ) {
                 delete obj.id;
@@ -78,10 +66,18 @@ MonkeyWrench.directive( 'download', function ( ) {
             if ( obj._id ) {
                 delete obj._id;
             }
-            data = "text/json;charset=utf-8," + encodeURIComponent( JSON.stringify( obj ) );
-            // console.log( obj.name )
+            const MIME_TYPE = 'text/plain';
+            window.URL = window.webkitURL || window.URL;
+
+            var bb = new Blob( [ JSON.stringify( obj ) ], {
+                type: MIME_TYPE
+            } );
+
             name = obj[ 'name' ] + '.json';
-            iElm.html( '<a title="Download ' + obj.name + '" href="data:' + data + '" download="download.json"><span class="icon-download icc" style="margin-right:10px"></span></a>' );
+            a.download = name;
+            a.href = window.URL.createObjectURL( bb );
+            a.innerHTML = '<span class="icon-download icc" style="margin-right:10px"></span>';
+            iElm = a;
         }
     };
 } );
