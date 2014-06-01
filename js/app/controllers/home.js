@@ -108,7 +108,7 @@
       var p;
       if (project.forked) {
         return this.Alert.error("Can't share installed Recipe.....");
-      } else if (!this.scope.signedIn) {
+      } else if (!this.signedIn) {
         return this.Alert.error("You must Log In to share Recipe....");
       } else {
         p = "/Share/" + project.id;

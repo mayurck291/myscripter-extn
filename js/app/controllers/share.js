@@ -48,7 +48,8 @@
       }, function() {
         _this.user = null;
         _this.signedIn = false;
-        return _this.Alert.error("You must LOG IN in-order to share Recipe.");
+        _this.Alert.error("You must LOG IN in-order to share Recipe.");
+        return _this.location.href('/');
       });
       this.disableShareButton = false;
       return;

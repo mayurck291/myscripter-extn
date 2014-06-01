@@ -81,7 +81,7 @@ class HomeController
 	share:(project)->
 		if project.forked
 			@Alert.error("Can't share installed Recipe.....")
-		else if not @scope.signedIn
+		else if not @signedIn
 			@Alert.error("You must Log In to share Recipe....")
 		else
 			p = "/Share/"+project.id

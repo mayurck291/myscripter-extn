@@ -67,9 +67,10 @@
                     <span class="pull-right" style="width:30%">
                         <div class="pull-right" ng-show="!MW.signedIn" style="margin-right:30px">
                             <a href="" ng-click="MW.signIn()">
-                                <h3 class="login">
+                                <h3 class="login" ng-disabled="MW.showCircle">
                                     <span class="icon-googleplus"></span>
                                     Log In
+                                    <img src="/imgs/circle.gif" ng-show="MW.showCircle" alt="">
                                 </h3>
                             </a>
                         </div>

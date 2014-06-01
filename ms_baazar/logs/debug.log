@@ -19966,3 +19966,70 @@ response from an upstream server.<br />
   authToken: 'ya29.KAC5MRSpQeBT3x8AAAAg0xedVgdFnEdg-G161rJ_w56N452HvQHzReH2ET-drQ',
   updatedAt: Sun Jun 01 2014 16:30:20 GMT+0530 (IST) } 'parin2092@gmail.com'
 16:30:20 - [32minfo[39m: After update null 1
+16:32:03 - [33mwarn[39m: hello there HOW YOU DOING ?
+16:32:03 - [32minfo[39m: { name: 'parin kataria',
+  img: 'https://lh5.googleusercontent.com/-M4t0yyY0zEQ/AAAAAAAAAAI/AAAAAAAABjI/HMwza_cq5fU/photo.jpg?sz=50',
+  authToken: 'ya29.KAC5MRSpQeBT3x8AAAAg0xedVgdFnEdg-G161rJ_w56N452HvQHzReH2ET-drQ',
+  updatedAt: Sun Jun 01 2014 16:32:03 GMT+0530 (IST) } 'parin2092@gmail.com'
+16:32:04 - [32minfo[39m: After update null 1
+16:32:04 - [33mwarn[39m: hello there HOW YOU DOING ?
+16:32:04 - [32minfo[39m: { name: 'parin kataria',
+  img: 'https://lh5.googleusercontent.com/-M4t0yyY0zEQ/AAAAAAAAAAI/AAAAAAAABjI/HMwza_cq5fU/photo.jpg?sz=50',
+  authToken: 'ya29.KAC5MRSpQeBT3x8AAAAg0xedVgdFnEdg-G161rJ_w56N452HvQHzReH2ET-drQ',
+  updatedAt: Sun Jun 01 2014 16:32:04 GMT+0530 (IST) } 'parin2092@gmail.com'
+16:32:04 - [32minfo[39m: After update null 1
+16:32:08 - [33mwarn[39m: hello there HOW YOU DOING ?
+16:32:08 - [32minfo[39m: { name: 'parin kataria',
+  img: 'https://lh5.googleusercontent.com/-M4t0yyY0zEQ/AAAAAAAAAAI/AAAAAAAABjI/HMwza_cq5fU/photo.jpg?sz=50',
+  authToken: 'ya29.KAC5MRSpQeBT3x8AAAAg0xedVgdFnEdg-G161rJ_w56N452HvQHzReH2ET-drQ',
+  updatedAt: Sun Jun 01 2014 16:32:08 GMT+0530 (IST) } 'parin2092@gmail.com'
+16:32:08 - [32minfo[39m: After update null 1
+16:32:14 - [32minfo[39m: [ saveRecipe ] [ START ]
+16:32:14 - [32minfo[39m: [ saveRecipe ] do upsert query
+16:32:14 - [32minfo[39m: [ saveRecipe ] 1 docs updated with error : null 
+16:32:14 - [32minfo[39m: [ saveRecipe ] calling [ insertMetaInfo ]
+16:32:14 - [32minfo[39m: [ insertMetaInfo ] [ START ]
+16:32:14 - [32minfo[39m: [ insertMetaInfo ] new meta is { _id: 538b0836409d0ee00fb37008,
+  karma: [],
+  forks: 0,
+  favs: [],
+  users: [ 'parin2092@gmail.com' ] }
+16:32:14 - [32minfo[39m: [ insertMetaInfo ] query for 538b0836409d0ee00fb37008
+16:32:14 - [32minfo[39m: [ saveRecipe ] 200 sending http response 
+16:32:14 - [32minfo[39m: [ saveRecipe ] 200 response sent 
+16:32:14 - [32minfo[39m: 200 upload images to imgur
+16:32:14 - [32minfo[39m: Trying to upload images to imgur
+16:32:14 - [32minfo[39m: async started => upload images to imgur
+16:32:14 - [32minfo[39m: [ insertMetaInfo ] inserting new
+16:32:14 - [32minfo[39m: [ insertMetaInfo ] [ END ] 538b0836409d0ee00fb37008 inserted new metainfo { __v: 0,
+  _id: 538b0836409d0ee00fb37008,
+  karma: [],
+  forks: 0,
+  favs: [],
+  users: [ 'parin2092@gmail.com' ] } with null error
+16:32:17 - [33mwarn[39m: hello there HOW YOU DOING ?
+16:32:17 - [32minfo[39m: { name: 'parin kataria',
+  img: 'https://lh5.googleusercontent.com/-M4t0yyY0zEQ/AAAAAAAAAAI/AAAAAAAABjI/HMwza_cq5fU/photo.jpg?sz=50',
+  authToken: 'ya29.KAC5MRSpQeBT3x8AAAAg0xedVgdFnEdg-G161rJ_w56N452HvQHzReH2ET-drQ',
+  updatedAt: Sun Jun 01 2014 16:32:17 GMT+0530 (IST) } 'parin2092@gmail.com'
+16:32:17 - [32minfo[39m: After update null 1
+16:32:31 - [32minfo[39m: doneCallback multiple File upload
+16:32:31 - [32minfo[39m: yeah baby.....
+16:33:43 - [33mwarn[39m: hello there HOW YOU DOING ?
+16:33:43 - [32minfo[39m: { name: 'parin kataria',
+  img: 'https://lh5.googleusercontent.com/-M4t0yyY0zEQ/AAAAAAAAAAI/AAAAAAAABjI/HMwza_cq5fU/photo.jpg?sz=50',
+  authToken: 'ya29.KAAgsPZF5M8D7R8AAAAvTYbWEKhnh0Y2v-NZHnNe31mUfe6eLvsQsmbJ036Wzg',
+  updatedAt: Sun Jun 01 2014 16:33:43 GMT+0530 (IST) } 'parin2092@gmail.com'
+16:33:43 - [32minfo[39m: After update null 1
+16:33:47 - [33mwarn[39m: hello there HOW YOU DOING ?
+16:33:47 - [32minfo[39m: { name: 'parin kataria',
+  img: 'https://lh5.googleusercontent.com/-M4t0yyY0zEQ/AAAAAAAAAAI/AAAAAAAABjI/HMwza_cq5fU/photo.jpg?sz=50',
+  authToken: 'ya29.KAAgsPZF5M8D7R8AAAAvTYbWEKhnh0Y2v-NZHnNe31mUfe6eLvsQsmbJ036Wzg',
+  updatedAt: Sun Jun 01 2014 16:33:47 GMT+0530 (IST) } 'parin2092@gmail.com'
+16:33:47 - [32minfo[39m: After update null 1
+16:36:36 - [33mwarn[39m: hello there HOW YOU DOING ?
+16:36:36 - [32minfo[39m: { name: 'parin kataria',
+  img: 'https://lh5.googleusercontent.com/-M4t0yyY0zEQ/AAAAAAAAAAI/AAAAAAAABjI/HMwza_cq5fU/photo.jpg?sz=50',
+  authToken: 'ya29.KABMMOivy7xi9BoAAADVwAlfWiMGp-T18wji8wXz2-PTvMeWRGMXQ0B6tGX-Zw',
+  updatedAt: Sun Jun 01 2014 16:36:36 GMT+0530 (IST) } 'parin2092@gmail.com'
+16:36:36 - [32minfo[39m: After update null 1

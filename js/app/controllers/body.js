@@ -40,6 +40,7 @@
       return this.gp.getUserInfo().then(function(user) {
         _this.user = user;
         _this.signedIn = true;
+        _this.showCircle = true;
         return _this.scope.$broadcast('login');
       }, function() {
         return _this.gp.signOut();
@@ -53,6 +54,7 @@
 
     BodyController.prototype.signIn = function() {
       var _this = this;
+      this.showCircle = true;
       this.gp.signIn().then(function() {
         return _this.getUserInfo();
       }, function(error) {
