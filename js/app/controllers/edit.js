@@ -44,7 +44,7 @@
     }
 
     EditProjectController.prototype.save = function() {
-      this.Project.save(angular.copy(this.config), this.oldurl);
+      this.Project.save(this.config, this.oldurl);
       return this.Alert.success("Hurrah....project saved...");
     };
 

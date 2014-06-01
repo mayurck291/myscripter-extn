@@ -31,7 +31,7 @@ class EditProjectController
 		return
 
 	save:()->
-		@Project.save(angular.copy(@config),@oldurl)
+		@Project.save(@config,@oldurl)
 		@Alert.success("Hurrah....project saved...")
 	
 	delete:(project)->
