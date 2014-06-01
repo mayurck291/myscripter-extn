@@ -54,17 +54,28 @@
     };
 
     NewProjectController.prototype.moveUp = function(index, array) {
-      var temp;
-      temp = array[index];
-      array[index] = array[index - 1];
-      return array[index - 1] = temp;
+      var max, temp;
+      max = array.length;
+      if (index === 0) {
+        array.push(array[0]);
+        return array.splice(0, 1);
+      } else {
+        temp = array[index];
+        array[index] = array[index - 1];
+        return array[index - 1] = temp;
+      }
     };
 
     NewProjectController.prototype.moveDown = function(index, array) {
-      var temp;
-      temp = array[index];
-      array[index] = array[index + 1];
-      return array[index + 1] = temp;
+      var max, temp;
+      max = array.length;
+      if (index === (max - 1)) {
+        return array.unshift(array.pop());
+      } else {
+        temp = array[index];
+        array[index] = array[index + 1];
+        return array[index + 1] = temp;
+      }
     };
 
     NewProjectController.prototype.addcss = function() {

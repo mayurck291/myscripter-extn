@@ -38,14 +38,23 @@ class NewProjectController
 		@config.external.css.splice(index,1)
 
 	moveUp:(index,array)->
-		temp = array[index]
-		array[index] = array[index-1]
-		array[index-1] = temp
+		max = array.length
+		if index is 0
+			array.push(array[0])
+			array.splice(0,1)
+		else 
+			temp = array[index]
+			array[index] = array[index-1]
+			array[index-1] = temp
 
 	moveDown:(index,array)->
-		temp = array[index]
-		array[index] = array[index+1]
-		array[index+1] = temp
+		max = array.length
+		if index is (max-1)
+			array.unshift(array.pop())
+		else
+			temp = array[index]
+			array[index] = array[index+1]
+			array[index+1] = temp
 
 	addcss:()->
 		if @config.external.css.indexOf(@extcss) is -1 and @extcss isnt null and @extcss isnt undefined

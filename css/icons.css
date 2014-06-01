@@ -257,6 +257,12 @@
 .icon-arror-right:before {
     content:"\e63c";
 }
+.icon-arrow-up:before {
+    content:"\e64c";
+}
+.icon-arrow-down:before {
+    content:"\e64d";
+}
 .icc {
     color:#47a3da !important;
 }
