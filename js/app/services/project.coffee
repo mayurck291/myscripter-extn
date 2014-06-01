@@ -71,7 +71,7 @@ class Project
 
 		# console.log("if edition remove old entry from indices #{project.id} in old url #{old_url} index #{all_indexes[old_url]}")
 		@saveIndices( all_indexes )
-		return
+		return project.id
 
 	delete:(project)->
 		all_indexes = @getIndices( )

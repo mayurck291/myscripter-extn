@@ -36,7 +36,7 @@
         return;
       }
       console.log("saving....");
-      this.Project.save(angular.copy(this.config));
+      this.Project.save(this.config);
       return this.Alert.success("Hurrah....project saved...");
     };
 

@@ -23,7 +23,7 @@ class NewProjectController
 			return
 		
 		console.log "saving...."
-		@Project.save(angular.copy(@config))
+		@Project.save(@config)
 		@Alert.success("Hurrah....project saved...")
 
 	removejs:(index)->

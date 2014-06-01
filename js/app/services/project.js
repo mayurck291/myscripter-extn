@@ -81,6 +81,7 @@
         all_indexes[old_url].splice(all_indexes[old_url].indexOf(project.id), 1);
       }
       this.saveIndices(all_indexes);
+      return project.id;
     };
 
     Project.prototype["delete"] = function(project) {
