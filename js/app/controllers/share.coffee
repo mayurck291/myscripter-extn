@@ -27,7 +27,7 @@ class ShareProjectController
 				@user = null
 				@signedIn = no
 				@Alert.error("You must LOG IN in-order to share Recipe.")
-				@location.href('/')
+				@location.path('/')
 		)
 		######################################################################################
 		@disableShareButton = false

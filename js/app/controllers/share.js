@@ -49,7 +49,7 @@
         _this.user = null;
         _this.signedIn = false;
         _this.Alert.error("You must LOG IN in-order to share Recipe.");
-        return _this.location.href('/');
+        return _this.location.path('/');
       });
       this.disableShareButton = false;
       return;
