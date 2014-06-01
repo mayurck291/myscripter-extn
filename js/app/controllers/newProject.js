@@ -24,7 +24,9 @@
         tabs = document.getElementById('form');
         return cbtab = new CBPFWTabs(tabs);
       }, 100, true);
-      this.scope.$on('save', this.save);
+      this.scope.$on('save', function() {
+        return _this.save();
+      });
       return;
     }
 

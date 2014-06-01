@@ -36,29 +36,43 @@
                     <input type="text" id="extjs" ng-model="EditProject.extjs" name="extjs" placeholder="e.g. http://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.9/angular-route.js">
                     <a href="" class="pull-right" style="margin-top:-35px;margin-right:20px;color:#47a3df" ng-click="EditProject.addjs()"><b>[+]</b>
                     </a>
-                    <div ng-repeat="js in EditProject.config.external.js track by $index ">
-                        <strong>
-                            <a href="" style="margin-right:20px;color:#47a3df" ng-click="EditProject.removejs($index)">[x]</a>&nbsp;{{js}}
-                            <span class="pull-right">
-                                <a href="" ng-show="$index != 0" ng-click="EditProject.moveUp($index,EditProject.config.external.js)">Up</a>
-                                <a href="" ng-show="$index+1 != EditProject.config.external.js.length" ng-click="EditProject.moveDown($index,EditProject.config.external.js)">Down</a>
-                            </span>
-                        </strong>
+                    <div ng-repeat="js in EditProject.config.external.js track by $index " class="sixteen-columns">
+                        <span style="display: inline-block;width: 60px;">
+                            <a href="" ng-click="EditProject.moveUp($index,EditProject.config.external.js)">
+                                <span class="icon-arrow-up icc"></span>
+                            </a>
+                            <a style="display: inline-block;width: 25px;" href="" ng-click="EditProject.moveDown($index,EditProject.config.external.js)">
+                                <span class="icon-arrow-down icc"></span>
+                            </a>
+                        </span>
+                        <span>
+                            &nbsp;{{js}}
+                        </span>
+                        <span class="pull-right">
+                            <a href="" style="margin-right:20px;color:#47a3df" ng-click="EditProject.removejs($index)">[x]</a>
+                        </span>
                     </div>
                 </form>
-                <form action="" ng-submit="addcss()">
+                <form action="" ng-submit="EditProject.addcss()">
                     <label for="extcss">External CSS URL</label>
                     <input type="text" id="extcss" name="extcss" ng-model="EditProject.extcss" placeholder="e.g. http://example.com/css/beautify.css">
                     <a href="" class="pull-right" style="margin-top:-35px;margin-right:20px;color:#47a3df" ng-click="EditProject.addcss()"><b>[+]</b>
                     </a>
-                    <div ng-repeat="css in EditProject.config.external.css track by $index ">
-                        <strong>
-                            <a href="" style="margin-right:20px;color:#47a3df" ng-click="EditProject.removecss($index)">[x]</a>&nbsp;{{css}}
-                            <span class="pull-right">
-                                <a href="" ng-show="$index != 0" ng-click="EditProject.moveUp($index,EditProject.config.external.css)">Up</a>
-                                <a href="" ng-show="$index+1 != EditProject.config.external.css.length" ng-click="EditProject.moveDown($index,EditProject.config.external.css)">Down</a>
-                            </span>
-                        </strong>
+                    <div ng-repeat="css in EditProject.config.external.css track by $index " class="sixteen-columns">
+                        <span style="display: inline-block;width: 60px;">
+                            <a href="" ng-click="EditProject.moveUp($index,EditProject.config.external.css)">
+                                <span class="icon-arrow-up icc"></span>
+                            </a>
+                            <a style="display: inline-block;width: 25px;" href="" ng-click="EditProject.moveDown($index,EditProject.config.external.css)">
+                                <span class="icon-arrow-down icc"></span>
+                            </a>
+                        </span>
+                        <span>
+                            &nbsp;{{css}}
+                        </span>
+                        <span class="pull-right">
+                            <a href="" style="margin-right:20px;color:#47a3df" ng-click="EditProject.removecss($index)">[x]</a>
+                        </span>
                     </div>
                 </form>
 

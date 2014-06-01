@@ -37,7 +37,9 @@
         tabs = new CBPFWTabs(document.getElementById('form'));
         return cbtab = new CBPFWTabs(tabs);
       }, 300, true);
-      this.scope.$on('save', this.save);
+      this.scope.$on('save', function() {
+        return _this.save();
+      });
       return;
     }
 
@@ -60,10 +62,10 @@
     };
 
     EditProjectController.prototype.addjs = function() {
-      if (this.config.external.js.indexOf(this.scope.extjs) === -1 && this.scope.extjs !== null && this.scope.extjs !== void 0) {
-        this.config.external.js.push(this.scope.extjs);
+      if (this.config.external.js.indexOf(this.extjs) === -1 && this.extjs !== null && this.extjs !== void 0) {
+        this.config.external.js.push(this.extjs);
       }
-      return this.scope.extjs = null;
+      return this.extjs = null;
     };
 
     EditProjectController.prototype.removecss = function(index) {
@@ -71,24 +73,35 @@
     };
 
     EditProjectController.prototype.addcss = function() {
-      if (this.config.external.css.indexOf(this.scope.extcss) === -1 && this.scope.extcss !== null && this.scope.extcss !== void 0) {
-        this.config.external.css.push(this.scope.extcss);
+      if (this.config.external.css.indexOf(this.extcss) === -1 && this.extcss !== null && this.extcss !== void 0) {
+        this.config.external.css.push(this.extcss);
       }
-      return this.scope.extcss = null;
+      return this.extcss = null;
     };
 
     EditProjectController.prototype.moveUp = function(index, array) {
-      var temp;
-      temp = array[index];
-      array[index] = array[index - 1];
-      return array[index - 1] = temp;
+      var max, temp;
+      max = array.length;
+      if (index === 0) {
+        array.push(array[0]);
+        return array.splice(0, 1);
+      } else {
+        temp = array[index];
+        array[index] = array[index - 1];
+        return array[index - 1] = temp;
+      }
     };
 
     EditProjectController.prototype.moveDown = function(index, array) {
-      var temp;
-      temp = array[index];
-      array[index] = array[index + 1];
-      return array[index + 1] = temp;
+      var max, temp;
+      max = array.length;
+      if (index === (max - 1)) {
+        return array.unshift(array.pop());
+      } else {
+        temp = array[index];
+        array[index] = array[index + 1];
+        return array[index + 1] = temp;
+      }
     };
 
     return EditProjectController;

@@ -27,7 +27,7 @@ class EditProjectController
 		,300
 		,true
 
-		@scope.$on('save',@save)
+		@scope.$on('save',()=>@save())
 		return
 
 	save:()->
@@ -45,26 +45,35 @@ class EditProjectController
 		@config.external.js.splice(index,1)
 
 	addjs:()->
-		if @config.external.js.indexOf(@scope.extjs) is -1 and @scope.extjs isnt null and @scope.extjs isnt undefined
-			@config.external.js.push(@scope.extjs)
-		@scope.extjs = null
+		if @config.external.js.indexOf(@extjs) is -1 and @extjs isnt null and @extjs isnt undefined
+			@config.external.js.push(@extjs)
+		@extjs = null
 
 	removecss:(index)->
 		@config.external.css.splice(index,1)
 
 	addcss:()->
-		if @config.external.css.indexOf(@scope.extcss) is -1 and @scope.extcss isnt null and @scope.extcss isnt undefined
-			@config.external.css.push(@scope.extcss)
-		@scope.extcss = null
+		if @config.external.css.indexOf(@extcss) is -1 and @extcss isnt null and @extcss isnt undefined
+			@config.external.css.push(@extcss)
+		@extcss = null
 
 	moveUp:(index,array)->
-		temp = array[index]
-		array[index] = array[index-1]
-		array[index-1] = temp
+		max = array.length
+		if index is 0
+			array.push(array[0])
+			array.splice(0,1)
+		else 
+			temp = array[index]
+			array[index] = array[index-1]
+			array[index-1] = temp
 
 	moveDown:(index,array)->
-		temp = array[index]
-		array[index] = array[index+1]
-		array[index+1] = temp
+		max = array.length
+		if index is (max-1)
+			array.unshift(array.pop())
+		else
+			temp = array[index]
+			array[index] = array[index+1]
+			array[index+1] = temp
 	
 MonkeyWrench.controller 'EditProjectController',EditProjectController

@@ -14,7 +14,7 @@ class NewProjectController
 		,true
 
 		
-		@scope.$on('save',@save)
+		@scope.$on('save',()=>@save())
 		return
 
 	save:()->
