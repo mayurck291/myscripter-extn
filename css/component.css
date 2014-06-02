@@ -253,6 +253,16 @@ span.nav-close:before {
 /* Nav */
  .tabs nav {
     text-align: center;
+    position: relative;
+}
+.tabs nav:after {
+    content:'';
+    position: absolute;
+    height: 1px;
+    bottom: 4px;
+    background: #47a3da;
+    display: block;
+    width: 100%;
 }
 .tabs nav ul {
     padding: 0;
@@ -267,6 +277,7 @@ span.nav-close:before {
     display: block;
     float: left;
     position: relative;
+    background: #fff;
 }
 .tabs nav li.tab-current {
     border: 1px solid #47a3da;
@@ -274,7 +285,7 @@ span.nav-close:before {
     border-bottom: none;
     z-index: 100;
 }
-.tabs nav li.tab-current:before, .tabs nav li.tab-current:after {
+/*.tabs nav li.tab-current:before, .tabs nav li.tab-current:after {
     content:'';
     position: absolute;
     height: 1px;
@@ -282,8 +293,8 @@ span.nav-close:before {
     bottom: 0;
     width: 1000px;
     background: #47a3da;
-}
-.tabs nav li.tab-current:after {
+}*/
+ .tabs nav li.tab-current:after {
     right: auto;
     left: 100%;
     width: 4000px;
