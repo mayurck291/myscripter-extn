@@ -125,7 +125,6 @@
 
     HomeController.prototype.importProject = function(project) {
       if (this.Project.isValidProject(project)) {
-        project = angular.fromJson(project);
         project.forked = false;
         project.name += " (imported)";
         if (project.id != null) {

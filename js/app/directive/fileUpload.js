@@ -99,9 +99,17 @@ MonkeyWrench.directive( 'import', function ( ) {
                     var r = new FileReader( );
                     r.onload = function ( e ) {
                         var contents = e.target.result;
-                        $scope.callback( {
-                            project: contents
-                        } );
+                        $scope.$apply( function ( ) {
+                            try {
+                                project = JSON.parse( contents )
+                                $scope.callback( {
+                                    project: project
+                                } );
+                            } catch ( e ) {
+                                alert( "You went full retard nigga...Never go full retard...\nInvalid JSON." );
+                            }
+
+                        } )
                     }
                     r.readAsText( f );
                 } else {
@@ -110,8 +118,6 @@ MonkeyWrench.directive( 'import', function ( ) {
             }
 
             $scope.openFile = function ( ) {
-                console.log( "-------------------" );
-                console.log( angular.element( document.querySelector( "#importjson" ) ) );
                 angular.element( document.querySelector( "#importjson" ) )[ 0 ].click( );
             }
         },

@@ -2,7 +2,6 @@ class Project
 	constructor:(@Alert)->
 
 	new:()->
-		keys = ['name','url','external','js','css','enabled','autoApply','forked']
 		template = 
 			name	:null,
 			url		:null,
@@ -90,13 +89,13 @@ class Project
 		else
 			return {}
 
-	isValidProject:(Project)->
+	isValidProject:(Project)=>
+		@fields = ['name','url','external','js','css','enabled','autoApply','forked']		
 		projectKeys = Object.keys(Project)
-		for key in projectKeys
-			if @keys.indexOf(key) is -1
+		for key in @fields
+			if projectKeys.indexOf(key) is -1
 				return no
-		return yes
-		
+		return yes		
 
 MonkeyWrench = angular.module 'MonkeyWrench'
 MonkeyWrench.service 'Project',['Alert',Project]

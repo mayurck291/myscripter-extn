@@ -94,7 +94,6 @@ class HomeController
 
 	importProject:(project)->
 		if @Project.isValidProject(project)
-			project = angular.fromJson(project)
 			project.forked = false
 			project.name += " (imported)"
 			if project.id?
