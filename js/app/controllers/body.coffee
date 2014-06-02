@@ -72,10 +72,10 @@ class BodyController
 		@location.path('/New')
 
 	baazar:->
-		if @location.path() is '/Baazar'
+		if @location.path() is '/Bazaar'
 			return
 		@showLoader = yes
-		@location.path('/Baazar')
+		@location.path('/Bazaar')
 
 	help:->
 		if @location.path() is '/Help'

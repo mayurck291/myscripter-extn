@@ -81,7 +81,7 @@
           localStorage.setItem('reload', true);
           return gg = new CBPGridGallery(document.getElementById('grid-gallery'));
         });
-      }, 2000, true);
+      }, 1000, true);
     }
 
     BaazarController.prototype.getStars = function(range) {

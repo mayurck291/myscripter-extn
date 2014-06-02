@@ -6,17 +6,7 @@
 
   MonkeyWrench.config([
     '$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
-      $routeProvider.when('/Baazar', {
-        templateUrl: '/html/partials/baazar.html',
-        controller: 'BaazarController',
-        resolve: {
-          recipes: [
-            'Baazar', function(Baazar) {
-              return Baazar.get();
-            }
-          ]
-        }
-      }).when('/New', {
+      $routeProvider.when('/New', {
         templateUrl: '/html/partials/new.html',
         controller: 'NewProjectController',
         controllerAs: 'NewProject'
@@ -35,6 +25,16 @@
         templateUrl: '/html/partials/home.html',
         controller: 'HomeController',
         controllerAs: 'Home'
+      }).when('/Bazaar', {
+        templateUrl: '/html/partials/baazar.html',
+        controller: 'BaazarController',
+        resolve: {
+          recipes: [
+            'Baazar', function(Baazar) {
+              return Baazar.get();
+            }
+          ]
+        }
       }).otherwise({
         redirectTo: '/'
       });

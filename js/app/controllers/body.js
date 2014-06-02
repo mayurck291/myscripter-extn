@@ -92,11 +92,11 @@
     };
 
     BodyController.prototype.baazar = function() {
-      if (this.location.path() === '/Baazar') {
+      if (this.location.path() === '/Bazaar') {
         return;
       }
       this.showLoader = true;
-      return this.location.path('/Baazar');
+      return this.location.path('/Bazaar');
     };
 
     BodyController.prototype.help = function() {

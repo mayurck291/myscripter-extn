@@ -1,14 +1,7 @@
 MonkeyWrench = angular.module 'MonkeyWrench',['ngRoute','AuthModule', 'BaazarModule','ngAnimate','Slider']
 MonkeyWrench.config ['$routeProvider','$locationProvider',
 ($routeProvider,$locationProvider)->
-	$routeProvider.when('/Baazar',
-			templateUrl:'/html/partials/baazar.html',
-			controller:'BaazarController',
-			resolve:
-				recipes:['Baazar',(Baazar)->
-					Baazar.get()
-				]
-			).when('/New'
+	$routeProvider.when('/New'
 				,templateUrl:'/html/partials/new.html'
 				,controller:'NewProjectController'
 				,controllerAs:'NewProject'
@@ -27,6 +20,13 @@ MonkeyWrench.config ['$routeProvider','$locationProvider',
 				,templateUrl:'/html/partials/home.html'
 				,controller:'HomeController'
 				,controllerAs:'Home'
+			).when('/Bazaar',
+			templateUrl:'/html/partials/baazar.html',
+			controller:'BaazarController',
+			resolve:
+				recipes:['Baazar',(Baazar)->
+					Baazar.get()
+				]
 			).otherwise(
 				{redirectTo:'/'}
 			)
