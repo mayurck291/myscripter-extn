@@ -268,21 +268,30 @@ span.nav-close:before {
     padding: 0;
     margin: 0;
     list-style: none;
+    overflow: hidden;
     display: inline-block;
+}
+.custom ul {
+    position: relative;
+    z-index: 9;
+    text-align: left;
 }
 .tabs nav ul li {
     border: 1px solid #becbd2;
     border-bottom: none;
     margin: 0 0.25em;
-    display: block;
+    /*display: block;
     float: left;
     position: relative;
+    background: #fff;*/
+    position: relative;
     background: #fff;
+    display: inline-block;
 }
 .tabs nav li.tab-current {
     border: 1px solid #47a3da;
     box-shadow: inset 0 2px #47a3da;
-    border-bottom: none;
+    border-bottom: 1px solid #fff;
     z-index: 100;
 }
 /*.tabs nav li.tab-current:before, .tabs nav li.tab-current:after {
