@@ -646,3 +646,9 @@ a {
 td:hover {
     cursor: auto !important;
 }
+.label.label-primary {
+    background: #47a3df;
+    padding: 7px;
+    border-radius: 5px;
+    color: white;
+}
