@@ -1,0 +1,245 @@
+<div>
+    <div id="grid-gallery" class="grid-gallery">
+        <section class="grid-wrap">
+            <ul class="grid">
+                <li class="grid-sizer"></li>
+                <!-- for Masonry column width -->
+                <li ng-repeat="recipe in recipes">
+                    <figure>
+                        <!-- ng-repeat="img in recipe._id.imgs" -->
+                        <img style="height:160px" ng-src="{{recipe._id.imgs[0]}}" />
+
+                        <figcaption>
+                            <h4 style="display:inline">
+                                {{recipe._id.title | limitTo:20}}
+                                <span ng-show="recipe._id.title.length>20">...</span>
+                            </h4>
+                            <!-- style="top: -37px;left: 10px;position: relative;" -->
+                            <div>
+                                <span ng-repeat="i in getStars(5)" class="icc" ng-class="{'icon-star2':($index+1) <= recipe.karmac,'icon-star':($index+1) > recipe.karmac}"></span>
+                                <span style="margin-left:3px">({{recipe.karmac}})</span>
+                            </div>
+                        </figcaption>
+                    </figure>
+                </li>
+            </ul>
+        </section>
+        <!-- // grid-wrap -->
+        <section class="slideshow">
+            <ul>
+                <li class="sli" ng-repeat="recipe in recipes">
+
+                    <figure>
+                        <figcaption>
+                            <!-- <div class="container"> -->
+                            <h3>{{recipe._id.title}}</h3>
+                            <span class="pull-right det">
+                                <a href="" class="icc" ng-click="install(recipe)">
+                                    <h3 class="pull-right">
+                                        <span class="icon-lightning"></span>install</h3>
+                                </a>
+                            </span>
+
+                            <div style="color: grey;">
+                                <span class="pull-left det">By {{recipe._id.author.name}}</span>
+                                <span class="pull-left det" title="Users">
+                                    <span class="icon-users icc"></span>
+                                    <span style="margin-left:3px">
+                                        {{recipe.userc}}
+                                    </span>
+                                </span>
+                                <span class="pull-left det" title="Loved">
+                                    <span class=" icon-heart icc"></span>
+                                    <span style="margin-left:3px">{{recipe.favc}}
+                                    </span>
+                                </span>
+                                <span class="pull-left det" title="Forks">
+                                    <span class=" icon-forkandspoon icc"></span>
+                                    <span style="margin-left:3px">{{recipe.forks}}</span>
+                                </span>
+                                <span class="pull-left det" title="Karma">
+                                    <span ng-repeat="i in getStars(5)" class="icc" ng-class="{'icon-star2':($index+1) <= recipe.karmac,'icon-star':($index+1) > recipe.karmac}"></span>
+                                    <span style="margin-left:3px">({{recipe.karmac}})</span>
+                                </span>
+
+                            </div>
+                            <!-- </div> -->
+                        </figcaption>
+                        <div id="tabs" class="tabs">
+                            <nav class="custom">
+                                <ul>
+                                    <li>
+                                        <a href="#screen-shots" class="icon-images">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#description" class="icon-question">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#comments" class="icon-bubbles4">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#reviews" class="icon-edit">
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                            <div class="content">
+                                <section id="screen-shots">
+                                    <slider srcs="{{recipe._id.imgs}}" />
+                                </section>
+                                <section id="description">
+                                    <p style="border: 1px solid;padding: 8px 8px 8px 11px;font-weight: 500;">
+                                        <span class="icon-lightning icc"></span>{{recipe._id.desc}}</p>
+                                </section>
+                                <section id="comments" style="padding: 20px 10px 20px 10px !important;">
+                                    <div ng-show="!signedIn" class="comment-msg">
+                                        You must LOGIN to comment
+                                    </div>
+                                    <div ng-show="signedIn">
+                                        <div class="pull right" ng-show="!show.docomment" style=";font-weight:bold;margin-bottom:18px">
+                                            <a href="" ng-click="show.docomment=true">
+                                                <strong style="color:#47a3da !important">
+                                                    <span class="icon-bubbles3">Add Comment</span>
+                                                </strong>
+                                            </a>
+                                        </div>
+                                        <div id="custom comment" ng-show="show.docomment" class="container" style="">
+                                            <div class="row">
+                                                <div class="two columns">
+                                                    <div class="two columns">
+                                                        <img ng-src="{{user.img}}+&sz=100" alt="{{user.name}}" />
+                                                    </div>
+                                                    <div class="four column avatar">
+                                                        {{user.name}}
+                                                    </div>
+                                                </div>
+                                                <div class="eight columns">
+                                                    <div class="tip left">
+                                                        <div class="row comment-body">
+                                                            <form action="" class="cbp-mc-form">
+                                                                <textarea name="cols" rows="4" cols="50" class="tip left two columns" placeholder="Your comment" ng-model="cf.usercomment" style="max-width:500px"></textarea>
+                                                                <input ng-click="postComment(recipe)" class="cbp-mc-submit" style="margin-left: 10px;height: 48px;" ng-disabled="!cf.usercomment" type="submit">
+
+                                                                <a href="" style="color:#47a3da" ng-show="show.docomment" ng-click="show.docomment=false">Cancel</a>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div ng-show="!show.docomment" class="container comments-box">
+                                        <div class="row" ng-repeat="comment in recipe._id.comments ">
+                                            <div class="two columns">
+                                                <div class="two columns">
+                                                    <img ng-src="{{comment.user.img}}+&sz=100" alt="{{comment.user.name}}" />
+                                                </div>
+                                                <div class="four column avatar" style="opacity: 0.9;">
+                                                    {{comment.user.name}}
+                                                </div>
+                                            </div>
+                                            <div class="eight columns">
+                                                <div class="tip left">
+                                                    <div class="row comment-body">
+                                                        <span class="icon-bubbles3"></span>
+                                                        {{comment.body}}
+                                                    </div>
+                                                    <div class="row date pull-right">
+                                                        <span class="icon-calendar"></span>
+                                                        {{comment.date | date:'medium'}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                                <section id="reviews">
+                                    <div ng-show="!signedIn" class="comment-msg">
+                                        You must LOGIN to comment
+                                    </div>
+                                    <div ng-show="signedIn">
+                                        <div ng-show="!show.dokarma" style=";font-weight:bold;margin-top:18px;margin-bottom:18px">
+                                            <a href="" ng-click="show.dokarma=true">
+                                                <strong style="color:#47a3da !important">
+                                                    <span class="icon-edit">Review</span>
+                                                </strong>
+                                            </a>
+                                        </div>
+                                        <div id="custom comment" ng-show="show.dokarma" class="container" style="">
+                                            <div class="row">
+                                                <div class="two columns">
+                                                    <div class="two columns">
+                                                        <img ng-src="{{user.img}}+&sz=100" alt="{{user.name}}" />
+                                                    </div>
+                                                    <div class="four column avatar">
+                                                        {{user.name}}
+                                                    </div>
+                                                </div>
+                                                <div class="eight columns">
+                                                    <div class="tip left">
+                                                        <div class="row comment-body">
+                                                            <form name="karmaform" class="cbp-mc-form" ng-init="fm.karma=1">
+                                                                <div class="row">
+                                                                    Karma
+                                                                    <a href="" ng-click="rate($index+1)" ng-repeat="i in getStars(5)">
+                                                                        <span class="icc" ng-class="{'icon-star2':($index+1) <= fm.karma,'icon-star':($index+1) > fm.karma}"></span>
+                                                                    </a>
+                                                                </div>
+
+                                                                <textarea name="cols" rows="4" cols="50" class="tip left two columns" type="text" placeholder="your comment" ng-model="fm.body" style="max-width:500px"></textarea>
+                                                                <input class="cbp-mc-submit" style="margin-left: 10px;height: 48px;" ng-disabled="disableKarmaSubmit()" type="submit" ng-click="karma(recipe)">
+                                                                <a href="" style="color:#47a3da" ng-show="show.dokarma" ng-click="show.dokarma=false">Cancel</a>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="reviews" ng-show="!show.dokarma" class="container">
+                                            <div class="row" ng-repeat="karma in recipe.karma">
+                                                <div class="two columns">
+                                                    <div class="two columns">
+                                                        <img ng-src="{{karma.user.img}}+&sz=100" alt="{{karma.user.name}}" />
+                                                    </div>
+                                                    <div class="four column avatar">
+                                                        {{karma.user.name}}
+                                                    </div>
+                                                </div>
+                                                <div class="eight columns">
+                                                    <div class="tip left">
+                                                        <div class="row comment-body">
+                                                            <form class="cbp-mc-form">
+                                                                <div class="row">
+                                                                    <span ng-repeat="i in getStars(5)" class="icc" ng-class="{'icon-star2':($index+1) <= karma.karma,'icon-star':($index+1) > karma.karma}"></span>
+                                                                </div>
+                                                                <span class="row date">
+                                                                    <span class="icon-bubbles3"></span>
+                                                                    {{karma.body}}
+                                                                </span>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                    </figure>
+                </li>
+            </ul>
+            <nav>
+                <span class="icon nav-prev"></span>
+                <span class="icon nav-next"></span>
+                <span class="icon nav-close"></span>
+            </nav>
+            <div class="info-keys icon">Navigate with arrow keys</div>
+        </section>
+        <!-- // slideshow -->
+
+        </div>
+        <!-- // grid-gallery -->
+    </div>

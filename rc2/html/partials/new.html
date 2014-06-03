@@ -1,0 +1,112 @@
+<div class="cbp-mc-form">
+    <div id="form" class="tabs">
+        <nav>
+            <ul>
+                <li>
+                    <a href="#settings">
+                        <span class="icon-cogs"></span>
+                        Settings
+                    </a>
+                </li>
+                <li>
+                    <a href="#js">
+                        <span class=" icon-console"></span>
+                        JS
+                    </a>
+                </li>
+                <li>
+                    <a href="#css">
+                        <span class="icon-cool"></span>
+                        CSS
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div class="content">
+            <section id="settings">
+                <label for="name">Name</label>
+                <input ng-model="NewProject.config.name" type="text" id="name" name="name" placeholder="e.g. Google Beautify">
+
+                <label for="URL">URL</label>
+                <input ng-model="NewProject.config.url" type="text" id="URL" name="URL" placeholder="e.g. https://www.google.co.in">
+
+                <form action="" ng-submit="NewProject.addjs()">
+                    <label for="extjs">External JS URL</label>
+                    <input type="text" id="extjs" ng-model="NewProject.extjs" name="extjs" placeholder="e.g. http://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.9/angular-route.js">
+                    <a href="" class="pull-right" style="margin-top:-35px;margin-right:20px;color:#47a3df" ng-click="NewProject.addjs()"><b>[+]</b>
+                    </a>
+                    <div ng-repeat="js in NewProject.config.external.js track by $index " class="sixteen-columns">
+                        <span style="display: inline-block;width: 60px;">
+                            <a href="" ng-click="NewProject.moveUp($index,NewProject.config.external.js)">
+                                <span class="icon-arrow-up icc"></span>
+                            </a>
+                            <a style="display: inline-block;width: 25px;" href="" ng-click="NewProject.moveDown($index,NewProject.config.external.js)">
+                                <span class="icon-arrow-down icc"></span>
+                            </a>
+                        </span>
+                        <span>
+                            &nbsp;{{js}}
+                        </span>
+                        <span class="pull-right">
+                            <a href="" style="margin-right:20px;color:#47a3df" ng-click="NewProject.removejs($index)">[x]</a>
+                        </span>
+                    </div>
+                </form>
+                <form action="" ng-submit="NewProject.addcss()">
+                    <label for="extcss">External CSS URL</label>
+                    <input type="text" id="extcss" name="extcss" ng-model="NewProject.extcss" placeholder="e.g. http://example.com/css/beautify.css">
+                    <a href="" class="pull-right" style="margin-top:-35px;margin-right:20px;color:#47a3df" ng-click="NewProject.addcss()"><b>[+]</b>
+                    </a>
+                    <div ng-repeat="css in NewProject.config.external.css track by $index " class="sixteen-columns">
+                        <span style="display: inline-block;width: 60px;">
+                            <a href="" ng-click="NewProject.moveUp($index,NewProject.config.external.css)">
+                                <span class="icon-arrow-up icc"></span>
+                            </a>
+                            <a style="display: inline-block;width: 25px;" href="" ng-click="NewProject.moveDown($index,NewProject.config.external.css)">
+                                <span class="icon-arrow-down icc"></span>
+                            </a>
+                        </span>
+                        <span>
+                            &nbsp;{{css}}
+                        </span>
+                        <span class="pull-right">
+                            <a href="" style="margin-right:20px;color:#47a3df" ng-click="NewProject.removecss($index)">[x]</a>
+                        </span>
+                    </div>
+                </form>
+
+                <div class="sixteen columns">
+                    <br>
+                    <div class="three columns pull-left">
+                        Enabled
+                        <a href="" ng-click="NewProject.config.enabled = !NewProject.config.enabled">
+                            <span class="icc" ng-class="{'icon-on':NewProject.config.enabled,'icon-off':!NewProject.config.enabled}" style="font-size: larger;"></span>
+                        </a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </div>
+                    <div class="three columns" style="margin-left:50px">
+                        Auto Apply
+                        <a href="" ng-click="NewProject.config.autoApply = !NewProject.config.autoApply">
+                            <span class="icc" ng-class="{'icon-on':NewProject.config.autoApply,'icon-off':!NewProject.config.autoApply}" style="font-size: larger;"></span>
+                        </a>
+                    </div>
+                </div>
+
+            </section>
+            <section id="js">
+                <textarea ng-model="NewProject.config.js" name="" id="" cols="30" rows="19"></textarea>
+            </section>
+            <section id="css">
+                <textarea ng-model="NewProject.config.css" name="" id="" cols="30" rows="19"></textarea>
+            </section>
+            <div class="cbp-mc-submit-wrap">
+                <button ng-click="NewProject.save()" class="cbp-mc-submit">
+                    <span class="icon-disk">Save</span>
+                </button>
+                <button ng-click="MW.home()" class="cbp-mc-submit">
+                    <span class="icon-cancel">Cancel</span>
+                </button>
+                <!-- <input type="submit" value="Save" /> -->
+            </div>
+        </div>
+    </div>

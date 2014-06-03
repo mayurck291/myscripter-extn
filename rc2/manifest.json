@@ -1,0 +1,53 @@
+{
+    "name": "Monkey Wrench",
+    "version": "2.0",
+    "manifest_version": 2,
+    "description": "Smarter Way To Handle Websites : Custom scripts on custom URLs",
+    "permissions": [
+        "tabs",
+        "http://*/*",
+        "https://*/*",
+        "unlimitedStorage",
+        "identity"
+    ],
+    "icons": {
+        "16": "icon16.png",
+        "48": "icon48.png",
+        "128": "icon128.png"
+    },
+    "browser_action": {
+        "default_icon": "icon128.png"
+    },
+    "background": {
+        "scripts": [
+            "js/lib/jquery.js",
+            "js/lib/jstorage.js",
+            "js/background.js"
+        ]
+    },
+    "options_page": "html/options2.html",
+    "commands": {
+        "options": {
+            "suggested_key": {
+                "default": "Ctrl+M",
+                "mac": "MacCtrl+M"
+
+            },
+            "description": "Open 'options page' for Monkey Wrench."
+        },
+        "browserAction": {
+            "suggested_key": {
+                "default": "Ctrl+I",
+                "mac": "MacCtrl+I"
+            },
+            "description": "Inject Monkey Wrench script on current page."
+        }
+    },
+    "oauth2": {
+        // client_id below is specifc to the application key. Follow the
+        // documentation to obtain one for your app.
+        "client_id": "497291774654.apps.googleusercontent.com",
+        "scopes": ["https://www.googleapis.com/auth/plus.login", "https://www.googleapis.com/auth/userinfo.email"]
+    },
+    "key": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCDJB6ZGcGxtlr/34s+TKgi84QiP7DMekqOjSUS2ubmbhchlM6CN9gYdGQ1aBI3TBXG3YaAu+XyutFA8M8NLLWc4OOGByWaGV11DP6p67g8a+Ids/gX6cNSRnRHiDZXAd44ATxoN4OZjZJk9iQ26RIUjwX07bzntlI+frwwKCk4WQIDAQAB"
+}

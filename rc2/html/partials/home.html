@@ -1,0 +1,180 @@
+<form class="cbp-mc-form">
+
+    <style>
+    .cbp-mc-form {
+        font-family:'Lato', Calibri, Arial, sans-serif;
+        /*color: #fff;*/
+        /*background: #47a3da;*/
+    }
+    </style>
+
+    <div ng-show="!Home.allProjects.length" class="container">
+        <div class="panel-body text-center">
+            <div class="container" style="text-align:center">
+                <h1>
+                    You have no recipes yet-
+                    <span class="icon-sad icc"></span>&nbsp;
+                </h1>
+                <h3>
+                    Go ahead and
+                    <a href="" style="color:black" ng-click="MW.new()">
+                        Cook
+                    </a>
+                    ..or install ready-made recipes from
+                    <a href="" style="color:black" ng-click="MW.baazar()">
+                        <span class="icon-food"></span>Recipe Bazaar</a>
+                    <br>
+                    <br>still need help ??..read our simple
+                    <a href="" style="color:black" ng-click="MW.help()">Help</a>document
+                </h3>
+            </div>
+        </div>
+    </div>
+    <div ng-show="Home.allProjects.length">
+
+        <div id="home" class="tabs">
+            <nav>
+                <ul>
+                    <li>
+                        <a href="#my">
+                            <span class="icon-food"></span>
+                            My Recipes
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#installed">
+                            <span class=" icon-lightning"></span>
+                            Installed Recipes
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="content">
+                <section id="my">
+                    <div class="container" ng-show="!(Home.allProjects|filter:{forked:false}).length">
+                        <h1 style="text-align: center;">
+                            <span class="icon-sad icc"></span>&nbsp;You have no recipes yet - go ahead and
+                            <a href="" ng-click="MW.new()" style="color:black">
+                                <span class="icon-add"></span>Cook</a>
+
+                        </h1>
+                        <!--  or Visit &nbsp; -->
+                        <!-- <a href="" style="color:black" ng-click="baazar()">
+                                <span class="icon-food">
+                                </span>Recipe Bazaar
+                            </a> -->
+                    </div>
+                    <div ng-show="(Home.allProjects|filter:{forked:false}).length">
+                        <br>
+                        <import callback="Home.importProject(project)"></import>
+                        <br>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Name</th>
+                                    <th>URL</th>
+                                    <th>Enabled</th>
+                                    <th>Controls</th>
+                                    <!-- more columns are possible -->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="project in Home.allProjects|filter:{forked:false} track by $index">
+                                    <td>{{$index+1}}</td>
+                                    <td>
+                                        <a href="" title="click to edit {{project.name}}" ng-click="Home.edit(project)" style="font-weight: bold;color: #47a3da;">{{project.name}}</a>
+                                    </td>
+                                    <td>{{project.url}}</td>
+                                    <td>
+                                        <a href="" ng-click="Home.save(project)">
+                                            <span class="icc" ng-class="{'icon-on':project.enabled,'icon-off':!project.enabled}" style="font-size: larger;"></span>
+                                        </a>
+                                    </td>
+                                    <td style="width: 20%;">
+                                        <!--  <a href="" ng-click="edit(project)" title="Edit {{project.name}}">
+                                    <span class="icon-edit icc" style="margin-right:5px"></span>
+                                </a> -->
+                                        <a href="" ng-click="Home.share(project)" title="Share {{project.name}}">
+                                            <span class="icon-share icc" style="margin-right:10px"></span>
+                                        </a>
+                                        <!-- <a href="{{getDownloadLink(project)}}" title="Download {{project.name}}">
+                                    <span class="icon-download icc" style="margin-right:10px"></span>
+                                </a> -->
+                                        <a href="" title="Fork {{project.name}}" ng-click="Home.fork(project)">
+                                            <span class="icon-forkandspoon icc" style="margin-right:10px"></span>
+                                        </a>
+                                        <download project="project"></download>
+
+                                        <a href="" title="Delete {{project.name}}" ng-click="Home.delete(project)">
+                                            <span class="icon-remove icc" style="margin-right:10px"></span>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <!-- more rows are possible -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+                <section id="installed">
+                    <br>
+                    <br>
+                    <div ng-show="!(Home.allProjects|filter:{forked:true}).length" class="container">
+                        <div class="panel-body text-center">
+                            <div class="">
+                                <h1>
+                                    <span class="icon-sad icc"></span>&nbsp;You have not installed any recipes yet - Visit &nbsp;
+                                    <a href="" style="color:black" ng-click="MW.baazar()">
+                                        <span class="icon-food">
+                                        </span>Recipe Bazaar
+                                    </a>
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
+                    <table ng-show="(Home.allProjects|filter:{forked:true}).length">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>URL</th>
+                                <th>Enabled</th>
+                                <th>Fork</th>
+                                <!-- more columns are possible -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="project in Home.allProjects|filter:{forked:true}">
+                                <td>{{$index+1}}</td>
+                                <td>{{project.name}}</td>
+                                <td>{{project.url}}</td>
+                                <td>
+                                    <a href="" ng-click="Home.save(project)">
+                                        <span class="icc" ng-class="{'icon-on':project.enabled,'icon-off':!project.enabled}" style="font-size: larger;"></span>
+                                    </a>
+                                </td>
+                                <td style="width:20%">
+                                    <!-- fork,rate,favourite -->
+                                    <a href="" ng-show="!project.favourited" title="Favourite {{project.name}}" ng-click="Home.favourite(project)">
+                                        <span class="icon-heart2 icc" style="margin-right:10px"></span>
+                                    </a>
+                                    <a href="" ng-show="project.favourited" title="Un-Favourite {{project.name}}" ng-click="Home.unfavourite(project)">
+                                        <span class="icon-heart icc" style="margin-right:10px"></span>
+                                    </a>
+                                    <a href="" title="Fork {{project.name}}" ng-click="Home.fork(project)">
+                                        <span class="icon-forkandspoon icc" style="margin-right:10px"></span>
+                                    </a>
+                                    <download project="project"></download>
+                                    <a href="" title="Delete {{project.name}}" ng-click="Home.delete(project)">
+                                        <span class="icon-remove icc" style="margin-right:10px"></span>
+                                    </a>
+                                </td>
+                            </tr>
+                            <!-- more rows are possible -->
+                        </tbody>
+                    </table>
+                </section>
+            </div>
+        </div>
+    </div>
+</form>

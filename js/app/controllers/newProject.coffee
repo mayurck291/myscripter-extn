@@ -5,6 +5,7 @@ class NewProjectController
 
 	constructor:(@scope,@routeParams,@timeout,@Baazar,@Project,@Alert)->
 		@config = @Project.new()
+		@oldurl = null
 		@extjs = null
 		@extcss = null
 		@timeout ()=>
@@ -23,7 +24,8 @@ class NewProjectController
 			return
 		
 		console.log "saving...."
-		@Project.save(@config)
+		@Project.save(@config,@oldurl)
+		@oldurl = @config.url
 		@Alert.success("Hurrah....project saved...")
 
 	removejs:(index)->

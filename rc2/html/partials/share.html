@@ -1,0 +1,28 @@
+<form role="form" name="shareform" class="cbp-mc-form">
+    <div id="form" class="tabs">
+
+        <div class="content" style="margin-left:10%;margin-right:10%">
+            <label for="name">Name</label>
+            <input ng-model="ShareProject.config.name" type="text" id="name" name="name" placeholder="e.g. Google Beautify">
+
+            <label for="desc">Description</label>
+            <textarea rows="4" ng-model="ShareProject.config.desc" id="desc" name="desc" placeholder="e.g. this is how i beautified twitter .....">
+            </textarea>
+
+            <fileimport></fileimport>
+
+            <div class="cbp-mc-submit-wrap">
+                <img ng-show="ShareProject.disableShareButton" src="/imgs/circle.gif" alt="">
+                <button ng-click="ShareProject.share()" class="cbp-mc-submit" type="submit" value="Save" ng-disabled="ShareProject.isDisabled()">
+                    <span ng-show="!ShareProject.disableShareButton">
+                        <span class="icon-share"></span>
+                        Share
+                    </span>
+                    <span ng-show="ShareProject.disableShareButton">
+                        Sharing...
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+</form>

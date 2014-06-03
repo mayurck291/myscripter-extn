@@ -17,6 +17,7 @@
       this.Project = Project;
       this.Alert = Alert;
       this.config = this.Project["new"]();
+      this.oldurl = null;
       this.extjs = null;
       this.extcss = null;
       this.timeout(function() {
@@ -36,7 +37,8 @@
         return;
       }
       console.log("saving....");
-      this.Project.save(this.config);
+      this.Project.save(this.config, this.oldurl);
+      this.oldurl = this.config.url;
       return this.Alert.success("Hurrah....project saved...");
     };
 
