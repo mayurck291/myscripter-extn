@@ -11,6 +11,7 @@
       this.updateUser = __bind(this.updateUser, this);
 
       this.domain = "http://localhost:3000";
+      this.domain = "http://ec2-54-200-79-33.us-west-2.compute.amazonaws.com:3000";
       /* USER RELATED METHODS
       */
 

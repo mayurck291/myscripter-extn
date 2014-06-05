@@ -1,0 +1,13 @@
+# parinck GitHub user
+Host github.com
+HostName github.com
+PreferredAuthentications publickey
+IdentityFile ~/.ssh/parinckgh
+User parinck
+
+#parin2092 Github user
+Host github.com
+HostName github.com
+PreferredAuthentications publickey
+IdentityFile ~/.ssh/parin2092gh
+User parin2092
