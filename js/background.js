@@ -106,14 +106,23 @@ function myScripter( tab, popUpClicked ) {
             }
 
             un = [ "", undefined, null ];
-            if ( un.indexOf( d.js ) == -1 ) {
+            var inline_js = null;
+            var rexp = /^\s*$/; 
+            if ( un.indexOf( d.js ) == -1 && ( false == rexp.test( d.js ) ) ) {
                 inline_js = d.js;
-                d.js = inline_js.replace( /\n/g, ';' );
+                inline_js = inline_js.replace(/\n/g,";").replace(/\"/g,'\\"').replace(/'/g,"\\'")
             } else {
-                d.js = "console.log('No inline js ')";
+                inline_js = "console.log('No inline js ')";
             }
+            console.log("=========inline_js==========");
+            console.log(inline_js);
+            console.log("=======================");
+            // d.js = d.js.replace( /"/g, '\"' );
 
-            ext_js_code = '\nvar myScripterI=0;\n inline_js_func=function(){var script = document.createElement("script");script.textContent = ' + d.js + ';document.body.appendChild(script);};';
+            ext_js_code = '\nvar myScripterI=0;\n inline_js_func=function(){var script = document.createElement("script");script.textContent = "' + inline_js + '";document.body.appendChild(script);};';
+
+            console.log( ext_js_code );
+
             ext_js_flag = false;
 
             $.each( d.external.js, function ( u, v ) {
