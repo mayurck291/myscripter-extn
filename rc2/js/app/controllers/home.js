@@ -68,8 +68,9 @@
       return this.signedIn = false;
     };
 
-    HomeController.prototype.save = function(project) {
-      project.enabled = !project.enabled;
+    HomeController.prototype.save = function(enabled, autoapply, project) {
+      project.enabled = enabled;
+      project.autoApply = autoapply;
       return this.Project.save(project);
     };
 

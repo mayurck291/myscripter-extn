@@ -75,6 +75,7 @@
                                     <th>Name</th>
                                     <th>URL</th>
                                     <th>Enabled</th>
+                                    <th>Auto Apply</th>
                                     <th>Controls</th>
                                     <!-- more columns are possible -->
                                 </tr>
@@ -87,8 +88,13 @@
                                     </td>
                                     <td>{{project.url}}</td>
                                     <td>
-                                        <a href="" ng-click="Home.save(project)">
+                                        <a href="" ng-click="Home.save(!project.enabled,project.autoApply,project)">
                                             <span class="icc" ng-class="{'icon-on':project.enabled,'icon-off':!project.enabled}" style="font-size: larger;"></span>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="" ng-click="Home.save(project.enabled,!project.autoApply,project)">
+                                            <span class="icc" ng-class="{'icon-on':project.autoApply,'icon-off':!project.autoApply}" style="font-size: larger;"></span>
                                         </a>
                                     </td>
                                     <td style="width: 20%;">
@@ -139,6 +145,7 @@
                                 <th>Name</th>
                                 <th>URL</th>
                                 <th>Enabled</th>
+                                <th>Auto Apply</th>
                                 <th>Fork</th>
                                 <!-- more columns are possible -->
                             </tr>
@@ -149,8 +156,13 @@
                                 <td>{{project.name}}</td>
                                 <td>{{project.url}}</td>
                                 <td>
-                                    <a href="" ng-click="Home.save(project)">
+                                    <a href="" ng-click="Home.save(!project.enabled,project.autoApply,project)">
                                         <span class="icc" ng-class="{'icon-on':project.enabled,'icon-off':!project.enabled}" style="font-size: larger;"></span>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="" ng-click="Home.save(project.enabled,!project.autoApply,project)">
+                                        <span class="icc" ng-class="{'icon-on':project.autoApply,'icon-off':!project.autoApply}" style="font-size: larger;"></span>
                                     </a>
                                 </td>
                                 <td style="width:20%">

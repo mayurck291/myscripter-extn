@@ -32,6 +32,7 @@ class EditProjectController
 
 	save:()->
 		@Project.save(@config,@oldurl)
+		@oldurl = @config.url
 		@Alert.success("Hurrah....project saved...")
 	
 	delete:(project)->

@@ -50,8 +50,9 @@ class HomeController
 		@user = null
 		@signedIn = no
 
-	save:(project)->
-		project.enabled = !project.enabled
+	save:(enabled,autoapply,project)->
+		project.enabled = enabled
+		project.autoApply = autoapply
 		@Project.save(project)
 		# @Alert.success("Hurray.....Recipe saved...")
 

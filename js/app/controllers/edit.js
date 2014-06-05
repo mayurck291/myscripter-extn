@@ -45,6 +45,7 @@
 
     EditProjectController.prototype.save = function() {
       this.Project.save(this.config, this.oldurl);
+      this.oldurl = this.config.url;
       return this.Alert.success("Hurrah....project saved...");
     };
 
