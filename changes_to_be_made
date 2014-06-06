@@ -18,10 +18,10 @@ Reduce delay on click of menu of left
 //Default name for project name should be empty
 //Auto apply on by default
 //Installed recipes should have both others' recipes and my own
+//In recipe bazaar, show some text on clicking on recipe
+//My recipes is not default tab, Installed recipes is...
+//Code is broken - saved same project twice and two entries were made
 
 
 TODO =>
 Let's have tabs for popular, etc.
-In recipe bazaar, show some text on clicking on recipe
-My recipes is not default tab, Installed recipes is...
-Code is broken - saved same project twice and two entries were made
