@@ -1,6 +1,6 @@
 {
     "name": "Monkey Wrench",
-    "version": "2.0",
+    "version": "2.1",
     "manifest_version": 2,
     "description": "Smarter Way To Handle Websites : Custom scripts on custom URLs",
     "permissions": [
@@ -46,8 +46,9 @@
     "oauth2": {
         // client_id below is specifc to the application key. Follow the
         // documentation to obtain one for your app.
-        "client_id": "497291774654.apps.googleusercontent.com",
-        "scopes": ["https://www.googleapis.com/auth/plus.login", "https://www.googleapis.com/auth/userinfo.email"]
-    },
-    "key": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCDJB6ZGcGxtlr/34s+TKgi84QiP7DMekqOjSUS2ubmbhchlM6CN9gYdGQ1aBI3TBXG3YaAu+XyutFA8M8NLLWc4OOGByWaGV11DP6p67g8a+Ids/gX6cNSRnRHiDZXAd44ATxoN4OZjZJk9iQ26RIUjwX07bzntlI+frwwKCk4WQIDAQAB"
+        "client_id": "709631286950-9r57sicf10o2i2g346lr2ddvaib8a5v8.apps.googleusercontent.com",
+        "scopes": [ "https://www.googleapis.com/auth/plus.login",
+            "https://www.googleapis.com/auth/userinfo.email"
+        ]
+    }
 }
