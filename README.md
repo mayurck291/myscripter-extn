@@ -15,7 +15,7 @@ Here's how it works...
 That's it !! 
 <br>
 
-
+<h3>Here's a demo</h3>
 <img src="https://raw.githubusercontent.com/mayurck291/myscripter-extn/master/101.gif">
 
 You are done! 
@@ -29,4 +29,4 @@ Now go to the site that you provided in step 2 and click on the Monkey Wrench ic
 
 
 <h5>Help</h5> 
-<img src="https://raw.githubusercontent.com/mayurck291/myscripter-extn/master/bazaar.gif">
+<img src="https://raw.githubusercontent.com/mayurck291/myscripter-extn/master/help.gif">
