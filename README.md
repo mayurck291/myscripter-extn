@@ -1,7 +1,8 @@
 Monkey Wrench (a.k.a. myscripter-extn)
 ===============
 
-Monkey Wrench allows you to customise your favourite websites - Add your own CSS and run your JS scripts
+Monkey Wrench allows you to customise your favourite websites - Add your own CSS and run your JS scripts.
+Install from <a href="https://chrome.google.com/webstore/detail/monkey-wrench/baemnbkeofdleidjnpjfoleobieckdlk">Chrome Webstore</a>
 
 Here's how it works...
 
