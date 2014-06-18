@@ -1,7 +1,7 @@
 Monkey Wrench (a.k.a. myscripter-extn)
 ===============
 
-<h2>Monkey Wrench allows you to customise your favourite websites - Add your own CSS and run your JS scripts</h2>
+Monkey Wrench allows you to customise your favourite websites - Add your own CSS and run your JS scripts
 
 Here's how it works...
 
@@ -15,7 +15,18 @@ Here's how it works...
 That's it !! 
 <br>
 
+
+<img src="https://raw.githubusercontent.com/mayurck291/myscripter-extn/master/101.gif">
+
 You are done! 
 Now go to the site that you provided in step 2 and click on the Monkey Wrench icon and your script and CSS will take effect
 <br>
 <i>Tip: If you don't want to click on the button every time, just tick the checkbox that says Run Automatically On Load</i>
+
+
+<h3>Recipe Bazaar</h3>
+<img src="https://raw.githubusercontent.com/mayurck291/myscripter-extn/master/bazaar.gif">
+
+
+<h5>Help</h5> 
+<img src="https://raw.githubusercontent.com/mayurck291/myscripter-extn/master/bazaar.gif">
