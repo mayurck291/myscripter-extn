@@ -32,15 +32,15 @@ function handleKeyBoardShortcuts( command ) {
     }
 }
 
-chrome.commands.onCommand.addListener( function ( command ) {
-    var enabled = $.jStorage.get( 'kb' );
-    console.log( 'onCommand event received for message: ', command, ' enabled: ', enabled, typeof enabled );
-    // if ( enabled === true ) {
-    handleKeyBoardShortcuts( command );
-    // } else {
-    console.log( "ignoring command...." );
-    // }
-} );
+// chrome.commands.onCommand.addListener( function ( command ) {
+//     var enabled = $.jStorage.get( 'kb' );
+//     console.log( 'onCommand event received for message: ', command, ' enabled: ', enabled, typeof enabled );
+//     // if ( enabled === true ) {
+//     handleKeyBoardShortcuts( command );
+//     // } else {
+//     console.log( "ignoring command...." );
+//     // }
+// } );
 
 chrome.browserAction.onClicked.addListener( function ( tab ) {
     myScripter( tab, true );
