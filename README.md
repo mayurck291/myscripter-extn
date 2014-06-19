@@ -1,21 +1,19 @@
-Monkey Wrench (a.k.a. myscripter-extn)
-===============
+#Monkey Wrench (a.k.a. myscripter-extn)
 
-Monkey Wrench allows you to customise your favourite websites - Add your own CSS and run your JS scripts.
-<br>
-Install from <a href="https://chrome.google.com/webstore/detail/monkey-wrench/baemnbkeofdleidjnpjfoleobieckdlk">Chrome Webstore</a>
+> Monkey Wrench allows you to customise your favourite websites - Add your own CSS and run your JS scripts.
 
-Here's how it works...
+## Installation
 
-1 ) Click on the New in top navigation bar to start creating your new RECIPE.
-<br>
-2 ) Provide the URL of the site on which you want your script to run
-<br>
-3 ) If you have some external JS files or CSS files to be included, such as jQuery, or your own hosted files, you can provide them in External JS & CSS sections. Provide them in the order in which you want them to be loaded
-<br>
-4 ) You can write your own JS and CSS code in the custom code section at the end. Once you are done, click on Save
-That's it !! 
-<br>
+* [Monkey Wrench ! Chrome extension](https://chrome.google.com/webstore/detail/monkey-wrench/baemnbkeofdleidjnpjfoleobieckdlk)
+
+## Usage
+
+1. Click on the New in top navigation bar to start creating your new RECIPE.
+2. Provide the URL of the site on which you want your script to run
+3. If you have some external JS files or CSS files to be included, such as jQuery, or your own hosted files, you can provide them in External JS & CSS sections. Provide them in the order in which you want them to be loaded
+4. You can write your own JS and CSS code in the custom code section at the end. Once you are done, click on Save.
+
+### That's it !! 
 
 <h3>Here's a demo</h3>
 <img src="https://raw.githubusercontent.com/mayurck291/myscripter-extn/master/101.gif">
