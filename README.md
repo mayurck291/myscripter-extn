@@ -28,11 +28,15 @@
 ## Demos
 
 Using the extension as terminal
+
 ![Monkey Wrench](https://raw.githubusercontent.com/mayurck291/myscripter-extn/master/101.gif)
 
 
 Using Recipe Bazaar
+
 ![Monkey Wrench](https://raw.githubusercontent.com/mayurck291/myscripter-extn/master/bazaar.gif)
 
+
 Getting Help
+
 ![Monkey Wrench](https://raw.githubusercontent.com/mayurck291/myscripter-extn/master/help.gif)
