@@ -29,14 +29,14 @@
 
 Using the extension
 
-![Monkey Wrench](https://raw.githubusercontent.com/mayurck291/myscripter-extn/master/101.gif)
+![Monkey Wrench](https://raw.githubusercontent.com/mayurck291/myscripter-extn/master/_screenshots/101.gif)
 
 
 Using Recipe Bazaar
 
-![Monkey Wrench](https://raw.githubusercontent.com/mayurck291/myscripter-extn/master/bazaar.gif)
+![Monkey Wrench](https://raw.githubusercontent.com/mayurck291/myscripter-extn/master/_screenshots/bazaar.gif)
 
 
 Getting Help
 
-![Monkey Wrench](https://raw.githubusercontent.com/mayurck291/myscripter-extn/master/help.gif)
+![Monkey Wrench](https://raw.githubusercontent.com/mayurck291/myscripter-extn/master/_screenshots/help.gif)
