@@ -18,9 +18,6 @@
 
 <i>Tip: If you don't want to click on the button every time, just tick the checkbox that says Run Automatically On Load</i>
 
-## Here's a demo
-<img src="https://raw.githubusercontent.com/mayurck291/myscripter-extn/master/101.gif">
-
 ## Chrome extension shortcuts
 
 * `Ctrl+p` - create a new project
@@ -28,9 +25,14 @@
 * `Ctrl+h` - navigate to home
 * `Ctrl+b` - navigate to recipe bazaar
 
-## Recipe Bazaar
-<img src="https://raw.githubusercontent.com/mayurck291/myscripter-extn/master/bazaar.gif">
+## Demos
+
+Using the extension as terminal
+![Monkey Wrench](https://raw.githubusercontent.com/mayurck291/myscripter-extn/master/101.gif)
 
 
-## Help
-<img src="https://raw.githubusercontent.com/mayurck291/myscripter-extn/master/help.gif">
+Using Recipe Bazaar
+![Monkey Wrench](https://raw.githubusercontent.com/mayurck291/myscripter-extn/master/bazaar.gif)
+
+Getting Help
+![Monkey Wrench](https://raw.githubusercontent.com/mayurck291/myscripter-extn/master/help.gif)
