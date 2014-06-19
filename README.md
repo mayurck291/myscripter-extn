@@ -27,7 +27,7 @@
 
 ## Demos
 
-Using the extension as terminal
+Using the extension
 
 ![Monkey Wrench](https://raw.githubusercontent.com/mayurck291/myscripter-extn/master/101.gif)
 
