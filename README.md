@@ -12,21 +12,25 @@
 2. Provide the URL of the site on which you want your script to run
 3. If you have some external JS files or CSS files to be included, such as jQuery, or your own hosted files, you can provide them in External JS & CSS sections. Provide them in the order in which you want them to be loaded
 4. You can write your own JS and CSS code in the custom code section at the end. Once you are done, click on Save.
+5. Now go to the site that you provided in step 2 and click on the Monkey Wrench icon and your script and CSS will take effect
 
-### That's it !! 
+### That's all folks !! 
 
-<h3>Here's a demo</h3>
-<img src="https://raw.githubusercontent.com/mayurck291/myscripter-extn/master/101.gif">
-
-You are done! 
-Now go to the site that you provided in step 2 and click on the Monkey Wrench icon and your script and CSS will take effect
-<br>
 <i>Tip: If you don't want to click on the button every time, just tick the checkbox that says Run Automatically On Load</i>
 
+## Here's a demo
+<img src="https://raw.githubusercontent.com/mayurck291/myscripter-extn/master/101.gif">
 
-<h3>Recipe Bazaar</h3>
+## Chrome extension shortcuts
+
+* `Ctrl+p` - create a new project
+* `Ctrl+s` - save project
+* `Ctrl+h` - navigate to home
+* `Ctrl+b` - navigate to recipe bazaar
+
+## Recipe Bazaar
 <img src="https://raw.githubusercontent.com/mayurck291/myscripter-extn/master/bazaar.gif">
 
 
-<h5>Help</h5> 
+## Help
 <img src="https://raw.githubusercontent.com/mayurck291/myscripter-extn/master/help.gif">
