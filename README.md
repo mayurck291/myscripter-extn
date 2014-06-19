@@ -25,7 +25,7 @@
 * `Ctrl+h` - navigate to home
 * `Ctrl+b` - navigate to recipe bazaar
 
-## Demos
+## Screenshots
 
 Using the extension as terminal
 
