@@ -108,6 +108,9 @@ class HomeController
 			@Alert.error("Not a valid Recipe...!!")
 
 	favourite:(recipe)->
+		if not @signedIn
+			@Alert.error("Dude ...!! For pete's sake Log In ....")
+		
 		if recipe._id?
 			@Baazar.favourite(@user._id,recipe.id).then(
 				()=>
@@ -121,6 +124,9 @@ class HomeController
 			@Alert.error("You thought we are that dumb....!! Move on dude...")
 
 	unfavourite:(recipe)->
+		if not @signedIn
+			@Alert.error("Dude ...!! For pete's sake Log In ....")
+			
 		if recipe._id?
 			@Baazar.unfavourite(@user._id,recipe.id).then(
 				()=>

@@ -144,6 +144,9 @@
 
     HomeController.prototype.favourite = function(recipe) {
       var _this = this;
+      if (!this.signedIn) {
+        this.Alert.error("Dude ...!! For pete's sake Log In ....");
+      }
       if (recipe._id != null) {
         return this.Baazar.favourite(this.user._id, recipe.id).then(function() {
           recipe.favourited = true;
@@ -158,6 +161,9 @@
 
     HomeController.prototype.unfavourite = function(recipe) {
       var _this = this;
+      if (!this.signedIn) {
+        this.Alert.error("Dude ...!! For pete's sake Log In ....");
+      }
       if (recipe._id != null) {
         return this.Baazar.unfavourite(this.user._id, recipe.id).then(function() {
           recipe.favourited = false;
