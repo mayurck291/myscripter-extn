@@ -34,7 +34,7 @@ class BaazarController
 		@scope.postComment		= @postComment
 		@scope.disableKarmaSubmit  = @disableKarmaSubmit
 		@scope.install 			= @install
-
+		@scope.disableInstall = no
 		@scope.$on('login',@getUserInfo)
 		@scope.$on('logout',@deleteUserInfo)
 		
@@ -150,12 +150,13 @@ class BaazarController
 	install:(recipeInfo)=>
 		id = recipeInfo._id._id
 		@showLoader = yes
+		@scope.disableInstall = yes
 		@Baazar.getRecipe(id).then((recipe)=>
 				recipe.forked = true
 				recipe.favourited = no
 				recipe._id = id
+				@scope.disableInstall = no
 				@Project.save(recipe)
-				@Baazar.incUsersRecipes(@scope.user._id,id)
 				@Alert.success("Yeahh...!! recipe installed.")
 				found = no
 				for user in recipeInfo.users
@@ -169,6 +170,7 @@ class BaazarController
 						name:@scope.user.name
 					recipeInfo.users.push(user)
 					recipeInfo.userc += 1
+				@Baazar.incUsersRecipes(@scope.user._id,id)
 			,()=>
 				@Alert.error("An army of heavily trained monkeys is dispatched to deal with this situation...hang in there...")
 				)

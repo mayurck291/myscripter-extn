@@ -67,6 +67,7 @@
       this.scope.postComment = this.postComment;
       this.scope.disableKarmaSubmit = this.disableKarmaSubmit;
       this.scope.install = this.install;
+      this.scope.disableInstall = false;
       this.scope.$on('login', this.getUserInfo);
       this.scope.$on('logout', this.deleteUserInfo);
       this.timeout(function() {
@@ -210,13 +211,14 @@
         _this = this;
       id = recipeInfo._id._id;
       this.showLoader = true;
+      this.scope.disableInstall = true;
       return this.Baazar.getRecipe(id).then(function(recipe) {
         var found, user, _i, _len, _ref;
         recipe.forked = true;
         recipe.favourited = false;
         recipe._id = id;
+        _this.scope.disableInstall = false;
         _this.Project.save(recipe);
-        _this.Baazar.incUsersRecipes(_this.scope.user._id, id);
         _this.Alert.success("Yeahh...!! recipe installed.");
         found = false;
         _ref = recipeInfo.users;
@@ -234,8 +236,9 @@
             name: _this.scope.user.name
           };
           recipeInfo.users.push(user);
-          return recipeInfo.userc += 1;
+          recipeInfo.userc += 1;
         }
+        return _this.Baazar.incUsersRecipes(_this.scope.user._id, id);
       }, function() {
         return _this.Alert.error("An army of heavily trained monkeys is dispatched to deal with this situation...hang in there...");
       });

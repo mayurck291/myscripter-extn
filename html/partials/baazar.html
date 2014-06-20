@@ -34,10 +34,12 @@
                             <!-- <div class="container"> -->
                             <h3>{{recipe._id.title}}</h3>
                             <span class="pull-right det">
-                                <a href="" class="icc" ng-click="install(recipe)">
+                                <a href="" ng-hide="disableInstall" class="icc" ng-click="install(recipe)">
+
                                     <h3 class="pull-right">
-                                        <span class="icon-lightning"></span>install</h3>
+                                        <span class="icon-lightning"></span>install&nbsp;&nbsp;</h3>
                                 </a>
+                                <img ng-show="disableInstall" class="pull-right" src="/imgs/circle.gif" alt="" style="width:25px;height:25px">
                             </span>
 
                             <div style="color: grey;">
