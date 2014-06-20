@@ -159,18 +159,19 @@ class BaazarController
 				@Project.save(recipe)
 				@Alert.success("Yeahh...!! recipe installed.")
 				found = no
-				for user in recipeInfo.users
-					if user._id is @scope.user._id
-						found = yes
-						return
-				if not found
-					user =
-						_id	:@scope.user._id,
-						img	:@scope.user.img,
-						name:@scope.user.name
-					recipeInfo.users.push(user)
-					recipeInfo.userc += 1
-				@Baazar.incUsersRecipes(@scope.user._id,id)
+				if @scope.signedIn
+					for user in recipeInfo.users
+						if user._id is @scope.user._id
+							found = yes
+							return
+					if not found
+						user =
+							_id	:@scope.user._id,
+							img	:@scope.user.img,
+							name:@scope.user.name
+						recipeInfo.users.push(user)
+						recipeInfo.userc += 1
+					@Baazar.incUsersRecipes(@scope.user._id,id)
 			,()=>
 				@Alert.error("An army of heavily trained monkeys is dispatched to deal with this situation...hang in there...")
 				)

@@ -221,24 +221,26 @@
         _this.Project.save(recipe);
         _this.Alert.success("Yeahh...!! recipe installed.");
         found = false;
-        _ref = recipeInfo.users;
-        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-          user = _ref[_i];
-          if (user._id === _this.scope.user._id) {
-            found = true;
-            return;
+        if (_this.scope.signedIn) {
+          _ref = recipeInfo.users;
+          for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+            user = _ref[_i];
+            if (user._id === _this.scope.user._id) {
+              found = true;
+              return;
+            }
           }
+          if (!found) {
+            user = {
+              _id: _this.scope.user._id,
+              img: _this.scope.user.img,
+              name: _this.scope.user.name
+            };
+            recipeInfo.users.push(user);
+            recipeInfo.userc += 1;
+          }
+          return _this.Baazar.incUsersRecipes(_this.scope.user._id, id);
         }
-        if (!found) {
-          user = {
-            _id: _this.scope.user._id,
-            img: _this.scope.user.img,
-            name: _this.scope.user.name
-          };
-          recipeInfo.users.push(user);
-          recipeInfo.userc += 1;
-        }
-        return _this.Baazar.incUsersRecipes(_this.scope.user._id, id);
       }, function() {
         return _this.Alert.error("An army of heavily trained monkeys is dispatched to deal with this situation...hang in there...");
       });
