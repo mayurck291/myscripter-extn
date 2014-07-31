@@ -16,7 +16,8 @@
         "128": "icon128.png"
     },
     "browser_action": {
-        "default_icon": "icon128.png"
+        "default_icon": "icon128.png",
+        "default_title": "Click to see magic !!"
     },
     "background": {
         "scripts": [
@@ -25,6 +26,15 @@
             "js/background.js"
         ]
     },
+    "content_scripts": [ {
+        "matches": [
+            "*://*/*"
+        ],
+        "js": [
+            "js/injected.js"
+        ]
+    } ],
+    "web_accessible_resources": [ "js/mw-sidepan.js" ],
     "options_page": "html/options2.html",
     "oauth2": {
         "client_id": "709631286950-9r57sicf10o2i2g346lr2ddvaib8a5v8.apps.googleusercontent.com",

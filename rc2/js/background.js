@@ -8,13 +8,13 @@
 //     'css': ''
 // };
 
-function openOptionPage( ) {
+function openOptionPage() {
     chrome.tabs.create( {
         url: "html/options.html"
     } );
 }
 
-function simulateBrowserAction( ) {
+function simulateBrowserAction() {
     chrome.tabs.getSelected( null, function ( tab ) {
         myScripter( tab, true );
     } );
@@ -24,10 +24,10 @@ function handleKeyBoardShortcuts( command ) {
 
     switch ( command ) {
     case "options":
-        openOptionPage( );
+        openOptionPage();
         break;
     case "browserAction":
-        simulateBrowserAction( );
+        simulateBrowserAction();
         break;
     }
 }
@@ -42,19 +42,61 @@ function handleKeyBoardShortcuts( command ) {
 //     // }
 // } );
 
+// chrome.browserAction.onClicked.addListener( function ( tab ) {
+//     myScripter( tab, true );
+// } );
+function getFilteredUrls( tab ) {
+    console.log(tab);
+    var prjmyindexes_9 = $.jStorage.get( 'prjmyindexes_9' ) || {};
+    var url_regexes = Object.keys( prjmyindexes_9 );
+    projectIds = [];
+    console.log("url ",url_regexes);
+    console.log("prj ",prjmyindexes_9);
+    // loop through localstorage to match url
+    $.each( url_regexes, function ( u, regex_url ) {
+        console.log( "rul ", prjmyindexes_9[ regex_url ] );
+        var cur_regex = new RegExp( regex_url );
+        if ( cur_regex.test( tab.url ) ) {
+          projectIds =  projectIds.concat( prjmyindexes_9[ regex_url ] );
+        }
+    } );
+    console.log("prjids ", projectIds );
+    return projectIds;
+}
+
+function getProjects( prids ) {
+    var projects = [];
+    for ( var i = prids.length - 1; i >= 0; i-- ) {
+       projects =  projects.concat( $.jStorage.get( prids[ i ] ) )
+    };
+    return projects;
+}
+
 chrome.browserAction.onClicked.addListener( function ( tab ) {
-    myScripter( tab, true );
+    projectIds = getFilteredUrls( tab );
+    projects = getProjects( projectIds );
+
+    var message = {
+        command: 'MW',
+        projects: projects
+    };
+    chrome.tabs.query( {
+        active: true,
+        currentWindow: true
+    }, function ( tabs ) {
+        chrome.tabs.sendMessage( tabs[ 0 ].id, message );
+    } );
 } );
 
-chrome.tabs.onUpdated.addListener( function ( tabId, changeInfo, tab ) {
-    try {
-        if ( changeInfo.status == 'complete' ) {
-            myScripter( tab, false );
-        }
-    } catch ( err ) {
-        console.log( 'some error::' + err.message );
-    }
-} );
+// chrome.tabs.onUpdated.addListener( function ( tabId, changeInfo, tab ) {
+//     try {
+//         if ( changeInfo.status == 'complete' ) {
+//             myScripter( tab, false );
+//         }
+//     } catch ( err ) {
+//         console.log( 'some error::' + err.message );
+//     }
+// } );
 
 // function console.log( stmt ) {
 //     console.log( "******myscripter:: " );
@@ -62,7 +104,7 @@ chrome.tabs.onUpdated.addListener( function ( tabId, changeInfo, tab ) {
 // }
 
 function myScripter( tab, popUpClicked ) {
-    console.log( tab );
+    // console.log( tab );
     tabId = tab.id;
     var prjmyindexes_9 = $.jStorage.get( 'prjmyindexes_9' );
     // var arr = tab.url.split('://');
@@ -72,7 +114,7 @@ function myScripter( tab, popUpClicked ) {
     var ext_js_func = function ( tabId, ext_js ) {
         chrome.tabs.executeScript( tabId, {
             code: ext_js
-        }, function ( ) {
+        }, function () {
             console.log( 'External JS insertion completed' );
         } );
     };
@@ -107,16 +149,16 @@ function myScripter( tab, popUpClicked ) {
 
             un = [ "", undefined, null ];
             var inline_js = null;
-            var rexp = /^\s*$/; 
+            var rexp = /^\s*$/;
             if ( un.indexOf( d.js ) == -1 && ( false == rexp.test( d.js ) ) ) {
                 inline_js = d.js;
-                inline_js = inline_js.replace(/\n/g,";").replace(/\"/g,'\\"').replace(/'/g,"\\'")
+                inline_js = inline_js.replace( /\n/g, ";" ).replace( /\"/g, '\\"' ).replace( /'/g, "\\'" )
             } else {
                 inline_js = "console.log('No inline js ')";
             }
-            console.log("=========inline_js==========");
-            console.log(inline_js);
-            console.log("=======================");
+            console.log( "=========inline_js==========" );
+            console.log( inline_js );
+            console.log( "=======================" );
             // d.js = d.js.replace( /"/g, '\"' );
 
             ext_js_code = '\nvar myScripterI=0;\n inline_js_func=function(){var script = document.createElement("script");script.textContent = "' + inline_js + '";document.body.appendChild(script);};';
@@ -147,7 +189,7 @@ function myScripter( tab, popUpClicked ) {
                 chrome.tabs.insertCSS( tabId, {
                     code: d.css,
                     runAt: 'document_start'
-                }, function ( ) {
+                }, function () {
                     console.log( 'inline css insertion completed' );
                 } );
             }
