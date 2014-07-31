@@ -46,28 +46,28 @@ function handleKeyBoardShortcuts( command ) {
 //     myScripter( tab, true );
 // } );
 function getFilteredUrls( tab ) {
-    console.log(tab);
+    // console.log( tab );
     var prjmyindexes_9 = $.jStorage.get( 'prjmyindexes_9' ) || {};
     var url_regexes = Object.keys( prjmyindexes_9 );
     projectIds = [];
-    console.log("url ",url_regexes);
-    console.log("prj ",prjmyindexes_9);
+    // console.log("url ",url_regexes);
+    // console.log("prj ",prjmyindexes_9);
     // loop through localstorage to match url
     $.each( url_regexes, function ( u, regex_url ) {
-        console.log( "rul ", prjmyindexes_9[ regex_url ] );
+        // console.log( "rul ", prjmyindexes_9[ regex_url ] );
         var cur_regex = new RegExp( regex_url );
         if ( cur_regex.test( tab.url ) ) {
-          projectIds =  projectIds.concat( prjmyindexes_9[ regex_url ] );
+            projectIds = projectIds.concat( prjmyindexes_9[ regex_url ] );
         }
     } );
-    console.log("prjids ", projectIds );
+    // console.log("prjids ", projectIds );
     return projectIds;
 }
 
 function getProjects( prids ) {
     var projects = [];
     for ( var i = prids.length - 1; i >= 0; i-- ) {
-       projects =  projects.concat( $.jStorage.get( prids[ i ] ) )
+        projects = projects.concat( $.jStorage.get( prids[ i ] ) )
     };
     return projects;
 }
