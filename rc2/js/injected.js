@@ -12,10 +12,21 @@ if ( window.top === window ) {
 			if ( message.command && message.command === 'MW' ) {
 
 				window.localStorage[ "prjmyindexes_9" ] = JSON.stringify( message.projects );
-				console.log( message.projects, window.localStorage );
+				console.log( message.projects );
 				window.postMessage( message, window.location.origin );
+				sendMessage( {
+					command: "MW",
+					name: "parin"
+				} );
 			}
 		} );
 	}
 
+}
+
+function sendMessage( message ) {
+	console.log( "sending msg ", message );
+	chrome.runtime.sendMessage( message, function ( response ) {
+		console.log( response.status );
+	} );
 }

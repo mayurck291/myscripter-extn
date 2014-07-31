@@ -72,6 +72,16 @@ function getProjects( prids ) {
     return projects;
 }
 
+chrome.runtime.onMessage.addListener(
+    function ( request, sender, sendResponse ) {
+        if ( request.command == "MW" ) {
+            console.log( "rqst recvd", request, sender.tab, sender.tab.url );
+            sendResponse( {
+                status: "success"
+            } );
+        };
+    } );
+
 chrome.browserAction.onClicked.addListener( function ( tab ) {
     projectIds = getFilteredUrls( tab );
     projects = getProjects( projectIds );
