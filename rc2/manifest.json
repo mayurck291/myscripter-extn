@@ -34,7 +34,7 @@
             "js/injected.js"
         ]
     } ],
-    "web_accessible_resources": [ "js/mw-sidepan.js" ],
+    "web_accessible_resources": [ "js/mw-sidepan.js", "html/mw-sidepan.html" ],
     "options_page": "html/options2.html",
     "oauth2": {
         "client_id": "709631286950-9r57sicf10o2i2g346lr2ddvaib8a5v8.apps.googleusercontent.com",

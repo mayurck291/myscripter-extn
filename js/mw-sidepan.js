@@ -1,3 +1,3 @@
 ( function () {
-	console.log( "mw-sidepan injected" )
+	console.log( "mw-sidepan injected", window.localStorage[ "prjmyindexes_9" ] )
 } )();
