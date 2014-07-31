@@ -15,6 +15,7 @@ function createIframe() {
 	mwSidePanIframe.style.border = "1px solid black";
 	mwSidePanIframe.style.borderRadius = "2px";
 	mwSidePanIframe.style.zIndex = "99999999999999999999999999999";
+	mwSidePanIframe.style.display = "none";
 	document.body.appendChild( mwSidePanIframe );
 }
 
