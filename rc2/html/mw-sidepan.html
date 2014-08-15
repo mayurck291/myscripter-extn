@@ -18,12 +18,14 @@
 
 <body ng-controller="mwController">
     <div class="well" id="projects">
-        <ul>
-            <li ng-repeat="project in projects">
-                {{project.name}}
-            </li>
-        </ul>
+        <h2>Projects</h2>
     </div>
+    <ul>
+        <li ng-repeat="project in projects">
+            <del ng-show="project.injected">{{project.name}}</del>
+            <a ng-show="!project.injected" href="" ng-click="inject(project)">{{project.name}}</a>
+        </li>
+    </ul>
 </body>
 
 </html>

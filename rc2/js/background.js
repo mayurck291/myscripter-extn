@@ -1,13 +1,3 @@
-// var obj = {
-//     'autoApply': true,
-//     'external': {
-//         'js': [],
-//         'css': []
-//     },
-//     'js': 'alert("hello");',
-//     'css': ''
-// };
-
 function openOptionPage() {
     chrome.tabs.create( {
         url: "html/options.html"
@@ -31,16 +21,6 @@ function handleKeyBoardShortcuts( command ) {
         break;
     }
 }
-
-// chrome.commands.onCommand.addListener( function ( command ) {
-//     var enabled = $.jStorage.get( 'kb' );
-//     console.log( 'onCommand event received for message: ', command, ' enabled: ', enabled, typeof enabled );
-//     // if ( enabled === true ) {
-//     handleKeyBoardShortcuts( command );
-//     // } else {
-//     console.log( "ignoring command...." );
-//     // }
-// } );
 
 // chrome.browserAction.onClicked.addListener( function ( tab ) {
 //     myScripter( tab, true );
@@ -80,6 +60,9 @@ chrome.runtime.onMessage.addListener(
                 status: "success"
             } );
         };
+        if ( request.command == "MW-INJECT" ) {
+            console.log( "rqst recvd", request, sender.tab, sender.tab.url );
+        };
     } );
 
 chrome.browserAction.onClicked.addListener( function ( tab ) {
@@ -98,15 +81,23 @@ chrome.browserAction.onClicked.addListener( function ( tab ) {
     } );
 } );
 
-// chrome.tabs.onUpdated.addListener( function ( tabId, changeInfo, tab ) {
-//     try {
-//         if ( changeInfo.status == 'complete' ) {
-//             myScripter( tab, false );
-//         }
-//     } catch ( err ) {
-//         console.log( 'some error::' + err.message );
-//     }
-// } );
+chrome.tabs.onUpdated.addListener( function ( tabId, changeInfo, tab ) {
+    try {
+        if ( changeInfo.status == 'complete' ) {
+            console.log( 'new tab...', tab.url );
+            projectIds = getFilteredUrls( tab );
+            projects = getProjects( projectIds );
+
+            var message = {
+                command: 'MW-PRJS',
+                projects: projects
+            };
+            chrome.tabs.sendMessage( tabId, message );
+        }
+    } catch ( err ) {
+        console.log( 'some error::' + err.message );
+    }
+} );
 
 // function console.log( stmt ) {
 //     console.log( "******myscripter:: " );
@@ -162,7 +153,9 @@ function myScripter( tab, popUpClicked ) {
             var rexp = /^\s*$/;
             if ( un.indexOf( d.js ) == -1 && ( false == rexp.test( d.js ) ) ) {
                 inline_js = d.js;
-                inline_js = inline_js.replace( /\n/g, ";" ).replace( /\"/g, '\\"' ).replace( /'/g, "\\'" )
+                inline_js = inline_js.replace( /\n/g, ";" )
+                    .replace( /\"/g, '\\"' )
+                    .replace( /'/g, "\\'" )
             } else {
                 inline_js = "console.log('No inline js ')";
             }
