@@ -42,9 +42,6 @@ if ( window.top === window ) {
 			if ( message.command && message.command === 'MW' ) {
 				toggleMWSidePan( document.getElementById( "mw_sidepan" ) );
 			}
-			if ( message.command && message.command === 'MW-PRJS' ) {
-				window.localStorage[ 'projects' ] = JSON.stringify( message.projects );
-			}
 		} );
 	}
 }

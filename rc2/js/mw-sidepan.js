@@ -8,16 +8,21 @@ function sendMessage( message ) {
 	} );
 }
 
-// console.log( "from iframe", "mw-sidepan injected", window.localStorage[ "prjmyindexes_9" ] )
-
 function mwController( $scope, projects ) {
-	$scope.projects = JSON.parse( window.localStorage[ 'projects' ] );
+	var pageURL = document.referrer;
+	$scope.projects = JSON.parse( window.localStorage[ pageURL ] );
 	var message;
 	$scope.inject = function ( project ) {
+		console.log( " this is how we roll..." );
 		message = {};
 		message.command = "MW-INJECT";
-		message.project = project;
+		message.pid = project.id;
 		project.injected = true;
-		// sendMessage( message );
+		sendMessage( message );
+	}
+	$scope.injectAll = function () {
+		message = {};
+		message.command = "MW-INJECT-ALL";
+		sendMessage( message );
 	}
 }
