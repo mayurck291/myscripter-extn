@@ -18,17 +18,22 @@
 
 <body ng-controller="mwController">
     <div class="well" id="projects">
-        <h2>Projects</h2>
+        <h2>Monkey Wrench</h2>
     </div>
-    <ol>
-        <li ng-repeat="project in projects">
-            <del ng-show="project.injected">{{project.name}}</del>
-            <a ng-show="!project.injected" href="" ng-click="inject(project)">{{project.name}}</a>
-        </li>
-    </ol>
-    <hr>
-    <div class="alert alert-info" style="position:absolute;bottom:0px;left:0px;right:0px;">
-        <a href="" ng-click="injectAll()">Inject All</a>
+    <div ng-show="projects.length">
+        <ol>
+            <li ng-repeat="project in projects">
+                <del ng-show="project.injected">{{project.name}}</del>
+                <a ng-show="!project.injected" href="" ng-click="inject(project)">{{project.name}}</a>
+            </li>
+        </ol>
+        <hr>
+        <div class="container text-info">
+            <a href="" ng-click="injectAll()">Inject All</a>
+        </div>
+    </div>
+    <div ng-show="!projects.length">
+        Oops...no recipes for this page....:( <a href="">Create one</a>
     </div>
 </body>
 

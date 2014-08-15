@@ -12,7 +12,7 @@ function createIframe() {
 	mwSidePanIframe.style.height = "100%";
 	mwSidePanIframe.style.border = "0";
 	mwSidePanIframe.style.background = "white";
-	mwSidePanIframe.style.border = "1px solid black";
+	mwSidePanIframe.style.border = "1px solid grey";
 	mwSidePanIframe.style.borderRadius = "2px";
 	mwSidePanIframe.style.zIndex = "99999999999999999999999999999";
 	mwSidePanIframe.style.display = "none";

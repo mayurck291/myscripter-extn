@@ -83,10 +83,16 @@ chrome.tabs.onUpdated.addListener( function ( tabId, changeInfo, tab ) {
         if ( changeInfo.status == 'complete' ) {
             console.log( 'new tab...', tab.url );
             projectIds = getFilteredUrls( tab );
-            if ( projectIds.length ) {
-                projects = getProjects( projectIds );
+            projects = getProjects( projectIds );
+            if ( projectIds.length == 0 ) {
+                window.localStorage[ tab.url ] = '[]';
+            } else if ( projectIds.length == 1 ) {
+                injectProject( tab.id, projectIds[ 0 ] );
+                projects[ 0 ].injected = true;
                 window.localStorage[ tab.url ] = JSON.stringify( projects );
-            };
+            } else {
+                window.localStorage[ tab.url ] = JSON.stringify( projects );
+            }
         }
     } catch ( err ) {
         console.log( 'some error::' + err.message );

@@ -9,7 +9,7 @@ function sendMessage( message ) {
 }
 
 function mwController( $scope, projects ) {
-	var pageURL = document.referrer;
+	var pageURL = document.location.ancestorOrigins[ 0 ];
 	$scope.projects = JSON.parse( window.localStorage[ pageURL ] );
 	var message;
 	$scope.inject = function ( project ) {
@@ -24,5 +24,8 @@ function mwController( $scope, projects ) {
 		message = {};
 		message.command = "MW-INJECT-ALL";
 		sendMessage( message );
+		for ( var i = $scope.projects.length - 1; i >= 0; i-- ) {
+			$scope.projects[ i ].injected = true;
+		};
 	}
 }
