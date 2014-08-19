@@ -41,7 +41,10 @@ function getFilteredUrls( tab ) {
 function getProjects( prids ) {
     var projects = [];
     for ( var i = prids.length - 1; i >= 0; i-- ) {
-        projects = projects.concat( $.jStorage.get( prids[ i ] ) )
+        p = $.jStorage.get( prids[ i ] );
+        if ( p.enabled ) {
+            projects = projects.concat( p );
+        };
     };
     return projects;
 }
@@ -49,50 +52,31 @@ function getProjects( prids ) {
 chrome.runtime.onMessage.addListener(
     function ( request, sender, sendResponse ) {
         if ( request.command == "MW" ) {
-            console.log( "rqst recvd", request, sender.tab, sender.tab.url );
             sendResponse( {
                 status: "success"
             } );
         } else if ( request.command == "MW-INJECT" ) {
-            console.log( "rqst recvd", request, sender.tab, sender.tab.url );
-            injectProject( sender.tab.id, request.pid );
+            var prj = $.jStorage.get( request.pid )
+            injectProject( sender.tab.id, prj );
         } else if ( request.command == "MW-INJECT-ALL" ) {
-            console.log( "rqst recvd", request, sender.tab, sender.tab.url );
-            myScripter( sender.tab, true );
+            myScripter( sender.tab );
         };
     } );
 
 chrome.browserAction.onClicked.addListener( function ( tab ) {
     projectIds = getFilteredUrls( tab );
     projects = getProjects( projectIds );
-
     var message = {
         command: 'MW',
         projects: projects
     };
-    chrome.tabs.query( {
-        active: true,
-        currentWindow: true
-    }, function ( tabs ) {
-        chrome.tabs.sendMessage( tabs[ 0 ].id, message );
-    } );
+    chrome.tabs.sendMessage( tab.id, message );
 } );
 
 chrome.tabs.onUpdated.addListener( function ( tabId, changeInfo, tab ) {
     try {
         if ( changeInfo.status == 'complete' ) {
-            console.log( 'new tab...', tab.url );
-            projectIds = getFilteredUrls( tab );
-            projects = getProjects( projectIds );
-            if ( projectIds.length == 0 ) {
-                window.localStorage[ tab.url ] = '[]';
-            } else if ( projectIds.length == 1 ) {
-                injectProject( tab.id, projectIds[ 0 ] );
-                projects[ 0 ].injected = true;
-                window.localStorage[ tab.url ] = JSON.stringify( projects );
-            } else {
-                window.localStorage[ tab.url ] = JSON.stringify( projects );
-            }
+            myScripter( tab );
         }
     } catch ( err ) {
         console.log( 'some error::' + err.message );
@@ -100,7 +84,7 @@ chrome.tabs.onUpdated.addListener( function ( tabId, changeInfo, tab ) {
 } );
 
 
-function myScripter( tab, popUpClicked ) {
+function myScripter( tab ) {
     tabId = tab.id;
     var prjmyindexes_9 = $.jStorage.get( 'prjmyindexes_9' );
     url_regexes = Object.keys( prjmyindexes_9 );
@@ -117,24 +101,19 @@ function myScripter( tab, popUpClicked ) {
         for ( i = 0; i < allProjects; i++ ) {
             value = prjmyindexes_9[ regex_url ][ i ]
             var pid = parseInt( value, 10 );
-            injectProject( tabId, pid );
+            project = $.jStorage.get( pid );
+            if ( project.autoApply ) {
+                injectProject( tabId, project );
+            };
         }
     } );
 }
 
-function injectProject( tabId, projectId ) {
-    console.log( "[start] gettng data for ", projectId );
-    var project = $.jStorage.get( projectId );
-    console.log( project );
-    console.log( "[end] gettng data for ", projectId );
-
+function injectProject( tabId, project ) {
     if ( false === project.enabled ) {
         console.log( project.url, " - url has enabled as false." );
+        return;
     }
-    if ( false === project.autoApply ) {
-        console.log( projec.url, " - url has autoApply as false." );
-    }
-
     un = [ "", undefined, null ];
     var inline_js = null;
     var rexp = /^\s*$/;

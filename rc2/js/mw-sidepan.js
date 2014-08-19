@@ -1,31 +1,58 @@
 var mwApp = angular.module( 'mwApp', [] );
-mwApp.value( 'projects', [] );
+mwApp.service( 'ChromeApi', [ '$q', ChromeApi ] );
 
-function sendMessage( message ) {
-	console.log( "from iframe", "sending msg ", message );
+function ChromeApi( q ) {
+	this.q = q;
+};
+ChromeApi.prototype.onMessage = function () {
+	defer = this.q.defer();
+	if ( 'chrome' in window ) {
+		chrome.runtime.onMessage.addListener( function ( message, sender ) {
+			if ( message.command && message.command === 'MW' ) {
+				defer.resolve( message.projects );
+			}
+		} );
+	}
+	return defer.promise;
+}
+
+ChromeApi.prototype.sendMessage = function ( message ) {
 	chrome.runtime.sendMessage( message, function ( response ) {
-		console.log( "from iframe", response.status );
+		console.log( "from extension", response.status );
 	} );
 }
 
-function mwController( $scope, projects ) {
-	var pageURL = document.location.ancestorOrigins[ 0 ];
-	$scope.projects = JSON.parse( window.localStorage[ pageURL ] );
+function mwController( $scope, ChromeApi ) {
+	$scope.pageURL = "";
 	var message;
+	$scope.projects = [];
+	$scope.getOptionPageUrl = function () {
+		return chrome.extension.getURL( 'html/options.html' )
+	}
+
+	function listen() {
+		ChromeApi.onMessage()
+			.then( function ( projects ) {
+				$scope.projects = projects;
+				listen();
+			} );
+	}
+	listen();
 	$scope.inject = function ( project ) {
-		console.log( " this is how we roll..." );
 		message = {};
 		message.command = "MW-INJECT";
 		message.pid = project.id;
 		project.injected = true;
-		sendMessage( message );
+		ChromeApi.sendMessage( message );
 	}
 	$scope.injectAll = function () {
 		message = {};
 		message.command = "MW-INJECT-ALL";
-		sendMessage( message );
+		ChromeApi.sendMessage( message );
+		$scope.allInjected = true;
 		for ( var i = $scope.projects.length - 1; i >= 0; i-- ) {
 			$scope.projects[ i ].injected = true;
 		};
 	}
+
 }

@@ -32,6 +32,9 @@
         ],
         "js": [
             "js/injected.js"
+        ],
+        "css": [
+            "css/magic.css"
         ]
     } ],
     "web_accessible_resources": [ "js/mw-sidepan.js", "html/mw-sidepan.html" ],

@@ -1,29 +1,55 @@
 var mwSidePanIframe = window.mwSidePanIframe;
+var mwWrapperDiv = window.mwWrapperDiv;
 
 function createIframe() {
-	mwSidePanIframe = document.createElement( 'iframe' )
+	mwWrapperDiv = document.createElement( 'div' );
+	mwWrapperDiv.id = 'mw_sidepan_div';
+	mwWrapperDiv.classList.add( 'magictime' );
+	mwWrapperDiv.style.display = "none";
+	mwWrapperDiv.style.position = "fixed";
+	mwWrapperDiv.style.top = "0";
+	mwWrapperDiv.style.right = "-350px";
+	mwWrapperDiv.style.bottom = "0";
+	mwWrapperDiv.style.width = "350px";
+	mwWrapperDiv.style.height = "100%";
+	mwWrapperDiv.style.border = "0";
+	mwWrapperDiv.style.background = "white";
+	mwWrapperDiv.style.zIndex = "99999999999999999999999999999";
+	mwWrapperDiv.style.boxSizing = "border-box !important";
+	mwWrapperDiv.style.boxShadow = "-14px 0px 30px 0px rgba(50, 50, 50, 0.15)";
+
+	mwSidePanIframe = document.createElement( 'iframe' );
 	mwSidePanIframe.src = chrome.extension.getURL( 'html/mw-sidepan.html' );
-	mwSidePanIframe.id = "mw_sidepan";
 	mwSidePanIframe.style.position = "fixed";
 	mwSidePanIframe.style.top = "0";
 	mwSidePanIframe.style.right = "0";
 	mwSidePanIframe.style.bottom = "0";
-	mwSidePanIframe.style.width = "20%";
+	mwSidePanIframe.style.width = "100%";
 	mwSidePanIframe.style.height = "100%";
 	mwSidePanIframe.style.border = "0";
 	mwSidePanIframe.style.background = "white";
-	mwSidePanIframe.style.border = "1px solid grey";
-	mwSidePanIframe.style.borderRadius = "2px";
-	mwSidePanIframe.style.zIndex = "99999999999999999999999999999";
-	mwSidePanIframe.style.display = "none";
-	document.body.appendChild( mwSidePanIframe );
+	mwSidePanIframe.style.overflow = "hidden";
+	mwSidePanIframe.id = "mw_sidepan";
+	mwSidePanIframe.name = "mw_sidepan";
+
+	mwWrapperDiv.appendChild( mwSidePanIframe );
+	document.body.appendChild( mwWrapperDiv );
 }
 
-function toggleMWSidePan( mwSidePanIframe ) {
-	if ( mwSidePanIframe.style.display == "none" ) {
-		mwSidePanIframe.style.display = "";
+var clear;
+
+function toggleMWSidePan( div ) {
+	if ( div.style.display == "none" ) {
+		clearTimeout( clear );
+		div.classList.add( 'slideLeft' );
+		div.classList.remove( 'slideRight' );
+		div.style.display = "";
 	} else {
-		mwSidePanIframe.style.display = "none";
+		div.classList.remove( 'slideLeft' );
+		div.classList.add( 'slideRight' );
+		clear = setTimeout( function () {
+			div.style.display = "none";
+		}, 300 );
 	}
 }
 
@@ -40,7 +66,7 @@ if ( window.top === window ) {
 	if ( 'chrome' in window ) {
 		chrome.runtime.onMessage.addListener( function ( message, sender ) {
 			if ( message.command && message.command === 'MW' ) {
-				toggleMWSidePan( document.getElementById( "mw_sidepan" ) );
+				toggleMWSidePan( document.getElementById( "mw_sidepan_div" ) );
 			}
 		} );
 	}

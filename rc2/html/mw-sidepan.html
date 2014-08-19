@@ -1,39 +1,54 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="mwApp">
+<html lang="en" ng-app="mwApp" ng-csp>
 
 <head>
     <meta charset="UTF-8">
     <title>Sidepan</title>
-    <style>
-    body {
-        margin: 0 auto;
-    }
-    </style>
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="/css/magic.css">
+    <link rel="stylesheet" href="/css/fonts.css">
+    <link rel="stylesheet" href="/css/skeleton.css">
+    <link rel="stylesheet" href="/css/icons.css">
     <script src="/js/lib/jquery.js"></script>
     <script src="/js/lib/jstorage.js"></script>
     <script src="/js/lib/angular.min.js"></script>
     <script src="/js/mw-sidepan.js"></script>
+    <style>
+    body {
+        margin: 0 auto;
+        margin-left: 20px;
+        background-color: rgb(78, 63, 85) !important;
+        color: white;
+        font-family: 'Open Sans', sans-serif;
+    }
+    .ng-hide {
+        display: none !important;
+    }
+    </style>
 </head>
 
 <body ng-controller="mwController">
     <div class="well" id="projects">
-        <h2>Monkey Wrench</h2>
+        <h2>
+            <span class="icon-wrench"></span>
+            Monkey Wrench</h2>
     </div>
+    <hr>
     <div ng-show="projects.length">
         <ol>
             <li ng-repeat="project in projects">
-                <del ng-show="project.injected">{{project.name}}</del>
-                <a ng-show="!project.injected" href="" ng-click="inject(project)">{{project.name}}</a>
+                <!-- <del ng-show="project.injected">{{project.name}}</del> -->
+                <a href="" ng-click="inject(project)">{{project.name}}</a>
             </li>
         </ol>
         <hr>
         <div class="container text-info">
+            <!-- <del ng-show="allInjected">Inject All</del> -->
             <a href="" ng-click="injectAll()">Inject All</a>
         </div>
     </div>
     <div ng-show="!projects.length">
-        Oops...no recipes for this page....:( <a href="">Create one</a>
+        Oops...no recipes for this page....:( <a target="_blank" ng-href="getOptionPageUrl()">Create one</a>
     </div>
 </body>
 
