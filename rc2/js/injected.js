@@ -33,12 +33,25 @@ function createIframe() {
 	mwSidePanIframe.name = "mw_sidepan";
 
 	mwWrapperDiv.appendChild( mwSidePanIframe );
+	mwWrapperDiv.appendChild( getCloseIcon() );
 	document.body.appendChild( mwWrapperDiv );
 }
 
+function getCloseIcon() {
+	i = new Image();
+	i.src = chrome.extension.getURL( "imgs/icon-close.png" );
+	i.style.width = "30px";
+	i.style.position = "absolute";
+	i.style.top = "-3px";
+	i.style.right = "-1px";
+	i.style.cursor = "pointer";
+	i.addEventListener( "click", toggleMWSidePan, false );
+	return i;
+}
 var clear;
 
-function toggleMWSidePan( div ) {
+function toggleMWSidePan() {
+	div = document.getElementById( "mw_sidepan_div" );
 	if ( div.style.display == "none" ) {
 		clearTimeout( clear );
 		div.classList.add( 'slideLeft' );
@@ -56,9 +69,9 @@ function toggleMWSidePan( div ) {
 if ( window.top === window ) {
 
 	// Inject the bridge script
-	// var inspectorScript = document.createElement( 'script' );
-	// inspectorScript.type = 'text/javascript';
-	// inspectorScript.src = chrome.extension.getURL( 'js/mw-sidepan.js' );
+	// var inspectorScript = document.createElement( 'script ' );
+	// inspectorScript.type = 'text / javascript ';
+	// inspectorScript.src = chrome.extension.getURL( 'js / mw - sidepan.js ' );
 	// document.head.appendChild( inspectorScript );
 	createIframe();
 
@@ -66,7 +79,7 @@ if ( window.top === window ) {
 	if ( 'chrome' in window ) {
 		chrome.runtime.onMessage.addListener( function ( message, sender ) {
 			if ( message.command && message.command === 'MW' ) {
-				toggleMWSidePan( document.getElementById( "mw_sidepan_div" ) );
+				toggleMWSidePan();
 			}
 		} );
 	}

@@ -76,6 +76,9 @@
         width: 150px;
         display: inline-block;
     }
+    #nors {
+        margin: 10px 20px;
+    }
     </style>
 </head>
 
@@ -84,7 +87,8 @@
     <div class="well" id="header">
         <h2>
             <span class="icon-wrench"></span>
-            Monkey Wrench</h2>
+            Monkey Wrench
+        </h2>
     </div>
     <div id="projects" ng-show="projects.length">
         <h2 style="text-align:center" id="sub-header">
@@ -107,8 +111,11 @@
         <br>
         <br>
     </div>
-    <div ng-show="!projects.length">
-        Oops...no recipes for this page....:( <a target="_blank" ng-href="getOptionPageUrl()">Create one</a>
+    <div ng-show="!projects.length" id="nors">
+        <h4>Boooo.....
+            <span class="icon-sad icc"></span>&nbsp;no recipes
+        </h4>
+        <a target="_blank" ng-href="getOptionPageUrl()">Create one</a>
     </div>
 </body>
 

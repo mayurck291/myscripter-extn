@@ -27,7 +27,7 @@ function mwController( $scope, ChromeApi ) {
 	var message;
 	$scope.projects = [];
 	$scope.getOptionPageUrl = function () {
-		return chrome.extension.getURL( 'html/options.html' )
+		return chrome.extension.getURL( 'html/options.html' ) + "#!/New"
 	}
 
 	function listen() {
@@ -54,5 +54,7 @@ function mwController( $scope, ChromeApi ) {
 			$scope.projects[ i ].injected = true;
 		};
 	}
-
+	$scope.hide = function () {
+		parent.toggleMWSidePan();
+	}
 }
