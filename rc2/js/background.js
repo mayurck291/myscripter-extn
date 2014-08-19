@@ -1,30 +1,3 @@
-function openOptionPage() {
-    chrome.tabs.create( {
-        url: "html/options.html"
-    } );
-}
-
-function simulateBrowserAction() {
-    chrome.tabs.getSelected( null, function ( tab ) {
-        myScripter( tab, true );
-    } );
-}
-
-function handleKeyBoardShortcuts( command ) {
-
-    switch ( command ) {
-    case "options":
-        openOptionPage();
-        break;
-    case "browserAction":
-        simulateBrowserAction();
-        break;
-    }
-}
-// old one
-// chrome.browserAction.onClicked.addListener( function ( tab ) {
-//     myScripter( tab, true );
-// } );
 function getFilteredUrls( tab ) {
     var prjmyindexes_9 = $.jStorage.get( 'prjmyindexes_9' ) || {};
     var url_regexes = Object.keys( prjmyindexes_9 );
@@ -59,7 +32,7 @@ chrome.runtime.onMessage.addListener(
             var prj = $.jStorage.get( request.pid )
             injectProject( sender.tab.id, prj );
         } else if ( request.command == "MW-INJECT-ALL" ) {
-            myScripter( sender.tab );
+            myScripter( sender.tab, true );
         };
     } );
 
@@ -76,7 +49,7 @@ chrome.browserAction.onClicked.addListener( function ( tab ) {
 chrome.tabs.onUpdated.addListener( function ( tabId, changeInfo, tab ) {
     try {
         if ( changeInfo.status == 'complete' ) {
-            myScripter( tab );
+            myScripter( tab, false );
         }
     } catch ( err ) {
         console.log( 'some error::' + err.message );
@@ -84,7 +57,7 @@ chrome.tabs.onUpdated.addListener( function ( tabId, changeInfo, tab ) {
 } );
 
 
-function myScripter( tab ) {
+function myScripter( tab, applyNow ) {
     tabId = tab.id;
     var prjmyindexes_9 = $.jStorage.get( 'prjmyindexes_9' );
     url_regexes = Object.keys( prjmyindexes_9 );
@@ -102,9 +75,9 @@ function myScripter( tab ) {
             value = prjmyindexes_9[ regex_url ][ i ]
             var pid = parseInt( value, 10 );
             project = $.jStorage.get( pid );
-            if ( project.autoApply ) {
+            if ( project.autoApply || applyNow ) {
                 injectProject( tabId, project );
-            };
+            }
         }
     } );
 }

@@ -16,36 +16,96 @@
     <style>
     body {
         margin: 0 auto;
-        margin-left: 20px;
-        background-color: rgb(78, 63, 85) !important;
-        color: white;
         font-family: 'Open Sans', sans-serif;
     }
     .ng-hide {
         display: none !important;
     }
+    #header {
+        color: white !important;
+        padding: 10px 10px;
+        height: 78px;
+        background-color: rgb(1, 188, 255) !important;
+        text-align: center;
+    }
+    #sub-header {
+        color: rgb(1, 188, 255);
+    }
+    #footer {
+        height: 78px;
+        text-align: center;
+    }
+    ul {
+        font-weight: 300;
+        font-size: 14px;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        min-height: 40px;
+    }
+    li {
+        cursor: pointer;
+        position: relative;
+        margin: 0;
+        overflow: hidden;
+    }
+    li:hover {
+        background-color: rgba(201, 212, 223, 0.67) !important;
+    }
+    a {
+        display: block;
+        font-weight: 600;
+        margin-left: 15px;
+        font-size: 18px;
+        color: black !important;
+        padding: 10px 4px;
+        -webkit-transition: -webkit-transform 0.2s;
+        transition: transform 0.2s;
+    }
+    a:active {
+        -webkit-transform: scale(0.93);
+        -ms-transform: scale(0.93);
+        -o-transform: scale(0.93);
+        transform: scale(0.93);
+    }
+    #inject-all {
+        padding: 5px 3px;
+        border: 1px solid rgb(1, 188, 255) !important;
+        text-align: center;
+        border-radius: 40px;
+        width: 150px;
+        display: inline-block;
+    }
     </style>
 </head>
 
 <body ng-controller="mwController">
-    <div class="well" id="projects">
+
+    <div class="well" id="header">
         <h2>
             <span class="icon-wrench"></span>
             Monkey Wrench</h2>
     </div>
-    <hr>
-    <div ng-show="projects.length">
-        <ol>
-            <li ng-repeat="project in projects">
-                <!-- <del ng-show="project.injected">{{project.name}}</del> -->
-                <a href="" ng-click="inject(project)">{{project.name}}</a>
+    <div id="projects" ng-show="projects.length">
+        <h2 style="text-align:center" id="sub-header">
+            <span class="icon-food"></span>
+            Recipes</h2>
+        <ul>
+            <li ng-repeat="project in projects" class="">
+                <a href="#" ng-click="inject(project)">
+				{{$index+1}}&nbsp;&nbsp;{{project.name}}
+				</a>
             </li>
-        </ol>
+        </ul>
+
+    </div>
+    <div ng-show="projects.length" id="footer">
+        <br>
         <hr>
-        <div class="container text-info">
-            <!-- <del ng-show="allInjected">Inject All</del> -->
-            <a href="" ng-click="injectAll()">Inject All</a>
-        </div>
+        <br>
+        <a href="" id="inject-all" ng-click="injectAll()" class="">Inject All</a>
+        <br>
+        <br>
     </div>
     <div ng-show="!projects.length">
         Oops...no recipes for this page....:( <a target="_blank" ng-href="getOptionPageUrl()">Create one</a>
