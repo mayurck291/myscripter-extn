@@ -33,7 +33,7 @@ function mwController( $scope, ChromeApi ) {
 	var message;
 	$scope.projects = [];
 	$scope.getOptionPageUrl = function () {
-		return ( chrome.extension.getURL( 'html/options2.html' ) + "#!/New/" + $scope.url )
+		return ( chrome.extension.getURL( 'html/options2.html' ) + "#!/New" )
 	}
 
 	function listen() {
