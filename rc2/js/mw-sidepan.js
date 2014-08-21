@@ -1,5 +1,11 @@
 var mwApp = angular.module( 'mwApp', [] );
 mwApp.service( 'ChromeApi', [ '$q', ChromeApi ] );
+mwApp.config( [
+	'$compileProvider',
+	function ( $compileProvider ) {
+		$compileProvider.aHrefSanitizationWhitelist( /^\s*(https?|ftp|mailto|chrome-extension):/ );
+	}
+] );
 
 function ChromeApi( q ) {
 	this.q = q;
@@ -27,7 +33,7 @@ function mwController( $scope, ChromeApi ) {
 	var message;
 	$scope.projects = [];
 	$scope.getOptionPageUrl = function () {
-		return chrome.extension.getURL( 'html/options.html' ) + "#!/New"
+		return ( chrome.extension.getURL( 'html/options2.html' ) + "#!/New" )
 	}
 
 	function listen() {

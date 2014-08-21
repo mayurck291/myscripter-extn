@@ -43,7 +43,7 @@ function getCloseIcon() {
 	i.style.width = "30px";
 	i.style.position = "absolute";
 	i.style.top = "-3px";
-	i.style.right = "-1px";
+	i.style.left = "-3px";
 	i.style.cursor = "pointer";
 	i.addEventListener( "click", toggleMWSidePan, false );
 	return i;
