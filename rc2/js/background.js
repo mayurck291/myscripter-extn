@@ -41,7 +41,8 @@ chrome.browserAction.onClicked.addListener( function ( tab ) {
     projects = getProjects( projectIds );
     var message = {
         command: 'MW',
-        projects: projects
+        projects: projects,
+        url: tab.url
     };
     chrome.tabs.sendMessage( tab.id, message );
 } );

@@ -15,7 +15,7 @@ ChromeApi.prototype.onMessage = function () {
 	if ( 'chrome' in window ) {
 		chrome.runtime.onMessage.addListener( function ( message, sender ) {
 			if ( message.command && message.command === 'MW' ) {
-				defer.resolve( message.projects );
+				defer.resolve( message );
 			}
 		} );
 	}
@@ -33,13 +33,14 @@ function mwController( $scope, ChromeApi ) {
 	var message;
 	$scope.projects = [];
 	$scope.getOptionPageUrl = function () {
-		return ( chrome.extension.getURL( 'html/options2.html' ) + "#!/New" )
+		return ( chrome.extension.getURL( 'html/options2.html' ) + "#!/New/" + $scope.url )
 	}
 
 	function listen() {
 		ChromeApi.onMessage()
-			.then( function ( projects ) {
-				$scope.projects = projects;
+			.then( function ( message ) {
+				$scope.projects = message.projects;
+				$scope.url = message.url;
 				listen();
 			} );
 	}
