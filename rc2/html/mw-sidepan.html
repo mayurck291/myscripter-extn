@@ -25,16 +25,35 @@
     #header {
         color: white !important;
         padding: 10px 10px;
-        height: 78px;
+        height: 65px;
         background-color: rgb(1, 188, 255) !important;
         text-align: center;
+        position: fixed;
+        top: 0px;
+        width: 100%;
+        line-height: 17px;
     }
     #sub-header {
         color: rgb(1, 188, 255);
     }
+    #projects {
+        position: fixed;
+        width: 100%;
+        top: 85px;
+        height: 85%;
+        overflow: overlay;
+    }
     #footer {
-        height: 78px;
+        position: fixed;
+        width: 100%;
+        bottom: 0;
+        height: 65px;
+        background-color: rgb(1, 188, 255) !important;
         text-align: center;
+    }
+    #footer a {
+        background: white;
+        margin: 16px auto;
     }
     ul {
         font-weight: 300;
@@ -53,7 +72,8 @@
     li:hover {
         background-color: rgba(201, 212, 223, 0.67) !important;
     }
-    li div,a {
+    li div,
+    a {
         display: block;
         font-weight: 600;
         margin-left: 15px;
@@ -64,7 +84,8 @@
         -webkit-transition: -webkit-transform 0.15s;
         transition: transform 0.15s;
     }
-    li div:active,a:active {
+    li div:active,
+    a:active {
         -webkit-transform: scale(0.93);
         -ms-transform: scale(0.93);
         -o-transform: scale(0.93);
@@ -91,6 +112,20 @@
     .blue {
         color: rgb(1, 188, 255) !important;
     }
+    ::-webkit-scrollbar-track {
+        border-radius: 10px;
+        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+        background-color: #F5F5F5;
+    }
+    ::-webkit-scrollbar {
+        width: 10px;
+        background-color: #F5F5F5;
+    }
+    ::-webkit-scrollbar-thumb {
+        background-color: #0ae;
+        border-radius: 10px;
+        background-image: -webkit-gradient(linear, 0 0, 0 100%, color-stop(.5, rgba(255, 255, 255, .2)), color-stop(.5, transparent), to(transparent));
+    }
     </style>
 </head>
 
@@ -103,11 +138,11 @@
         </h2>
     </div>
     <div id="projects" ng-show="projects.length">
-        <h2 style="text-align:center" id="sub-header">
+        <h2 style="text-align:center" id="sub-header" class="tooltip-bottom" data-tooltip="Click to on recipe name to run that recipe.">
             <span class="icon-food"></span>
             Recipes</h2>
         <ul>
-            <li ng-repeat="project in projects" class="tooltip-top" data-tooltip="Click to run {{project.name}}">
+            <li ng-repeat="project in projects">
                 <a href="" ng-click="inject(project)">
                     <span class="index">({{$index+1}})</span>&nbsp;&nbsp;{{project.name}}
                 </a>
@@ -116,19 +151,14 @@
 
     </div>
 
-    <div ng-show="projects.length" id="footer">
-        <br>
-        <hr>
-        <br>
-        <a href="" id="inject-all" ng-click="injectAll()" >Inject All</a>
-        <br>
-        <br>
+    <div id="footer" ng-show="projects.length">
+        <a href="" id="inject-all" ng-click="injectAll()">Inject All</a>
     </div>
     <div ng-show="!projects.length" id="nors">
         <h4 class="tooltip-top" data-tooltip="Click to create a recipe">Boooo.....
             <span class="icon-sad icc"></span>&nbsp;no recipes
         </h4>
-        <a id="inject-all" target="_blank" href="{{getOptionPageUrl()}}" class="blue" >
+        <a id="inject-all" target="_blank" href="{{getOptionPageUrl()}}" class="blue">
             <span style="font-size: 14px;" class="icon-plus"></span>&nbsp;create
         </a>
     </div>
