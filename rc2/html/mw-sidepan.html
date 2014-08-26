@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/css/fonts.css">
     <link rel="stylesheet" href="/css/skeleton.css">
     <link rel="stylesheet" href="/css/icons.css">
+    <link rel="stylesheet" href="/css/tooltip.css">
     <script src="/js/lib/jquery.js"></script>
     <script src="/js/lib/jstorage.js"></script>
     <script src="/js/lib/angular.min.js"></script>
@@ -45,9 +46,9 @@
     }
     li {
         cursor: pointer;
-        position: relative;
-        margin: 0;
-        overflow: hidden;
+        /*position: relative;*/
+        /*margin: 0;*/
+        /*overflow: hidden;*/
     }
     li:hover {
         background-color: rgba(201, 212, 223, 0.67) !important;
@@ -57,6 +58,7 @@
         font-weight: 600;
         margin-left: 15px;
         font-size: 18px;
+        overflow: hidden;
         color: black !important;
         padding: 10px 4px;
         -webkit-transition: -webkit-transform 0.15s;
@@ -74,6 +76,7 @@
         text-align: center;
         border-radius: 40px;
         width: 150px;
+        color: rgb(1, 188, 255) !important;
         display: inline-block;
     }
     #nors {
@@ -104,28 +107,29 @@
             <span class="icon-food"></span>
             Recipes</h2>
         <ul>
-            <li ng-repeat="project in projects" class="">
+            <li ng-repeat="project in projects" class="tooltip-top" data-tooltip="Click to run {{project.name}}">
                 <a href="" ng-click="inject(project)">
-                {{$index+1}}&nbsp;&nbsp;{{project.name}}
+                    <span class="index">({{$index+1}})</span>&nbsp;&nbsp;{{project.name}}
                 </a>
             </li>
         </ul>
 
     </div>
+
     <div ng-show="projects.length" id="footer">
         <br>
         <hr>
         <br>
-        <a href="" id="inject-all" ng-click="injectAll()" class="">Inject All</a>
+        <a href="" id="inject-all" ng-click="injectAll()" >Inject All</a>
         <br>
         <br>
     </div>
     <div ng-show="!projects.length" id="nors">
-        <h4>Boooo.....
+        <h4 class="tooltip-top" data-tooltip="Click to create a recipe">Boooo.....
             <span class="icon-sad icc"></span>&nbsp;no recipes
         </h4>
-        <a target="_blank" href="{{getOptionPageUrl()}}" class="blue">
-            <span class="icon-plus"></span>&nbsp;create one
+        <a id="inject-all" target="_blank" href="{{getOptionPageUrl()}}" class="blue" >
+            <span style="font-size: 14px;" class="icon-plus"></span>&nbsp;create
         </a>
     </div>
 </body>

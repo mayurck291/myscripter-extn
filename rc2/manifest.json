@@ -17,7 +17,7 @@
     },
     "browser_action": {
         "default_icon": "icon128.png",
-        "default_title": "Click to see magic !!"
+        "default_title": "Click to see magic !! Use ( CTRL + . ) for shortcut"
     },
     "background": {
         "scripts": [
