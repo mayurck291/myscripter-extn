@@ -52,7 +52,7 @@
     li:hover {
         background-color: rgba(201, 212, 223, 0.67) !important;
     }
-    a {
+    li div,a {
         display: block;
         font-weight: 600;
         margin-left: 15px;
@@ -62,7 +62,7 @@
         -webkit-transition: -webkit-transform 0.15s;
         transition: transform 0.15s;
     }
-    a:active {
+    li div:active,a:active {
         -webkit-transform: scale(0.93);
         -ms-transform: scale(0.93);
         -o-transform: scale(0.93);
@@ -105,7 +105,7 @@
             Recipes</h2>
         <ul>
             <li ng-repeat="project in projects" class="">
-                <a href="#" ng-click="inject(project)">
+                <a href="" ng-click="inject(project)">
                 {{$index+1}}&nbsp;&nbsp;{{project.name}}
                 </a>
             </li>

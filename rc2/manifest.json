@@ -1,6 +1,6 @@
 {
     "name": "Monkey Wrench",
-    "version": "3.0",
+    "version": "3.1",
     "manifest_version": 2,
     "description": "Smarter Way To Handle Websites : Custom scripts on custom URLs",
     "permissions": [
@@ -24,7 +24,8 @@
             "js/lib/jquery.js",
             "js/lib/jstorage.js",
             "js/background.js"
-        ]
+        ],
+        "persistent": true
     },
     "content_scripts": [ {
         "matches": [
@@ -44,5 +45,15 @@
         "scopes": [ "https://www.googleapis.com/auth/plus.login",
             "https://www.googleapis.com/auth/userinfo.email"
         ]
+    },
+    "commands": {
+        "_execute_browser_action": {
+            "suggested_key": {
+                "windows": "Ctrl+Period",
+                "mac": "Ctrl+Period",
+                "chromeos": "Ctrl+Period",
+                "linux": "Ctrl+Period"
+            }
+        }
     }
 }

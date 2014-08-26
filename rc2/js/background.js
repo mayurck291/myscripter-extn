@@ -50,6 +50,7 @@ chrome.browserAction.onClicked.addListener( function ( tab ) {
 chrome.tabs.onUpdated.addListener( function ( tabId, changeInfo, tab ) {
     try {
         if ( changeInfo.status == 'complete' ) {
+            console.log("tab refresshed")
             myScripter( tab, false );
         }
     } catch ( err ) {
@@ -115,7 +116,7 @@ function injectProject( tabId, project ) {
         ext_js_code += 'var s;\nl = document.createElement("link");\n l.setAttribute("rel", "stylesheet");l.setAttribute("type", "text/css");l.setAttribute("href", "' + v + '");\ndocument.body.appendChild(l);';
     } );
 
-    if ( "" !== ext_js_code ) {
+    if ( !(/^\s*$/.test(ext_js_code)) ) {
         if ( false == ext_js_flag )
             ext_js_code += "\n setTimeout(inline_js_func,0);";
 
@@ -124,7 +125,7 @@ function injectProject( tabId, project ) {
         executeScript( tabId, ext_js_code );
     }
 
-    if ( "" !== project.css ) {
+    if ( !(/^\s*$/.test(project.css)) ) {
         chrome.tabs.insertCSS( tabId, {
             code: project.css,
             runAt: 'document_start'
