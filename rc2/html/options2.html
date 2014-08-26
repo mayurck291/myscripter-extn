@@ -41,23 +41,23 @@
                 <!-- Top Navigation -->
                 <header class="codrops-header" style="position:absolute;top:0;left:0;right:0;height:55px;background:#47a3da;color:white">
                     <div class="pull-left" style="margin-top: -7px;width:70%;">
-                        <h2 class="pull-left clickable" ng-click="MW.home()">
+                        <h2 class="pull-left clickable" ng-click="view = 'home'">
                             <span class="icon-wrench"></span>
                             Monkey Wrench
 
                         </h2>
 
-                        <h2 class="pull-left clickable" ng-click="MW.new()">
+                        <h2 class="pull-left clickable" ng-click="view = 'new'">
                             <span class="icon-new"></span>
                             New
                         </h2>
 
-                        <h2 class="pull-left clickable" ng-click="MW.baazar()">
+                        <h2 class="pull-left clickable" ng-click="view = 'bazaar'">
                             <span class="icon-food"></span>
                             Recipe Bazaar
                         </h2>
 
-                        <h2 class="pull-left clickable" ng-click="MW.help()">
+                        <h2 class="pull-left clickable" ng-click="view = 'help'">
                             <span class="icon-question"></span>
                             Help
                         </h2>
@@ -106,7 +106,31 @@
                 </alert>
                 <div class="main clearfix ">
                     <div style="margin-top:80px">
-                        <div ng-view class="slide-pop"></div>
+                        <div ng-switch="view">
+                            <div ng-switch-default="home">
+                                <div ng-include="'/html/partials/home.html'" ng-controller="HomeController as Home"></div>
+                            </div>
+                            <div ng-switch-when="new">
+                                new
+                                <div ng-include="'/html/partials/new.html'" ng-controller="NewProjectController as NewProject"></div>
+                            </div>
+                            <div ng-switch-when="share">
+                                share
+                                <div ng-include="'/html/partials/share.html'" ng-controller="ShareProjectController as ShareProject"></div>
+                            </div>
+                            <div ng-switch-when="edit">
+                                edit
+                                <div ng-include="'/html/partials/edit.html'" ng-controller="EditProjectController as EditProject"></div>
+                            </div>
+                            <div ng-switch-when="bazaar">
+                                bazaar
+                                <div ng-include="'/html/partials/baazar.html'" ng-controller="BaazarController"></div>
+                            </div>
+                            <div ng-switch-when="help">
+                                help
+                                <div ng-include="'/html/partials/help.html'"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

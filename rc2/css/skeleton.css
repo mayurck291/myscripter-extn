@@ -17,7 +17,8 @@
 
 /* #Base 960 Grid
 ================================================== */
- .container {
+
+.container {
     position: relative;
     width: 960px;
     margin: 0 auto;
@@ -33,14 +34,16 @@
     margin-bottom: 20px;
 }
 /* Nested Column Classes */
- .column.alpha, .columns.alpha {
+
+.column.alpha, .columns.alpha {
     margin-left: 0;
 }
 .column.omega, .columns.omega {
     margin-right: 0;
 }
 /* Base Grid */
- .container .one.column, .container .one.columns {
+
+.container .one.column, .container .one.columns {
     width: 40px;
 }
 .container .two.columns {
@@ -95,7 +98,8 @@
     width: 620px;
 }
 /* Offsets */
- .container .offset-by-one {
+
+.container .offset-by-one {
     padding-left: 60px;
 }
 .container .offset-by-two {
@@ -144,7 +148,8 @@
 ================================================== */
 
 /* Note: Design for a width of 768px */
- @media only screen and (min-width: 768px) and (max-width: 959px) {
+
+@media only screen and (min-width: 768px) and (max-width: 959px) {
     .container {
         width: 768px;
     }
@@ -269,7 +274,8 @@
 ================================================== */
 
 /* Note: Design for a width of 320px */
- @media only screen and (max-width: 767px) {
+
+@media only screen and (max-width: 767px) {
     .container {
         width: 300px;
     }
@@ -288,7 +294,8 @@
 ================================================== */
 
 /* Note: Design for a width of 480px */
- @media only screen and (min-width: 480px) and (max-width: 767px) {
+
+@media only screen and (min-width: 480px) and (max-width: 767px) {
     .container {
         width: 420px;
     }
@@ -303,8 +310,9 @@
 ================================================== */
 
 /* Self Clearing Goodness */
- .container:after {
-    content:"\0020";
+
+.container:after {
+    content: "\0020";
     display: block;
     height: 0;
     clear: both;
@@ -312,8 +320,9 @@
 }
 /* Use clearfix class on parent to clear nested columns,
     or wrap each row of columns in a <div class="row"> */
- .clearfix:before, .clearfix:after, .row:before, .row:after {
-    content:'\0020';
+
+.clearfix:before, .clearfix:after, .row:before, .row:after {
+    content: '\0020';
     display: block;
     overflow: hidden;
     visibility: hidden;
@@ -327,7 +336,8 @@
     zoom: 1;
 }
 /* You can also use a <br class="clear" /> to clear columns */
- .clear {
+
+.clear {
     clear: both;
     display: block;
     overflow: hidden;
@@ -340,7 +350,8 @@
 /*comment box styles */
 
 /*********************/
- .left {
+
+.left {
     width: 550px !important;
     padding-bottom: 40px;
     min-height: auto !important;
@@ -369,7 +380,7 @@
     border-bottom: 14px solid #fff;
     border-left: 14px solid transparent;
     border-bottom-color: rgba(0, 0, 0, 0.2);
-    content:'';
+    content: '';
 }
 .tip:after {
     position: absolute;
@@ -379,7 +390,7 @@
     border-right: 12px solid transparent;
     border-bottom: 12px solid #fff;
     border-left: 12px solid transparent;
-    content:'';
+    content: '';
 }
 .tip.left:before {
     border-top: 14px solid transparent;
@@ -397,13 +408,14 @@
     top: 22px;
 }
 .pull-right {
-    float:right !important
+    float: right !important
 }
 .pull-left {
-    float:left !important
+    float: left !important
 }
 /*my classes*/
- .avatar {
+
+.avatar {
     top: -28px;
     left: -5px;
     padding: 3px;
@@ -417,9 +429,9 @@
     background: grey;
 }
 .comments-box {
-    height:420px !important;
-    width:720px !important;
-    overflow:scroll !important;
+    height: 420px !important;
+    width: 720px !important;
+    overflow: scroll !important;
 }
 .comment-body {
     font-weight: 600 !important;
@@ -431,10 +443,10 @@
     color: slategray !important;
 }
 input[type="submit"]:disabled {
-    background:#C3D6E2 !important;
+    background: #C3D6E2 !important;
 }
 button:disabled {
-    background:#C3D6E2 !important;
+    background: #C3D6E2 !important;
 }
 .comment-msg {
     padding: 10px 5px 10px 17px;
@@ -447,85 +459,84 @@ button:disabled {
     margin-right: 30px;
 }
 /* Alert */
- .alert {
-    padding:15px;
-    margin-bottom:20px;
-    border:1px solid transparent;
-    border-radius:4px
+
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px
 }
 .alert h4 {
-    margin-top:0;
-    color:inherit
+    margin-top: 0;
+    color: inherit
 }
 .alert .alert-link {
-    font-weight:700
+    font-weight: 700
 }
 .alert>p, .alert>ul {
-    margin-bottom:0
+    margin-bottom: 0
 }
 .alert>p+p {
-    margin-top:5px
+    margin-top: 5px
 }
 .alert-dismissable {
-    padding-right:35px
+    padding-right: 35px
 }
 .alert-dismissable .close {
-    position:relative;
-    top:-2px;
-    right:-21px;
-    color:inherit
+    position: relative;
+    top: -2px;
+    right: -21px;
+    color: inherit
 }
 .alert-success {
-    background-color:#dff0d8;
-    border-color:#d6e9c6;
-    color:#3c763d
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+    color: #3c763d
 }
 .alert-success hr {
-    border-top-color:#c9e2b3
+    border-top-color: #c9e2b3
 }
 .alert-success .alert-link {
-    color:#2b542c
+    color: #2b542c
 }
 .alert-info {
-    background-color:#d9edf7;
-    border-color:#bce8f1;
-    color:#31708f
+    background-color: #d9edf7;
+    border-color: #bce8f1;
+    color: #31708f
 }
 .alert-info hr {
-    border-top-color:#a6e1ec
+    border-top-color: #a6e1ec
 }
 .alert-info .alert-link {
-    color:#245269
+    color: #245269
 }
 .alert-warning {
-    background-color:#fcf8e3;
-    border-color:#faebcc;
-    color:#8a6d3b
+    background-color: #fcf8e3;
+    border-color: #faebcc;
+    color: #8a6d3b
 }
 .alert-warning hr {
-    border-top-color:#f7e1b5
+    border-top-color: #f7e1b5
 }
 .alert-warning .alert-link {
-    color:#66512c
+    color: #66512c
 }
 .alert-danger {
-    background-color:#f2dede;
-    border-color:#ebccd1;
-    color:#a94442
+    background-color: #f2dede;
+    border-color: #ebccd1;
+    color: #a94442
 }
 .alert-danger hr {
-    border-top-color:#e4b9c0
+    border-top-color: #e4b9c0
 }
 .alert-danger .alert-link {
-    color:#843534
+    color: #843534
 }
-.fade {
-}
-.fade.ng-enter, .fade.ng-leave {
-    -webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
-    transition: all 0.5s ease;
+.fade {} .fade.ng-enter, .fade.ng-leave {
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
 }
 .fade.ng-enter {
     opacity: 0;
@@ -546,10 +557,10 @@ button:disabled {
     height: 100%;
 }
 .slide-pop.ng-enter, .slide-pop.ng-leave {
-    -webkit-transition: all 0.5s linear;
-    -moz-transition: all 0.5s linear;
-    -o-transition: all 0.5s linear;
-    transition: all 0.5s linear;
+    -webkit-transition: all 0.3s linear;
+    -moz-transition: all 0.3s linear;
+    -o-transition: all 0.3s linear;
+    transition: all 0.3s linear;
 }
 .slide-pop.ng-enter {
     opacity: 0;
@@ -626,7 +637,7 @@ button:disabled {
     left: -100%;
 }
 .clickable {
-    color:white;
+    color: white;
     cursor: pointer;
     margin-left: 3%;
 }
@@ -634,14 +645,14 @@ button:disabled {
     opacity: 0.9;
 }
 .circle {
-    border-radius:50%
+    border-radius: 50%
 }
 a {
     text-decoration: none;
-    color:white;
+    color: white;
 }
 .login:hover {
-    color:white;
+    color: white;
 }
 td:hover {
     cursor: auto !important;
